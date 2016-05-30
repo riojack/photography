@@ -1,1 +1,1 @@
---compilers js:babel-register --require ./test/setup.js
+--compilers js:babel-register,js:./test/scss-stub.js --require ./test/setup.js
