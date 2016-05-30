@@ -29,7 +29,8 @@ describe('Thumb Tests', () => {
       backgroundPosition: {
         x: chance.integer({min: 1, max: 5}),
         y: chance.integer({min: 1, max: 5})
-      }
+      },
+      height: chance.integer({min: 25, max: 50})
     };
 
     doRender(viewProps);
@@ -44,7 +45,8 @@ describe('Thumb Tests', () => {
     expect(Thumb.defaultProps).to.eql({
       name: 'No name for photo',
       backgroundUrl: '',
-      backgroundPosition: {x: 0, y: 0}
+      backgroundPosition: {x: 0, y: 0},
+      height: 65
     });
   });
 
@@ -54,6 +56,10 @@ describe('Thumb Tests', () => {
 
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
     expect(node.style.backgroundPosition).to.equal(`${viewProps.backgroundPosition.x}px ${viewProps.backgroundPosition.y}px`);
+  });
+
+  it('should set style.height to the value of props.height', () => {
+    expect(node.style.height).to.equal(`${viewProps.height}px`);
   });
 
   it('should set the data-name attribute to the value of props.name', () => {
