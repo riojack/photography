@@ -8,6 +8,10 @@ function createStyles() {
 }
 
 class Thumb extends React.Component {
+  componentDidMount() {
+    require('../sass/thumb.scss');
+  }
+
   render() {
     return <div
       className="photo-thumb"
