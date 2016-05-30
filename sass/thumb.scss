@@ -3,5 +3,4 @@
 
 .photo-thumb {
   @include make-lg-column(3);
-  min-height: 65px;
 }

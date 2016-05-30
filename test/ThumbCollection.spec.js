@@ -39,7 +39,8 @@ describe('ThumbCollection Tests', () => {
           backgroundPosition: {
             x: chance.integer({min: 1, max: 5}),
             y: chance.integer({min: 1, max: 5})
-          }
+          },
+          height: chance.integer({min: 25, max: 50})
         }
       ]
     };
