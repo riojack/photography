@@ -3,4 +3,9 @@
 
 .photo-thumb {
   @include make-lg-column(3);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
 }
