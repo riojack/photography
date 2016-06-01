@@ -12,7 +12,8 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     pathinfo: true,
-    filename: '[name].js'
+    filename: '[name].js',
+    sourcePrefix: ''
   },
   module: {
     loaders: [
