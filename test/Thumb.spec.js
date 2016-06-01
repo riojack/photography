@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import {expect} from 'chai';
 import Chance from 'chance';
+import {stub, assert} from 'sinon';
 
 describe('Thumb Tests', () => {
   let container,
@@ -24,6 +25,7 @@ describe('Thumb Tests', () => {
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
+      onView: stub(),
       name: chance.sentence(),
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
       backgroundPosition: {
@@ -42,12 +44,11 @@ describe('Thumb Tests', () => {
   });
 
   it('should provide default prop values as expected', () => {
-    expect(Thumb.defaultProps).to.eql({
-      name: 'No name for photo',
-      backgroundUrl: '',
-      backgroundPosition: {x: 0, y: 0},
-      height: 65
-    });
+    expect(Thumb.defaultProps.onView).to.be.a('function');
+    expect(Thumb.defaultProps.name).to.equal('No name for photo');
+    expect(Thumb.defaultProps.backgroundUrl).to.equal('');
+    expect(Thumb.defaultProps.backgroundPosition).to.eql({x: 0, y: 0});
+    expect(Thumb.defaultProps.height).to.equal(65);
   });
 
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
@@ -64,5 +65,11 @@ describe('Thumb Tests', () => {
 
   it('should set the data-name attribute to the value of props.name', () => {
     expect(node.getAttribute('data-name')).to.equal(viewProps.name);
+  });
+
+  it('should call props.onView when the thumbnail is clicked', () => {
+    assert.notCalled(viewProps.onView);
+    ReactTestUtils.Simulate.click(node);
+    assert.calledOnce(viewProps.onView);
   });
 });

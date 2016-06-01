@@ -34,6 +34,7 @@ describe('ThumbCollection Tests', () => {
       name: chance.sentence(),
       collection: [
         {
+          onView: () => {},
           name: chance.word(),
           backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
           backgroundPosition: {

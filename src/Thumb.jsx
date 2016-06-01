@@ -18,11 +18,13 @@ class Thumb extends React.Component {
       className="photo-thumb"
       style={createStyles.call(this)}
       data-name={this.props.name}
-    />;
+      onClick={this.props.onView}
+    ></div>;
   }
 }
 
 Thumb.propTypes = {
+  onView: React.PropTypes.func,
   name: React.PropTypes.string,
   backgroundUrl: React.PropTypes.string,
   backgroundPosition: React.PropTypes.objectOf(React.PropTypes.number),
@@ -30,6 +32,7 @@ Thumb.propTypes = {
 };
 
 Thumb.defaultProps = {
+  onView: () => {},
   name: 'No name for photo',
   backgroundUrl: '',
   backgroundPosition: {x: 0, y: 0},
