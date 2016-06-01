@@ -13,9 +13,11 @@ class ThumbCollection extends React.Component {
 ThumbCollection.propTypes = {
   name: React.PropTypes.string,
   collection: React.PropTypes.arrayOf(React.PropTypes.shape({
+    onView: React.PropTypes.func,
     name: React.PropTypes.string,
     backgroundUrl: React.PropTypes.string,
-    backgroundPosition: React.PropTypes.objectOf(React.PropTypes.number)
+    backgroundPosition: React.PropTypes.shape({x: React.PropTypes.number, y: React.PropTypes.number}),
+    height: React.PropTypes.number
   }))
 };
 
