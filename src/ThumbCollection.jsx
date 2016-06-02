@@ -2,6 +2,10 @@ import Thumb from './Thumb';
 import React from 'react';
 
 class ThumbCollection extends React.Component {
+  componentDidMount() {
+    require('../sass/thumb-collection.scss');
+  }
+
   render() {
     return <section className="photo-thumb-collection" data-name={this.props.name}>
       <h3>{this.props.name}</h3>
