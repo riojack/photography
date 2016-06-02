@@ -8,6 +8,10 @@ function createStyles() {
   };
 }
 
+function handleClick() {
+  this.props.onView({name: this.props.name});
+}
+
 class Thumb extends React.Component {
   componentDidMount() {
     require('../sass/thumb.scss');
@@ -18,7 +22,7 @@ class Thumb extends React.Component {
       className="photo-thumb"
       style={createStyles.call(this)}
       data-name={this.props.name}
-      onClick={this.props.onView}
+      onClick={handleClick.bind(this)}
     ></div>;
   }
 }
@@ -32,7 +36,8 @@ Thumb.propTypes = {
 };
 
 Thumb.defaultProps = {
-  onView: () => {},
+  onView: () => {
+  },
   name: 'No name for photo',
   backgroundUrl: '',
   backgroundPosition: {x: 0, y: 0},

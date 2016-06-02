@@ -2,7 +2,13 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss";
 
 .photo-thumb {
-  @include make-lg-column(3);
+  @include make-lg-column(4);
+  max-width: 390px;
+  max-height: 175px;
+
+  padding-left: 0;
+  padding-right: 0;
+  margin: 15px;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
