@@ -12,6 +12,7 @@ describe('ThumbManager Tests', () => {
     node,
     viewProps,
     chance,
+    collection,
 
     selectedCollection;
 
@@ -22,6 +23,7 @@ describe('ThumbManager Tests', () => {
 
     component = ReactDOM.render(element, container);
     node = ReactDOM.findDOMNode(component);
+    collection = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollection);
   }
 
   beforeEach('set up', () => {
@@ -29,6 +31,12 @@ describe('ThumbManager Tests', () => {
     selectedCollection = chance.sentence();
     viewProps = {
       selectedCollection: selectedCollection,
+      focusing: chance.bool(),
+      pinned: chance.bool(),
+      onNavigateToCollection: function foo() {
+      },
+      onPinnedSwitch: function bar() {
+      },
       thumbCollections: [
         {
           name: selectedCollection,
@@ -50,8 +58,14 @@ describe('ThumbManager Tests', () => {
   });
 
   it('should render a single ThumbCollection object that has been given the props of the thumb collection with the same name as props.selectedCollection', () => {
-    let collection = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollection);
+    let expectedPropsToCollection = viewProps.thumbCollections.find(c => selectedCollection === c.name);
+    expectedPropsToCollection = Object.assign({}, expectedPropsToCollection, {
+      focusing: viewProps.focusing,
+      pinned: viewProps.pinned,
+      onNavigateToCollection: viewProps.onNavigateToCollection,
+      onPinnedSwitch: viewProps.onPinnedSwitch
+    });
 
-    expect(collection.props).to.eql(viewProps.thumbCollections.find(c => selectedCollection === c.name));
+    expect(collection.props).to.eql(expectedPropsToCollection);
   });
 });

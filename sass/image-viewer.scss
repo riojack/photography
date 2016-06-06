@@ -1,0 +1,23 @@
+@import "./mixins";
+
+.image-viewer {
+  line-height: 0;
+  background-color: rgb(0, 0, 0);
+  width: 92%;
+
+  > img {
+    @include transitionize(opacity .45s);
+    width: 100%;
+    opacity: 0;
+    display: none;
+
+    &[src] {
+      opacity: 1;
+      display: block;
+    }
+
+    &[data-focusing="false"] {
+      opacity: 0.15;
+    }
+  }
+}
