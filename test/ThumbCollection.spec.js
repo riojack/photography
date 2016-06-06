@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import {expect} from 'chai';
 import Chance from 'chance';
+import {stub, assert} from 'sinon';
 
 describe('ThumbCollection Tests', () => {
   let container,
@@ -13,7 +14,6 @@ describe('ThumbCollection Tests', () => {
     viewProps,
     chance,
 
-    heading,
     thumbs;
 
   function doRender(props) {
@@ -24,7 +24,6 @@ describe('ThumbCollection Tests', () => {
     component = ReactDOM.render(element, container);
     node = ReactDOM.findDOMNode(component);
 
-    [heading] = node.childNodes;
     thumbs = ReactTestUtils.scryRenderedComponentsWithType(component, Thumb);
   }
 
@@ -32,9 +31,14 @@ describe('ThumbCollection Tests', () => {
     chance = new Chance();
     viewProps = {
       name: chance.sentence(),
+      onNavigateToCollection: stub(),
+      onPinnedSwitch: stub(),
+      focusing: true,
+      pinned: false,
       collection: [
         {
-          onView: () => {},
+          onView: () => {
+          },
           name: chance.word(),
           backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
           backgroundPosition: {
@@ -54,11 +58,6 @@ describe('ThumbCollection Tests', () => {
     expect(node.getAttribute('class')).to.equal('photo-thumb-collection');
   });
 
-  it('should render an H3 as its first child with the props.name as its textContent', () => {
-    expect(heading.tagName).to.equal('H3');
-    expect(heading.textContent).to.equal(viewProps.name);
-  });
-
   it('should render each props.collection item as a Thumb', () => {
     expect(thumbs).to.have.length(viewProps.collection.length);
   });
@@ -69,6 +68,18 @@ describe('ThumbCollection Tests', () => {
 
   it('should set the data-name attribute to props.name', () => {
     expect(node.getAttribute('data-name')).to.equal(viewProps.name);
+  });
+
+  it('should set the data-focusing attribute to props.focusing', () => {
+    expect(node.getAttribute('data-focusing')).to.equal(viewProps.focusing.toString());
+  });
+
+  it('should not render any thumbs if props.focusing is falsy', () => {
+    viewProps.focusing = false;
+
+    doRender(viewProps);
+
+    expect(thumbs).to.have.length(0);
   });
 
   it('should set the defaultProps as expected', () => {

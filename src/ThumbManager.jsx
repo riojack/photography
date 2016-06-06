@@ -10,7 +10,13 @@ class ThumbManager extends React.Component {
   render() {
     let collection = findSelectedCollection.call(this);
 
-    return <ThumbCollection {...collection} />;
+    return <ThumbCollection
+      {...collection}
+      focusing={this.props.focusing}
+      pinned={this.props.pinned}
+      onNavigateToCollection={this.props.onNavigateToCollection}
+      onPinnedSwitch={this.props.onPinnedSwitch}
+    />;
   }
 }
 

@@ -1,5 +1,7 @@
 import ThumbManager from './src/ThumbManager';
+import ImageViewer from './src/ImageViewer';
 
 window.Photos = {
-  ThumbManager: ThumbManager
+  ThumbManager: ThumbManager,
+  ImageViewer: ImageViewer
 };

@@ -1,15 +1,29 @@
 import Thumb from './Thumb';
 import React from 'react';
 
+function createHeadingOrDefault() {
+  if (this.props.focusing) {
+    return <h3>{this.props.name}</h3>;
+  }
+}
+
+function mapThumbnailsOrDefault() {
+  if (this.props.focusing) {
+    return this.props.collection.map((p, i) => <Thumb key={i} {...p} />);
+  }
+}
+
 class ThumbCollection extends React.Component {
   componentDidMount() {
     require('../sass/thumb-collection.scss');
   }
 
   render() {
-    return <section className="photo-thumb-collection" data-name={this.props.name}>
-      <h3>{this.props.name}</h3>
-      {this.props.collection.map((p, i) => <Thumb key={i} {...p} />)}
+    return <section
+      className="photo-thumb-collection"
+      data-name={this.props.name}
+      data-focusing={this.props.focusing}>
+      {mapThumbnailsOrDefault.call(this)}
     </section>;
   }
 }
