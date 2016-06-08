@@ -21,9 +21,9 @@ describe('NavManager Tests', () => {
     viewProps = {
       group: chance.word(),
       collections: [
-        {name: chance.word()},
-        {name: chance.word()},
-        {name: chance.word()}
+        {collection: chance.word()},
+        {collection: chance.word()},
+        {collection: chance.word()}
       ]
     };
 
@@ -58,7 +58,7 @@ describe('NavManager Tests', () => {
       listItems = collectionsList.children('li');
 
     viewProps.collections.forEach((c, i) => {
-      expect(listItems.at(i).children().node, `At index ${i}`).to.equal(c.name);
+      expect(listItems.at(i).children().node, `At index ${i}`).to.equal(c.collection);
     });
   });
 });

@@ -3,8 +3,8 @@ import ThumbCollectionHeader from './ThumbCollectionHeader';
 import React from 'react';
 
 function findSelectedCollection() {
-  let selectedCollection = this.props.selectedCollection;
-  return this.props.thumbCollections.find(c => selectedCollection === c.name);
+  let selectedCollection = this.props.application.selectedCollection;
+  return this.props.collections.find(c => selectedCollection === c.collection);
 }
 
 class ThumbManager extends React.Component {
@@ -12,14 +12,10 @@ class ThumbManager extends React.Component {
     let collection = findSelectedCollection.call(this);
 
     return <div data-component="thumb-manager">
-      <ThumbCollectionHeader heading={collection.name} />
+      <ThumbCollectionHeader heading={collection.collection}/>
       <ThumbCollection
-        {...collection}
-        focusing={this.props.focusing}
-        pinned={this.props.pinned}
-        onNavigateToCollection={this.props.onNavigateToCollection}
-        onPinnedSwitch={this.props.onPinnedSwitch}
-      />
+        application={this.props.application}
+        {...collection} />
     </div>;
   }
 }
