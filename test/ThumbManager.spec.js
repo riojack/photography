@@ -1,4 +1,5 @@
 import ThumbManager from '../src/ThumbManager';
+import ThumbCollectionHeader from '../src/ThumbCollectionHeader';
 import ThumbCollection from '../src/ThumbCollection';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,9 +13,11 @@ describe('ThumbManager Tests', () => {
     node,
     viewProps,
     chance,
+    heading,
     collection,
 
-    selectedCollection;
+    selectedCollection,
+    expectedPropsToCollection;
 
   function doRender(props) {
     let element = <ThumbManager {...props} />;
@@ -23,6 +26,7 @@ describe('ThumbManager Tests', () => {
 
     component = ReactDOM.render(element, container);
     node = ReactDOM.findDOMNode(component);
+    heading = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollectionHeader);
     collection = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollection);
   }
 
@@ -54,11 +58,20 @@ describe('ThumbManager Tests', () => {
       ]
     };
 
+    expectedPropsToCollection = viewProps.thumbCollections.find(c => selectedCollection === c.name);
+
     doRender(viewProps);
+  });
+  
+  it('should have data-component attribute with a value of "thumb-manager"', () => {
+    expect(node.getAttribute('data-component')).to.equal('thumb-manager');
+  });
+  
+  it('should render a sing ThumbCollectionHeader and has it the selected collection\'s name as "heading"', () => {
+    expect(heading.props).to.eql({heading: expectedPropsToCollection.name});
   });
 
   it('should render a single ThumbCollection object that has been given the props of the thumb collection with the same name as props.selectedCollection', () => {
-    let expectedPropsToCollection = viewProps.thumbCollections.find(c => selectedCollection === c.name);
     expectedPropsToCollection = Object.assign({}, expectedPropsToCollection, {
       focusing: viewProps.focusing,
       pinned: viewProps.pinned,
