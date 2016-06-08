@@ -1,50 +1,42 @@
+import React from 'react';
+import {expect} from 'chai';
+import {shallow} from 'enzyme';
+import {stub} from 'sinon';
+import Chance from 'chance';
+
 import ThumbManager from '../src/ThumbManager';
 import ThumbCollectionHeader from '../src/ThumbCollectionHeader';
 import ThumbCollection from '../src/ThumbCollection';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
-import {expect} from 'chai';
-import Chance from 'chance';
 
 describe('ThumbManager Tests', () => {
-  let container,
-    component,
-    node,
+  let element,
     viewProps,
     chance,
-    heading,
-    collection,
 
-    selectedCollection,
     expectedPropsToCollection;
 
-  function doRender(props) {
-    let element = <ThumbManager {...props} />;
-
-    container = document.createElement('div');
-
-    component = ReactDOM.render(element, container);
-    node = ReactDOM.findDOMNode(component);
-    heading = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollectionHeader);
-    collection = ReactTestUtils.findRenderedComponentWithType(component, ThumbCollection);
+  function render(props) {
+    element = shallow(<ThumbManager {...props} />);
   }
 
   beforeEach('set up', () => {
+    let selectedCollection;
+
     chance = new Chance();
     selectedCollection = chance.sentence();
+
     viewProps = {
-      selectedCollection: selectedCollection,
-      focusing: chance.bool(),
-      pinned: chance.bool(),
-      onNavigateToCollection: function foo() {
+      application: {
+        selectedCollection: selectedCollection,
+        focusing: chance.bool(),
+        pinned: chance.bool(),
+        onNavigateToCollection: stub(),
+        onPinnedSwitch: stub()
       },
-      onPinnedSwitch: function bar() {
-      },
-      thumbCollections: [
+      collections: [
         {
-          name: selectedCollection,
-          collection: [
+          collection: selectedCollection,
+          items: [
             {
               name: chance.word(),
               backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
@@ -58,27 +50,25 @@ describe('ThumbManager Tests', () => {
       ]
     };
 
-    expectedPropsToCollection = viewProps.thumbCollections.find(c => selectedCollection === c.name);
+    expectedPropsToCollection = viewProps.collections.find(c => selectedCollection === c.collection);
 
-    doRender(viewProps);
+    render(viewProps);
   });
-  
+
   it('should have data-component attribute with a value of "thumb-manager"', () => {
-    expect(node.getAttribute('data-component')).to.equal('thumb-manager');
+    expect(element.props()).to.have.property('data-component', 'thumb-manager');
   });
-  
+
   it('should render a sing ThumbCollectionHeader and has it the selected collection\'s name as "heading"', () => {
-    expect(heading.props).to.eql({heading: expectedPropsToCollection.name});
+    expect(element.children(ThumbCollectionHeader).props()).to.eql({heading: expectedPropsToCollection.collection});
   });
 
   it('should render a single ThumbCollection object that has been given the props of the thumb collection with the same name as props.selectedCollection', () => {
-    expectedPropsToCollection = Object.assign({}, expectedPropsToCollection, {
-      focusing: viewProps.focusing,
-      pinned: viewProps.pinned,
-      onNavigateToCollection: viewProps.onNavigateToCollection,
-      onPinnedSwitch: viewProps.onPinnedSwitch
-    });
+    expect(element.children(ThumbCollection).at(0).prop('collection')).to.equal(expectedPropsToCollection.collection);
+    expect(element.children(ThumbCollection).at(0).prop('items')).to.eql(expectedPropsToCollection.items);
+  });
 
-    expect(collection.props).to.eql(expectedPropsToCollection);
+  it('should pass on the application prop to ThumbCollection', () => {
+    expect(element.children(ThumbCollection).prop('application')).to.eql(viewProps.application);
   });
 });

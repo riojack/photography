@@ -9,7 +9,7 @@ class Nav extends React.Component {
     return <nav className="navigation-set">
       <h4>{this.props.group}</h4>
       <ul>
-        {this.props.collections.map((c, i) => <li key={i}>{c.name}</li>)}
+        {this.props.collections.map((c, i) => <li key={i}>{c.collection}</li>)}
       </ul>
     </nav>;
   }

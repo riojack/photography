@@ -9,7 +9,7 @@ function createStyles() {
 }
 
 function handleClick() {
-  this.props.onView({name: this.props.name});
+  this.props.application.onView({name: this.props.name});
 }
 
 class Thumb extends React.Component {
@@ -27,16 +27,10 @@ class Thumb extends React.Component {
   }
 }
 
-Thumb.propTypes = {
-  onView: React.PropTypes.func,
-  name: React.PropTypes.string,
-  backgroundUrl: React.PropTypes.string,
-  backgroundPosition: React.PropTypes.objectOf(React.PropTypes.number),
-  height: React.PropTypes.number
-};
-
 Thumb.defaultProps = {
-  onView: () => {
+  application: {
+    onView: () => {
+    }
   },
   name: 'No name for photo',
   backgroundUrl: '',
