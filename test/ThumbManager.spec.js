@@ -29,9 +29,7 @@ describe('ThumbManager Tests', () => {
       application: {
         selectedCollection: selectedCollection,
         focusing: chance.bool(),
-        pinned: chance.bool(),
-        onNavigateToCollection: stub(),
-        onPinnedSwitch: stub()
+        onNavigateToCollection: stub()
       },
       collections: [
         {

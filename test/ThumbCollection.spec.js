@@ -20,9 +20,7 @@ describe('ThumbCollection Tests', () => {
     viewProps = {
       application: {
         onNavigateToCollection: stub(),
-        onPinnedSwitch: stub(),
         focusing: true,
-        pinned: false,
         onView: stub()
       },
       collection: chance.sentence(),
