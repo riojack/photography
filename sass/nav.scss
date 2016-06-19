@@ -1,5 +1,10 @@
 .navigation-set {
+  margin: 0 10px;
   > ul {
     list-style: none;
+
+    > li {
+      cursor: pointer;
+    }
   }
 }

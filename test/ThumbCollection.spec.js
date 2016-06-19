@@ -19,8 +19,7 @@ describe('ThumbCollection Tests', () => {
     chance = new Chance();
     viewProps = {
       application: {
-        onNavigateToCollection: stub(),
-        focusing: true,
+        focusingOnThumbs: true,
         onView: stub()
       },
       collection: chance.sentence(),
@@ -70,11 +69,11 @@ describe('ThumbCollection Tests', () => {
   });
 
   it('should set the data-focusing attribute to props.focusing', () => {
-    expect(element.prop('data-focusing')).to.equal(viewProps.application.focusing);
+    expect(element.prop('data-focusing')).to.equal(viewProps.application.focusingOnThumbs);
   });
 
   it('should not render any thumbs if props.focusing is falsy', () => {
-    viewProps.application.focusing = false;
+    viewProps.application.focusingOnThumbs = false;
 
     render(viewProps);
 

@@ -6,7 +6,7 @@ import {stub, assert} from 'sinon';
 
 import Nav from '../src/Nav';
 
-describe('NavManager Tests', () => {
+describe('Nav Tests', () => {
   let viewProps,
     element,
 
@@ -20,6 +20,7 @@ describe('NavManager Tests', () => {
     chance = new Chance();
     viewProps = {
       group: chance.word(),
+      onCollectionClicked: stub(),
       collections: [
         {collection: chance.word()},
         {collection: chance.word()},
@@ -36,7 +37,7 @@ describe('NavManager Tests', () => {
 
   it('should have a css class of "navigation-set"', () => {
     expect(element.props()).to.have.property('className', 'navigation-set');
-  })
+  });
 
   it('should have an h4 child with the group name in it', () => {
     let groupNameEl = element.children().at(0);
@@ -59,6 +60,19 @@ describe('NavManager Tests', () => {
 
     viewProps.collections.forEach((c, i) => {
       expect(listItems.at(i).children().node, `At index ${i}`).to.equal(c.collection);
+    });
+  });
+
+  it('should fire the collection click handler when each li is clicked', () => {
+    let collectionsList = element.children().at(1),
+      listItems = collectionsList.children('li');
+
+    listItems.forEach((li, i) => {
+      viewProps.onCollectionClicked.reset();
+      li.simulate('click');
+
+      expect(viewProps.onCollectionClicked.calledOnce, `Click handler should have been called when clicking LI #${i}`).to.equal(true);
+      expect(viewProps.onCollectionClicked.lastCall.args, `Click handler should have been passed collection name when clicking LI #${i}`).to.eql([viewProps.group, li.children().node]);
     });
   });
 });

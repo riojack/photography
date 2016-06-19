@@ -3,8 +3,8 @@ import React from 'react';
 
 function mapThumbnailsOrDefault() {
   let application = this.props.application;
-  if (this.props.application.focusing) {
-    return this.props.items.map((p, i) => <Thumb key={i} {...p} application={application} />);
+  if (this.props.application.focusingOnThumbs) {
+    return this.props.items.map((p, i) => <Thumb key={i} {...p} application={application}/>);
   }
 }
 
@@ -17,7 +17,7 @@ class ThumbCollection extends React.Component {
     return <section
       className="photo-thumb-collection"
       data-name={this.props.collection}
-      data-focusing={this.props.application.focusing}>
+      data-focusing={this.props.application.focusingOnThumbs}>
       {mapThumbnailsOrDefault.call(this)}
     </section>;
   }

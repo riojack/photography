@@ -9,7 +9,7 @@ function createStyles() {
 }
 
 function handleClick() {
-  this.props.application.onView({name: this.props.name});
+  this.props.application.onView(this.props);
 }
 
 class Thumb extends React.Component {
