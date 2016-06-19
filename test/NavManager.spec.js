@@ -20,6 +20,9 @@ describe('NavManager Tests', () => {
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
+      application: {
+        onCollectionClicked: stub()
+      },
       groups: [
         {
           group: chance.word(),
@@ -51,7 +54,8 @@ describe('NavManager Tests', () => {
 
   it('should pass to each NavManager the associated group as props', () => {
     element.children().forEach((n, i) => {
-      expect(n.props()).to.eql(viewProps.groups[i]);
+      let expectedProps = Object.assign({}, viewProps.groups[i], {onCollectionClicked: viewProps.application.onCollectionClicked});
+      expect(n.props()).to.eql(expectedProps);
     });
   });
 });

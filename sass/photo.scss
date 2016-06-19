@@ -10,10 +10,19 @@
     width: 100%;
     opacity: 0;
     display: none;
+    transform-origin: top left;
 
     &[src] {
       opacity: 1;
       display: block;
+    }
+
+    &[data-scale-mode='small'] {
+      transform: scale(0.35);
+    }
+
+    &[data-scale-mode='mid'] {
+      transform: scale(0.75);
     }
 
     &[data-focusing="false"] {

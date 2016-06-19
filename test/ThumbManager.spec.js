@@ -28,8 +28,7 @@ describe('ThumbManager Tests', () => {
     viewProps = {
       application: {
         selectedCollection: selectedCollection,
-        focusing: chance.bool(),
-        onNavigateToCollection: stub()
+        focusing: chance.bool()
       },
       collections: [
         {
@@ -55,6 +54,13 @@ describe('ThumbManager Tests', () => {
 
   it('should have data-component attribute with a value of "thumb-manager"', () => {
     expect(element.props()).to.have.property('data-component', 'thumb-manager');
+  });
+
+  it('should not render any children if it is unable to find a collection', () => {
+    viewProps.collections = [];
+    render(viewProps);
+
+    expect(element.children()).to.have.length(0);
   });
 
   it('should render a sing ThumbCollectionHeader and has it the selected collection\'s name as "heading"', () => {

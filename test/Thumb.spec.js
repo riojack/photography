@@ -59,11 +59,9 @@ describe('Thumb Tests', () => {
     expect(element.prop('data-name')).to.equal(viewProps.name);
   });
 
-  it('should call props.onView and give it the thumbnail name as an object when the thumbnail is clicked', () => {
+  it('should call props.onView and give it the thumbnail object when the thumbnail is clicked', () => {
     assert.notCalled(viewProps.application.onView);
     element.simulate('click');
-    assert.calledWithExactly(viewProps.application.onView, {
-      name: viewProps.name
-    });
+    assert.calledWithExactly(viewProps.application.onView, viewProps);
   });
 });
