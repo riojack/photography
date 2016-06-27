@@ -1,32 +1,17 @@
 @import "./mixins";
 
-.image-viewer {
+.photo-viewer {
   line-height: 0;
-  background-color: rgb(0, 0, 0);
-  width: 92%;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 65px;
 
   > img {
-    @include transitionize(opacity .45s);
-    width: 100%;
-    opacity: 0;
-    display: none;
-    transform-origin: top left;
+    display: block;
+    margin: 5px auto;
 
-    &[src] {
-      opacity: 1;
-      display: block;
-    }
-
-    &[data-scale-mode='small'] {
-      transform: scale(0.35);
-    }
-
-    &[data-scale-mode='mid'] {
-      transform: scale(0.75);
-    }
-
-    &[data-focusing="false"] {
-      opacity: 0.15;
+    &:not([data-loading="true"]) {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
     }
   }
 }
