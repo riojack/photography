@@ -17,8 +17,7 @@ describe('Thumb Tests', () => {
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
-      application: {onView: stub()},
-      name: chance.sentence(),
+      application: {onThumbClick: stub()},
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
       backgroundPosition: {
         x: chance.integer({min: 1, max: 5}),
@@ -30,21 +29,13 @@ describe('Thumb Tests', () => {
     doRender(viewProps);
   });
 
-  it('should render as a div with a css class of "photo-thumb"', () => {
+  it('should render as a DIV with a css class of "photo-thumb"', () => {
     expect(element.type()).to.equal('div');
     expect(element.prop('className')).to.equal('photo-thumb');
   });
 
-  it('should provide default prop values as expected', () => {
-    expect(Thumb.defaultProps.application.onView).to.be.a('function');
-    expect(Thumb.defaultProps.name).to.equal('No name for photo');
-    expect(Thumb.defaultProps.backgroundUrl).to.equal('');
-    expect(Thumb.defaultProps.backgroundPosition).to.eql({x: 0, y: 0});
-    expect(Thumb.defaultProps.height).to.equal(65);
-  });
-
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
-    expect(element.prop('style').backgroundImage).to.equal(`url(${viewProps.backgroundUrl})`);
+    expect(element.prop('style').backgroundImage).to.equal(`url('${viewProps.backgroundUrl}')`);
   });
 
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
@@ -55,13 +46,9 @@ describe('Thumb Tests', () => {
     expect(element.prop('style').height).to.equal(`${viewProps.height}px`);
   });
 
-  it('should set the data-name attribute to the value of props.name', () => {
-    expect(element.prop('data-name')).to.equal(viewProps.name);
-  });
-
-  it('should call props.onView and give it the thumbnail object when the thumbnail is clicked', () => {
-    assert.notCalled(viewProps.application.onView);
+  it('should call props.onThumbClick and give it the thumbnail object when the thumbnail is clicked', () => {
+    assert.notCalled(viewProps.application.onThumbClick);
     element.simulate('click');
-    assert.calledWithExactly(viewProps.application.onView, viewProps);
+    assert.calledWithExactly(viewProps.application.onThumbClick, viewProps);
   });
 });

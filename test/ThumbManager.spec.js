@@ -5,74 +5,85 @@ import {stub} from 'sinon';
 import Chance from 'chance';
 
 import ThumbManager from '../src/ThumbManager';
-import ThumbCollectionHeader from '../src/ThumbCollectionHeader';
 import ThumbCollection from '../src/ThumbCollection';
+import Photo from '../src/Photo';
 
 describe('ThumbManager Tests', () => {
   let element,
     viewProps,
     chance,
 
-    expectedPropsToCollection;
+    selectedCollection,
+    possibleImage;
 
   function render(props) {
     element = shallow(<ThumbManager {...props} />);
   }
 
   beforeEach('set up', () => {
-    let selectedCollection;
-
     chance = new Chance();
-    selectedCollection = chance.sentence();
-
-    viewProps = {
-      application: {
-        selectedCollection: selectedCollection,
-        focusing: chance.bool()
-      },
-      collections: [
+    possibleImage = chance.url({extensions: ['jpg', 'png']});
+    selectedCollection = {
+      collection: chance.word(),
+      items: [
         {
-          collection: selectedCollection,
-          items: [
-            {
-              name: chance.word(),
-              backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
-              backgroundPosition: {
-                x: chance.integer({min: 1, max: 5}),
-                y: chance.integer({min: 1, max: 5})
-              }
-            }
-          ]
+          name: chance.word(),
+          image: possibleImage,
+          backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
+          backgroundPosition: {
+            x: chance.integer({min: 1, max: 5}),
+            y: chance.integer({min: 1, max: 5})
+          }
         }
       ]
     };
 
-    expectedPropsToCollection = viewProps.collections.find(c => selectedCollection === c.collection);
+    viewProps = {
+      application: {
+        selectedCollection: selectedCollection,
+        image: false
+      }
+    };
 
     render(viewProps);
   });
 
-  it('should have data-component attribute with a value of "thumb-manager"', () => {
-    expect(element.props()).to.have.property('data-component', 'thumb-manager');
+  it('should be a DIV', () => {
+    expect(element.type()).to.equal('div');
   });
 
-  it('should not render any children if it is unable to find a collection', () => {
-    viewProps.collections = [];
+  it('should have a css class of "thumb-manager"', () => {
+    expect(element.props()).to.have.property('className', 'thumb-manager');
+  });
+
+  it('should not render any children if props.application.selectedCollection is falsy', () => {
+    viewProps.application.selectedCollection = false;
     render(viewProps);
 
     expect(element.children()).to.have.length(0);
   });
 
-  it('should render a sing ThumbCollectionHeader and has it the selected collection\'s name as "heading"', () => {
-    expect(element.children(ThumbCollectionHeader).props()).to.eql({heading: expectedPropsToCollection.collection});
+  it('if props.application.image is falsy, it should render a thumb collection but not render a photo', () => {
+    expect(element.children(ThumbCollection)).to.have.length(1);
+    expect(element.children(Photo)).to.have.length(0);
   });
 
-  it('should render a single ThumbCollection object that has been given the props of the thumb collection with the same name as props.selectedCollection', () => {
-    expect(element.children(ThumbCollection).at(0).prop('collection')).to.equal(expectedPropsToCollection.collection);
-    expect(element.children(ThumbCollection).at(0).prop('items')).to.eql(expectedPropsToCollection.items);
+  it('if props.application.image is set to an object, it should render a photo but not a thumb collection', () => {
+    viewProps.application.image = possibleImage;
+    render(viewProps);
+
+    expect(element.children(ThumbCollection)).to.have.length(0);
+    expect(element.children(Photo)).to.have.length(1);
   });
 
-  it('should pass on the application prop to ThumbCollection', () => {
-    expect(element.children(ThumbCollection).prop('application')).to.eql(viewProps.application);
+  it('should pass props.application to the photo component', () => {
+    viewProps.application.image = possibleImage;
+    render(viewProps);
+
+    expect(element.children(Photo).at(0).props()).to.eql({application: viewProps.application})
+  });
+  
+  it('should pass props.application to the thumb collection component', () => {
+    expect(element.children(ThumbCollection).at(0).props()).to.eql({application: viewProps.application});
   });
 });

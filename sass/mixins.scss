@@ -1,4 +1,4 @@
-@mixin transitionize($params) {
+@mixin transitionize($params...) {
   -webkit-transition: $params;
   -moz-transition: $params;
   -o-transition: $params;

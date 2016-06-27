@@ -1,11 +1,10 @@
-import Thumb from './Thumb';
-import React from 'react';
+import Thumb from "./Thumb";
+import React from "react";
 
 function mapThumbnailsOrDefault() {
-  let application = this.props.application;
-  if (this.props.application.focusingOnThumbs) {
-    return this.props.items.map((p, i) => <Thumb key={i} {...p} application={application}/>);
-  }
+  return this.props.application.selectedCollection.items.map((p, i) => {
+    return <Thumb key={i} {...p} application={this.props.application}/>;
+  });
 }
 
 class ThumbCollection extends React.Component {
@@ -14,19 +13,10 @@ class ThumbCollection extends React.Component {
   }
 
   render() {
-    return <section
-      className="photo-thumb-collection"
-      data-name={this.props.collection}
-      data-focusing={this.props.application.focusingOnThumbs}>
+    return <div className="photo-thumb-collection">
       {mapThumbnailsOrDefault.call(this)}
-    </section>;
+    </div>;
   }
 }
-
-ThumbCollection.defaultProps = {
-  application: {},
-  collection: 'This collection has no name',
-  items: []
-};
 
 export default ThumbCollection;

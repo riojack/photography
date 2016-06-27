@@ -1,0 +1,64 @@
+.collection-navigator {
+  > ul {
+    list-style: none;
+    margin: 0;
+
+    > li {
+      text-align: center;
+      padding: 2px 15px;
+      font-weight: 100;
+
+      &:first-child {
+        font-size: 1em;
+        display: none;
+      }
+
+      &:not(:first-child) {
+        font-size: 5em;
+      }
+
+      > a {
+        cursor: pointer;
+        display: inline-block;
+
+        &::before {
+          content: '\00AB';
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
+  > nav > ul {
+    list-style: none;
+    margin: 0;
+
+    > li {
+      display: inline-block;
+      padding: 2px 15px;
+      width: 200px;
+
+      a {
+        width: 200px;
+        cursor: pointer;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        height: 30px;
+      }
+
+      a::selection {
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      a:hover {
+        text-shadow: rgba(255, 255, 255, 0.65) 0 0 10px;
+      }
+
+      a:active {
+        text-shadow: rgba(255, 255, 255, 1) 0 0 10px;
+      }
+    }
+  }
+}

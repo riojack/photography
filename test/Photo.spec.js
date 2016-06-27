@@ -1,85 +1,70 @@
-import Photo from '../src/Photo';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import Chance from 'chance';
+import {stub, assert} from 'sinon';
+
+import Photo from '../src/Photo';
 
 describe('Photo Tests', () => {
-  let container,
-    component,
-    node,
-    viewProps,
-    chance,
-    img;
+  let viewProps,
+    element,
 
-  function doRender(props) {
-    let element = <Photo {...props} />;
+    img,
+    chance;
 
-    container = document.createElement('div');
+  function render(props) {
+    element = shallow(<Photo {...props} />);
 
-    component = ReactDOM.render(element, container);
-    node = ReactDOM.findDOMNode(component);
-    [img] = node.childNodes;
+    img = element.children().at(0);
   }
 
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
-      image: {
-        src: chance.url({extensions: ['jpg', 'png']})
-      },
-      focusing: chance.bool()
+      application: {
+        onImageClick: stub(),
+        image: chance.url({extensions: ['jpg', 'png']}),
+        imageAttributes: {
+          isLoading: chance.pick([true, false]),
+          height: chance.integer(),
+          width: chance.integer()
+        }
+      }
     };
 
-    doRender(viewProps);
+    render(viewProps);
   });
 
-  it('should render as a SECTION with the CSS class "image-viewer"', () => {
-    expect(node.tagName).to.equal('SECTION');
-    expect(node.getAttribute('class')).to.equal('image-viewer');
+  it('should be a DIV html element', () => {
+    expect(element.type()).to.equal('div');
   });
 
-  it('should have an IMG element inside with a src attribute of props.image.src', () => {
-    expect(img.getAttribute('src')).to.equal(viewProps.image.src);
+  it('should have a css class of "photo-viewer"', () => {
+    expect(element.props()).to.have.property('className', 'photo-viewer');
   });
 
-  it('should set "data-focusing" attribute on the image', () => {
-    expect(img.getAttribute('data-focusing')).to.equal(viewProps.focusing.toString());
+  it('should have a single child that is an IMG element', () => {
+    expect(element.children()).to.have.length(1);
+    expect(img.type()).to.equal('img');
   });
 
-  it('should not set the "src" attribute if props.image.src is falsy', () => {
-    viewProps.image.src = '';
-    doRender(viewProps);
-
-    expect(img.getAttribute('src')).to.equal(null);
+  it('should set the IMG element\'s src attribute to props.application.image', () => {
+    expect(img.props()).to.have.property('src', viewProps.application.image);
   });
 
-  it('should set "data-scale-mode" to "small" when first rendering', () => {
-    expect(img.getAttribute('data-scale-mode')).to.equal('small');
+  it('should set the IMG\'s height and width attributes to props.application.imageAttributes.height and props.application.imageAttributes.width', () => {
+    expect(img.props()).to.have.property('height', viewProps.application.imageAttributes.height);
+    expect(img.props()).to.have.property('width', viewProps.application.imageAttributes.width);
+  });
+  
+  it('should set data-loading to the string value of props.application.imageAttributes.isLoading', () => {
+    expect(img.props()).to.have.property('data-loading', viewProps.application.imageAttributes.isLoading);
   });
 
-  it('should set "data-scale-mode" to "mid" when the img is clicked', () => {
-    ReactTestUtils.Simulate.click(img);
-    [img] = node.childNodes;
-
-    expect(img.getAttribute('data-scale-mode')).to.equal('mid');
-  });
-
-  it('should set "data-scale-mode" to "full" when the img is clicked twice', () => {
-    ReactTestUtils.Simulate.click(img);
-    ReactTestUtils.Simulate.click(img);
-    [img] = node.childNodes;
-
-    expect(img.getAttribute('data-scale-mode')).to.equal('full');
-  });
-
-  it('should set "data-scale-mode" to "small" when the img is clicked three times', () => {
-    ReactTestUtils.Simulate.click(img);
-    ReactTestUtils.Simulate.click(img);
-    ReactTestUtils.Simulate.click(img);
-    [img] = node.childNodes;
-
-    expect(img.getAttribute('data-scale-mode')).to.equal('small');
+  it('should call props.application.onImageClick when the image is clicked', () => {
+    assert.notCalled(viewProps.application.onImageClick);
+    img.simulate('click');
+    assert.calledOnce(viewProps.application.onImageClick);
   });
 });

@@ -1,11 +1,11 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {expect} from 'chai';
-import Chance from 'chance';
-import {stub, assert} from 'sinon';
-
-import NavManager from '../src/NavManager';
-import Nav from '../src/Nav';
+import React from "react";
+import {shallow} from "enzyme";
+import {expect} from "chai";
+import Chance from "chance";
+import {stub, assert} from "sinon";
+import NavManager from "../src/NavManager";
+import CollectionNav from "../src/CollectionNav";
+import GroupNav from "../src/GroupNav";
 
 describe('NavManager Tests', () => {
   let viewProps,
@@ -21,41 +21,81 @@ describe('NavManager Tests', () => {
     chance = new Chance();
     viewProps = {
       application: {
-        onCollectionClicked: stub()
+        selectedGroup: null
       },
       groups: [
         {
           group: chance.word(),
-          collections: [{}, {}, {}]
-        }, {
+          collections: [{a: 'a'}]
+        },
+        {
           group: chance.word(),
-          collections: [{}, {}, {}]
-        }, {
+          collections: [{b: 'b'}]
+        },
+        {
           group: chance.word(),
-          collections: [{}, {}, {}]
+          collections: [{c: 'c'}]
         }
       ]
     };
 
+    viewProps.application.selectedGroup = chance.pick(viewProps.groups);
+
     render(viewProps);
   });
 
-  it('should be a section HTML type', () => {
-    expect(element.type()).to.equal('section');
+  it('should be a DIV html type', () => {
+    expect(element.type()).to.equal('div');
   });
 
   it('should have a css class of "navigation-manager', () => {
     expect(element.props()).to.have.property('className', 'navigation-manager');
   });
 
-  it('should have NavManager components for each group item', () => {
-    expect(element.children(Nav)).to.have.length(viewProps.groups.length);
+  it('should not render any child components if props.groups in null', () => {
+    viewProps.groups = null;
+    render(viewProps);
+
+    expect(element.children()).to.have.length(0);
   });
 
-  it('should pass to each NavManager the associated group as props', () => {
-    element.children().forEach((n, i) => {
-      let expectedProps = Object.assign({}, viewProps.groups[i], {onCollectionClicked: viewProps.application.onCollectionClicked});
-      expect(n.props()).to.eql(expectedProps);
+  describe('when props.application.selectedGroup is set to a selected group', () => {
+    it('should NOT have GroupNav components', () => {
+      expect(element.children(GroupNav)).to.have.length(0);
+    });
+
+    it('should have a CollectionNav component', () => {
+      expect(element.children(CollectionNav)).to.have.length(1);
+    });
+
+    it('should pass the expected props to CollectionNav', () => {
+      let props = element.children(CollectionNav).at(0).props(),
+        expectedProps = Object.assign({application: viewProps.application}, viewProps.application.selectedGroup);
+
+      expect(props).to.eql(expectedProps);
+    });
+  });
+
+  describe('when props.collection.selectedGroup is not set', () => {
+    beforeEach('set up', () => {
+      viewProps.application.selectedGroup = null;
+      render(viewProps);
+    });
+
+    it('should NOT have CollectionNav components', () => {
+      expect(element.children(CollectionNav)).to.have.length(0);
+    });
+
+    it('should have a GroupNav component', () => {
+      expect(element.children(GroupNav)).to.have.length(1);
+    });
+
+    it('should pass props.groups to GroupNav', () => {
+      expect(element.children(GroupNav).props()).to.have.property('groups', viewProps.groups);
+    });
+
+    it('should pass props.application to GroupNav', () => {
+      expect(element.children(GroupNav).props()).to.have.property('application', viewProps.application);
     });
   });
 });
