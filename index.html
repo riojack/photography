@@ -333,6 +333,7 @@
           }
         });
         mergeAppState({crumbs: buildCrumbs(mergeAppState())});
+
         render();
       };
     }
@@ -368,8 +369,8 @@
 
       mergeAppState({
         imageAttributes: {
-          height: (appState.imageAttributes.height * (1.0/currentScale)) * nextScale,
-          width: (appState.imageAttributes.width * (1.0/currentScale)) * nextScale
+          height: (appState.imageAttributes.height * (1.0 / currentScale)) * nextScale,
+          width: (appState.imageAttributes.width * (1.0 / currentScale)) * nextScale
         }
       });
 
