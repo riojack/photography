@@ -1,4 +1,1 @@
-window.SnappyData = [
-  require('./alpha-data').Alpha,
-  require('./bravo-data').Bravo
-];
+window.SnappyData = require('./some-datarz').data;

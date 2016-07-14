@@ -217,11 +217,75 @@
       },
       mergeScaleState = function () {
       },
-      scaleRotator = {
-        '0.4': 0.7,
-        '0.7': 0.9,
-        '0.9': 0.4
-      };
+      largeRatio = 0.9,
+      midRatio = 0.7,
+      smallRatio = 0.4,
+      scaleRotator = (function () {
+        var scale = {};
+        scale[smallRatio.toString()] = midRatio;
+        scale[midRatio.toString()] = largeRatio;
+        scale[largeRatio.toString()] = smallRatio;
+
+        return scale;
+      }());
+
+    function isTallImage(image) {
+      return image.height > image.width;
+    }
+
+    function createScaleContainingImage(image, container) {
+      // viewport is containing box
+      var containerScales = Object
+        .keys(scaleRotator)
+        .reduce(function (accObj, key) {
+          var scale = scaleRotator[key],
+            t = {};
+
+          t[key] = {
+            height: scale * container.height,
+            width: scale * container.width
+          };
+
+          return Object.assign({}, accObj, t);
+        }, {});
+
+      var imageScales = Object
+        .keys(scaleRotator)
+        .reduce(function (accObj, key) {
+          var scale = scaleRotator[key],
+            t = {};
+
+          t[key] = {
+            height: scale * image.height,
+            width: scale * image.width
+          };
+
+          return Object.assign({}, accObj, t);
+        }, {});
+
+      return Object
+        .keys(scaleRotator)
+        .reduce(function (accObj, key) {
+          var ctScale = containerScales[key],
+            imScale = imageScales[key],
+            scale = {height: imScale.height, width: imScale.width},
+            t = {};
+
+
+          if (isTallImage(image) && imScale.height > ctScale.height) {
+            scale.height = ctScale.height;
+            scale.width = (ctScale.height / imScale.height) * imScale.width;
+          }
+          else if (imScale.width > ctScale.width) {
+            scale.width = ctScale.width;
+            scale.height = (ctScale.width / imScale.width) * imScale.height;
+          }
+
+          t[key] = scale;
+
+          return Object.assign({}, accObj, t);
+        }, {});
+    }
 
     function stator(next) {
       this.state = Object.assign({}, this.state, next);
@@ -278,6 +342,13 @@
       }));
     }
 
+    function getViewportDimensions() {
+      return {
+        height: window.innerHeight,
+        width: window.innerWidth
+      };
+    }
+
     function getGroupCrumb(group) {
       return group.group + ' collections';
     }
@@ -309,9 +380,8 @@
     }
 
     function whenShouldViewThumbnail(item) {
-      mergeScaleState({}, true);
-
       mergeAppState({
+        imageObject: item,
         image: window.SnappySupport.texticons.loading[0],
         imageAttributes: {
           height: 100,
@@ -325,11 +395,16 @@
       var image = new Image();
       image.src = item.image;
       image.onload = function () {
-        var scaleState = mergeScaleState();
+        var scaleState = mergeScaleState(),
+          correctedImageObject = Object.assign({}, item, {height: this.height, width: this.width}),
+          imageScale = createScaleContainingImage(correctedImageObject, getViewportDimensions());
+
         mergeAppState({
+          imageObject: correctedImageObject,
           image: item.image,
           imageAttributes: {
-            height: image.height * scaleState.scale, width: image.width * scaleState.scale
+            height: imageScale[scaleState.scale.toString()].height,
+            width: imageScale[scaleState.scale.toString()].width
           }
         });
         mergeAppState({crumbs: buildCrumbs(mergeAppState())});
@@ -341,6 +416,7 @@
     function whenShouldNavigateToCollection(collection) {
       mergeAppState({
         selectedCollection: collection,
+        imageObject: null,
         image: null
       });
       mergeAppState({crumbs: buildCrumbs(mergeAppState())});
@@ -363,14 +439,15 @@
       var scaleState = mergeScaleState(),
         appState = mergeAppState(),
         currentScale = scaleState.scale,
-        nextScale = scaleRotator[currentScale.toString()];
+        nextScale = scaleRotator[currentScale.toString()],
+        imageScale = createScaleContainingImage(appState.imageObject, getViewportDimensions());
 
       mergeScaleState({scale: nextScale});
 
       mergeAppState({
         imageAttributes: {
-          height: (appState.imageAttributes.height * (1.0 / currentScale)) * nextScale,
-          width: (appState.imageAttributes.width * (1.0 / currentScale)) * nextScale
+          height: imageScale[nextScale.toString()].height,
+          width: imageScale[nextScale.toString()].width
         }
       });
 
@@ -388,13 +465,16 @@
       if (crumb === 'Groups') {
         appState.selectedGroup = null;
         appState.selectedCollection = null;
+        appState.imageObject = null;
         appState.image = null;
       }
       else if (crumb === getGroupCrumb(appState.selectedGroup)) {
         appState.selectedCollection = null;
+        appState.imageObject = null;
         appState.image = null;
       }
       else if (crumb === getCollectionCrumb(appState.selectedCollection)) {
+        appState.imageObject = null;
         appState.image = null;
       }
 

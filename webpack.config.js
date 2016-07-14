@@ -5,7 +5,7 @@ module.exports = {
     'application': __dirname + '/index.js',
     'application.min': __dirname + '/index.js',
     'data.min': __dirname + '/sheets/index.js',
-    'example-data.min': __dirname + '/data/index.js',
+    'example-data': __dirname + '/data/index.js',
     'support.min': __dirname + '/support/index.js'
   },
   externals: {

@@ -25,20 +25,19 @@
   }
 
   .collection-presentation {
-    width: 480px;
-    margin: 0 auto;
+    min-width: 480px;
     z-index: 3000;
 
     @include min-screen(1600px) {
-      width: 1550px;
+      min-width: 1550px;
     }
 
     @include max-screen(1024px) {
-      width: 960px;
+      min-width: 960px;
     }
 
     @include max-screen(1280px) {
-      width: 1100px;
+      min-width: 1100px;
     }
   }
 }
