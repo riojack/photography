@@ -217,6 +217,8 @@
       },
       mergeScaleState = function () {
       },
+      mergeChalkboard = function () {
+      },
       largeRatio = 0.9,
       midRatio = 0.7,
       smallRatio = 0.4,
@@ -234,7 +236,6 @@
     }
 
     function createScaleContainingImage(image, container) {
-      // viewport is containing box
       var containerScales = Object
         .keys(scaleRotator)
         .reduce(function (accObj, key) {
@@ -270,7 +271,6 @@
             imScale = imageScales[key],
             scale = {height: imScale.height, width: imScale.width},
             t = {};
-
 
           if (isTallImage(image) && imScale.height > ctScale.height) {
             scale.height = ctScale.height;
@@ -326,6 +326,7 @@
       }
     });
     mergeScaleState = statorWithReset.bind({state: false});
+    mergeChalkboard = stator.bind({collectionScrollY: 0});
 
     mergeScaleState({scale: 0.4});
 
@@ -334,7 +335,7 @@
 
       container.innerHTML = null;
 
-      window.Snappy.render(container, mergeWorldState({
+      return window.Snappy.render(container, mergeWorldState({
         tap: 'untapped',
         navState: mergeNavState(),
         thumbState: mergeThumbState(),
@@ -390,6 +391,10 @@
         }
       });
 
+      mergeChalkboard({
+        collectionScrollY: window.scrollY
+      });
+
       render();
 
       var image = new Image();
@@ -407,6 +412,7 @@
             width: imageScale[scaleState.scale.toString()].width
           }
         });
+
         mergeAppState({crumbs: buildCrumbs(mergeAppState())});
 
         render();
@@ -481,7 +487,10 @@
       mergeAppState(appState);
 
       mergeAppState({crumbs: buildCrumbs(mergeAppState())});
-      render();
+      render()
+        .then(function () {
+          window.scrollTo(0, mergeChalkboard().collectionScrollY);
+        });
     }
 
     // start up
