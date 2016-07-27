@@ -4,7 +4,8 @@ function createStyles() {
   return {
     backgroundImage: `url('${this.props.backgroundUrl}')`,
     backgroundPosition: `${this.props.backgroundPosition.x}px ${this.props.backgroundPosition.y}px`,
-    height: `${this.props.height}px`
+    height: `${this.props.height}px`,
+    width: `${this.props.width}px`
   };
 }
 
@@ -20,5 +21,9 @@ class Thumb extends React.Component {
       onClick={this.props.application.onThumbClick.bind({}, this.props)} />;
   }
 }
+
+Thumb.defaultProps = {
+  width: 390
+};
 
 export default Thumb;
