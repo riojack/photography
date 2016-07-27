@@ -287,37 +287,16 @@
         }, {});
     }
 
-    function stator(next) {
-      this.state = Object.assign({}, this.state, next);
-
-      return this.state;
-    }
-
-    function statorWithReset(next, reset) {
-      if (!this.state) {
-        this.defaultState = Object.assign({}, next);
-      }
-
-      if (reset) {
-        this.state = Object.assign({}, this.defaultState, next);
-      }
-      else {
-        this.state = Object.assign({}, this.state, next);
-      }
-
-      return this.state;
-    }
-
-    mergeAppState = stator.bind({
+    mergeAppState = window.Snappy.stateUtilities.stator.bind({
       state: {
         crumbs: ['Groups'],
         selectedGroup: false,
         selectedCollection: false
       }
     });
-    mergeNavState = stator.bind({state: {groups: []}});
-    mergeThumbState = stator.bind({state: {image: null, collection: []}});
-    mergeWorldState = stator.bind({
+    mergeNavState = window.Snappy.stateUtilities.stator.bind({state: {groups: []}});
+    mergeThumbState = window.Snappy.stateUtilities.stator.bind({state: {image: null, collection: []}});
+    mergeWorldState = window.Snappy.stateUtilities.stator.bind({
       state: {
         tap: 'untapped',
         navState: mergeNavState(),
@@ -325,8 +304,8 @@
         application: mergeAppState()
       }
     });
-    mergeScaleState = statorWithReset.bind({state: false});
-    mergeChalkboard = stator.bind({collectionScrollY: 0});
+    mergeScaleState = window.Snappy.stateUtilities.statorWithReset.bind({state: false});
+    mergeChalkboard = window.Snappy.stateUtilities.stator.bind({collectionScrollY: 0});
 
     mergeScaleState({scale: 0.4});
 
