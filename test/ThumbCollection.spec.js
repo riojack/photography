@@ -54,7 +54,7 @@ describe('ThumbCollection Tests', () => {
       let item = viewProps.application.selectedCollection.items[i],
         expectedProps = Object.assign({}, item, {application: viewProps.application});
 
-      expect(t.props()).to.eql(expectedProps);
+      expect(t.props()).to.eql(Object.assign({}, Thumb.defaultProps, expectedProps));
     });
   });
 });

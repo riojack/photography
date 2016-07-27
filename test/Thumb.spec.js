@@ -46,9 +46,20 @@ describe('Thumb Tests', () => {
     expect(element.prop('style').height).to.equal(`${viewProps.height}px`);
   });
 
+  it('should set style.width to the value of props.width', () => {
+    viewProps.width = chance.integer({min: 55, max: 200});
+    doRender(viewProps);
+
+    expect(element.prop('style').width).to.equal(`${viewProps.width}px`);
+  });
+  
+  it('should set style.width to 390 if props.width is not provided', () => {
+    expect(element.prop('style').width).to.equal('390px');
+  });
+
   it('should call props.onThumbClick and give it the thumbnail object when the thumbnail is clicked', () => {
     assert.notCalled(viewProps.application.onThumbClick);
     element.simulate('click');
-    assert.calledWithExactly(viewProps.application.onThumbClick, viewProps);
+    assert.calledWithExactly(viewProps.application.onThumbClick, Object.assign({}, Thumb.defaultProps, viewProps));
   });
 });
