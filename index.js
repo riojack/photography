@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Photography from './src/Photography'
+import stateUtilities from './src/state-utilities';
 
 (function () {
 
@@ -15,7 +16,8 @@ import Photography from './src/Photography'
   }
 
   window.Snappy = {
-    render: doRender
+    render: doRender,
+    stateUtilities: stateUtilities
   };
 }());
 
