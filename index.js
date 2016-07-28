@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Photography from './src/Photography'
 import stateUtilities from './src/state-utilities';
+import imageUtilities from './src/image-utilities';
 
 (function () {
 
@@ -17,7 +18,8 @@ import stateUtilities from './src/state-utilities';
 
   window.Snappy = {
     render: doRender,
-    stateUtilities: stateUtilities
+    stateUtilities: stateUtilities,
+    imageUtilities: imageUtilities
   };
 }());
 
