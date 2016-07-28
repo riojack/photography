@@ -218,69 +218,22 @@
       mergeScaleState = function () {
       },
       mergeChalkboard = function () {
-      },
-      largeRatio = 0.9,
-      midRatio = 0.7,
-      smallRatio = 0.4,
-      scaleRotator = (function () {
-        var scale = {};
-        scale[smallRatio.toString()] = midRatio;
-        scale[midRatio.toString()] = largeRatio;
-        scale[largeRatio.toString()] = smallRatio;
+      };
 
-        return scale;
-      }());
+    function containImageInBox(image, box) {
+      let isTall = window.Snappy.imageUtilities.isTallImage(image),
+        containedImageDimensions = {height: 0, width: 0};
 
-    function createScaleContainingImage(image, container) {
-      var containerScales = Object
-        .keys(scaleRotator)
-        .reduce(function (accObj, key) {
-          var scale = scaleRotator[key],
-            t = {};
+      if (isTall && image.height > box.height) {
+        containedImageDimensions.height = box.height;
+        containedImageDimensions.width = (box.height / image.height) * image.width;
+      }
+      else if (image.width > box.width) {
+        containedImageDimensions.width = box.width;
+        containedImageDimensions.height = (box.width / image.width) * image.height;
+      }
 
-          t[key] = {
-            height: scale * container.height,
-            width: scale * container.width
-          };
-
-          return Object.assign({}, accObj, t);
-        }, {});
-
-      var imageScales = Object
-        .keys(scaleRotator)
-        .reduce(function (accObj, key) {
-          var scale = scaleRotator[key],
-            t = {};
-
-          t[key] = {
-            height: scale * image.height,
-            width: scale * image.width
-          };
-
-          return Object.assign({}, accObj, t);
-        }, {});
-
-      return Object
-        .keys(scaleRotator)
-        .reduce(function (accObj, key) {
-          var ctScale = containerScales[key],
-            imScale = imageScales[key],
-            scale = {height: imScale.height, width: imScale.width},
-            t = {};
-
-          if (window.Snappy.imageUtilities.isTallImage(image) && imScale.height > ctScale.height) {
-            scale.height = ctScale.height;
-            scale.width = (ctScale.height / imScale.height) * imScale.width;
-          }
-          else if (imScale.width > ctScale.width) {
-            scale.width = ctScale.width;
-            scale.height = (ctScale.width / imScale.width) * imScale.height;
-          }
-
-          t[key] = scale;
-
-          return Object.assign({}, accObj, t);
-        }, {});
+      return containedImageDimensions;
     }
 
     mergeAppState = window.Snappy.stateUtilities.stator.bind({
@@ -303,7 +256,7 @@
     mergeScaleState = window.Snappy.stateUtilities.statorWithReset.bind({state: false});
     mergeChalkboard = window.Snappy.stateUtilities.stator.bind({collectionScrollY: 0});
 
-    mergeScaleState({scale: 0.4});
+    mergeScaleState({scale: window.Snappy.imageUtilities.scale.SMALL_SCALE});
 
     function render() {
       var container = document.getElementById('magic-id-thing');
@@ -375,22 +328,21 @@
       var image = new Image();
       image.src = item.image;
       image.onload = function () {
-        var scaleState = mergeScaleState(),
-          correctedImageObject = Object.assign({}, item, {height: this.height, width: this.width}),
-          imageScale = createScaleContainingImage(correctedImageObject, getViewportDimensions());
+        var currentScale = mergeScaleState().scale,
+          viewport = getViewportDimensions(),
+          imageObject = Object.assign({}, item, {height: this.height, width: this.width}),
+          fittedImageObject = containImageInBox(imageObject, viewport);
+
+        mergeScaleState({scale: window.Snappy.imageUtilities.previousScale(currentScale)});
 
         mergeAppState({
-          imageObject: correctedImageObject,
-          image: item.image,
-          imageAttributes: {
-            height: imageScale[scaleState.scale.toString()].height,
-            width: imageScale[scaleState.scale.toString()].width
-          }
+          imageObject: fittedImageObject,
+          image: item.image
         });
 
         mergeAppState({crumbs: buildCrumbs(mergeAppState())});
 
-        render();
+        whenShouldResizeImage();
       };
     }
 
@@ -418,18 +370,14 @@
 
     function whenShouldResizeImage() {
       var scaleState = mergeScaleState(),
-        appState = mergeAppState(),
         currentScale = scaleState.scale,
-        nextScale = scaleRotator[currentScale.toString()],
-        imageScale = createScaleContainingImage(appState.imageObject, getViewportDimensions());
+        nextScale = window.Snappy.imageUtilities.nextScale(currentScale),
+        pristineImage = mergeAppState().imageObject;
 
       mergeScaleState({scale: nextScale});
 
       mergeAppState({
-        imageAttributes: {
-          height: imageScale[nextScale.toString()].height,
-          width: imageScale[nextScale.toString()].width
-        }
+        imageAttributes: window.Snappy.imageUtilities.nextScaleOfImage(currentScale, pristineImage)
       });
 
       render();
