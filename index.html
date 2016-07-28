@@ -231,10 +231,6 @@
         return scale;
       }());
 
-    function isTallImage(image) {
-      return image.height > image.width;
-    }
-
     function createScaleContainingImage(image, container) {
       var containerScales = Object
         .keys(scaleRotator)
@@ -272,7 +268,7 @@
             scale = {height: imScale.height, width: imScale.width},
             t = {};
 
-          if (isTallImage(image) && imScale.height > ctScale.height) {
+          if (window.Snappy.imageUtilities.isTallImage(image) && imScale.height > ctScale.height) {
             scale.height = ctScale.height;
             scale.width = (ctScale.height / imScale.height) * imScale.width;
           }
