@@ -22,8 +22,8 @@ function buildItem() {
     image: image,
     backgroundUrl: image,
     backgroundPosition: {x: 0, y: 0},
-    height: height,
-    width: width
+    height: height / 10,
+    width: width / 10
   };
 }
 
@@ -55,7 +55,7 @@ function buildData() {
             .fill('blah')
             .map((t, index) => {
               let item = buildItem();
-              item.backgroundPosition.x = width * index;
+              item.backgroundPosition.x = item.width * index;
               item.backgroundPosition.y = 0;
 
               return item;
@@ -69,5 +69,6 @@ function buildData() {
 }
 
 const session = buildData();
+console.log(session);
 
 export {session as data};
