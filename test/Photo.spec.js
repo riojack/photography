@@ -53,11 +53,11 @@ describe('Photo Tests', () => {
     expect(img.props()).to.have.property('src', viewProps.application.image);
   });
 
-  it('should set the IMG\'s height and width attributes to props.application.imageAttributes.height and props.application.imageAttributes.width', () => {
-    expect(img.props()).to.have.property('height', viewProps.application.imageAttributes.height);
-    expect(img.props()).to.have.property('width', viewProps.application.imageAttributes.width);
+  it('should set the IMG\'s style to have height and width attributes of props.application.imageAttributes.height and props.application.imageAttributes.width', () => {
+    expect(img.props().style).to.have.property('height', viewProps.application.imageAttributes.height);
+    expect(img.props().style).to.have.property('width', viewProps.application.imageAttributes.width);
   });
-  
+
   it('should set data-loading to the string value of props.application.imageAttributes.isLoading', () => {
     expect(img.props()).to.have.property('data-loading', viewProps.application.imageAttributes.isLoading);
   });
