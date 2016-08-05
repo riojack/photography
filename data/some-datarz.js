@@ -1,7 +1,8 @@
 import Chance from 'chance';
 import encode from 'strict-uri-encode';
 
-let chance = new Chance();
+let chance = new Chance(),
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const height = 4000,
   width = 6000;
@@ -28,8 +29,18 @@ function buildItem() {
 }
 
 function buildCollection() {
+  // 1451628000000
+  // 1483164000000
+  var timestamp = 1451628000000 + chance.integer({min: 1, max: 31536000000}),
+    dt = new Date(timestamp),
+    mo = months[dt.getMonth()],
+    da = dt.getDate(),
+    yr = dt.getFullYear();
+
   return {
     collection: `${chance.name()}`,
+    added: `${mo} ${da}, ${yr}`,
+    time: timestamp,
     items: []
   };
 }
