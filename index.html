@@ -232,6 +232,26 @@
         });
     }
 
+    function snappyDataComparator(left, right) {
+      var leftLatestCollection = left.collections.reduce(function (pv, cv) {
+        if (cv.time >= pv.time) {
+          return cv;
+        }
+        return pv;
+      }),
+      rightLatestCollection = right.collections.reduce(function (pv, cv) {
+        if (cv.time >= pv.time) {
+          return cv;
+        }
+        return pv;
+      });
+
+      if (leftLatestCollection.time > rightLatestCollection.time) {
+        return -1;
+      }
+      return 1;
+    }
+
     // start up
     mergeAppState({
       selectedGroup: false,
@@ -245,7 +265,11 @@
       onCrumbClick: whenCrumbClicked
     });
 
-    mergeNavState({groups: window.SnappyData});
+    window.SnappyData.sort(snappyDataComparator);
+
+    mergeNavState({
+      groups: window.SnappyData
+    });
 
     render();
   }());
