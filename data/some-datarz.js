@@ -29,8 +29,6 @@ function buildItem() {
 }
 
 function buildCollection() {
-  // 1451628000000
-  // 1483164000000
   var timestamp = 1451628000000 + chance.integer({min: 1, max: 31536000000}),
     dt = new Date(timestamp),
     mo = months[dt.getMonth()],
@@ -53,16 +51,16 @@ function buildGroup() {
 }
 
 function buildData() {
-  return (new Array(50))
+  return (new Array(10))
     .fill('blah')
     .map(() => {
       let group = buildGroup();
-      group.collections = (new Array(20))
+      group.collections = (new Array(15))
         .fill('blah')
         .map(() => {
           let collection = buildCollection();
 
-          collection.items = (new Array(67))
+          collection.items = (new Array(20))
             .fill('blah')
             .map((t, index) => {
               let item = buildItem();

@@ -32,10 +32,11 @@
       > ul > li:nth-child(1) {
         > h2 {
           font-size: 1.10em;
-          margin: 5px 15px;
+          margin: 0 15px;
           width: 100%;
 
           > a {
+            padding: 5px 0;
             display: block;
             cursor: pointer;
           }
