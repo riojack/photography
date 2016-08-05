@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+<div id="photography-app-container"></div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
 <script type="text/javascript" src="./data.min.js"></script>
@@ -76,9 +77,7 @@
     mergeScaleState({scale: window.Snappy.imageUtilities.scale.SMALL_SCALE});
 
     function render() {
-      var container = document.getElementById('magic-id-thing');
-
-      container.innerHTML = null;
+      var container = document.getElementById('photography-app-container');
 
       return window.Snappy.render(container, mergeWorldState({
         tap: 'untapped',
