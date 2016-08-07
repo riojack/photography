@@ -49,6 +49,10 @@ describe('Photo Tests', () => {
     expect(img.type()).to.equal('img');
   });
 
+  it('should set the IMG element\'s title attribute to props.application.image', () => {
+    expect(img.props()).to.have.property('title', viewProps.application.image);
+  });
+
   it('should set the IMG element\'s src attribute to props.application.image', () => {
     expect(img.props()).to.have.property('src', viewProps.application.image);
   });
