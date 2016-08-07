@@ -39,10 +39,9 @@
       };
 
     function containImageInBox(image, box) {
-      let isTall = window.Snappy.imageUtilities.isTallImage(image),
-        containedImageDimensions = {height: 0, width: 0};
+      var containedImageDimensions = {height: image.height, width: image.width};
 
-      if (isTall && image.height > box.height) {
+      if (image.height > box.height) {
         containedImageDimensions.height = box.height;
         containedImageDimensions.width = (box.height / image.height) * image.width;
       }
@@ -74,7 +73,7 @@
     mergeScaleState = window.Snappy.stateUtilities.statorWithReset.bind({state: false});
     mergeChalkboard = window.Snappy.stateUtilities.stator.bind({collectionScrollY: 0});
 
-    mergeScaleState({scale: window.Snappy.imageUtilities.scale.SMALL_SCALE});
+    mergeScaleState({scale: window.Snappy.imageUtilities.scale.LARGE_SCALE});
 
     function render() {
       var container = document.getElementById('photography-app-container');
@@ -234,17 +233,17 @@
 
     function snappyDataComparator(left, right) {
       var leftLatestCollection = left.collections.reduce(function (pv, cv) {
-        if (cv.time >= pv.time) {
-          return cv;
-        }
-        return pv;
-      }),
-      rightLatestCollection = right.collections.reduce(function (pv, cv) {
-        if (cv.time >= pv.time) {
-          return cv;
-        }
-        return pv;
-      });
+          if (cv.time >= pv.time) {
+            return cv;
+          }
+          return pv;
+        }),
+        rightLatestCollection = right.collections.reduce(function (pv, cv) {
+          if (cv.time >= pv.time) {
+            return cv;
+          }
+          return pv;
+        });
 
       if (leftLatestCollection.time > rightLatestCollection.time) {
         return -1;
