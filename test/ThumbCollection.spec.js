@@ -4,7 +4,6 @@ import React from "react";
 import {expect} from "chai";
 import {shallow} from "enzyme";
 import Chance from "chance";
-import {stub, assert} from "sinon";
 
 describe('ThumbCollection Tests', () => {
   let element,
@@ -19,7 +18,6 @@ describe('ThumbCollection Tests', () => {
     chance = new Chance();
     viewProps = {
       application: {
-        onView: stub(),
         selectedCollection: {
           collection: chance.sentence(),
           items: [

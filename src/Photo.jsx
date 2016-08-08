@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PhotoControls from './PhotoControls';
+
 class Photo extends React.Component {
   componentDidMount() {
     require('../sass/photo.scss');
@@ -7,6 +9,9 @@ class Photo extends React.Component {
 
   render() {
     return <div className="photo-viewer">
+      <PhotoControls
+        onViewPhoto={this.props.application.onViewPhoto}
+      />
       <img
         data-loading={this.props.application.imageAttributes.isLoading}
         onClick={this.props.application.onImageClick}
