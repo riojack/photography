@@ -231,6 +231,12 @@
         });
     }
 
+    function whenShouldViewPhotoInNewTab() {
+      var appState = mergeAppState();
+
+      window.open(appState.image, 'photo-viewer-new-tab');
+    }
+
     function snappyDataComparator(left, right) {
       var leftLatestCollection = left.collections.reduce(function (pv, cv) {
           if (cv.time >= pv.time) {
@@ -261,7 +267,8 @@
       onViewGroupsClick: whenShouldReturnToGroups,
       onThumbClick: whenShouldViewThumbnail,
       onImageClick: whenShouldResizeImage,
-      onCrumbClick: whenCrumbClicked
+      onCrumbClick: whenCrumbClicked,
+      onViewPhoto: whenShouldViewPhotoInNewTab
     });
 
     window.SnappyData.sort(snappyDataComparator);
