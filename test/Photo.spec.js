@@ -30,7 +30,7 @@ describe('Photo Tests', () => {
         onViewPhoto: stub(),
         image: chance.url({extensions: ['jpg', 'png']}),
         imageAttributes: {
-          isLoading: chance.pick([true, false]),
+          isLoading: false,
           height: chance.integer(),
           width: chance.integer()
         }
@@ -60,6 +60,13 @@ describe('Photo Tests', () => {
     it('should pass props.application.onViewPhoto to the PhotoControls component', () => {
       expect(ctrls.props()).to.have.property('onViewPhoto')
         .that.equals(viewProps.application.onViewPhoto);
+    });
+
+    it('should not render PhotoControls if props.application.imageAttributes.isLoading is true', () => {
+      viewProps.application.imageAttributes.isLoading = true;
+      render(viewProps);
+
+      expect(element.children(PhotoControls)).to.have.length(0);
     });
   });
 
