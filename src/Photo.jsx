@@ -2,6 +2,14 @@ import React from 'react';
 
 import PhotoControls from './PhotoControls';
 
+function getPhotoControlsIfNotLoading() {
+  if (!this.props.application.imageAttributes.isLoading) {
+    return <PhotoControls
+      onViewPhoto={this.props.application.onViewPhoto}
+    />;
+  }
+}
+
 class Photo extends React.Component {
   componentDidMount() {
     require('../sass/photo.scss');
@@ -9,9 +17,7 @@ class Photo extends React.Component {
 
   render() {
     return <div className="photo-viewer">
-      <PhotoControls
-        onViewPhoto={this.props.application.onViewPhoto}
-      />
+      {getPhotoControlsIfNotLoading.call(this)}
       <img
         data-loading={this.props.application.imageAttributes.isLoading}
         onClick={this.props.application.onImageClick}
