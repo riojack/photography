@@ -10,7 +10,6 @@ describe('Collection Nav Tests', () => {
   let viewProps,
     element,
 
-    breadcrumb,
     nav,
     unorderedList,
 

@@ -22,7 +22,6 @@ describe('Photography Tests', () => {
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
-      tap: 'untapped',
       navState: {something: chance.string()},
       thumbState: {anything: chance.string()},
       application: {
