@@ -64,7 +64,6 @@
     mergeThumbState = window.Snappy.stateUtilities.stator.bind({state: {image: null, collection: []}});
     mergeWorldState = window.Snappy.stateUtilities.stator.bind({
       state: {
-        tap: 'untapped',
         navState: mergeNavState(),
         thumbState: mergeThumbState(),
         application: mergeAppState()
@@ -79,7 +78,6 @@
       var container = document.getElementById('photography-app-container');
 
       return window.Snappy.render(container, mergeWorldState({
-        tap: 'untapped',
         navState: mergeNavState(),
         thumbState: mergeThumbState(),
         application: mergeAppState()
