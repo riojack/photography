@@ -85,4 +85,16 @@ describe('Newest photos sort strategy tests', () => {
       expect(itemCount).to.equal(countOfItems);
     });
   });
+
+  describe('when resetting', () => {
+    it('should reset the items back to zero and progressively rebuild the items when next is called', () => {
+      strategy.next(2);
+      strategy.next(countOfItems - 2);
+      strategy.reset();
+      let nextSet = strategy.next(3)[0].collections[0].items;
+
+      expect(nextSet).to.have.length(3);
+      expect(nextSet).to.eql(sortedCollections[0].items);
+    });
+  });
 });

@@ -22,6 +22,11 @@ class NewestPhotosStrategy {
     this.nSoFar = 0;
   }
 
+  reset() {
+    this.allItems = false;
+    this.nSoFar = 0;
+  }
+
   next(count) {
     if (!this.allItems) {
       let mergedAndSorted = NewestPhotosStrategy
