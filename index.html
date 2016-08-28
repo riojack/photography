@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Photography</title>
+  <link href="https://fonts.googleapis.com/css?family=Heebo:100,300" rel="stylesheet">
   <style type="text/css">
     @import "./index.css";
   </style>
@@ -35,6 +36,8 @@
           groups: actualData,
           whenBannerClicked: function () {
             document.getElementById('photography-app-container').scrollTop = 0;
+            strategyWrappedData.reset();
+            initAndRender();
           }
         }
       );
