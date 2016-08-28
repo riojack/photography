@@ -3,9 +3,9 @@ import {shallow} from "enzyme";
 import {expect} from "chai";
 import Chance from "chance";
 import {stub, assert} from "sinon";
-import NavManager from "../src/components/NavManager";
-import CollectionNav from "../src/components/CollectionNav";
-import GroupNav from "../src/components/GroupNav";
+import NavManager from "../../src/components/NavManager";
+import CollectionNav from "../../src/components/CollectionNav";
+import GroupNav from "../../src/components/GroupNav";
 
 describe('NavManager Tests', () => {
   let viewProps,

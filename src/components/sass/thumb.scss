@@ -1,5 +1,5 @@
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid";
 
 .photo-thumb {
   vertical-align: middle;

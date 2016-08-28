@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import Breadcrumbs from '../src/components/Breadcrumbs';
+import Breadcrumbs from '../../src/components/Breadcrumbs';
 
 describe('Breadcrumbs Tests', () => {
   let viewProps,

@@ -15,7 +15,7 @@ function selector(o) {
 
 class GroupNav extends React.Component {
   componentDidMount() {
-    require('../../sass/group-nav.scss');
+    require('sass/group-nav.scss');
   }
 
   render() {

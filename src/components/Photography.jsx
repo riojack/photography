@@ -28,8 +28,8 @@ function getBreadcrumbs() {
 
 class Photography extends React.Component {
   componentDidMount() {
-    require('../../sass/photography.scss');
-    require('../../sass/core.scss');
+    require('sass/photography.scss');
+    require('sass/core.scss');
   }
 
   render() {

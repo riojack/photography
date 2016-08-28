@@ -2,7 +2,7 @@ import React from 'react';
 
 class CollectionNav extends React.Component {
   componentDidMount() {
-    require('../../sass/collection-nav.scss');
+    require('sass/collection-nav.scss');
   }
 
   render() {
