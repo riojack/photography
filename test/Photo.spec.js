@@ -4,8 +4,8 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import Photo from '../src/Photo';
-import PhotoControls from '../src/PhotoControls';
+import Photo from '../src/components/Photo';
+import PhotoControls from '../src/components/PhotoControls';
 
 describe('Photo Tests', () => {
   let viewProps,

@@ -21,7 +21,7 @@ function getNav() {
 
 class NavManager extends React.Component {
   componentDidMount() {
-    require('../sass/nav-manager.scss');
+    require('../../sass/nav-manager.scss');
   }
 
   render() {

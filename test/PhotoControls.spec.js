@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import PhotoControls from '../src/PhotoControls';
+import PhotoControls from '../src/components/PhotoControls';
 
 describe('PhotoControls Tests', () => {
   let viewProps,

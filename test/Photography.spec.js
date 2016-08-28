@@ -4,10 +4,10 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import Photography from '../src/Photography';
-import NavManager from '../src/NavManager';
-import ThumbManager from '../src/ThumbManager';
-import Breadcrumb from '../src/Breadcrumbs';
+import Photography from '../src/components/Photography';
+import NavManager from '../src/components/NavManager';
+import ThumbManager from '../src/components/ThumbManager';
+import Breadcrumb from '../src/components/Breadcrumbs';
 
 describe('Photography Tests', () => {
   let viewProps,

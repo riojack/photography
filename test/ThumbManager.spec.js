@@ -4,9 +4,9 @@ import {shallow} from 'enzyme';
 import {stub} from 'sinon';
 import Chance from 'chance';
 
-import ThumbManager from '../src/ThumbManager';
-import ThumbCollection from '../src/ThumbCollection';
-import Photo from '../src/Photo';
+import ThumbManager from '../src/components/ThumbManager';
+import ThumbCollection from '../src/components/ThumbCollection';
+import Photo from '../src/components/Photo';
 
 describe('ThumbManager Tests', () => {
   let element,

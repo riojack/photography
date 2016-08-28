@@ -11,7 +11,7 @@ function createStyles() {
 
 class Thumb extends React.Component {
   componentDidMount() {
-    require('../sass/thumb.scss');
+    require('../../sass/thumb.scss');
   }
 
   render() {
