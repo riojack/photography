@@ -16,22 +16,37 @@
 <script type="text/javascript" src="./application.min.js"></script>
 <script type="text/javascript">
   (function () {
-    var data = window.SnappyData;
+    var strategyWrappedData = new window.Snappy.sorters.NewestPhotos(window.SnappyData);
 
-    window.Snappy.sorters.newestFirst(data);
+    function initAndRender() {
+      var actualData = strategyWrappedData.next(5);
 
-    window.Snappy.nounsAndVerbs.registerExternals({window: window});
+      window.Snappy.nounsAndVerbs.registerExternals({window: window});
 
-    data.forEach(g => {
-      g.collections.forEach(c => {
-        window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
+      actualData.forEach(g => {
+        g.collections.forEach(c => {
+          window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
+        });
       });
-    });
 
-    window.Snappy.render(
-      document.getElementById('photography-app-container'),
-      {groups: data}
-    );
+      window.Snappy.render(
+        document.getElementById('photography-app-container'),
+        {groups: actualData}
+      );
+    }
+
+    document.getElementById('photography-app-container').onscroll = function () {
+      var container = document.getElementById('photography-app-container'),
+        scrollY = container.scrollTop,
+        scrollYMax = container.scrollHeight,
+        scrollPercent = scrollY / scrollYMax;
+
+      if (scrollPercent >= 0.35) {
+        initAndRender();
+      }
+    };
+
+    initAndRender();
   }());
 </script>
 </body>

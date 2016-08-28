@@ -23,7 +23,7 @@ import NewestPhotosStrategy from './src/view-strategies/newest-photos';
   window.Snappy = {
     render: doRender,
     sorters: {
-      newestFirst: NewestPhotosStrategy.sort
+      NewestPhotos: NewestPhotosStrategy
     },
     nounsAndVerbs: nounsAndVerbs,
     stateUtilities: stateUtilities,
