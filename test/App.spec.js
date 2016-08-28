@@ -61,9 +61,11 @@ describe('App Tests', () => {
       .that.equals('iowa-light-application');
   });
 
-  it('should have one child that is an OL', () => {
+  it('should have one child that is an OL with the className "photo-groups"', () => {
     expect(element.children()).to.have.length(1);
     expect(element.children('ol')).to.have.length(1);
+    expect(element.children('ol').props()).to.have.property('className')
+      .that.equals('photo-groups');
   });
 
   it('should have an LI for each group in the OL', () => {
@@ -71,8 +73,10 @@ describe('App Tests', () => {
     expect(element.children('ol').children('li')).to.have.length(viewProps.groups.length);
   });
 
-  it('should have one OL inside the group LI that will contain each collection', () => {
+  it('should have one OL with the className "group-collections" and it should be inside the group LI that will contain each collection', () => {
     expect(element.children('ol').children('li').children('ol')).to.have.length(viewProps.groups.length);
+    expect(element.children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+      .that.equals('group-collections');
   });
 
   it('should have an LI inside the collection OL for each collection', () => {
@@ -81,10 +85,12 @@ describe('App Tests', () => {
     expect(element.children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
   });
 
-  it('should have an OL inside the collection OL LIs that will contain each item', () => {
+  it('should have an OL with a className "collection-items" and it should be inside the collection OL LIs that will contain each item', () => {
     let expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
     expect(element.children('ol').children('li').children('ol').children('li').children('ol')).to.have.length(expectedOlCount);
+    expect(element.children('ol').children('li').children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+      .that.equals('collection-items');
   });
 
   it('should have an LI inside the OL inside the collection OL LIs for each item', () => {

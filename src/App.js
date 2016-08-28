@@ -12,7 +12,7 @@ function getItems(items) {
 function getCollections(collections) {
   return collections.map((c, key) => {
     return <li key={`collection-${key}`}>
-      <ol>{ getItems(c.items) }</ol>
+      <ol className="collection-items">{ getItems(c.items) }</ol>
     </li>;
   });
 }
@@ -20,15 +20,19 @@ function getCollections(collections) {
 function getGroups(groups) {
   return groups.map((g, key) => {
     return <li key={`group-${key}`}>
-      <ol>{ getCollections(g.collections) }</ol>
+      <ol className="group-collections">{ getCollections(g.collections) }</ol>
     </li>;
   });
 }
 
 class App extends React.Component {
+  componentDidMount() {
+    require('./sass/app.scss');
+  }
+
   render() {
     return <div className="iowa-light-application">
-      <ol>{ getGroups(this.props.groups) }</ol>
+      <ol className="photo-groups">{ getGroups(this.props.groups) }</ol>
     </div>;
   }
 }
