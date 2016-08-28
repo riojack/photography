@@ -18,6 +18,8 @@
   (function () {
     var data = window.SnappyData;
 
+    window.Snappy.sorters.newestFirst(data);
+
     window.Snappy.nounsAndVerbs.registerExternals({window: window});
 
     data.forEach(g => {

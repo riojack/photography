@@ -6,6 +6,7 @@ import nounsAndVerbs from './src/nouns-and-verbs';
 import stateUtilities from './src/state-utilities';
 import imageUtilities from './src/image-utilities';
 import transformUtilities from './src/transform-utilities';
+import NewestPhotosStrategy from './src/view-strategies/newest-photos';
 
 (function () {
 
@@ -21,6 +22,9 @@ import transformUtilities from './src/transform-utilities';
 
   window.Snappy = {
     render: doRender,
+    sorters: {
+      newestFirst: NewestPhotosStrategy.sort
+    },
     nounsAndVerbs: nounsAndVerbs,
     stateUtilities: stateUtilities,
     imageUtilities: imageUtilities,
