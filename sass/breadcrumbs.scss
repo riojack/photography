@@ -8,16 +8,10 @@
       cursor: pointer;
       padding: 3px 0 3px 8px;
       margin-right: 8px;
-      color: rgba(255, 255, 255, 0.35);
-
-      &:hover {
-        color: rgba(255, 255, 255, .85);
-      }
 
       &::before {
         content: '\00BB';
         padding-right: 15px;
-        color: rgba(255, 255, 255, 0.45);
       }
     }
 
@@ -25,10 +19,6 @@
       &::before {
         content: '';
       }
-    }
-
-    &:last-child > a {
-      color: rgba(255, 255, 255, 1);
     }
   }
 }

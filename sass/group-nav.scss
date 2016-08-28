@@ -39,20 +39,11 @@
           > a::selection {
             background-color: rgba(0, 0, 0, 0);
           }
-
-          > a:hover {
-            text-shadow: rgba(255, 255, 255, 0.65) 0 0 10px;
-          }
-
-          > a:active {
-            text-shadow: rgba(255, 255, 255, 1) 0 0 10px;
-          }
         }
       }
 
       > ul > li:nth-child(2) {
         font-size: 0.85em;
-        color: rgba(255, 255, 255, 0.45);
       }
     }
   }
