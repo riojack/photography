@@ -4,8 +4,8 @@ import encode from 'strict-uri-encode';
 let chance = new Chance(),
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const height = 4000,
-  width = 6000;
+const height = 1152,
+  width = 2048;
 
 function buildFakeImage() {
   let color = chance.color();
@@ -23,8 +23,8 @@ function buildItem() {
     image: image,
     backgroundUrl: image,
     backgroundPosition: {x: 0, y: 0},
-    height: height / 10,
-    width: width / 10
+    height: height / 2,
+    width: width / 2
   };
 }
 
@@ -78,6 +78,5 @@ function buildData() {
 }
 
 const session = buildData();
-console.log(session);
 
 export {session as data};
