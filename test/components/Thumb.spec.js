@@ -17,7 +17,7 @@ describe('Thumb Tests', () => {
   beforeEach('set up', () => {
     chance = new Chance();
     viewProps = {
-      application: {onThumbClick: stub()},
+      onClick: stub(),
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
       backgroundPosition: {
         x: chance.integer({min: 1, max: 5}),
@@ -52,14 +52,10 @@ describe('Thumb Tests', () => {
 
     expect(element.prop('style').width).to.equal(`${viewProps.width}px`);
   });
-  
-  it('should set style.width to 390 if props.width is not provided', () => {
-    expect(element.prop('style').width).to.equal('390px');
-  });
 
   it('should call props.onThumbClick and give it the thumbnail object when the thumbnail is clicked', () => {
-    assert.notCalled(viewProps.application.onThumbClick);
+    assert.notCalled(viewProps.onClick);
     element.simulate('click');
-    assert.calledWithExactly(viewProps.application.onThumbClick, Object.assign({}, Thumb.defaultProps, viewProps));
+    assert.calledWithExactly(viewProps.onClick, Object.assign({}, Thumb.defaultProps, viewProps));
   });
 });
