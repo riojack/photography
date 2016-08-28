@@ -46,7 +46,8 @@ describe('App Tests', () => {
     listOfGroups = chance.n(makeGroupWithCollections, chance.integer({min: 3, max: 8}));
 
     viewProps = {
-      groups: listOfGroups
+      groups: listOfGroups,
+      whenBannerClicked: stub()
     };
 
     render(viewProps);
@@ -61,8 +62,19 @@ describe('App Tests', () => {
       .that.equals('iowa-light-application');
   });
 
-  it('should have one child that is an OL with the className "photo-groups"', () => {
-    expect(element.children()).to.have.length(1);
+  it('should have one child that is a div with a className of "iowa-light-banner"', () => {
+    expect(element.children('div')).to.have.length(1);
+    expect(element.children('div').props()).to.have.property('className')
+      .that.equals('iowa-light-banner');
+  });
+
+  it('should call props.whenBannerClicked when the banner is clicked', () => {
+    assert.notCalled(viewProps.whenBannerClicked);
+    element.children('.iowa-light-banner').simulate('click');
+    assert.calledOnce(viewProps.whenBannerClicked);
+  });
+
+  it('should have another child that is an OL with the className "photo-groups"', () => {
     expect(element.children('ol')).to.have.length(1);
     expect(element.children('ol').props()).to.have.property('className')
       .that.equals('photo-groups');

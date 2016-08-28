@@ -31,7 +31,12 @@
 
       window.Snappy.render(
         document.getElementById('photography-app-container'),
-        {groups: actualData}
+        {
+          groups: actualData,
+          whenBannerClicked: function () {
+            document.getElementById('photography-app-container').scrollTop = 0;
+          }
+        }
       );
     }
 
