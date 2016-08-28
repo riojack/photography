@@ -16,14 +16,13 @@
 <script type="text/javascript" src="./application.min.js"></script>
 <script type="text/javascript">
   (function () {
-    var data = window.SnappyData,
-      thumbClicked = function () {
-        console.log('clicked');
-      };
+    var data = window.SnappyData;
+
+    window.Snappy.nounsAndVerbs.registerExternals({window: window});
 
     data.forEach(g => {
       g.collections.forEach(c => {
-        window.Snappy.transformUtilities.injectOnClick(c.items, thumbClicked);
+        window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
       });
     });
 
