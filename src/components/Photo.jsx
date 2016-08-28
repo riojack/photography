@@ -12,7 +12,7 @@ function getPhotoControlsIfNotLoading() {
 
 class Photo extends React.Component {
   componentDidMount() {
-    require('../../sass/photo.scss');
+    require('sass/photo.scss');
   }
 
   render() {

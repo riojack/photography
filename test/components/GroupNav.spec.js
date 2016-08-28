@@ -4,8 +4,8 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import GroupNav from '../src/components/GroupNav';
-import ListFold from '../src/components/ListFold';
+import GroupNav from '../../src/components/GroupNav';
+import ListFold from '../../src/components/ListFold';
 
 describe('GroupNav Tests', () => {
   let viewProps,

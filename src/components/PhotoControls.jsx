@@ -2,7 +2,7 @@ import React from 'react';
 
 class PhotoControls extends React.Component {
   componentDidMount() {
-    require('../../sass/photo-controls.scss');
+    require('sass/photo-controls.scss');
   }
 
   render() {

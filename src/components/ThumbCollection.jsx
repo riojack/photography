@@ -9,7 +9,7 @@ function mapThumbnailsOrDefault() {
 
 class ThumbCollection extends React.Component {
   componentDidMount() {
-    require('../../sass/thumb-collection.scss');
+    require('sass/thumb-collection.scss');
   }
 
   render() {

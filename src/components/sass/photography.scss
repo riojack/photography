@@ -1,5 +1,5 @@
-@import '~sass-mediaqueries/_media-queries.scss';
-@import './mixins';
+@import '../../../node_modules/sass-mediaqueries/_media-queries';
+@import 'mixins';
 
 .photography-application {
   width: 100%;
