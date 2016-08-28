@@ -16,15 +16,21 @@
 <script type="text/javascript" src="./application.min.js"></script>
 <script type="text/javascript">
   (function () {
-    /*var mergeAppState = window.Snappy.stateUtilities.stator.bind({
-     state: {
-     crumbs: ['Groups'],
-     selectedGroup: false,
-     selectedCollection: false
-     }
-     });*/
+    var data = window.SnappyData,
+      thumbClicked = function () {
+        console.log('clicked');
+      };
 
-    window.Snappy.render(document.getElementById('photography-app-container'), {groups: window.SnappyData});
+    data.forEach(g => {
+      g.collections.forEach(c => {
+        window.Snappy.transformUtilities.injectOnClick(c.items, thumbClicked);
+      });
+    });
+
+    window.Snappy.render(
+      document.getElementById('photography-app-container'),
+      {groups: data}
+    );
   }());
 </script>
 </body>

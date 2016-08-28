@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './src/App';
 import stateUtilities from './src/state-utilities';
 import imageUtilities from './src/image-utilities';
+import transformUtilities from './src/transform-utilities';
 
 (function () {
 
@@ -20,7 +21,8 @@ import imageUtilities from './src/image-utilities';
   window.Snappy = {
     render: doRender,
     stateUtilities: stateUtilities,
-    imageUtilities: imageUtilities
+    imageUtilities: imageUtilities,
+    transformUtilities: transformUtilities
   };
 }());
 
