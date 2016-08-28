@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './src/App';
+import nounsAndVerbs from './src/nouns-and-verbs';
 import stateUtilities from './src/state-utilities';
 import imageUtilities from './src/image-utilities';
 import transformUtilities from './src/transform-utilities';
@@ -20,6 +21,7 @@ import transformUtilities from './src/transform-utilities';
 
   window.Snappy = {
     render: doRender,
+    nounsAndVerbs: nounsAndVerbs,
     stateUtilities: stateUtilities,
     imageUtilities: imageUtilities,
     transformUtilities: transformUtilities
