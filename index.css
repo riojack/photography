@@ -1,0 +1,11 @@
+@import "https://fonts.googleapis.com/css?family=Heebo:100,300";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #d9d6d1;
+  font-family: 'Heebo', Arial, sans-serif;
+  color: rgba(0, 0, 0, .9);
+}

@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.sendFile('./index.html', {root: __dirname});
 });
 
+app.get('/index.css', (req, res) => {
+  res.sendFile('./index.css', {root: __dirname});
+});
+
 app.get('/data.min.js', (req, res) => {
   res.sendFile('./dist/example-data.js', {root: __dirname});
 });
