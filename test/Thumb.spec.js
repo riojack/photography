@@ -1,4 +1,4 @@
-import Thumb from '../src/Thumb';
+import Thumb from '../src/components/Thumb';
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';

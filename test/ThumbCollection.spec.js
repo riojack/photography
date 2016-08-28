@@ -1,5 +1,5 @@
-import ThumbCollection from "../src/ThumbCollection";
-import Thumb from "../src/Thumb";
+import ThumbCollection from "../src/components/ThumbCollection";
+import Thumb from "../src/components/Thumb";
 import React from "react";
 import {expect} from "chai";
 import {shallow} from "enzyme";

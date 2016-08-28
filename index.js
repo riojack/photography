@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Photography from './src/Photography'
+import Photography from './src/components/Photography'
 import stateUtilities from './src/state-utilities';
 import imageUtilities from './src/image-utilities';
 

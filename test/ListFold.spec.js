@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {spy, assert} from 'sinon';
 
-import ListFold from '../src/ListFold';
+import ListFold from '../src/components/ListFold';
 
 describe('ListFold Tests', () => {
   let viewProps,

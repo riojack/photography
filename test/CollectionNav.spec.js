@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
 
-import CollectionNav from '../src/CollectionNav';
+import CollectionNav from '../src/components/CollectionNav';
 
 describe('Collection Nav Tests', () => {
   let viewProps,
