@@ -11,19 +11,15 @@ function createStyles() {
 
 class Thumb extends React.Component {
   componentDidMount() {
-    require('sass/thumb.scss');
+    require('./sass/thumb.scss');
   }
 
   render() {
     return <div
       className="photo-thumb"
       style={createStyles.call(this)}
-      onClick={this.props.application.onThumbClick.bind({}, this.props)} />;
+      onClick={this.props.onClick.bind({}, this.props)} />;
   }
 }
-
-Thumb.defaultProps = {
-  width: 390
-};
 
 export default Thumb;
