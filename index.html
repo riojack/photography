@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photography</title>
-  <link href="https://fonts.googleapis.com/css?family=Heebo:100,300" rel="stylesheet">
   <style type="text/css">
     @import "./index.css";
   </style>
@@ -16,20 +16,22 @@
 <script type="text/javascript" src="./support.min.js"></script>
 <script type="text/javascript" src="./application.min.js"></script>
 <script type="text/javascript">
-  (function () {
+  function onDomReady() {
     var strategyWrappedData = new window.Snappy.sorters.NewestPhotos(window.SnappyData);
+    console.log('First time start up...');
 
     function initAndRender() {
       var actualData = strategyWrappedData.next(5);
 
       window.Snappy.nounsAndVerbs.registerExternals({window: window});
 
-      actualData.forEach(g => {
-        g.collections.forEach(c => {
+      actualData.forEach(function (g) {
+        g.collections.forEach(function (c) {
           window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
         });
       });
 
+      console.log('Rendering...');
       window.Snappy.render(
         document.getElementById('photography-app-container'),
         {
@@ -45,17 +47,20 @@
 
     document.getElementById('photography-app-container').onscroll = function () {
       var container = document.getElementById('photography-app-container'),
+        height = container.clientHeight,
         scrollY = container.scrollTop,
         scrollYMax = container.scrollHeight,
-        scrollPercent = scrollY / scrollYMax;
+        scrollPercent = (scrollY + height) / scrollYMax;
 
-      if (scrollPercent >= 0.35) {
+      if (scrollPercent >= 0.9) {
         initAndRender();
       }
     };
 
-    initAndRender();
-  }());
+    setTimeout(initAndRender, 10);
+  }
+
+  document.addEventListener('DOMContentLoaded', onDomReady);
 </script>
 </body>
 </html>

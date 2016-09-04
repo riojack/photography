@@ -32,7 +32,9 @@ class App extends React.Component {
 
   render() {
     return <div className="iowa-light-application">
-      <div className="iowa-light-banner" onClick={this.props.whenBannerClicked}>
+      <div className="iowa-light-banner"
+           onClick={this.props.whenBannerClicked}
+           onTouchEnd={this.props.whenBannerClicked}>
         <h1>Iowa Light</h1>
       </div>
       <ol className="photo-groups">{ getGroups(this.props.groups) }</ol>

@@ -17,7 +17,8 @@ body {
 }
 
 #photography-app-container {
-  overflow: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   height: 100%;
   width: 100%;
 }
