@@ -1,5 +1,4 @@
-@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
-@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid";
+@import '../../../node_modules/sass-mediaqueries/_media-queries';
 
 .photo-thumb {
   vertical-align: middle;
@@ -13,5 +12,10 @@
     background-color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  }
+
+  @include max-screen(1024px) {
+    transform-origin: center center;
+    transform: scale(0.85);
   }
 }
