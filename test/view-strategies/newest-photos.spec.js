@@ -97,4 +97,12 @@ describe('Newest photos sort strategy tests', () => {
       expect(nextSet).to.eql(sortedCollections[0].items);
     });
   });
+
+  describe('when weighting itself relative to other strategies', () => {
+    const expectedWeight = 1000;
+
+    it(`should give itself a weight of ${expectedWeight}`, () => {
+      expect(strategy.weight()).to.equal(expectedWeight);
+    });
+  });
 });

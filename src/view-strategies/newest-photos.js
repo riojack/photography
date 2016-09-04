@@ -22,6 +22,10 @@ class NewestPhotosStrategy {
     this.nSoFar = 0;
   }
 
+  weight() {
+    return 1000;
+  }
+
   reset() {
     this.allItems = false;
     this.nSoFar = 0;
