@@ -74,6 +74,12 @@ describe('App Tests', () => {
     assert.calledOnce(viewProps.whenBannerClicked);
   });
 
+  it('should call props.whenBannerClicked when the banner is touched (onTouchEnd)', () => {
+    assert.notCalled(viewProps.whenBannerClicked);
+    element.children('.iowa-light-banner').simulate('touchend');
+    assert.calledOnce(viewProps.whenBannerClicked);
+  });
+
   it('should have another child that is an OL with the className "photo-groups"', () => {
     expect(element.children('ol')).to.have.length(1);
     expect(element.children('ol').props()).to.have.property('className')
