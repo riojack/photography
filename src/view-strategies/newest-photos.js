@@ -1,25 +1,10 @@
+import detangler from '../data-detangler';
+
 class NewestPhotosStrategy {
-  static sort(groups) {
-    groups.forEach(g => g.collections.sort((a, b) => b.time - a.time));
-
-    groups.sort((a, b) => b.collections[0].time - a.collections[0].time);
-
-    return groups;
-  }
-
-  static mergeAllCollections(groups) {
-    return groups.reduce((pv, cv) => {
-      cv.collections.forEach((coll) => {
-        pv.push(coll);
-      });
-      return pv;
-    }, []);
-  }
-
   constructor(groups) {
     this.groups = groups;
-    this.allItems = false;
-    this.nSoFar = 0;
+    this.regrouped = false;
+    this.itemsFetchedSoFar = 0;
   }
 
   weight() {
@@ -27,46 +12,45 @@ class NewestPhotosStrategy {
   }
 
   reset() {
-    this.allItems = false;
-    this.nSoFar = 0;
+    this.itemsFetchedSoFar = 0;
   }
 
   next(count) {
-    if (!this.allItems) {
-      let mergedAndSorted = NewestPhotosStrategy
-        .mergeAllCollections(this.groups)
-        .sort((a, b) => b.time - a.time);
+    if (!this.regrouped) {
+      this.regrouped = detangler.groupByCollectionTime(this.groups);
 
-      this.allItems = mergedAndSorted.reduce((pv, cv) => {
-        cv.items.forEach(item => pv.push(item));
-        return pv;
-      }, []);
+      this.regrouped.sort((a,b) => b.collections[0].time - a.collections[0].time);
     }
 
-    this.nSoFar += count;
+    this.itemsFetchedSoFar += count;
 
-    if (this.nSoFar > this.allItems.length) {
-      this.nSoFar = this.allItems.length;
-    }
+    let countOfItemsAccumulated = 0,
+      nToGet = this.itemsFetchedSoFar;
 
-    let localAllItems = this.allItems,
-      localNSoFar = this.nSoFar;
+    return this.regrouped.reduce((accumulator, gr) => {
+      if (countOfItemsAccumulated !== nToGet) {
+        var replicatedGroup = Object.assign({}, gr, {collections: []});
+        accumulator.push(replicatedGroup);
 
-    return [{
-      group: 'Newest',
-      collections: [
-        {
-          collection: 'Newest photos',
-          items: (() => {
-            let itemList = [];
-            for (let i = 0; i < localNSoFar; i++) {
-              itemList.push(localAllItems[i]);
-            }
-            return itemList;
-          })()
+        for (let i = 0; i < gr.collections.length; i++) {
+          if (countOfItemsAccumulated === nToGet) break;
+
+          var collection = gr.collections[i],
+            replicatedCollection = Object.assign({}, collection, {items: []});
+
+          replicatedGroup.collections.push(replicatedCollection);
+
+          for (let j = 0; j < collection.items.length; j++) {
+            if (countOfItemsAccumulated === nToGet) break;
+            countOfItemsAccumulated++;
+
+            replicatedCollection.items.push(collection.items[j]);
+          }
         }
-      ]
-    }];
+      }
+
+      return accumulator;
+    }, []);
   }
 }
 
