@@ -18,20 +18,18 @@
 <script type="text/javascript">
   function onDomReady() {
     var strategyWrappedData = new window.Snappy.sorters.NewestPhotos(window.SnappyData);
-    console.log('First time start up...');
 
     function initAndRender() {
       var actualData = strategyWrappedData.next(5);
 
-      window.Snappy.nounsAndVerbs.registerExternals({window: window});
+      window.Snappy.nounsAndVerbs.withExternals({window: window});
 
       actualData.forEach(function (g) {
         g.collections.forEach(function (c) {
           window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
         });
       });
-
-      console.log('Rendering...');
+       
       window.Snappy.render(
         document.getElementById('photography-app-container'),
         {

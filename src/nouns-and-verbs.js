@@ -5,7 +5,7 @@ function whenThumbClicked(item) {
 }
 
 export default {
-  registerExternals: (nextExt) => ext = nextExt,
+  withExternals: (nextExt) => ext = nextExt,
   unregisterExternals: () => ext = {},
 
   whenThumbClicked: whenThumbClicked

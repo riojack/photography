@@ -19,7 +19,7 @@ describe('Data and behavior tests', () => {
       }
     };
 
-    nounsAndVerbs.registerExternals(externals);
+    nounsAndVerbs.withExternals(externals);
 
     item = {
       image: 'blah'
