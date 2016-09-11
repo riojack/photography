@@ -1,6 +1,13 @@
 import React from 'react';
 import Thumb from './components/Thumb';
 
+const months = [
+  'January', 'February', 'March',
+  'April', 'May', 'June', 'July',
+  'August', 'September', 'October',
+  'November', 'December'
+];
+
 function getItems(items) {
   return items.map((item, key) => {
     return <li key={`item-${key}`}>
@@ -9,9 +16,11 @@ function getItems(items) {
   });
 }
 
-function getCollections(collections) {
+function getCollections(group, collections) {
   return collections.map((c, key) => {
+    let datetime = new Date(c.time);
     return <li key={`collection-${key}`}>
+      <h4 className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
       <ol className="collection-items">{ getItems(c.items) }</ol>
     </li>;
   });
@@ -20,7 +29,7 @@ function getCollections(collections) {
 function getGroups(groups) {
   return groups.map((g, key) => {
     return <li key={`group-${key}`}>
-      <ol className="group-collections">{ getCollections(g.collections) }</ol>
+      <ol className="group-collections">{ getCollections(g, g.collections) }</ol>
     </li>;
   });
 }

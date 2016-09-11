@@ -31,7 +31,7 @@ describe('App Tests', () => {
 
   function makeGroupWithCollections() {
     return {
-      group: chance.sentence({words: 3}),
+      group: `${chance.word()} ${chance.word()} ${chance.word()}`,
       collections: chance.n(makeCollectionWithItems, chance.integer({min: 3, max: 8}))
     }
   }
@@ -115,6 +115,16 @@ describe('App Tests', () => {
     let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
     expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
+  });
+
+  it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
+    var colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
+
+    expect(colNameDate.at(0).props()).to.have.property('className')
+      .that.equals('collection-name-and-time');
+
+    expect(colNameDate.children().node.trim())
+      .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
   });
 
   it('should have one Thumb for each item in each collection in each group', function () {
