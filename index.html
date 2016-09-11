@@ -19,6 +19,12 @@
   function onDomReady() {
     var strategyWrappedData = new window.Snappy.sorters.NewestPhotos(window.SnappyData);
 
+    function onBannerClicked() {
+      document.getElementById('photography-app-container').scrollTop = 0;
+      strategyWrappedData.reset();
+      initAndRender();
+    }
+
     function initAndRender() {
       var actualData = strategyWrappedData.next(5);
 
@@ -29,16 +35,12 @@
           window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
         });
       });
-       
+
       window.Snappy.render(
         document.getElementById('photography-app-container'),
         {
           groups: actualData,
-          whenBannerClicked: function () {
-            document.getElementById('photography-app-container').scrollTop = 0;
-            strategyWrappedData.reset();
-            initAndRender();
-          }
+          whenBannerClicked: onBannerClicked
         }
       );
     }
