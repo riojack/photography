@@ -12,38 +12,14 @@
 <div id="photography-app-container"></div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
-<script type="text/javascript" src="./data.min.js"></script>
-<script type="text/javascript" src="./support.min.js"></script>
 <script type="text/javascript" src="./application.min.js"></script>
 <script type="text/javascript">
   function onDomReady() {
-    var strategyWrappedData = new window.Snappy.sorters.NewestPhotos(window.SnappyData);
-
-    function onBannerClicked() {
-      document.getElementById('photography-app-container').scrollTop = 0;
-      strategyWrappedData.reset();
-      initAndRender();
-    }
-
-    function initAndRender() {
-      var actualData = strategyWrappedData.next(5);
-
-      window.Snappy.nounsAndVerbs.withExternals({window: window});
-
-      actualData.forEach(function (g) {
-        g.collections.forEach(function (c) {
-          window.Snappy.transformUtilities.injectOnClick(c.items, window.Snappy.nounsAndVerbs.whenThumbClicked);
-        });
-      });
-
-      window.Snappy.render(
-        document.getElementById('photography-app-container'),
-        {
-          groups: actualData,
-          whenBannerClicked: onBannerClicked
-        }
-      );
-    }
+    window.Snappy.nounsAndVerbs.withExternals({
+      window: window,
+      document: window.document,
+      data: window.SnappyData
+    });
 
     document.getElementById('photography-app-container').onscroll = function () {
       var container = document.getElementById('photography-app-container'),
@@ -53,11 +29,11 @@
         scrollPercent = (scrollY + height) / scrollYMax;
 
       if (scrollPercent >= 0.9) {
-        initAndRender();
+        window.Snappy.nounsAndVerbs.doRender();
       }
     };
 
-    setTimeout(initAndRender, 10);
+    setTimeout(window.Snappy.nounsAndVerbs.doRender, 10);
   }
 
   document.addEventListener('DOMContentLoaded', onDomReady);
