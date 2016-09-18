@@ -1,6 +1,10 @@
 import detangler from '../data-detangler';
 
 class NewestPhotosStrategy {
+  static create(groups) {
+    return new NewestPhotosStrategy(groups);
+  }
+
   constructor(groups) {
     this.groups = groups;
     this.regrouped = false;

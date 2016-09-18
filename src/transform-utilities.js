@@ -3,5 +3,7 @@ function injectOnClick(list, onClick) {
 }
 
 export default {
-  injectOnClick: injectOnClick
+  injectOnClick
 };
+
+export {injectOnClick};

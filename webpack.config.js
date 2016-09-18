@@ -3,10 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     'application': __dirname + '/index.js',
-    'application.min': __dirname + '/index.js',
-    'data.min': __dirname + '/sheets/index.js',
-    'example-data': __dirname + '/data/index.js',
-    'support.min': __dirname + '/support/index.js'
+    'application.min': __dirname + '/index.js'
   },
   externals: {
     'react': 'React',
