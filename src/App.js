@@ -34,6 +34,13 @@ function getGroups(groups) {
   });
 }
 
+function getPhotoThingsToRender(groups, limitRenderTo) {
+  if (limitRenderTo === 'collectionNames') {
+    return <ol className="collection-names-only" />;
+  }
+  return <ol className="photo-groups">{ getGroups(groups) }</ol>;
+}
+
 class App extends React.Component {
   componentDidMount() {
     require('./sass/app.scss');
@@ -49,7 +56,7 @@ class App extends React.Component {
       <div className="iowa-light-controls"
            onClick={this.props.whenCollapseToGroupsClicked}
            onTouchEnd={this.props.whenCollapseToGroupsClicked}/>
-      <ol className="photo-groups">{ getGroups(this.props.groups) }</ol>
+      {getPhotoThingsToRender(this.props.groups, this.props.limitRenderTo)}
     </div>;
   }
 }
