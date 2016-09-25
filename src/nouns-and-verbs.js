@@ -14,7 +14,7 @@ var ext = {},
 function resetEverything() {
   mergeWorld = statorWithReset.bind({});
 
-  mergeWorld({sorter: false});
+  mergeWorld({sorter: false, limitRenderTo: false});
 }
 
 function whenThumbClicked(item) {
