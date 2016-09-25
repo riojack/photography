@@ -46,7 +46,8 @@ describe('App Tests', () => {
     viewProps = {
       groups: listOfGroups,
       whenBannerClicked: stub(),
-      whenCollapseToGroupsClicked: stub()
+      whenCollapseToGroupsClicked: stub(),
+      whenCollectionNameClicked: stub()
     };
 
     render(viewProps);
@@ -205,6 +206,18 @@ describe('App Tests', () => {
       let actualCollectionNames = element.children('ol').children('li').children('h3').map(element => element.text());
 
       expect(actualCollectionNames).to.have.members(collectionNames);
+    });
+
+    it('should register a click handler on each H3 that fires the props.whenCollectionNameClicked handler with the collection name', () => {
+      assert.notCalled(viewProps.whenCollectionNameClicked);
+
+      element.children('ol').children('li').children('h3').forEach(h3 => {
+        h3.simulate('click');
+        assert.calledOnce(viewProps.whenCollectionNameClicked);
+        assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());
+
+        viewProps.whenCollectionNameClicked.reset();
+      });
     });
   });
 });
