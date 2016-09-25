@@ -62,97 +62,101 @@ describe('App Tests', () => {
       .that.equals('iowa-light-application');
   });
 
-  it('should have one child that is a div with a className of "iowa-light-banner"', () => {
-    expect(element.children('div')).to.have.length(1);
-    expect(element.children('div').props()).to.have.property('className')
-      .that.equals('iowa-light-banner');
+  describe('when rendering and interacting with the Iowa Light banner', () => {
+    it('should have one child that is a div with a className of "iowa-light-banner"', () => {
+      expect(element.children('div')).to.have.length(1);
+      expect(element.children('div').props()).to.have.property('className')
+        .that.equals('iowa-light-banner');
+    });
+
+    it('should call props.whenBannerClicked when the banner is clicked', () => {
+      assert.notCalled(viewProps.whenBannerClicked);
+      element.children('.iowa-light-banner').simulate('click');
+      assert.calledOnce(viewProps.whenBannerClicked);
+    });
+
+    it('should call props.whenBannerClicked when the banner is touched (onTouchEnd)', () => {
+      assert.notCalled(viewProps.whenBannerClicked);
+      element.children('.iowa-light-banner').simulate('touchend');
+      assert.calledOnce(viewProps.whenBannerClicked);
+    });
   });
 
-  it('should call props.whenBannerClicked when the banner is clicked', () => {
-    assert.notCalled(viewProps.whenBannerClicked);
-    element.children('.iowa-light-banner').simulate('click');
-    assert.calledOnce(viewProps.whenBannerClicked);
-  });
+  describe('when rendering and interacting with photograph groups', () => {
+    it('should have another child that is an OL with the className "photo-groups"', () => {
+      expect(element.children('ol')).to.have.length(1);
+      expect(element.children('ol').props()).to.have.property('className')
+        .that.equals('photo-groups');
+    });
 
-  it('should call props.whenBannerClicked when the banner is touched (onTouchEnd)', () => {
-    assert.notCalled(viewProps.whenBannerClicked);
-    element.children('.iowa-light-banner').simulate('touchend');
-    assert.calledOnce(viewProps.whenBannerClicked);
-  });
+    it('should have an LI for each group in the OL', () => {
+      expect(element.children('ol').children()).to.have.length(viewProps.groups.length);
+      expect(element.children('ol').children('li')).to.have.length(viewProps.groups.length);
+    });
 
-  it('should have another child that is an OL with the className "photo-groups"', () => {
-    expect(element.children('ol')).to.have.length(1);
-    expect(element.children('ol').props()).to.have.property('className')
-      .that.equals('photo-groups');
-  });
+    it('should have one OL with the className "group-collections" and it should be inside the group LI that will contain each collection', () => {
+      expect(element.children('ol').children('li').children('ol')).to.have.length(viewProps.groups.length);
+      expect(element.children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+        .that.equals('group-collections');
+    });
 
-  it('should have an LI for each group in the OL', () => {
-    expect(element.children('ol').children()).to.have.length(viewProps.groups.length);
-    expect(element.children('ol').children('li')).to.have.length(viewProps.groups.length);
-  });
+    it('should have an LI inside the collection OL for each collection', () => {
+      let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-  it('should have one OL with the className "group-collections" and it should be inside the group LI that will contain each collection', () => {
-    expect(element.children('ol').children('li').children('ol')).to.have.length(viewProps.groups.length);
-    expect(element.children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
-      .that.equals('group-collections');
-  });
+      expect(element.children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
+    });
 
-  it('should have an LI inside the collection OL for each collection', () => {
-    let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
+    it('should have an OL with a className "collection-items" and it should be inside the collection OL LIs that will contain each item', () => {
+      let expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-    expect(element.children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
-  });
+      expect(element.children('ol').children('li').children('ol').children('li').children('ol')).to.have.length(expectedOlCount);
+      expect(element.children('ol').children('li').children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+        .that.equals('collection-items');
+    });
 
-  it('should have an OL with a className "collection-items" and it should be inside the collection OL LIs that will contain each item', () => {
-    let expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
+    it('should have an LI inside the OL inside the collection OL LIs for each item', () => {
+      let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
-    expect(element.children('ol').children('li').children('ol').children('li').children('ol')).to.have.length(expectedOlCount);
-    expect(element.children('ol').children('li').children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
-      .that.equals('collection-items');
-  });
+      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
+    });
 
-  it('should have an LI inside the OL inside the collection OL LIs for each item', () => {
-    let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
+    it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
+      var colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
 
-    expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
-  });
+      expect(colNameDate.at(0).props()).to.have.property('className')
+        .that.equals('collection-name-and-time');
 
-  it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
-    var colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
+      expect(colNameDate.children().node.trim())
+        .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
+    });
 
-    expect(colNameDate.at(0).props()).to.have.property('className')
-      .that.equals('collection-name-and-time');
+    it('should have one Thumb for each item in each collection in each group', function () {
+      let expectedThumbCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
-    expect(colNameDate.children().node.trim())
-      .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
-  });
+      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li').children(Thumb))
+        .to.have.length(expectedThumbCount);
+    });
 
-  it('should have one Thumb for each item in each collection in each group', function () {
-    let expectedThumbCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
+    it('should pass each item as props to each Thumb', () => {
+      element
+        .children('ol')
+        .children('li')
+        .forEach((g, gi) => {
+          var group = listOfGroups[gi];
+          g.children('ol')
+            .children('li')
+            .forEach((c, ci) => {
+              var collection = group.collections[ci];
+              c.children('ol')
+                .children('li')
+                .forEach((i, ii) => {
+                  let item = collection.items[ii],
+                    thumb = i.children(Thumb);
 
-    expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li').children(Thumb))
-      .to.have.length(expectedThumbCount);
-  });
-
-  it('should pass each item as props to each Thumb', () => {
-    element
-      .children('ol')
-      .children('li')
-      .forEach((g, gi) => {
-        var group = listOfGroups[gi];
-        g.children('ol')
-          .children('li')
-          .forEach((c, ci) => {
-            var collection = group.collections[ci];
-            c.children('ol')
-              .children('li')
-              .forEach((i, ii) => {
-                let item = collection.items[ii],
-                  thumb = i.children(Thumb);
-
-                expect(thumb.props(), `Group ${gi} collection ${ci} item ${ii}`).to.eql(item);
-              });
-          });
-      });
+                  expect(thumb.props(), `Group ${gi} collection ${ci} item ${ii}`).to.eql(item);
+                });
+            });
+        });
+    });
   });
 });
