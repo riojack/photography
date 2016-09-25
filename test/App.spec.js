@@ -180,7 +180,12 @@ describe('App Tests', () => {
   });
 
   describe('when rendering only collection names from groups', () => {
+    var collectionCount;
     beforeEach('set up', () => {
+      collectionCount = viewProps.groups.reduce((prevGroup, group) => {
+        return group.collections.length + prevGroup;
+      }, 0);
+
       viewProps.limitRenderTo = 'collectionNames';
       render(viewProps);
     });
@@ -189,6 +194,10 @@ describe('App Tests', () => {
       expect(element.children('ol')).to.have.length(1);
       expect(element.children('ol').props()).to.have.property('className')
         .that.equals('collection-names-only');
+    });
+
+    it('should have an LI for each collection among all groups', () => {
+      expect(element.children('ol').children('li')).to.have.length(collectionCount);
     });
   });
 });
