@@ -44,5 +44,12 @@ describe('Group in a collection sort strategy tests', () => {
       expect(group).to.eql([expectedExpectedGroup]);
     });
 
+    it('should return an empty array if no matching collection was found among all collections in all groups', () => {
+      let strategy = new GroupInCollectionStrategy(listOfGroups, chance.string()),
+        group = strategy.next();
+
+      expect(group).to.eql([]);
+    });
+
   });
 });
