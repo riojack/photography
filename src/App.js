@@ -46,6 +46,7 @@ class App extends React.Component {
            onTouchEnd={this.props.whenBannerClicked}>
         <h1>Iowa Light</h1>
       </div>
+      <div className="iowa-light-controls" />
       <ol className="photo-groups">{ getGroups(this.props.groups) }</ol>
     </div>;
   }

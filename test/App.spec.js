@@ -81,6 +81,13 @@ describe('App Tests', () => {
     });
   });
 
+  describe('when rendering and interacting with the site, group, and photography controls', () => {
+    it('should have a child that is a div with a className of "iowa-light-controls"', () => {
+      expect(element.children('div').at(1).props()).to.have.property('className')
+        .that.equals('iowa-light-controls');
+    });
+  });
+
   describe('when rendering and interacting with photograph groups', () => {
     it('should have another child that is an OL with the className "photo-groups"', () => {
       expect(element.children('ol')).to.have.length(1);
