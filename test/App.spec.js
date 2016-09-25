@@ -180,11 +180,14 @@ describe('App Tests', () => {
   });
 
   describe('when rendering only collection names from groups', () => {
-    var collectionCount;
+    var collectionNames,
+      collectionCount;
     beforeEach('set up', () => {
-      collectionCount = viewProps.groups.reduce((prevGroup, group) => {
-        return group.collections.length + prevGroup;
-      }, 0);
+      collectionNames = viewProps.groups.reduce((prevGroup, group) => {
+        let names = group.collections.map(collection => collection.collection);
+        return prevGroup.concat(names);
+      }, []);
+      collectionCount = collectionNames.length;
 
       viewProps.limitRenderTo = 'collectionNames';
       render(viewProps);
@@ -198,6 +201,12 @@ describe('App Tests', () => {
 
     it('should have an LI for each collection among all groups', () => {
       expect(element.children('ol').children('li')).to.have.length(collectionCount);
+    });
+
+    it('should place each collection\'s name in an H3 inside the LIs', () => {
+      let actualCollectionNames = element.children('ol').children('li').children('h3').map(element => element.text());
+
+      expect(actualCollectionNames).to.have.members(collectionNames);
     });
   });
 });

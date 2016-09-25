@@ -20,7 +20,8 @@ function getCollections(group, collections) {
   return collections.map((c, key) => {
     let datetime = new Date(c.time);
     return <li key={`collection-${key}`}>
-      <h4 className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
+      <h4
+        className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
       <ol className="collection-items">{ getItems(c.items) }</ol>
     </li>;
   });
@@ -34,26 +35,21 @@ function getGroups(groups) {
   });
 }
 
-function getCountOfCollectionsFromGroups(groups) {
-  return groups.reduce((countAccumulator, group) => {
-    return countAccumulator + group.collections.length;
-  }, 0);
-}
-
-function getAllCollectionItems(groups) {
-  let collectionCount = getCountOfCollectionsFromGroups(groups),
-    collectionItems = [];
-
-  for (var i = 0; i < collectionCount; i++) {
-    collectionItems.push(<li key={`collection-item-${i}`} />);
-  }
-
-  return collectionItems;
+function getCollectionsFromGroups(groups) {
+  return groups.reduce((collectionAccum, group) => {
+    return collectionAccum.concat(group.collections);
+  }, []);
 }
 
 function getPhotoThingsToRender(groups, limitRenderTo) {
   if (limitRenderTo === 'collectionNames') {
-    return <ol className="collection-names-only">{getAllCollectionItems(groups)}</ol>;
+    let collections = getCollectionsFromGroups(groups);
+
+    return <ol className="collection-names-only">{
+      collections.map((collection, collectionNumber) => <li key={`collection-item-${collectionNumber}`}>
+        <h3>{collection.collection}</h3>
+      </li>)
+    }</ol>;
   }
   return <ol className="photo-groups">{ getGroups(groups) }</ol>;
 }
