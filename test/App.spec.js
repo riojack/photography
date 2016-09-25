@@ -93,6 +93,12 @@ describe('App Tests', () => {
       element.children('.iowa-light-controls').simulate('click');
       assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
     });
+
+    it('should call props.whenCollapseToGroupsClicked when it is touched (onTouchEnd)', () => {
+      assert.notCalled(viewProps.whenCollapseToGroupsClicked);
+      element.children('.iowa-light-controls').simulate('touchend');
+      assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
+    });
   });
 
   describe('when rendering and interacting with photograph groups', () => {
