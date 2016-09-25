@@ -47,7 +47,8 @@ describe('App Tests', () => {
 
     viewProps = {
       groups: listOfGroups,
-      whenBannerClicked: stub()
+      whenBannerClicked: stub(),
+      whenCollapseToGroupsClicked: stub()
     };
 
     render(viewProps);
@@ -85,6 +86,12 @@ describe('App Tests', () => {
     it('should have a child that is a div with a className of "iowa-light-controls"', () => {
       expect(element.children('div').at(1).props()).to.have.property('className')
         .that.equals('iowa-light-controls');
+    });
+
+    it('should call props.whenCollapseToGroupsClicked when clicked', () => {
+      assert.notCalled(viewProps.whenCollapseToGroupsClicked);
+      element.children('.iowa-light-controls').simulate('click');
+      assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
     });
   });
 
