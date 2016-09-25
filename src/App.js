@@ -47,7 +47,8 @@ class App extends React.Component {
         <h1>Iowa Light</h1>
       </div>
       <div className="iowa-light-controls"
-           onClick={this.props.whenCollapseToGroupsClicked} />
+           onClick={this.props.whenCollapseToGroupsClicked}
+           onTouchEnd={this.props.whenCollapseToGroupsClicked}/>
       <ol className="photo-groups">{ getGroups(this.props.groups) }</ol>
     </div>;
   }
