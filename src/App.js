@@ -42,13 +42,13 @@ function getCollectionsFromGroups(groups) {
   }, []);
 }
 
-function getPhotoThingsToRender(groups, limitRenderTo) {
+function getPhotoThingsToRender(groups, limitRenderTo, clickHandler) {
   if (limitRenderTo === 'collectionNames') {
     let collections = getCollectionsFromGroups(groups);
 
     return <ol className="collection-names-only">{
       collections.map((collection, collectionNumber) => <li key={`collection-item-${collectionNumber}`}>
-        <h3>{collection.collection}</h3>
+        <h3 onClick={() => clickHandler(collection.collection)}>{collection.collection}</h3>
       </li>)
     }</ol>;
   }
@@ -71,7 +71,7 @@ class App extends React.Component {
       <div className="iowa-light-controls"
            onClick={this.props.whenCollapseToGroupsClicked}
            onTouchEnd={this.props.whenCollapseToGroupsClicked}/>
-      {getPhotoThingsToRender(this.props.groups, this.props.limitRenderTo)}
+      {getPhotoThingsToRender(this.props.groups, this.props.limitRenderTo, this.props.whenCollectionNameClicked)}
     </div>;
   }
 }
