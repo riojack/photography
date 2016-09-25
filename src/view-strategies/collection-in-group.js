@@ -8,6 +8,10 @@ class GroupInCollectionStrategy {
     var localCollectionName = this.collectionName,
       matchingGroup = this.groups.find(group => group.collections.find(collection => collection.collection === localCollectionName));
 
+    if (matchingGroup === undefined) {
+      return [];
+    }
+
     return [Object.assign(
       {},
       matchingGroup,
