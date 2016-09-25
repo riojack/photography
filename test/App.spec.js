@@ -63,9 +63,8 @@ describe('App Tests', () => {
   });
 
   describe('when rendering and interacting with the Iowa Light banner', () => {
-    it('should have one child that is a div with a className of "iowa-light-banner"', () => {
-      expect(element.children('div')).to.have.length(1);
-      expect(element.children('div').props()).to.have.property('className')
+    it('should have a child that is a div with a className of "iowa-light-banner"', () => {
+      expect(element.children('div').at(0).props()).to.have.property('className')
         .that.equals('iowa-light-banner');
     });
 
