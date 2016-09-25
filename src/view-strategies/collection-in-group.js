@@ -6,17 +6,18 @@ class GroupInCollectionStrategy {
 
   next() {
     var localCollectionName = this.collectionName,
-      matchingGroup = this.groups.find(group => group.collections.find(collection => collection.collection === localCollectionName));
+      matchingGroup = this.groups.find(group => group.collections.find(collection => collection.collection === localCollectionName)),
+      nextGroups = [];
 
-    if (matchingGroup === undefined) {
-      return [];
+    if (matchingGroup !== undefined) {
+      nextGroups = [Object.assign(
+        {},
+        matchingGroup,
+        {collections: matchingGroup.collections.filter(collection => collection.collection === localCollectionName)}
+      )];
     }
 
-    return [Object.assign(
-      {},
-      matchingGroup,
-      {collections: matchingGroup.collections.filter(collection => collection.collection === localCollectionName)}
-    )];
+    return nextGroups;
   }
 }
 
