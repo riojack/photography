@@ -178,4 +178,17 @@ describe('App Tests', () => {
         });
     });
   });
+
+  describe('when rendering only collection names from groups', () => {
+    beforeEach('set up', () => {
+      viewProps.limitRenderTo = 'collectionNames';
+      render(viewProps);
+    });
+
+    it('should render an OL with a className of "collection-names-only" when rendering is limited to collection names', () => {
+      expect(element.children('ol')).to.have.length(1);
+      expect(element.children('ol').props()).to.have.property('className')
+        .that.equals('collection-names-only');
+    });
+  });
 });
