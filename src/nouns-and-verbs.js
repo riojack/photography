@@ -27,6 +27,10 @@ function whenBannerClicked() {
   doRender();
 }
 
+function whenCollapseToGroupsClicked() {
+  mergeWorld({limitRenderTo: 'collectionNames'});
+}
+
 function setUpSorter() {
   if (!mergeWorld().sorter) {
     mergeWorld({
@@ -75,6 +79,7 @@ export default {
 
   whenThumbClicked,
   whenBannerClicked,
+  whenCollapseToGroupsClicked,
 
   doRender
 }

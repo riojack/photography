@@ -239,4 +239,12 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledTwice(ReactDOM.render);
     });
   });
+
+  describe('when collapse to collections is clicked', () => {
+    it('should update the world state\'s limitRenderTo property to a value of "collectionNames"', () => {
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+      nounsAndVerbs.whenCollapseToGroupsClicked();
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
+    });
+  });
 });
