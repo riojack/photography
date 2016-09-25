@@ -51,5 +51,12 @@ describe('Group in a collection sort strategy tests', () => {
       expect(group).to.eql([]);
     });
 
+    it('should return an empty array if there are no groups', () => {
+      let strategy = new GroupInCollectionStrategy([], 'dont care'),
+        group = strategy.next();
+
+      expect(group).to.eql([]);
+    });
+
   });
 });
