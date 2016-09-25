@@ -219,5 +219,17 @@ describe('App Tests', () => {
         viewProps.whenCollectionNameClicked.reset();
       });
     });
+
+    it('should register a touch (onTouchEnd) handler on each H3 that fires the props.whenCollectionNameClicked handler with the collection name', () => {
+      assert.notCalled(viewProps.whenCollectionNameClicked);
+
+      element.children('ol').children('li').children('h3').forEach(h3 => {
+        h3.simulate('touchend');
+        assert.calledOnce(viewProps.whenCollectionNameClicked);
+        assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());
+
+        viewProps.whenCollectionNameClicked.reset();
+      });
+    });
   });
 });

@@ -48,7 +48,11 @@ function getPhotoThingsToRender(groups, limitRenderTo, clickHandler) {
 
     return <ol className="collection-names-only">{
       collections.map((collection, collectionNumber) => <li key={`collection-item-${collectionNumber}`}>
-        <h3 onClick={() => clickHandler(collection.collection)}>{collection.collection}</h3>
+        <h3
+          onClick={() => clickHandler(collection.collection)}
+          onTouchEnd={() => clickHandler(collection.collection)}>
+          {collection.collection}
+        </h3>
       </li>)
     }</ol>;
   }
