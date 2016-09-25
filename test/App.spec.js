@@ -3,9 +3,7 @@ import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import Chance from 'chance';
 import {stub, assert} from 'sinon';
-
 import Thumb from '../src/components/Thumb';
-
 import App from '../src/app';
 
 describe('App Tests', () => {
