@@ -275,13 +275,30 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
   describe('when collapse to collections is clicked', () => {
     it('should update the world state\'s limitRenderTo property to a value of "collectionNames"', () => {
+      givenASingleRendering();
+
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
       nounsAndVerbs.whenCollapseToGroupsClicked();
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
     });
 
-    it('should re-render the whole world with the updated rendering restriction', () => {
+    it('should tell the current view strat sorter to load everything', () => {
+      let collectionCount = fakeGroups.reduce((count, g) => count + g.collections.length, 0);
+
+      givenASingleRendering();
+      fakeNewestPhotosStrat.next.reset();
       nounsAndVerbs.whenCollapseToGroupsClicked();
+      assert.calledOnce(fakeNewestPhotosStrat.next);
+      assert.calledWithExactly(fakeNewestPhotosStrat.next, collectionCount);
+    });
+
+    it('should re-render the whole world with the updated rendering restriction', () => {
+      givenASingleRendering();
+
+      nounsAndVerbs.whenCollapseToGroupsClicked();
+
+      React.createElement.reset();
+      ReactDOM.render.reset();
       whenRenderPromiseIsResolved();
 
       assert.calledOnce(React.createElement);

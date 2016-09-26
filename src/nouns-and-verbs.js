@@ -29,6 +29,8 @@ function whenBannerClicked() {
 }
 
 function whenCollapseToGroupsClicked() {
+  let collectionCount = ext.data.reduce((count, g) => count + g.collections.length, 0);
+  mergeWorld().sorter.next(collectionCount);
   mergeWorld({limitRenderTo: 'collectionNames'});
 
   doRender();
