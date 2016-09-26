@@ -27,8 +27,14 @@
     top: 0;
     right: 55px;
     z-index: 50;
-    height: 65px;
-    width: 100px;
+    height: 45px;
+    width: 175px;
+
+    > h4 {
+      color: rgba(255, 255, 255, .9);
+      text-align: center;
+      font-weight: normal;
+    }
   }
 
   .photo-groups,
