@@ -330,6 +330,15 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledWithExactly(GroupInCollectionStrategy.create, externals.data, expectedCollection.collection);
     });
 
+    it('should clear the rendering restriction', () => {
+      givenASingleRendering();
+      givenCollapsedToGroups();
+
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
+      nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+    });
+
     it('should re-render the whole world', () => {
       givenASingleRendering();
       givenCollapsedToGroups();
