@@ -40,6 +40,8 @@ function whenCollectionNameClicked(collectionName) {
   mergeWorld({
     sorter: CollectionInGroupStrategy.create(ext.data, collectionName)
   });
+
+  doRender();
 }
 
 function setUpSorter() {

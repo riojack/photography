@@ -1,3 +1,4 @@
+import {fail} from 'assert';
 import {expect} from 'chai';
 import {stub, assert, sandbox} from 'sinon';
 import Chance from 'chance';
@@ -30,7 +31,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
   function whenRenderPromiseIsResolved() {
     if (PromiseMaker.buildPromise.callCount === 0) {
-      throw 'No render promise available.  Cannot simulate render.';
+      fail('Rendering was not called.');
     }
 
     PromiseMaker.buildPromise.lastCall.args[0](stub());
@@ -51,6 +52,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals.document.getElementById.reset();
 
     props.whenBannerClicked();
+  }
+
+  function givenCollapsedToGroups() {
+    nounsAndVerbs.whenCollapseToGroupsClicked(externals.data[0].collections[0].collection);
+    whenRenderPromiseIsResolved();
   }
 
   beforeEach('set up', () => {
@@ -87,13 +93,13 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
     fakeNewestPhotosStrat = {
       something: `newest-photo-strat-${chance.word()}`,
-      next: stub().withArgs(5).returns(fakeNextFive),
+      next: stub().returns(fakeNextFive),
       reset: stub()
     };
 
     fakeCollectionInGroupStrat = {
       something: `collection-in-group-${chance.word()}`,
-      next: stub()
+      next: stub().returns([fakeGroups[0]])
     };
 
     expectedCollection = chance.pickone(chance.pickone(fakeGroups).collections);
@@ -322,6 +328,21 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
 
       assert.calledWithExactly(GroupInCollectionStrategy.create, externals.data, expectedCollection.collection);
+    });
+
+    it('should re-render the whole world', () => {
+      givenASingleRendering();
+      givenCollapsedToGroups();
+
+      React.createElement.reset();
+      ReactDOM.render.reset();
+      PromiseMaker.buildPromise.reset();
+
+      nounsAndVerbs.whenCollectionNameClicked();
+      whenRenderPromiseIsResolved();
+
+      assert.calledOnce(React.createElement);
+      assert.calledOnce(ReactDOM.render);
     });
   });
 });
