@@ -289,13 +289,13 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should tell the current view strat sorter to load everything', () => {
-      let collectionCount = fakeGroups.reduce((count, g) => count + g.collections.length, 0);
+      let countOfItems = fakeGroups.reduce((count, g) => count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0), 0);
 
       givenASingleRendering();
       fakeNewestPhotosStrat.next.reset();
       nounsAndVerbs.whenCollapseToGroupsClicked();
       assert.calledOnce(fakeNewestPhotosStrat.next);
-      assert.calledWithExactly(fakeNewestPhotosStrat.next, collectionCount);
+      assert.calledWithExactly(fakeNewestPhotosStrat.next, countOfItems);
     });
 
     it('should re-render the whole world with the updated rendering restriction', () => {
