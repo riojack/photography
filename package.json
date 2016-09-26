@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm test && npm run webpack",
+    "webpack": "webpack",
     "test": "mocha test --recursive",
     "bump:patch": "npm version patch -m \"Pre-release, as %s.\""
   },
