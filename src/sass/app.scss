@@ -1,3 +1,5 @@
+@import '../../node_modules/sass-mediaqueries/_media-queries';
+
 .iowa-light-application {
 
   > .iowa-light-banner {
@@ -55,10 +57,26 @@
   }
 
   .collection-names-only {
-    > li > h3 {
-      cursor: pointer;
-      font-weight: normal;
-      color: rgba(255, 255, 255, .9);
+    margin: 0 auto;
+    width: 590px;
+
+    @include max-screen(1200px) {
+      width: 694px;
+    }
+
+    @include min-screen(1800px) {
+      width: 1100px;
+    }
+
+    > li {
+      width: 45%;
+      display: inline-block;
+
+      > h3 {
+        cursor: pointer;
+        font-weight: normal;
+        color: rgba(255, 255, 255, .9);
+      }
     }
   }
 }
