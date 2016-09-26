@@ -178,7 +178,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(React.createElement.lastCall.args[1]).to.have.property('whenBannerClicked')
         .that.is.a('function');
     });
+    
+    it('should also pass a whenCollapseToGroupsClicked function to the App element', () => {
+      givenASingleRendering();
 
+      expect(React.createElement.lastCall.args[1]).to.have.property('whenCollapseToGroupsClicked')
+        .that.is.a('function');
+    });
+    
     it('should inject into each item in each collection in each group an "onClick" handler, when the promise executes the function', () => {
       givenASingleRendering();
 
