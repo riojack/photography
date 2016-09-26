@@ -2,6 +2,7 @@ import PromiseMaker from './promise-maker';
 import {statorWithReset} from './state-utilities';
 import {injectOnClick} from './transform-utilities';
 import NewestPhotosStrategy from './view-strategies/newest-photos';
+import CollectionInGroupStrategy from './view-strategies/collection-in-group';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -33,7 +34,11 @@ function whenCollapseToGroupsClicked() {
   doRender();
 }
 
-function whenCollectionNameClicked() {}
+function whenCollectionNameClicked() {
+  mergeWorld({
+    sorter: CollectionInGroupStrategy.create()
+  });
+}
 
 function setUpSorter() {
   if (!mergeWorld().sorter) {
@@ -88,6 +93,7 @@ export default {
   whenThumbClicked,
   whenBannerClicked,
   whenCollapseToGroupsClicked,
+  whenCollectionNameClicked,
 
   doRender
 }
