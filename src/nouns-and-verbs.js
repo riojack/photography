@@ -24,7 +24,10 @@ function whenThumbClicked(item) {
 
 function whenBannerClicked() {
   ext.document.getElementById('photography-app-container').scrollTop = 0;
-  mergeWorld({sorter: false});
+  mergeWorld({
+    sorter: false,
+    limitRenderTo: false
+  });
   doRender();
 }
 
