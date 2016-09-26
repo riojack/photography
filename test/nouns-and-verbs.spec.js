@@ -275,6 +275,15 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(false);
     });
 
+    it('should clear the limitRenderTo flag (set it to false)', () => {
+      nounsAndVerbs.prime({limitRenderTo: chance.word()});
+
+      givenASingleRendering();
+
+      givenBannerClicked();
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+    });
+
     it('should re-render the whole application', () => {
       givenASingleRendering();
       givenBannerClicked();
