@@ -46,7 +46,8 @@ function eventuallyRender(resolve) {
     appProps = {
       groups: currentWorld.sorter.next(5),
       limitRenderTo: currentWorld.limitRenderTo,
-      whenBannerClicked
+      whenBannerClicked,
+      whenCollapseToGroupsClicked
     };
 
   appProps.groups.forEach(function (g) {
