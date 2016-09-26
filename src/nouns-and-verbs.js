@@ -29,6 +29,8 @@ function whenBannerClicked() {
 
 function whenCollapseToGroupsClicked() {
   mergeWorld({limitRenderTo: 'collectionNames'});
+
+  doRender();
 }
 
 function setUpSorter() {
@@ -40,10 +42,12 @@ function setUpSorter() {
 }
 
 function eventuallyRender(resolve) {
-  let appProps = {
-    groups: mergeWorld().sorter.next(5),
-    whenBannerClicked
-  };
+  let currentWorld = mergeWorld(),
+    appProps = {
+      groups: currentWorld.sorter.next(5),
+      limitRenderTo: currentWorld.limitRenderTo,
+      whenBannerClicked
+    };
 
   appProps.groups.forEach(function (g) {
     g.collections.forEach(function (c) {

@@ -25,9 +25,17 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
     sbox;
 
+  function whenRenderPromiseIsResolved() {
+    if (PromiseMaker.buildPromise.callCount === 0) {
+      throw 'No render promise available.  Cannot simulate render.';
+    }
+
+    PromiseMaker.buildPromise.lastCall.args[0](stub());
+  }
+
   function givenASingleRendering() {
     nounsAndVerbs.doRender();
-    PromiseMaker.buildPromise.lastCall.args[0](stub());
+    whenRenderPromiseIsResolved();
   }
 
   function getLastCreateElementProps() {
@@ -245,6 +253,16 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
       nounsAndVerbs.whenCollapseToGroupsClicked();
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
+    });
+
+    it('should re-render the whole world with the updated rendering restriction', () => {
+      nounsAndVerbs.whenCollapseToGroupsClicked();
+      whenRenderPromiseIsResolved();
+
+      assert.calledOnce(React.createElement);
+      expect(React.createElement.lastCall.args[1]).to.have.property('limitRenderTo')
+        .that.equals('collectionNames');
+      assert.calledOnce(ReactDOM.render);
     });
   });
 });
