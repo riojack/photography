@@ -98,6 +98,8 @@ export default {
   withExternals: (nextExt) => ext = nextExt,
   unregisterExternals: () => ext = {},
 
+  prime: (thingsToStartWith) => mergeWorld(thingsToStartWith),
+
   peerAtWorld: () => mergeWorld(),
 
   resetMergers: resetEverything,
