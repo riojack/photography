@@ -30,10 +30,15 @@ function whenBannerClicked() {
 
 function whenCollapseToGroupsClicked() {
   let collectionCount = ext.data.reduce((count, g) => {
-    return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
-  }, 0);
-  mergeWorld().sorter.next(collectionCount);
-  mergeWorld({limitRenderTo: 'collectionNames'});
+      return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
+    }, 0),
+    nextNewestPhotosStrat = NewestPhotosStrategy.create(ext.data);
+
+  nextNewestPhotosStrat.next(collectionCount);
+  mergeWorld({
+    sorter: nextNewestPhotosStrat,
+    limitRenderTo: 'collectionNames'
+  });
 
   doRender();
 }
