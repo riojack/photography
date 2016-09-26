@@ -267,16 +267,12 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(fakeNode.scrollTop).to.equal(0);
     });
 
-    it('should reset the current sorter', () => {
-      assert.notCalled(fakeNewestPhotosStratOne.reset);
-
+    it('should clear out the current sorter to allow a new one to be built', () => {
       givenASingleRendering();
 
-      assert.notCalled(fakeNewestPhotosStratOne.reset);
-
+      expect(nounsAndVerbs.peerAtWorld().sorter).to.not.equal(false);
       givenBannerClicked();
-
-      assert.calledOnce(fakeNewestPhotosStratOne.reset);
+      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(false);
     });
 
     it('should re-render the whole application', () => {
