@@ -1,4 +1,8 @@
 class GroupInCollectionStrategy {
+  static create(groups, collectionName) {
+    return new GroupInCollectionStrategy(groups, collectionName);
+  }
+
   constructor(groups, collectionName) {
     this.groups = groups;
     this.collectionName = collectionName;
