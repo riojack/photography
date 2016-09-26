@@ -1,1 +1,2 @@
 --compilers js:babel-register,js:./test/scss-stub.js
+--reporter progress
