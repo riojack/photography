@@ -33,6 +33,8 @@ function whenCollapseToGroupsClicked() {
   doRender();
 }
 
+function whenCollectionNameClicked() {}
+
 function setUpSorter() {
   if (!mergeWorld().sorter) {
     mergeWorld({
@@ -47,7 +49,8 @@ function eventuallyRender(resolve) {
       groups: currentWorld.sorter.next(5),
       limitRenderTo: currentWorld.limitRenderTo,
       whenBannerClicked,
-      whenCollapseToGroupsClicked
+      whenCollapseToGroupsClicked,
+      whenCollectionNameClicked
     };
 
   appProps.groups.forEach(function (g) {
