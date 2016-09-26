@@ -295,10 +295,16 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     it('should create a CollectionInGroup and store that as the world state\'s sorter', () => {
       assert.notCalled(GroupInCollectionStrategy.create);
 
-      nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
+      nounsAndVerbs.whenCollectionNameClicked();
 
       assert.calledOnce(GroupInCollectionStrategy.create);
       expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeCollectionInGroupStrat);
+    });
+
+    it('should pass the external data (groups) and the collection name to the CollectionInGroup strategy', () => {
+      nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
+
+      assert.calledWithExactly(GroupInCollectionStrategy.create, externals.data, expectedCollection.collection);
     });
   });
 });

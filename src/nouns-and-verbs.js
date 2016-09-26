@@ -34,9 +34,9 @@ function whenCollapseToGroupsClicked() {
   doRender();
 }
 
-function whenCollectionNameClicked() {
+function whenCollectionNameClicked(collectionName) {
   mergeWorld({
-    sorter: CollectionInGroupStrategy.create()
+    sorter: CollectionInGroupStrategy.create(ext.data, collectionName)
   });
 }
 
