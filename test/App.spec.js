@@ -86,7 +86,7 @@ describe('App Tests', () => {
       expect(element.children('div').at(1).props()).to.have.property('className')
         .that.equals('iowa-light-controls');
     });
-    
+
     it('should have an H4 inside with the words "By collection"', () => {
       expect(element.children('.iowa-light-controls').children('h4').text())
         .to.equal('By collection');
@@ -186,6 +186,7 @@ describe('App Tests', () => {
   describe('when rendering only collection names from groups', () => {
     var collectionNames,
       collectionCount;
+
     beforeEach('set up', () => {
       collectionNames = viewProps.groups.reduce((prevGroup, group) => {
         let names = group.collections.map(collection => collection.collection);
