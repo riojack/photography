@@ -38,6 +38,7 @@ function whenCollapseToGroupsClicked() {
 
 function whenCollectionNameClicked(collectionName) {
   mergeWorld({
+    limitRenderTo: false,
     sorter: CollectionInGroupStrategy.create(ext.data, collectionName)
   });
 
