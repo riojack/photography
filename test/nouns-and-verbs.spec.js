@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 
 import PromiseMaker from '../src/promise-maker';
 import NewestPhotosStrategy from '../src/view-strategies/newest-photos';
+import GroupInCollectionStrategy from '../src/view-strategies/collection-in-group';
 import App from '../src/App';
 
 var nounsAndVerbs;
@@ -22,6 +23,8 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeGroups,
     fakeNextFive,
     fakeNewestPhotosStrat,
+    fakeCollectionInGroupStrat,
+    expectedCollection,
 
     sbox;
 
@@ -88,6 +91,13 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       reset: stub()
     };
 
+    fakeCollectionInGroupStrat = {
+      something: `collection-in-group-${chance.word()}`,
+      next: stub()
+    };
+
+    expectedCollection = chance.pickone(chance.pickone(fakeGroups).collections);
+
     sandbox.stub(React);
     sandbox.stub(ReactDOM);
 
@@ -105,6 +115,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
     React.createElement.returns(fakeElement);
     sandbox.stub(NewestPhotosStrategy, 'create').returns(fakeNewestPhotosStrat);
+    sandbox.stub(GroupInCollectionStrategy, 'create').returns(fakeCollectionInGroupStrat);
 
     nounsAndVerbs = require('../src/nouns-and-verbs').default;
     nounsAndVerbs.withExternals(externals);
@@ -277,6 +288,17 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(React.createElement.lastCall.args[1]).to.have.property('limitRenderTo')
         .that.equals('collectionNames');
       assert.calledOnce(ReactDOM.render);
+    });
+  });
+
+  describe('when a collection name is clicked', () => {
+    it('should create a CollectionInGroup and store that as the world state\'s sorter', () => {
+      assert.notCalled(GroupInCollectionStrategy.create);
+
+      nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
+
+      assert.calledOnce(GroupInCollectionStrategy.create);
+      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeCollectionInGroupStrat);
     });
   });
 });
