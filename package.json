@@ -7,7 +7,8 @@
     "build": "npm test && npm run webpack",
     "webpack": "webpack",
     "test": "mocha test --recursive",
-    "bump:patch": "npm version patch -m \"Pre-release, as %s.\""
+    "bump:patch": "npm version patch -m \"Pre-release, as %s.\"",
+    "bump": "npm run bump:patch"
   },
   "keywords": [],
   "author": "",
