@@ -23,7 +23,8 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeElement,
     fakeGroups,
     fakeNextFive,
-    fakeNewestPhotosStrat,
+    fakeNewestPhotosStratOne,
+    fakeNewestPhotosStratTwo,
     fakeCollectionInGroupStrat,
     expectedCollection,
 
@@ -91,9 +92,15 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       {group: 'something-5', collections: [{collection: 'collection 5', items: [{}, {}, {}]}]}
     ];
 
-    fakeNewestPhotosStrat = {
+    fakeNewestPhotosStratOne = {
       something: `newest-photo-strat-${chance.word()}`,
       next: stub().returns(fakeNextFive),
+      reset: stub()
+    };
+
+    fakeNewestPhotosStratTwo = {
+      something: `another-newest-photo-strat-${chance.word()}`,
+      next: stub().returns([]),
       reset: stub()
     };
 
@@ -120,8 +127,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox.stub(PromiseMaker, 'buildPromise').returns(fakePromise);
     externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
     React.createElement.returns(fakeElement);
-    sandbox.stub(NewestPhotosStrategy, 'create').returns(fakeNewestPhotosStrat);
+    sandbox.stub(NewestPhotosStrategy, 'create');
     sandbox.stub(GroupInCollectionStrategy, 'create').returns(fakeCollectionInGroupStrat);
+
+    NewestPhotosStrategy.create.onCall(0).returns(fakeNewestPhotosStratOne);
+    NewestPhotosStrategy.create.onCall(1).returns(fakeNewestPhotosStratTwo);
 
     nounsAndVerbs = require('../src/nouns-and-verbs').default;
     nounsAndVerbs.withExternals(externals);
@@ -167,7 +177,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
       expect(nounsAndVerbs.peerAtWorld())
         .to.have.property('sorter')
-        .that.equals(fakeNewestPhotosStrat);
+        .that.equals(fakeNewestPhotosStratOne);
     });
 
     it('should not recreate the Newest Photos sorting strategy after the first time, when the promise executes the function', () => {
@@ -258,15 +268,15 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should reset the current sorter', () => {
-      assert.notCalled(fakeNewestPhotosStrat.reset);
+      assert.notCalled(fakeNewestPhotosStratOne.reset);
 
       givenASingleRendering();
 
-      assert.notCalled(fakeNewestPhotosStrat.reset);
+      assert.notCalled(fakeNewestPhotosStratOne.reset);
 
       givenBannerClicked();
 
-      assert.calledOnce(fakeNewestPhotosStrat.reset);
+      assert.calledOnce(fakeNewestPhotosStratOne.reset);
     });
 
     it('should re-render the whole application', () => {
@@ -288,14 +298,17 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
     });
 
-    it('should tell the current view strat sorter to load everything', () => {
+    it('should create a new Newest Photos strat sorter and tell it to load everything', () => {
       let countOfItems = fakeGroups.reduce((count, g) => count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0), 0);
 
       givenASingleRendering();
-      fakeNewestPhotosStrat.next.reset();
+
       nounsAndVerbs.whenCollapseToGroupsClicked();
-      assert.calledOnce(fakeNewestPhotosStrat.next);
-      assert.calledWithExactly(fakeNewestPhotosStrat.next, countOfItems);
+
+      assert.calledWithExactly(NewestPhotosStrategy.create, externals.data);
+      assert.calledWithExactly(fakeNewestPhotosStratTwo.next, countOfItems);
+
+      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeNewestPhotosStratTwo);
     });
 
     it('should re-render the whole world with the updated rendering restriction', () => {
