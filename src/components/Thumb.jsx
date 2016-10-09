@@ -2,6 +2,7 @@ import React from 'react';
 
 function createStyles() {
   return {
+    backgroundSize: '100%',
     backgroundImage: `url('${this.props.backgroundUrl}')`,
     backgroundPosition: `${this.props.backgroundPosition.x}px ${this.props.backgroundPosition.y}px`,
     height: `${this.props.height}px`,

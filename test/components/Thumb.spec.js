@@ -41,6 +41,10 @@ describe('Thumb Tests', () => {
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
     expect(element.prop('style').backgroundPosition).to.equal(`${viewProps.backgroundPosition.x}px ${viewProps.backgroundPosition.y}px`);
   });
+  
+  it('should default style.backgroundSize to "100%"', () => {
+    expect(element.prop('style').backgroundSize).to.equal('100%');
+  });
 
   it('should set style.height to the value of props.height', () => {
     expect(element.prop('style').height).to.equal(`${viewProps.height}px`);
