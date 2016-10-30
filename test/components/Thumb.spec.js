@@ -41,10 +41,6 @@ describe('Thumb Tests', () => {
   it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
     expect(element.prop('style').backgroundPosition).to.equal(`${viewProps.backgroundPosition.x}px ${viewProps.backgroundPosition.y}px`);
   });
-  
-  it('should default style.backgroundSize to "100%"', () => {
-    expect(element.prop('style').backgroundSize).to.equal('100%');
-  });
 
   it('should override the default style.backgroundSize with props.backgroundSize if it is provided', () => {
     let backgroundSize = chance.integer({min: 1, max: 100});
