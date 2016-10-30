@@ -42,14 +42,6 @@ describe('Thumb Tests', () => {
     expect(element.prop('style').backgroundPosition).to.equal(`${viewProps.backgroundPosition.x}px ${viewProps.backgroundPosition.y}px`);
   });
 
-  it('should override the default style.backgroundSize with props.backgroundSize if it is provided', () => {
-    let backgroundSize = chance.integer({min: 1, max: 100});
-    viewProps.backgroundSize = `${backgroundSize}%`;
-    doRender(viewProps);
-
-    expect(element.prop('style').backgroundSize).to.equal(`${backgroundSize}%`);
-  });
-
   it('should set style.height to the value of props.height', () => {
     expect(element.prop('style').height).to.equal(`${viewProps.height}px`);
   });
