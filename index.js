@@ -1,7 +1,18 @@
-import nounsAndVerbs from './src/nouns-and-verbs';
+import nounsAndVerbs from "./src/nouns-and-verbs";
 
 (function () {
-  window.SnappyData = require('./sheets').default;
+  var sheets = require('./sheets').default;
+
+  sheets.forEach(group => {
+    group.collections = group.collections.reduce((pv, cv) => {
+      if (!cv.hidden) {
+        pv.push(cv);
+      }
+      return pv;
+    }, []);
+
+    window.SnappyData = sheets;
+  });
 
   window.Snappy = {
     nounsAndVerbs: nounsAndVerbs
