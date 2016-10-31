@@ -3,8 +3,8 @@ var jpeg = require('jpeg-js'),
   app = express(),
   port = 9320,
 
-  height = 1024,
-  width = 576,
+  width = 1024,
+  height = 576,
   h_count = 4;
 
 function createColorObj() {
@@ -32,35 +32,35 @@ app.get('/application.min.js', (req, res) => {
 });
 
 app.get(/\/[\/a-z0-9\-_]+comp\.jpg$/i, (req, res) => {
-  var  fullWidth = (width * h_count),
+  var fullWidth = (width * h_count),
     jpgBuffer = new Buffer(fullWidth * height * 4),
     i = 0,
     pixels = 0,
-    color_buckets = [],
+    color_buckets = (function () {
+      var colors = [];
+      for (var j = 0; j < h_count; j++) {
+        colors[j] = createColorObj();
+      }
+      return colors;
+    })(),
     column = 0;
 
   while (i < jpgBuffer.length) {
-    if (pixels !== 0 && pixels % width === 0) {
-      column = pixels / width;
-
-      if (pixels > fullWidth) {
-        var rows = Math.trunc((pixels / height));
-        column = (pixels - (rows * height)) / width;
-      }
+    if (pixels >= width && pixels % width === 0) {
+      column++;
     }
-    pixels++;
+
+    if (column >= h_count) {
+      column = 0;
+    }
 
     var color = color_buckets[column];
-
-    if (!color) {
-      color_buckets[column] = createColorObj();
-      color = color_buckets[column];
-    }
 
     jpgBuffer[i++] = color.rc;
     jpgBuffer[i++] = color.gc;
     jpgBuffer[i++] = color.bc;
     jpgBuffer[i++] = 0xff;
+    pixels++;
   }
 
   var imageData = {
