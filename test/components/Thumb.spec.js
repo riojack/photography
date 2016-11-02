@@ -57,6 +57,15 @@ describe('Thumb Tests', () => {
     expect(element.prop('data-tags')).to.contain('thumbnail');
   });
 
+  it('should append any tags in the props.tags array to the data-tags attribute', () => {
+    viewProps.tags = [chance.word(), chance.word(), chance.word()];
+    doRender(viewProps);
+
+    viewProps.tags.forEach(tag => {
+      expect(element.prop('data-tags')).to.contain(tag);
+    });
+  });
+
   it('should call props.onThumbClick and give it the thumbnail object when the thumbnail is clicked', () => {
     assert.notCalled(viewProps.onClick);
     element.simulate('click');
