@@ -19,4 +19,8 @@
     transform: scale(0.85);
     margin: 15px auto;
   }
+
+  &[data-tags~='retina'] {
+    background-size: 100%;
+  }
 }
