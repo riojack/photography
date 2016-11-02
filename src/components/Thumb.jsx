@@ -9,6 +9,13 @@ function createStyles() {
   };
 }
 
+function createTags() {
+  let tags = this.props.tags || [],
+    combinedTags = tags.join(' ');
+
+  return `thumbnails ${combinedTags}`;
+}
+
 class Thumb extends React.Component {
   componentDidMount() {
     require('./sass/thumb.scss');
@@ -17,7 +24,7 @@ class Thumb extends React.Component {
   render() {
     return <div
       className="photo-thumb"
-      data-tags="thumbnail"
+      data-tags={createTags.call(this)}
       style={createStyles.call(this)}
       onClick={this.props.onClick.bind({}, this.props)} />;
   }
