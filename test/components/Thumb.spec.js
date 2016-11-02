@@ -53,6 +53,10 @@ describe('Thumb Tests', () => {
     expect(element.prop('style').width).to.equal(`${viewProps.width}px`);
   });
 
+  it('should set a data-tags attribute with the value of "thumbnail"', () => {
+    expect(element.prop('data-tags')).to.contain('thumbnail');
+  });
+
   it('should call props.onThumbClick and give it the thumbnail object when the thumbnail is clicked', () => {
     assert.notCalled(viewProps.onClick);
     element.simulate('click');
