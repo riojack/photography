@@ -1,4 +1,4 @@
-var hook = require('css-modules-require-hook');
+let hook = require('css-modules-require-hook');
 
 hook({
   extensions: ['.scss'],

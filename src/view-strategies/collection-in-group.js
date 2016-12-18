@@ -9,7 +9,7 @@ class GroupInCollectionStrategy {
   }
 
   next() {
-    var localCollectionName = this.collectionName,
+    let localCollectionName = this.collectionName,
       matchingGroup = this.groups.find(group => group.collections.find(collection => collection.collection === localCollectionName)),
       nextGroups = [];
 

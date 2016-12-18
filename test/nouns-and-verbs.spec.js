@@ -11,7 +11,7 @@ import NewestPhotosStrategy from '../src/view-strategies/newest-photos';
 import GroupInCollectionStrategy from '../src/view-strategies/collection-in-group';
 import App from '../src/App';
 
-var nounsAndVerbs;
+let nounsAndVerbs;
 
 describe('Nouns and verbs (data and behavior) tests', () => {
   let chance,
@@ -234,7 +234,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should render the App element into the photography-app-container element and pass it the resolve argument, when the promise executes the function', () => {
-      var resolver = stub();
+      let resolver = stub();
       nounsAndVerbs.doRender();
       PromiseMaker.buildPromise.lastCall.args[0](resolver);
 

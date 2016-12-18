@@ -33,13 +33,13 @@ class NewestPhotosStrategy {
 
     return this.regrouped.reduce((accumulator, gr) => {
       if (countOfItemsAccumulated !== nToGet) {
-        var replicatedGroup = Object.assign({}, gr, {collections: []});
+        let replicatedGroup = Object.assign({}, gr, {collections: []});
         accumulator.push(replicatedGroup);
 
         for (let i = 0; i < gr.collections.length; i++) {
           if (countOfItemsAccumulated === nToGet) break;
 
-          var collection = gr.collections[i],
+          let collection = gr.collections[i],
             replicatedCollection = Object.assign({}, collection, {items: []});
 
           replicatedGroup.collections.push(replicatedCollection);
