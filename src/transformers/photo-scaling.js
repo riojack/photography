@@ -5,10 +5,10 @@ class PhotoScaling {
   }
 
   transform(photo) {
-    photo.height = photo.height * this.v_scale;
-    photo.width = photo.width * this.h_scale;
+    let scaled_height = photo.height * this.v_scale,
+      scaled_width = photo.width * this.h_scale;
 
-    return photo;
+    return Object.assign({}, photo, {height: scaled_height, width: scaled_width});
   }
 }
 

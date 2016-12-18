@@ -1,11 +1,12 @@
-import {expect} from 'chai';
-import {stub} from 'sinon';
-import Chance from 'chance';
-
-import PhotoScaling from '../../src/transformers/photo-scaling';
+import {expect} from "chai";
+import {stub} from "sinon";
+import Chance from "chance";
+import PhotoScaling from "../../src/transformers/photo-scaling";
 
 describe('Photo Scaling transformer tests', () => {
   let chance,
+    given_height,
+    given_width,
     h_scale,
     v_scale,
     photo,
@@ -15,9 +16,11 @@ describe('Photo Scaling transformer tests', () => {
     chance = new Chance();
     h_scale = chance.floating({min: 0, max: 1});
     v_scale = chance.floating({min: 0, max: 1});
+    given_height = chance.integer({min: 0, max: 1000});
+    given_width = chance.integer({min: 0, max: 1000});
     photo = {
-      height: chance.integer({min: 0, max: 1000}),
-      width: chance.integer({min: 0, max: 1000})
+      height: given_height,
+      width: given_width
     };
 
     transformer = new PhotoScaling(h_scale, v_scale);
@@ -34,5 +37,14 @@ describe('Photo Scaling transformer tests', () => {
 
     expect(actual_photo).to.have.property('width')
       .that.equals(expected_width);
+  });
+
+  it('should return a new photo object and also not modify the original photo', () => {
+    let actual_photo = transformer.transform(photo);
+
+    expect(actual_photo).to.not.equal(photo);
+
+    expect(photo.height, 'height').to.equal(given_height);
+    expect(photo.width, 'width').to.equal(given_width);
   });
 });
