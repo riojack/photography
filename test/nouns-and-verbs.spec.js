@@ -144,6 +144,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   });
 
   describe('initial world values', () => {
+    it('should have a property called "transformer" that is set to the value of false', () => {
+      expect(nounsAndVerbs.peerAtWorld()).to.have.property('transformer')
+        .that.equals(false);
+    });
+
     it('should have a property called "sorter" that is set to the value of false', () => {
       expect(nounsAndVerbs.peerAtWorld()).to.have.property('sorter')
         .that.equals(false);

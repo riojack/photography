@@ -15,7 +15,11 @@ let ext = {},
 function resetEverything() {
   mergeWorld = statorWithReset.bind({});
 
-  mergeWorld({sorter: false, limitRenderTo: false});
+  mergeWorld({
+    transformer: false,
+    sorter: false,
+    limitRenderTo: false
+  });
 }
 
 function whenThumbClicked(item) {
