@@ -4,7 +4,7 @@ import Chance from 'chance';
 
 import detangler from '../src/data-detangler';
 
-describe(' tests', () => {
+describe('Data detangler tests', () => {
   let chance;
 
   beforeEach('set up', () => {
