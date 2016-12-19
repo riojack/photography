@@ -1,16 +1,14 @@
-import {fail} from 'assert';
-import {expect} from 'chai';
-import {stub, assert, sandbox} from 'sinon';
-import Chance from 'chance';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import PromiseMaker from '../src/promise-maker';
-import PhotoScaling from '../src/transformers/photo-scaling';
-import NewestPhotosStrategy from '../src/view-strategies/newest-photos';
-import GroupInCollectionStrategy from '../src/view-strategies/collection-in-group';
-import App from '../src/App';
+import {fail} from "assert";
+import {expect} from "chai";
+import {stub, assert, sandbox} from "sinon";
+import Chance from "chance";
+import React from "react";
+import ReactDOM from "react-dom";
+import PromiseMaker from "../src/promise-maker";
+import PhotoScaling from "../src/transformers/photo-scaling";
+import NewestPhotosStrategy from "../src/view-strategies/newest-photos";
+import GroupInCollectionStrategy from "../src/view-strategies/collection-in-group";
+import App from "../src/App";
 
 let nounsAndVerbs;
 
@@ -31,6 +29,10 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     expectedCollection,
 
     sbox;
+
+  function makePhoto() {
+    return {height: chance.integer(), width: chance.integer()};
+  }
 
   function whenRenderPromiseIsResolved() {
     if (PromiseMaker.buildPromise.callCount === 0) {
@@ -81,9 +83,18 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     };
 
     fakeGroups = [
-      {group: 'something-1', collections: [{collection: 'collection 1', items: [{}, {}, {}]}]},
-      {group: 'something-2', collections: [{collection: 'collection 2', items: [{}, {}, {}]}]},
-      {group: 'something-3', collections: [{collection: 'collection 3', items: [{}, {}, {}]}]}
+      {
+        group: 'something-1',
+        collections: [{collection: 'collection 1', items: [makePhoto(), makePhoto(), makePhoto()]}]
+      },
+      {
+        group: 'something-2',
+        collections: [{collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()]}]
+      },
+      {
+        group: 'something-3',
+        collections: [{collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()]}]
+      }
     ];
 
     fakeNextFive = [
@@ -168,6 +179,15 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
   });
 
+  describe('when running the pre-start actions', () => {
+    it('should create an instance of the Photo Scaling transformer with h-v scaling of 55%', () => {
+      nounsAndVerbs.doPreStartActions();
+
+      assert.calledOnce(PhotoScaling.create);
+      assert.calledWithExactly(PhotoScaling.create, 0.55, 0.55);
+    });
+  });
+
   describe('when rendering the application', () => {
     it('should return a promise', () => {
       let promise = nounsAndVerbs.doRender();
@@ -204,18 +224,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledOnce(NewestPhotosStrategy.create);
     });
 
-    it('should provide a Photo Scaling transformer in the world state when the promise executes the function', () => {
-      givenASingleRendering();
-
-      assert.calledOnce(PhotoScaling.create);
-    });
-
-    it('should set the Photo Scaling transformer to scale to 55% both horizontally and vertically', () => {
-      givenASingleRendering();
-
-      assert.calledWithExactly(PhotoScaling.create, 0.55, 0.55);
-    });
-
     it('should create an App element with groups from the next(5) of the sorter plus a whenBannerClicked function, when the promise executes the function', () => {
       givenASingleRendering();
 
@@ -230,7 +238,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(React.createElement.lastCall.args[1]).to.have.property('whenBannerClicked')
         .that.is.a('function');
     });
-    
+
     it('should also pass a whenCollapseToGroupsClicked function to the App element', () => {
       givenASingleRendering();
 
@@ -244,7 +252,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(React.createElement.lastCall.args[1]).to.have.property('whenCollectionNameClicked')
         .that.is.a('function');
     });
-    
+
     it('should inject into each item in each collection in each group an "onClick" handler, when the promise executes the function', () => {
       givenASingleRendering();
 

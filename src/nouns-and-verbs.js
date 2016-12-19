@@ -1,13 +1,12 @@
-import PromiseMaker from './promise-maker';
-import {statorWithReset} from './state-utilities';
-import {injectOnClick} from './transform-utilities';
-import PhotoScaling from './transformers/photo-scaling';
-import NewestPhotosStrategy from './view-strategies/newest-photos';
-import CollectionInGroupStrategy from './view-strategies/collection-in-group';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import App from './App';
+import PromiseMaker from "./promise-maker";
+import {statorWithReset} from "./state-utilities";
+import {injectOnClick} from "./transform-utilities";
+import PhotoScaling from "./transformers/photo-scaling";
+import NewestPhotosStrategy from "./view-strategies/newest-photos";
+import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
 const h_scaling = 0.55,
   v_scaling = 0.55;
@@ -64,10 +63,6 @@ function whenCollectionNameClicked(collectionName) {
 }
 
 function setUpSorterAndTransformer() {
-  mergeWorld({
-    transformer: PhotoScaling.create(h_scaling, v_scaling)
-  });
-
   if (!mergeWorld().sorter) {
     mergeWorld({
       sorter: NewestPhotosStrategy.create(ext.data)
@@ -107,6 +102,10 @@ function doRender() {
   });
 }
 
+function doPreStartActions() {
+  PhotoScaling.create(h_scaling, v_scaling);
+}
+
 resetEverything();
 
 export default {
@@ -124,5 +123,6 @@ export default {
   whenCollapseToGroupsClicked,
   whenCollectionNameClicked,
 
+  doPreStartActions,
   doRender
 }
