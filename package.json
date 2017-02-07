@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "devSetup":". $NVM_DIR/nvm.sh && nvm install 4.2.0; nvm use 4.2.0",
     "build": "npm test && npm run webpack",
     "webpack": "webpack",
     "test": "mocha test --recursive",
