@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devSetup":". $NVM_DIR/nvm.sh && nvm install 4.2.0; nvm use 4.2.0",
+    "bootstrap":"npm run bootstrap:nvm_install && npm run bootstrap:dev_setup && npm run bootstrap:first_run && npm run bootstrap:server",
+    "bootstrap:nvm_install":"curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash",
+    "bootstrap:dev_setup":". $NVM_DIR/nvm.sh && nvm install 4.2.0; nvm use 4.2.0",
+    "bootstrap:first_run":"npm i && npm run build",
+    "bootstrap:server":"node server.js",
     "build": "npm test && npm run webpack",
     "webpack": "webpack",
     "test": "mocha test --recursive",
