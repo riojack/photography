@@ -2,6 +2,6 @@
 .idea/
 node_modules/
 dist
-sheets
+sheets/backups
 art
 npm-debug.log
