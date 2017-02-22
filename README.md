@@ -20,3 +20,13 @@ Running `npm run webpack` calls to Webpack, which will bundle together JavaScrip
 `npm run bump:patch` will defer to `npm version` to bump the patch version number in `package.json` and create a tag that can be pushed to github.
 
 `node ./server.js` will start an example server at `http://localhost:9320`.
+
+## The build process explained
+
+Running `npm run build` will invoke Webpack.  What follows is a rough, high-leel explanation of what Webpack does.
+ 
+Webpack will start by looking at the `./index.js` file.  Inside `./index.js` is an import statement for `./src/nouns-and-verbs.js`.  Webpack then continues to look for imports until it can no longer find any.  At that point it will take files with React code and pass them through Babel.  Babel is a tool that can take the React code, which looks like HTML/XML, and convert it to standard JavaScript.  
+
+Once it finishes converting React code, it will also convert SCSS into valid CSS files.  Finally, it takes all the finalized JavaScript, CSS, and JSON code and compiles it all into a single file, naming it `application.js` and placing it in the `dist/` directory.
+
+It also takes the `application.js` file and minimizes its contents, producing a file named `application.min.js` and placing it next to `application.js` in the `dist/` directory.  The "minified" file is what is used on iowalight.com; the non-minified file is used for development.
