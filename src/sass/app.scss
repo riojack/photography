@@ -72,8 +72,9 @@
   }
 
   .collection-names-only {
+    background-color: rgba(0,0,0,0.35);
     margin: 0 auto;
-    width: 590px;
+    width: 660px;
 
     @include max-screen(1024px) {
       padding-top: 55px;
@@ -90,20 +91,29 @@
     > li {
       display: inline-block;
       width: 48%;
+      margin: 0 0.4em;
+
+      @include min-screen(1800px) {
+        margin: 0 0.6em;
+      }
+
+      &:nth-child(2n) {
+        text-align: right;
+
+        @include min-screen(1800px) {
+          margin-left: 0.95em;
+        }
+      }
 
       > h3 {
         cursor: pointer;
         font-weight: normal;
-        color: rgba(255, 255, 255, .9);
+        color: rgba(255, 255, 255, 1.0);
         white-space: nowrap;
         overflow: hidden;
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;
-        width: 285px;
-
-        @include min-screen(1200px) {
-          width: 420px;
-        }
+        width: 100%;
       }
     }
   }
