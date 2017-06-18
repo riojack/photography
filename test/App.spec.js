@@ -144,7 +144,7 @@ describe('App Tests', () => {
     });
 
     it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
-      var colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
+      let colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
 
       expect(colNameDate.at(0).props()).to.have.property('className')
         .that.equals('collection-name-and-time');
@@ -165,11 +165,11 @@ describe('App Tests', () => {
         .children('ol')
         .children('li')
         .forEach((g, gi) => {
-          var group = listOfGroups[gi];
+          let group = listOfGroups[gi];
           g.children('ol')
             .children('li')
             .forEach((c, ci) => {
-              var collection = group.collections[ci];
+              let collection = group.collections[ci];
               c.children('ol')
                 .children('li')
                 .forEach((i, ii) => {
@@ -184,7 +184,7 @@ describe('App Tests', () => {
   });
 
   describe('when rendering only collection names from groups', () => {
-    var collectionNames,
+    let collectionNames,
       collectionCount;
 
     beforeEach('set up', () => {
