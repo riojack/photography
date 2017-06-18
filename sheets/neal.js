@@ -702,9 +702,9 @@ const data = {
           "tags": ["retina"]
         },
         {
-          "name": "nxLZsRVq1QntH",
+          "name": "xLZsRVq1QntH",
           "image": "./deck/neal-010/xLZsRVq1QntH.jpg",
-          "backgroundUrl": "./deck/neal-010/nxLZsRVq1QntH.jpg",
+          "backgroundUrl": "./deck/neal-010/xLZsRVq1QntH.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
