@@ -144,7 +144,7 @@ describe('App Tests', () => {
     });
 
     it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
-      let colNameDate = element.children('ol').children('li').children('ol').children('li').children('h4');
+      let colNameDate = element.children('ol').children('li').children('ol').children('li').children('div').children('h4');
 
       expect(colNameDate.at(0).props()).to.have.property('className')
         .that.equals('collection-name-and-time');

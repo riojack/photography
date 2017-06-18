@@ -21,8 +21,10 @@ function getCollections(group, collections) {
     let datetime = new Date(c.time);
 
     return <li key={`collection-${key}`}>
-      <h4
-        className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
+      <div className="collection-info-container">
+        <h4
+          className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
+      </div>
       <ol className="collection-items">{ getItems(c.items) }</ol>
     </li>;
   });
