@@ -58,6 +58,10 @@
 
     &:first-child {
       padding-top: 0;
+
+      > .photo-thumb {
+        margin-top: 0;
+      }
     }
 
     &:last-child {
@@ -65,7 +69,14 @@
     }
   }
 
+  .collection-info-container {
+    text-align: center;
+  }
+
   .collection-name-and-time {
+    display: inline-block;
+    padding: 10px 50px;
+    background: rgba(0,0,0,0.55);
     color: rgba(255, 255, 255, .9);
     font-weight: 100;
     text-align: center;
