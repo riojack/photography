@@ -1,4 +1,5 @@
 const groups = [
+  require('./woodland-mounds').WoodlandMounds,
   require('./spring').SpringsArrival,
   require('./lake-easter').LakeEaster,
   require('./ledges').Ledges,
