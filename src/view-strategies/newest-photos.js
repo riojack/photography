@@ -21,7 +21,7 @@ class NewestPhotosStrategy {
 
   next(count) {
     if (!this.regrouped) {
-      this.regrouped = detangler.groupByCollectionTime(this.groups);
+      this.regrouped = detangler.createInstance(this.groups).groupByCollectionTime().finish();
 
       this.regrouped.sort((a,b) => b.collections[0].time - a.collections[0].time);
     }

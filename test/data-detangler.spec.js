@@ -1,5 +1,4 @@
 import {expect} from 'chai';
-import {stub} from 'sinon';
 import Chance from 'chance';
 
 import detangler from '../src/data-detangler';
@@ -12,10 +11,6 @@ describe('Data detangler tests', () => {
   });
 
   describe('when grouping by collection time', () => {
-    it('should have a function named groupByCollectionTime', () => {
-      expect(detangler.groupByCollectionTime).to.be.a('function');
-    });
-
     it('should have 6 distinct groups when 3 groups each have 2 collections with unique timestamps', () => {
       let groupNameOne = chance.word(),
         groupNameTwo = chance.word(),
@@ -25,8 +20,7 @@ describe('Data detangler tests', () => {
           {group: groupNameTwo, collections: [{time: 30, items: [chance.word()]}, {time: 10, items: [chance.word()]}]},
           {group: groupNameThree, collections: [{time: 40, items: [chance.word()]}, {time: 20, items: [chance.word()]}]}
         ],
-
-        grouped = detangler.groupByCollectionTime(someData);
+        grouped = detangler.createInstance(someData).groupByCollectionTime().finish();
 
       expect(grouped).to.have.length(6);
       expect(grouped.reduce((count, g) => count + g.collections.length, 0))
@@ -41,7 +35,7 @@ describe('Data detangler tests', () => {
           {group: groupNameOne, collections: [{time: 50, items: [chance.word()]}, {time: 60, items: [chance.word()]}]},
         ],
 
-        grouped = detangler.groupByCollectionTime(someData);
+        grouped = detangler.createInstance(someData).groupByCollectionTime().finish();
 
       expect(grouped).to.have.length(6);
       expect(grouped.reduce((count, g) => count + g.collections.length, 0))
@@ -56,7 +50,7 @@ describe('Data detangler tests', () => {
           {group: groupNameOne, collections: [{time: 10, items: [chance.word()]}, {time: 20, items: [chance.word()]}]},
         ],
 
-        grouped = detangler.groupByCollectionTime(someData);
+        grouped = detangler.createInstance(someData).groupByCollectionTime().finish();
 
       expect(grouped).to.have.length(4);
       expect(grouped.reduce((count, g) => count + g.collections.length, 0))
