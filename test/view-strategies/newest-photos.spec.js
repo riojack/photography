@@ -55,11 +55,7 @@ describe('Newest photos sort strategy tests', () => {
       },
     ];
 
-    let detanglerInstance = detangler.createInstance(listOfGroups);
-
-    groupByCollectionTimeStub = sbox.spy(detanglerInstance, 'groupByCollectionTime');
-
-    sbox.stub(detangler, 'createInstance').returns(detanglerInstance);
+    sbox.spy(detangler, 'createInstance');
 
     strategy = new NewestPhotosStrategy(listOfGroups);
   });
@@ -76,11 +72,11 @@ describe('Newest photos sort strategy tests', () => {
     });
 
     it('should use detangler.groupByCollectionTime to regroup the data internally, only once', () => {
-      assert.notCalled(groupByCollectionTimeStub);
+      assert.notCalled(detangler.createInstance);
       strategy.next();
-      assert.calledOnce(groupByCollectionTimeStub);
+      assert.calledOnce(detangler.createInstance);
       strategy.next();
-      assert.calledOnce(groupByCollectionTimeStub);
+      assert.calledOnce(detangler.createInstance);
     });
 
     it('should return the newest group and group should have one collection with one item if next(1) is called even though the collection has more than one', () => {
@@ -141,12 +137,12 @@ describe('Newest photos sort strategy tests', () => {
     });
 
     it('should use detangler.groupByCollectionTime to regroup the data internally, only once, even if reset is called', () => {
-      assert.notCalled(groupByCollectionTimeStub);
+      assert.notCalled(detangler.createInstance);
       strategy.next(2);
-      assert.calledOnce(groupByCollectionTimeStub);
+      assert.calledOnce(detangler.createInstance);
       strategy.reset();
       strategy.next(2);
-      assert.calledOnce(groupByCollectionTimeStub);
+      assert.calledOnce(detangler.createInstance);
     });
   });
 
