@@ -5,3 +5,4 @@ dist
 sheets/backups
 art
 npm-debug.log
+.DS_Store
