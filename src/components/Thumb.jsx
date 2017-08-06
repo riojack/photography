@@ -17,16 +17,12 @@ function createTags() {
 }
 
 class Thumb extends React.Component {
-  componentDidMount() {
-    require('./sass/thumb.scss');
-  }
-
   render() {
     return <div
       className="photo-thumb"
       data-tags={createTags.call(this)}
       style={createStyles.call(this)}
-      onClick={this.props.onClick.bind({}, this.props)} />;
+      onClick={this.props.onClick.bind({}, this.props)}/>;
   }
 }
 
