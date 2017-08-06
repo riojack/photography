@@ -57,4 +57,35 @@ describe('Data detangler tests', () => {
         .to.equal(6);
     });
   });
+
+  describe('when sorting hero images first', () => {
+    it('should sort items tagged "hero" first in each collection\'s item list', () => {
+      let groupNameOne = chance.word(),
+        someData = [
+          {
+            group: groupNameOne,
+            collections: [
+            {
+              items: [
+                {name: 'a'},
+                {name: 'b', tags: ['hero']},
+                {name: 'c'}
+              ]
+            }
+          ]
+          }
+        ],
+
+        heroified = detangler.createInstance(someData).sortHeroesFirst().finish(),
+
+        heroedItems = heroified[0].collections[0].items;
+
+      expect(heroedItems).to.deep.equal([
+        {name: 'b', tags: ['hero']},
+        {name: 'a'},
+        {name: 'c'},
+      ]);
+    });
+
+  });
 });
