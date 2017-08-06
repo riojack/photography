@@ -24,6 +24,45 @@ function doGroupingByCollectionTime(data) {
     .map(k => byGroupAndTime[k]);
 }
 
+class Detangler {
+
+  constructor(data) {
+    this.data = data;
+  }
+
+  groupByCollectionTime() {
+    let byGroupAndTime = this.data.reduce((accumulator, g) => {
+      let groupName = g.group;
+
+      g.collections.forEach(c => {
+        let time = c.time,
+          compKey = groupName + '-' + time;
+
+        if (!accumulator[compKey]) {
+          accumulator[compKey] = {
+            group: groupName,
+            collections: []
+          };
+        }
+
+        accumulator[compKey].collections.push(c);
+      });
+
+      return accumulator;
+
+    }, {});
+
+    let detangledData =  Object.keys(byGroupAndTime)
+      .map(k => byGroupAndTime[k]);
+
+    return new Detangler(detangledData);
+  }
+
+  finish() {
+    return this.data;
+  }
+}
+
 export default {
-  groupByCollectionTime: doGroupingByCollectionTime
+  createInstance: (data) => new Detangler(data)
 }
