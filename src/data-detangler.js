@@ -52,10 +52,36 @@ class Detangler {
 
     }, {});
 
-    let detangledData =  Object.keys(byGroupAndTime)
+    let detangledData = Object.keys(byGroupAndTime)
       .map(k => byGroupAndTime[k]);
 
     return new Detangler(detangledData);
+  }
+
+  sortHeroesFirst() {
+    this.data.forEach(g => {
+
+      g.collections.forEach(c => {
+
+        let {heroes, nonHeroes} = c.items.reduce((sorters, item) => {
+
+          if (item.tags && item.tags.indexOf('hero') >= 0) {
+            sorters.heroes.push(item);
+          } else {
+            sorters.nonHeroes.push(item);
+          }
+
+          return sorters;
+
+        }, {heroes: [], nonHeroes: []});
+
+        c.items = [].concat(heroes, nonHeroes);
+
+      });
+
+    });
+
+    return new Detangler(this.data);
   }
 
   finish() {
