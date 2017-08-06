@@ -66,6 +66,18 @@ $small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
     background: no-repeat center center;
     background-size: 100%;
     cursor: pointer;
+
+    opacity: 1.0;
+
+    -webkit-transition: opacity 0.25s;
+    -moz-transition: opacity 0.25s;
+    -ms-transition: opacity 0.25s;
+    -o-transition: opacity 0.25s;
+    transition: opacity 0.25s;
+
+    &[data-tags~='changing_image'] {
+      opacity: 0;
+    }
   }
 
   .collection-items {
