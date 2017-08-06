@@ -18,6 +18,7 @@ describe('Thumb Tests', () => {
     chance = new Chance();
     viewProps = {
       onClick: stub(),
+      lookupId: chance.string(),
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
       backgroundPosition: {
         x: chance.integer({min: 1, max: 5}),
@@ -40,6 +41,10 @@ describe('Thumb Tests', () => {
 
   it('should set a data-tags attribute with the value of "thumbnail"', () => {
     expect(element.prop('data-tags')).to.contain('thumbnail');
+  });
+
+  it('should set a data-lookup-id attribute with the value of props.lookupId', () => {
+    expect(element.prop('data-lookup-id')).to.equal(viewProps.lookupId);
   });
 
   it('should append any tags in the props.tags array to the data-tags attribute', () => {

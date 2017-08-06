@@ -17,6 +17,7 @@ class Thumb extends React.Component {
   render() {
     return <div
       className="photo-thumb"
+      data-lookup-id={this.props.lookupId}
       data-tags={createTags.call(this)}
       style={createStyles.call(this)}
       onClick={this.props.onClick.bind({}, this.props)}/>;
