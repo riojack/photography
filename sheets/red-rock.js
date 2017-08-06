@@ -16,7 +16,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "Q4gC5e4ahBQf",
@@ -155,7 +155,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "tt-001-2",

@@ -185,7 +185,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "ahquabi-001-18",

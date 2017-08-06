@@ -36,7 +36,7 @@ const data = {
         },
         height: 175,
         width: 390,
-        tags: ["retina"]
+        tags: ["retina", "hero"]
       },
       {
         name: 'goslings-001-image004',
