@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import Chance from 'chance';
-import {stub, assert} from 'sinon';
+import {assert, stub} from 'sinon';
 import Thumb from '../src/components/Thumb';
 import App from '../src/app';
 
@@ -13,9 +13,13 @@ describe('App Tests', () => {
     chance,
     listOfGroups;
 
+  function _toBase64(val) {
+    return (new Buffer(val, 'utf8')).toString('base64');
+  }
+
   function makeItem() {
     return {
-      something: 'i-dont-care-' + chance.word()
+      name: 'some-name-' + chance.word() + '-' + chance.string()
     };
   }
 
@@ -40,6 +44,7 @@ describe('App Tests', () => {
 
   beforeEach('set up', () => {
     chance = new Chance();
+    global.btoa = _toBase64;
 
     listOfGroups = chance.n(makeGroupWithCollections, chance.integer({min: 3, max: 8}));
 
@@ -51,6 +56,10 @@ describe('App Tests', () => {
     };
 
     render(viewProps);
+  });
+
+  afterEach(() => {
+    delete global.btoa;
   });
 
   it('should be a div', () => {
@@ -174,9 +183,11 @@ describe('App Tests', () => {
                 .children('li')
                 .forEach((i, ii) => {
                   let item = collection.items[ii],
+                    expectedLookupId = _toBase64(item.name) + '|' + _toBase64(`${collection.time}`) + '|' + _toBase64(collection.collection) + '|' + _toBase64(group.group),
+                    expectedProps = Object.assign({}, item, {lookupId: expectedLookupId}),
                     thumb = i.children(Thumb);
 
-                  expect(thumb.props(), `Group ${gi} collection ${ci} item ${ii}`).to.eql(item);
+                  expect(thumb.props(), `Group ${gi} collection ${ci} item ${ii}`).to.eql(expectedProps);
                 });
             });
         });

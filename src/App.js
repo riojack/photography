@@ -8,10 +8,19 @@ const months = [
   'November', 'December'
 ];
 
-function getItems(items) {
+function _toBase64(val) {
+  return btoa(val);
+}
+
+function getItems(items, collection, group) {
   return items.map((item, key) => {
+    let extraProps = {
+        lookupId: _toBase64(item.name) + '|' + _toBase64(`${collection.time}`) + '|' + _toBase64(collection.collection) + '|' + _toBase64(group.group)
+      },
+      thumbProps = Object.assign({}, item, extraProps);
+
     return <li key={`item-${key}`}>
-      <Thumb {...item} />
+      <Thumb {...thumbProps} />
     </li>;
   });
 }
@@ -25,7 +34,7 @@ function getCollections(group, collections) {
         <h4
           className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
       </div>
-      <ol className="collection-items">{ getItems(c.items) }</ol>
+      <ol className="collection-items">{ getItems(c.items, c, group) }</ol>
     </li>;
   });
 }
