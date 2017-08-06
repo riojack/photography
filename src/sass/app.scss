@@ -1,5 +1,13 @@
 @import '../../node_modules/sass-mediaqueries/_media-queries';
 
+$big_thumb_size_h: 720px;
+$big_thumb_size_w: 1280px;
+
+$small_thumb_columns: 4.0;
+
+$small_thumb_size_h: ($big_thumb_size_h / $small_thumb_columns);
+$small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
+
 .iowa-light-application {
   width: 100%;
 
@@ -46,26 +54,55 @@
 
     ul, ol {
       list-style: none;
-      margin: 0;
       padding: 0;
     }
   }
 
-  .collection-items > li {
-    @include min-screen(1200px) {
-      padding-top: 25px;
-    }
+  .photo-groups > li {
+    padding-bottom: 345px;
+  }
 
-    &:first-child {
-      padding-top: 0;
+  .photo-thumb {
+    background: no-repeat center center;
+    background-size: 100%;
+    cursor: pointer;
+  }
+
+  .collection-items {
+    width: $big_thumb_size_w;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      display: inline-block;
 
       > .photo-thumb {
-        margin-top: 0;
+        height: $small_thumb_size_h;
+        width: $small_thumb_size_w;
       }
-    }
 
-    &:last-child {
-      padding-bottom: 20px;
+      &:first-child {
+        > .photo-thumb {
+          height: $big_thumb_size_h;
+          width: $big_thumb_size_w;
+        }
+      }
+
+      &:not(:first-child) {
+        > .photo-thumb {
+          background-size: 98%;
+          opacity: .9;
+
+          backface-visibility: hidden;
+
+          &:hover {
+            transform: scale(1, 1);
+            background-size: 100%;
+            opacity: 1.0;
+          }
+        }
+      }
     }
   }
 
@@ -76,14 +113,14 @@
   .collection-name-and-time {
     display: inline-block;
     padding: 10px 50px;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0, 0, 0, 0.55);
     color: rgba(255, 255, 255, .9);
     font-weight: 100;
     text-align: center;
   }
 
   .collection-names-only {
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0, 0, 0, 0.35);
     margin: 0 auto;
     width: 660px;
 
