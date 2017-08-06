@@ -8,124 +8,124 @@ const data = {
       items: [
         {
           name: 'neal-001-image001',
-          image: './deck/neal-001/IMG_9198.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9198.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9198.jpg",
           backgroundPosition: {
-            x: 0,
-            y: 0
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image002',
-          image: './deck/neal-001/IMG_9083.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9083.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9083.jpg",
           backgroundPosition: {
-            x: -390,
-            y: 0
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image003',
-          image: './deck/neal-001/IMG_9383.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9383.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9383.jpg",
           backgroundPosition: {
-            x: -780,
-            y: 0
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image004',
-          image: './deck/neal-001/IMG_9024.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9024.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9024.jpg",
           backgroundPosition: {
-            x: 0,
-            y: -175
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina", "hero"]
         },
         {
           name: 'neal-001-image005',
-          image: './deck/neal-001/IMG_9098.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9098.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9098.jpg",
           backgroundPosition: {
-            x: -390,
-            y: -175
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image006',
-          image: './deck/neal-001/IMG_9406.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9406.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9406.jpg",
           backgroundPosition: {
-            x: -780,
-            y: -175
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image007',
-          image: './deck/neal-001/IMG_9128.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9128.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9128.jpg",
           backgroundPosition: {
-            x: 0,
-            y: -350
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image008',
-          image: './deck/neal-001/IMG_9029.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9029.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9029.jpg",
           backgroundPosition: {
-            x: -390,
-            y: -350
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image009',
-          image: './deck/neal-001/IMG_9508.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9508.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9508.jpg",
           backgroundPosition: {
-            x: -780,
-            y: -350
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image010',
-          image: './deck/neal-001/IMG_9238.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9238.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9238.jpg",
           backgroundPosition: {
-            x: 0,
-            y: -525
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         },
         {
           name: 'neal-001-image011',
-          image: './deck/neal-001/IMG_9260.jpg',
-          backgroundUrl: './thumbslides/neal-001-comp.jpg',
+          image: "./deck/neal-001/IMG_9260.jpg",
+          backgroundUrl: "./deck/neal-001/IMG_9260.jpg",
           backgroundPosition: {
-            x: -390,
-            y: -525
+            x: 0, y: 0
           },
           height: 175,
-          width: 390
+          width: 390,
+          tags: ["retina"]
         }
       ]
     },
@@ -138,153 +138,152 @@ const data = {
         {
           "name": "neal-002-4",
           "image": "./deck/neal-002/IMG_4902.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4902.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": -175
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-11",
           "image": "./deck/neal-002/IMG_4910.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4910.jpg",
           "backgroundPosition": {
-            "x": -390,
-            "y": -525
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-2",
           "image": "./deck/neal-002/IMG_4923.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4923.jpg",
           "backgroundPosition": {
-            "x": -390,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-5",
           "image": "./deck/neal-002/IMG_4926.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4926.jpg",
           "backgroundPosition": {
-            "x": -390,
-            "y": -175
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-6",
           "image": "./deck/neal-002/IMG_5083.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5083.jpg",
           "backgroundPosition": {
-            "x": -780,
-            "y": -175
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-9",
           "image": "./deck/neal-002/IMG_5087.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5087.jpg",
           "backgroundPosition": {
-            "x": -780,
-            "y": -350
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-1",
           "image": "./deck/neal-002/IMG_5015.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5015.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-8",
           "image": "./deck/neal-002/IMG_4973.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4973.jpg",
           "backgroundPosition": {
-            "x": -390,
-            "y": -350
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-3",
           "image": "./deck/neal-002/IMG_5057.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5057.jpg",
           "backgroundPosition": {
-            "x": -780,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-7",
           "image": "./deck/neal-002/IMG_4954.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4954.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": -350
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-10",
           "image": "./deck/neal-002/IMG_4975.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_4975.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": -525
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-12",
           "image": "./deck/neal-002/IMG_5104.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5104.jpg",
           "backgroundPosition": {
-            "x": -780,
-            "y": -525
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-13",
           "image": "./deck/neal-002/IMG_5116.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5116.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": -700
+            x: 0, y: 0
           },
           "height": 175,
-          "width": 390
+          "width": 390,
+          tags: ["retina"]
         },
         {
           "name": "neal-002-14",
           "image": "./deck/neal-002/IMG_5157.jpg",
-          "backgroundUrl": "./thumbslides/neal-002-comp.jpg",
+          "backgroundUrl": "./deck/neal-002/IMG_5157.jpg",
           "backgroundPosition": {
-            "x": -390,
-            "y": -700
+            x: 0, y: 0
           },
           "height": 175,
           "width": 390
@@ -301,8 +300,7 @@ const data = {
           "image": "./deck/neal-003/x6vw14oqh5.jpg",
           "backgroundUrl": "./deck/neal-003/x6vw14oqh5.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -313,8 +311,7 @@ const data = {
           "image": "./deck/neal-003/c92wp24hu3.jpg",
           "backgroundUrl": "./deck/neal-003/c92wp24hu3.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -325,8 +322,7 @@ const data = {
           "image": "./deck/neal-003/s98vyyt8vg.jpg",
           "backgroundUrl": "./deck/neal-003/s98vyyt8vg.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -337,8 +333,7 @@ const data = {
           "image": "./deck/neal-003/cwnb1fgfm9.jpg",
           "backgroundUrl": "./deck/neal-003/cwnb1fgfm9.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -349,8 +344,7 @@ const data = {
           "image": "./deck/neal-003/e2wqwfixdu.jpg",
           "backgroundUrl": "./deck/neal-003/e2wqwfixdu.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -361,8 +355,7 @@ const data = {
           "image": "./deck/neal-003/nb5whp3fw4.jpg",
           "backgroundUrl": "./deck/neal-003/nb5whp3fw4.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -373,8 +366,7 @@ const data = {
           "image": "./deck/neal-003/vhg6o6e2ex.jpg",
           "backgroundUrl": "./deck/neal-003/vhg6o6e2ex.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -385,8 +377,7 @@ const data = {
           "image": "./deck/neal-003/a8nmkzy7hb.jpg",
           "backgroundUrl": "./deck/neal-003/a8nmkzy7hb.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -397,8 +388,7 @@ const data = {
           "image": "./deck/neal-003/dm26g4mjtj.jpg",
           "backgroundUrl": "./deck/neal-003/dm26g4mjtj.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -409,8 +399,7 @@ const data = {
           "image": "./deck/neal-003/npx9ypb9cf.jpg",
           "backgroundUrl": "./deck/neal-003/npx9ypb9cf.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -421,8 +410,7 @@ const data = {
           "image": "./deck/neal-003/qq697kmg49.jpg",
           "backgroundUrl": "./deck/neal-003/qq697kmg49.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -440,8 +428,7 @@ const data = {
           "image": "./deck/neal-004/e7a8bmwnhp.jpg",
           "backgroundUrl": "./deck/neal-004/e7a8bmwnhp.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -452,8 +439,7 @@ const data = {
           "image": "./deck/neal-004/t33n8vu66n.jpg",
           "backgroundUrl": "./deck/neal-004/t33n8vu66n.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -464,8 +450,7 @@ const data = {
           "image": "./deck/neal-004/vjvr6y850n.jpg",
           "backgroundUrl": "./deck/neal-004/vjvr6y850n.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -476,8 +461,7 @@ const data = {
           "image": "./deck/neal-004/zfz7wh1g18.jpg",
           "backgroundUrl": "./deck/neal-004/zfz7wh1g18.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -495,8 +479,7 @@ const data = {
           "image": "./deck/neal-005/1Kq3bJmCozZ3.jpg",
           "backgroundUrl": "./deck/2560/1Kq3bJmCozZ3.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -507,8 +490,7 @@ const data = {
           "image": "./deck/neal-005/FUAnDavkZXQH.jpg",
           "backgroundUrl": "./deck/2560/FUAnDavkZXQH.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -526,8 +508,7 @@ const data = {
           "image": "./deck/neal-006/xpxp6QwwOzOI.jpg",
           "backgroundUrl": "./deck/2560/xpxp6QwwOzOI.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -538,8 +519,7 @@ const data = {
           "image": "./deck/neal-006/1vBH8Lg3NAW3.jpg",
           "backgroundUrl": "./deck/2560/1vBH8Lg3NAW3.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -550,8 +530,7 @@ const data = {
           "image": "./deck/neal-006/q4EgP0UGsDHM.jpg",
           "backgroundUrl": "./deck/2560/q4EgP0UGsDHM.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -562,8 +541,7 @@ const data = {
           "image": "./deck/neal-006/50v6mQRrTD69.jpg",
           "backgroundUrl": "./deck/2560/50v6mQRrTD69.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 1024,
           "width": 576,
@@ -574,8 +552,7 @@ const data = {
           "image": "./deck/neal-006/Nve8UxNsC2IA.jpg",
           "backgroundUrl": "./deck/2560/Nve8UxNsC2IA.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -593,8 +570,7 @@ const data = {
           "image": "./deck/neal-007/6BPjnQHcnj2C.jpg",
           "backgroundUrl": "./deck/neal-007/6BPjnQHcnj2C.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -612,8 +588,7 @@ const data = {
           "image": "./deck/neal-008/dyNfkmd5gwn1.jpg",
           "backgroundUrl": "./deck/neal-008/dyNfkmd5gwn1.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -624,8 +599,7 @@ const data = {
           "image": "./deck/neal-008/b4T27Mo1IQpH.jpg",
           "backgroundUrl": "./deck/neal-008/b4T27Mo1IQpH.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 1024,
           "width": 576,
@@ -636,8 +610,7 @@ const data = {
           "image": "./deck/neal-008/GcWyuDMlnKzw.jpg",
           "backgroundUrl": "./deck/neal-008/GcWyuDMlnKzw.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -648,8 +621,7 @@ const data = {
           "image": "./deck/neal-008/BAEcF2h4tbMZ.jpg",
           "backgroundUrl": "./deck/neal-008/BAEcF2h4tbMZ.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 1024,
           "width": 576,
@@ -667,8 +639,7 @@ const data = {
           "image": "./deck/neal-009/PhS4b39jFJ2V.jpg",
           "backgroundUrl": "./deck/neal-009/PhS4b39jFJ2V.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -679,8 +650,7 @@ const data = {
           "image": "./deck/neal-009/hCpy1AWx4SDb.jpg",
           "backgroundUrl": "./deck/neal-009/hCpy1AWx4SDb.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -691,8 +661,7 @@ const data = {
           "image": "./deck/neal-009/CWrUlqtEIFXI.jpg",
           "backgroundUrl": "./deck/neal-009/CWrUlqtEIFXI.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -700,7 +669,8 @@ const data = {
         }
       ]
     },
-    {collection: 'Neal Smith - Spring II',
+    {
+      collection: 'Neal Smith - Spring II',
       added: 'June 15, 2017',
       time: 1497484800000,
       items: [
@@ -709,8 +679,7 @@ const data = {
           "image": "./deck/neal-010/PWuS2HF60q2M.jpg",
           "backgroundUrl": "./deck/neal-010/PWuS2HF60q2M.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -721,8 +690,7 @@ const data = {
           "image": "./deck/neal-010/xLZsRVq1QntH.jpg",
           "backgroundUrl": "./deck/neal-010/xLZsRVq1QntH.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -740,8 +708,7 @@ const data = {
           "image": "./deck/neal-011/nafwpkMh2AMo.jpg",
           "backgroundUrl": "./deck/neal-011/nafwpkMh2AMo.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -752,8 +719,7 @@ const data = {
           "image": "./deck/neal-011/pTWeyQtyPTjc.jpg",
           "backgroundUrl": "./deck/neal-011/pTWeyQtyPTjc.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -764,8 +730,7 @@ const data = {
           "image": "./deck/neal-011/zaDnAJV0C0c7.jpg",
           "backgroundUrl": "./deck/neal-011/zaDnAJV0C0c7.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -776,8 +741,7 @@ const data = {
           "image": "./deck/neal-011/hOGvbKU1A1rY.jpg",
           "backgroundUrl": "./deck/neal-011/hOGvbKU1A1rY.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -788,8 +752,7 @@ const data = {
           "image": "./deck/neal-011/2RkFuzZXPSmW.jpg",
           "backgroundUrl": "./deck/neal-011/2RkFuzZXPSmW.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -797,7 +760,8 @@ const data = {
         }
       ]
     },
-    {collection: 'Neal Smith - Spring IV',
+    {
+      collection: 'Neal Smith - Spring IV',
       added: 'May 13, 2017',
       time: 1494633600000,
       items: [
@@ -806,8 +770,7 @@ const data = {
           "image": "./deck/neal-012/TuXrLqWyfLDJ.jpg",
           "backgroundUrl": "./deck/neal-012/TuXrLqWyfLDJ.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
@@ -818,8 +781,7 @@ const data = {
           "image": "./deck/neal-012/Jay75P3G0DTe.jpg",
           "backgroundUrl": "./deck/neal-012/Jay75P3G0DTe.jpg",
           "backgroundPosition": {
-            "x": 0,
-            "y": 0
+            x: 0, y: 0
           },
           "height": 576,
           "width": 1024,
