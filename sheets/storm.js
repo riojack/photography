@@ -41,7 +41,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "5d6WAPfyRAv3",
@@ -128,7 +128,7 @@ const data = {
           },
           height: 175,
           width: 390,
-          tags: ["retina"]
+          tags: ["retina", "hero"]
         }
       ]
     }]

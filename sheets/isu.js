@@ -15,7 +15,7 @@ const data = {
           },
           height: 175,
           width: 390,
-          tags: ["retina"]
+          tags: ["retina", "hero"]
         },
         {
           name: 'isu-001-image002',
@@ -341,7 +341,7 @@ const data = {
           },
           height: 175,
           width: 390,
-          tags: ["retina"]
+          tags: ["retina", "hero"]
         },
         {
           name: 'isu-002-image007',
@@ -447,7 +447,7 @@ const data = {
           },
           "height": 175,
           "width": 390,
-          tags: ["retina"]
+          tags: ["retina", "hero"]
         },
         {
           "name": "isu-flora-wide-7",
@@ -619,7 +619,7 @@ const data = {
           },
           "height": 175,
           "width": 390,
-          tags: ["retina"]
+          tags: ["retina", "hero"]
         },
         {
           "name": "isu-creatures-5",

@@ -354,7 +354,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "nb5whp3fw4",
@@ -469,7 +469,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "zfz7wh1g18",
@@ -543,7 +543,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "q4EgP0UGsDHM",
@@ -641,7 +641,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "BAEcF2h4tbMZ",
@@ -672,7 +672,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "hCpy1AWx4SDb",
@@ -714,7 +714,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "xLZsRVq1QntH",
@@ -757,7 +757,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "zaDnAJV0C0c7",
@@ -811,7 +811,7 @@ const data = {
           },
           "height": 576,
           "width": 1024,
-          "tags": ["retina"]
+          "tags": ["retina", "hero"]
         },
         {
           "name": "Jay75P3G0DTe",
