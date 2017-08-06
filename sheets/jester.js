@@ -8,7 +8,7 @@ const data = {
       {
         name: 'h7957ccxcs',
         "image": "./deck/jester-001/h7957ccxcs.jpg",
-        "backgroundUrl": "./deck/1024/h7957ccxcs.jpg",
+        "backgroundUrl": "./deck/jester-001/h7957ccxcs.jpg",
         "backgroundPosition": {
           "x": 0,
           "y": 0

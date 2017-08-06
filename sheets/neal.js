@@ -299,123 +299,134 @@ const data = {
         {
           "name": "x6vw14oqh5",
           "image": "./deck/neal-003/x6vw14oqh5.jpg",
-          "backgroundUrl": "./deck/1024/x6vw14oqh5.jpg",
+          "backgroundUrl": "./deck/neal-003/x6vw14oqh5.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "c92wp24hu3",
           "image": "./deck/neal-003/c92wp24hu3.jpg",
-          "backgroundUrl": "./deck/1024/c92wp24hu3.jpg",
+          "backgroundUrl": "./deck/neal-003/c92wp24hu3.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "s98vyyt8vg",
           "image": "./deck/neal-003/s98vyyt8vg.jpg",
-          "backgroundUrl": "./deck/1024/s98vyyt8vg.jpg",
+          "backgroundUrl": "./deck/neal-003/s98vyyt8vg.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "cwnb1fgfm9",
           "image": "./deck/neal-003/cwnb1fgfm9.jpg",
-          "backgroundUrl": "./deck/1024/cwnb1fgfm9.jpg",
+          "backgroundUrl": "./deck/neal-003/cwnb1fgfm9.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "e2wqwfixdu",
           "image": "./deck/neal-003/e2wqwfixdu.jpg",
-          "backgroundUrl": "./deck/1024/e2wqwfixdu.jpg",
+          "backgroundUrl": "./deck/neal-003/e2wqwfixdu.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "nb5whp3fw4",
           "image": "./deck/neal-003/nb5whp3fw4.jpg",
-          "backgroundUrl": "./deck/1024/nb5whp3fw4.jpg",
+          "backgroundUrl": "./deck/neal-003/nb5whp3fw4.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "vhg6o6e2ex",
           "image": "./deck/neal-003/vhg6o6e2ex.jpg",
-          "backgroundUrl": "./deck/1024/vhg6o6e2ex.jpg",
+          "backgroundUrl": "./deck/neal-003/vhg6o6e2ex.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "a8nmkzy7hb",
           "image": "./deck/neal-003/a8nmkzy7hb.jpg",
-          "backgroundUrl": "./deck/1024/a8nmkzy7hb.jpg",
+          "backgroundUrl": "./deck/neal-003/a8nmkzy7hb.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "dm26g4mjtj",
           "image": "./deck/neal-003/dm26g4mjtj.jpg",
-          "backgroundUrl": "./deck/1024/dm26g4mjtj.jpg",
+          "backgroundUrl": "./deck/neal-003/dm26g4mjtj.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "npx9ypb9cf",
           "image": "./deck/neal-003/npx9ypb9cf.jpg",
-          "backgroundUrl": "./deck/1024/npx9ypb9cf.jpg",
+          "backgroundUrl": "./deck/neal-003/npx9ypb9cf.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "qq697kmg49",
           "image": "./deck/neal-003/qq697kmg49.jpg",
-          "backgroundUrl": "./deck/1024/qq697kmg49.jpg",
+          "backgroundUrl": "./deck/neal-003/qq697kmg49.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         }
       ]
     },
@@ -427,46 +438,50 @@ const data = {
         {
           "name": "e7a8bmwnhp",
           "image": "./deck/neal-004/e7a8bmwnhp.jpg",
-          "backgroundUrl": "./deck/1024/e7a8bmwnhp.jpg",
+          "backgroundUrl": "./deck/neal-004/e7a8bmwnhp.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "t33n8vu66n",
           "image": "./deck/neal-004/t33n8vu66n.jpg",
-          "backgroundUrl": "./deck/1024/t33n8vu66n.jpg",
+          "backgroundUrl": "./deck/neal-004/t33n8vu66n.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "vjvr6y850n",
           "image": "./deck/neal-004/vjvr6y850n.jpg",
-          "backgroundUrl": "./deck/1024/vjvr6y850n.jpg",
+          "backgroundUrl": "./deck/neal-004/vjvr6y850n.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         },
         {
           "name": "zfz7wh1g18",
           "image": "./deck/neal-004/zfz7wh1g18.jpg",
-          "backgroundUrl": "./deck/1024/zfz7wh1g18.jpg",
+          "backgroundUrl": "./deck/neal-004/zfz7wh1g18.jpg",
           "backgroundPosition": {
             "x": 0,
             "y": 0
           },
           "height": 576,
-          "width": 1024
+          "width": 1024,
+          "tags": ["retina"]
         }
       ]
     },
