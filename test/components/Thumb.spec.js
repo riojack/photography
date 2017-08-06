@@ -38,21 +38,6 @@ describe('Thumb Tests', () => {
     expect(element.prop('style').backgroundImage).to.equal(`url('${viewProps.backgroundUrl}')`);
   });
 
-  it('should set style.backgroundImage to the value of props.backgroundUrl', () => {
-    expect(element.prop('style').backgroundPosition).to.equal(`${viewProps.backgroundPosition.x}px ${viewProps.backgroundPosition.y}px`);
-  });
-
-  it('should set style.height to the value of props.height', () => {
-    expect(element.prop('style').height).to.equal(`${viewProps.height}px`);
-  });
-
-  it('should set style.width to the value of props.width', () => {
-    viewProps.width = chance.integer({min: 55, max: 200});
-    doRender(viewProps);
-
-    expect(element.prop('style').width).to.equal(`${viewProps.width}px`);
-  });
-
   it('should set a data-tags attribute with the value of "thumbnail"', () => {
     expect(element.prop('data-tags')).to.contain('thumbnail');
   });
