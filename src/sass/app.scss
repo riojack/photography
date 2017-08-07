@@ -8,6 +8,10 @@ $small_thumb_columns: 4.0;
 $small_thumb_size_h: ($big_thumb_size_h / $small_thumb_columns);
 $small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
 
+$ipad_scaling_l: 0.75;
+$ipad_scaling_p_big_thumb: 0.5;
+$ipad_scaling_p_small_thumb: 1.0;
+
 .iowa-light-application {
   width: 100%;
 
@@ -86,18 +90,46 @@ $small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
     display: flex;
     flex-wrap: wrap;
 
+    @include ipad(landscape) {
+      width: $big_thumb_size_w * $ipad_scaling_l;
+    }
+
+    @include ipad(portrait) {
+      width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
+    }
+
     > li {
       display: inline-block;
 
       > .photo-thumb {
         height: $small_thumb_size_h;
         width: $small_thumb_size_w;
+
+        @include ipad(landscape) {
+          height: $small_thumb_size_h * $ipad_scaling_l;
+          width: $small_thumb_size_w * $ipad_scaling_l;
+        }
+
+        @include ipad(portrait) {
+          height: $small_thumb_size_h * $ipad_scaling_p_small_thumb;
+          width: $small_thumb_size_w * $ipad_scaling_p_small_thumb;
+        }
       }
 
       &:first-child {
         > .photo-thumb {
           height: $big_thumb_size_h;
           width: $big_thumb_size_w;
+
+          @include ipad(landscape) {
+            height: $big_thumb_size_h * $ipad_scaling_l;
+            width: $big_thumb_size_w * $ipad_scaling_l;
+          }
+
+          @include ipad(portrait) {
+            height: $big_thumb_size_h * $ipad_scaling_p_big_thumb;
+            width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
+          }
         }
       }
 
