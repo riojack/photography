@@ -12,6 +12,10 @@ $ipad_scaling_l: 0.75;
 $ipad_scaling_p_big_thumb: 0.5;
 $ipad_scaling_p_small_thumb: 1.0;
 
+$iphone_scaling_l: $ipad_scaling_l * 0.5;
+$iphone_scaling_l_small_thumb: $iphone_scaling_l * 2.0;
+$iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
+
 .iowa-light-application {
   width: 100%;
 
@@ -94,8 +98,24 @@ $ipad_scaling_p_small_thumb: 1.0;
       width: $big_thumb_size_w * $ipad_scaling_l;
     }
 
+    @include iphone6-plus(landscape) {
+      width: $big_thumb_size_w * $iphone_scaling_l;
+    }
+
     @include ipad(portrait) {
       width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
+    }
+
+    @include iphone6-plus(portrait) {
+      width: $big_thumb_size_w * $iphone_scaling_p;
+    }
+
+    @include iphone5(portrait) {
+      width: $big_thumb_size_w * $iphone_scaling_p;
+    }
+
+    @include iphone4(portrait) {
+      width: $big_thumb_size_w * $iphone_scaling_p;
     }
 
     > li {
@@ -110,9 +130,29 @@ $ipad_scaling_p_small_thumb: 1.0;
           width: $small_thumb_size_w * $ipad_scaling_l;
         }
 
+        @include iphone6-plus(landscape) {
+          height: $small_thumb_size_h * $iphone_scaling_l_small_thumb;
+          width: $small_thumb_size_w * $iphone_scaling_l_small_thumb;
+        }
+
         @include ipad(portrait) {
           height: $small_thumb_size_h * $ipad_scaling_p_small_thumb;
           width: $small_thumb_size_w * $ipad_scaling_p_small_thumb;
+        }
+
+        @include iphone6-plus(portrait) {
+          height: $small_thumb_size_h * $iphone_scaling_p;
+          width: $small_thumb_size_w * $iphone_scaling_p;
+        }
+
+        @include iphone5(portrait) {
+          height: $small_thumb_size_h * $iphone_scaling_p;
+          width: $small_thumb_size_w * $iphone_scaling_p;
+        }
+
+        @include iphone4(portrait) {
+          height: $small_thumb_size_h * $iphone_scaling_p;
+          width: $small_thumb_size_w * $iphone_scaling_p;
         }
       }
 
@@ -126,9 +166,29 @@ $ipad_scaling_p_small_thumb: 1.0;
             width: $big_thumb_size_w * $ipad_scaling_l;
           }
 
+          @include iphone6-plus(landscape) {
+            height: $big_thumb_size_h * $iphone_scaling_l;
+            width: $big_thumb_size_w * $iphone_scaling_l;
+          }
+
           @include ipad(portrait) {
             height: $big_thumb_size_h * $ipad_scaling_p_big_thumb;
             width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
+          }
+
+          @include iphone6-plus(portrait) {
+            height: $big_thumb_size_h * $iphone_scaling_p;
+            width: $big_thumb_size_w * $iphone_scaling_p;
+          }
+
+          @include iphone5(portrait) {
+            height: $big_thumb_size_h * $iphone_scaling_p;
+            width: $big_thumb_size_w * $iphone_scaling_p;
+          }
+
+          @include iphone4(portrait) {
+            height: $big_thumb_size_h * $iphone_scaling_p;
+            width: $big_thumb_size_w * $iphone_scaling_p;
           }
         }
       }
