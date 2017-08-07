@@ -545,7 +545,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "Nve8UxNsC2IA",
@@ -603,7 +603,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "GcWyuDMlnKzw",
@@ -625,7 +625,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
       ]
     },

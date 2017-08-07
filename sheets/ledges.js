@@ -15,7 +15,7 @@ const data = {
         },
         "width": 576,
         "height": 1024,
-        "tags": ["retina"]
+        "tags": ["retina", "portrait"]
       },
       {
         name: '9HubdShXjl6P',
@@ -27,7 +27,7 @@ const data = {
         },
         "width": 576,
         "height": 1024,
-        "tags": ["retina"]
+        "tags": ["retina", "portrait"]
       },
       {
         name: '5kmZNeIWQ3SB',
@@ -39,7 +39,7 @@ const data = {
         },
         "width": 576,
         "height": 1024,
-        "tags": ["retina"]
+        "tags": ["retina", "portrait"]
       },
       {
         name: '17Ozk7oiUfE4',
@@ -51,7 +51,7 @@ const data = {
         },
         "width": 576,
         "height": 1024,
-        "tags": ["retina"]
+        "tags": ["retina", "portrait"]
       },
       {
         name: '8cWTbw8h0C04',

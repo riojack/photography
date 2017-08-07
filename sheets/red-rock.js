@@ -167,7 +167,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-3",
@@ -215,7 +215,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-7",
@@ -227,7 +227,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-8",
@@ -239,7 +239,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-9",
@@ -251,7 +251,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-10",
@@ -263,7 +263,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "tt-001-11",

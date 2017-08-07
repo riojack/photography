@@ -53,7 +53,7 @@ const data = {
           },
           "height": 1024,
           "width": 576,
-          "tags": ["retina"]
+          "tags": ["retina", "portrait"]
         },
         {
           "name": "2xEs9Md526Zs",
