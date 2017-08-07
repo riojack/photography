@@ -77,11 +77,11 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
 
     opacity: 1.0;
 
-    -webkit-transition: opacity 0.25s;
-    -moz-transition: opacity 0.25s;
-    -ms-transition: opacity 0.25s;
-    -o-transition: opacity 0.25s;
-    transition: opacity 0.25s;
+    -webkit-transition: opacity 0.25s, height 0.25s, width 0.25s;
+    -moz-transition: opacity 0.25s, height 0.25s, width 0.25s;
+    -ms-transition: opacity 0.25s, height 0.25s, width 0.25s;
+    -o-transition: opacity 0.25s, height 0.25s, width 0.25s;
+    transition: opacity 0.25s, height 0.25s, width 0.25s;
 
     &[data-tags~='changing_image'] {
       opacity: 0;
@@ -119,8 +119,6 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
     }
 
     > li {
-      display: inline-block;
-
       > .photo-thumb {
         height: $small_thumb_size_h;
         width: $small_thumb_size_w;
@@ -160,6 +158,11 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
         > .photo-thumb {
           height: $big_thumb_size_h;
           width: $big_thumb_size_w;
+
+          &[data-tags~='portrait'] {
+            height: $big_thumb_size_w;
+            width: $big_thumb_size_w;
+          }
 
           @include ipad(landscape) {
             height: $big_thumb_size_h * $ipad_scaling_l;
