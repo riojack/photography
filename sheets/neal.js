@@ -788,6 +788,58 @@ const data = {
           "tags": ["retina"]
         }
       ]
+    },
+    {
+      collection: 'Neal Smith - Late Summer I',
+      added: 'August 20, 2017',
+      time: 150292800000,
+      items: [
+        {
+          "name": "aF1h4nbGlWLm",
+          "image": "./deck/neal-013/aF1h4nbGlWLm.jpg",
+          "backgroundUrl": "./deck/neal-013/aF1h4nbGlWLm.jpg ",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "time": 1501891200000,
+          "tags": ["retina", "hero"]
+        },
+        {
+          "name": "VMM9Eo5GTwG0",
+          "image": "./deck/neal-013/VMM9Eo5GTwG0.jpg",
+          "backgroundUrl": "./deck/neal-013/VMM9Eo5GTwG0.jpg ",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina", "hero"]
+        },
+        {
+          "name": "CkDdgLDc9z9K",
+          "image": "./deck/neal-013/CkDdgLDc9z9K.jpg",
+          "backgroundUrl": "./deck/neal-013/CkDdgLDc9z9K.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        },
+        {
+          "name": "TXbSs68KPbM1",
+          "image": "./deck/neal-013/TXbSs68KPbM1.jpg",
+          "backgroundUrl": "./deck/neal-013/TXbSs68KPbM1.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        }
+      ]
     }
   ]
 };
