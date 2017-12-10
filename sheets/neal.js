@@ -797,7 +797,7 @@ const data = {
         {
           "name": "aF1h4nbGlWLm",
           "image": "./deck/neal-013/aF1h4nbGlWLm.jpg",
-          "backgroundUrl": "./deck/neal-013/aF1h4nbGlWLm.jpg ",
+          "backgroundUrl": "./deck/neal-013/aF1h4nbGlWLm.jpg",
           "backgroundPosition": {
             x: 0, y: 0
           },
@@ -809,7 +809,7 @@ const data = {
         {
           "name": "VMM9Eo5GTwG0",
           "image": "./deck/neal-013/VMM9Eo5GTwG0.jpg",
-          "backgroundUrl": "./deck/neal-013/VMM9Eo5GTwG0.jpg ",
+          "backgroundUrl": "./deck/neal-013/VMM9Eo5GTwG0.jpg",
           "backgroundPosition": {
             x: 0, y: 0
           },
