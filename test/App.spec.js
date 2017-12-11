@@ -158,7 +158,7 @@ describe('App Tests', () => {
       expect(colNameDate.at(0).props()).to.have.property('className')
         .that.equals('collection-name-and-time');
 
-      expect(colNameDate.children().node.trim())
+      expect(colNameDate.children().at(0).text().trim())
         .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
     });
 

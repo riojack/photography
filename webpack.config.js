@@ -20,7 +20,7 @@ module.exports = {
       {
         test: /\.jsx$|\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015']
         }
@@ -28,12 +28,12 @@ module.exports = {
       {
         test: /\.css$|\.scss$/,
         exclude: /node_modules/,
-        loaders: ['style', 'css', 'sass']
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new webpack.DefinePlugin({
