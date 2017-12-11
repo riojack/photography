@@ -54,7 +54,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   function givenBannerClicked() {
     let props = getLastCreateElementProps();
 
-    externals.document.getElementById.reset();
+    externals.document.getElementById.resetHistory();
 
     props.whenBannerClicked();
   }
