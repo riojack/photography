@@ -15,6 +15,20 @@ class NewestPhotosStrategy {
     this.itemsFetchedSoFar = 0;
   }
 
+  static sorter(a, b) {
+    if (a.collections[0].weight && b.collections[0].weight) {
+      return b.collections[0].weight - a.collections[0].weight;
+    }
+    else if (a.collections[0].weight) {
+      return -1;
+    }
+    else if (b.collections[0].weight) {
+      return 1;
+    }
+
+    return b.collections[0].time - a.collections[0].time
+  }
+
   next(count) {
     if (!this.regrouped) {
       this.regrouped = detangler
@@ -23,7 +37,7 @@ class NewestPhotosStrategy {
         .sortHeroesFirst()
         .finish();
 
-      this.regrouped.sort((a,b) => b.collections[0].time - a.collections[0].time);
+      this.regrouped.sort(NewestPhotosStrategy.sorter);
     }
 
     this.itemsFetchedSoFar += count;

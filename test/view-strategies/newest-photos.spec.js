@@ -15,9 +15,10 @@ describe('Newest photos sort strategy tests', () => {
 
     expectedNewestTime,
 
-    collectionTime,
+    heavierWeight = 20,
+    lighterWeight = 15,
 
-    groupByCollectionTimeStub,
+    collectionTime,
 
     strategy,
 
@@ -42,14 +43,14 @@ describe('Newest photos sort strategy tests', () => {
       {
         group: chance.word(),
         collections: [
-          {time: 30, items: [chance.word()]},
+          {time: 30, weight: lighterWeight, items: [chance.word()]},
           {time: 40, items: [chance.word(), chance.word(), chance.word(), chance.word()]}
         ]
       },
       {
         group: groupNameOne,
         collections: [
-          {time: 50, items: [chance.word(), chance.word(), chance.word()]},
+          {time: 50, weight: heavierWeight, items: [chance.word(), chance.word(), chance.word()]},
           {time: expectedNewestTime, items: [chance.word(), chance.word(), chance.word()]}
         ]
       },
@@ -89,10 +90,11 @@ describe('Newest photos sort strategy tests', () => {
       expect(data[0].collections[0].items).to.have.length(1);
     });
 
-    it('should, when fetching with next(1), return the group with the newest collection out of all collections in the entire data set', () => {
-      let data = strategy.next(1);
+    it('should, when fetching with next(3), return the weighted items first followed by the newest items', () => {
+      let data = strategy.next(3);
 
-      expect(data[0].collections[0].time).to.equal(expectedNewestTime);
+      expect(data[0].collections[0]).to.have.property('weight')
+        .that.equals(heavierWeight);
     });
 
     it('should return two groups, one collection to each group, the collection of the first group should be full and the collection of the second group should be partial', () => {
