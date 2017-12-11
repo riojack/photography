@@ -11,10 +11,6 @@ class NewestPhotosStrategy {
     this.itemsFetchedSoFar = 0;
   }
 
-  weight() {
-    return 1000;
-  }
-
   reset() {
     this.itemsFetchedSoFar = 0;
   }
