@@ -793,6 +793,7 @@ const data = {
       collection: 'Neal Smith - Late Summer I',
       added: 'August 20, 2017',
       time: 150292800000,
+      weight: 1512954644938,
       items: [
         {
           "name": "aF1h4nbGlWLm",
