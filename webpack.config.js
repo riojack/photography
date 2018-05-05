@@ -15,13 +15,15 @@ module.exports = {
     filename: '[name].js',
     sourcePrefix: ''
   },
+  optimization: {
+    minimize: true
+  },
   module: {
-    loaders: [
-      {
+    rules: [{
         test: /\.jsx$|\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['react', 'es2015']
         }
       },
@@ -39,16 +41,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      include: /\.min\.js$/,
-      minimize: true,
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
       }
     })
   ]
