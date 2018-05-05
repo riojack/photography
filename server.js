@@ -27,7 +27,7 @@ app.get('/art/bg.jpg', (req, res) => {
   res.sendFile('./art/bg_16-9_IMG_1482_3_4_5_6_7_8_GoldenHour5.jpg', {root: __dirname});
 });
 
-app.get('/application.min.js', (req, res) => {
+app.get('/application.js', (req, res) => {
   res.sendFile('./dist/application.js', {root: __dirname});
 });
 
