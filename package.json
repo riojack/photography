@@ -10,8 +10,8 @@
     "bootstrap:first_run": "npm run bootstrap:cleanup && npm i && npm run build",
     "bootstrap:server": "node server.js",
     "bootstrap:cleanup": "rimraf dist && rimraf node_modules",
-    "build": "npm test && npm run webpack",
-    "webpack": "webpack -p",
+    "build": "npm test && webpack -d",
+    "build:prod": "npm test && webpack -p",
     "test": "mocha test --recursive",
     "bump:patch": "npm version patch -m \"Pre-release, as %s.\"",
     "bump": "npm run bump:patch"

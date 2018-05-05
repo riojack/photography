@@ -1,9 +1,9 @@
 var webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
   entry: {
-    'application': __dirname + '/index.js',
-    'application.min': __dirname + '/index.js'
+    'application': __dirname + '/index.js'
   },
   externals: {
     'react': 'React',
@@ -14,9 +14,6 @@ module.exports = {
     pathinfo: true,
     filename: '[name].js',
     sourcePrefix: ''
-  },
-  optimization: {
-    minimize: true
   },
   module: {
     rules: [{
@@ -36,12 +33,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    })
-  ]
+  }
 };
