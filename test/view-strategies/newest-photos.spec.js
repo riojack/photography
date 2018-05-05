@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {sandbox, assert} from 'sinon';
+import {assert, createSandbox} from 'sinon';
 import Chance from 'chance';
 
 import detangler from '../../src/data-detangler';
@@ -22,10 +22,10 @@ describe('Newest photos sort strategy tests', () => {
 
     strategy,
 
-    sbox;
+    sandbox;
 
   beforeEach('set up', () => {
-    sbox = sandbox.create();
+    sandbox = createSandbox();
     chance = new Chance();
     collectionTime = 0;
 
@@ -56,13 +56,13 @@ describe('Newest photos sort strategy tests', () => {
       },
     ];
 
-    sbox.spy(detangler, 'createInstance');
+    sandbox.spy(detangler, 'createInstance');
 
     strategy = new NewestPhotosStrategy(listOfGroups);
   });
 
   afterEach('tear down', () => {
-    sbox.restore();
+    sandbox.restore();
   });
 
   describe('when fetching the next n items', () => {

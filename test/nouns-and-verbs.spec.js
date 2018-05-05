@@ -1,6 +1,6 @@
 import {fail} from "assert";
 import {expect} from "chai";
-import {stub, assert, sandbox} from "sinon";
+import {stub, assert, createSandbox} from "sinon";
 import Chance from "chance";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -28,7 +28,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakePhotoScalingTransformer,
     expectedCollection,
 
-    sbox;
+    sandbox;
 
   function makePhoto() {
     return {height: chance.integer(), width: chance.integer()};
@@ -65,7 +65,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   }
 
   beforeEach('set up', () => {
-    sbox = sandbox.create();
+    sandbox = createSandbox();
     chance = new Chance();
 
     item = {
@@ -157,7 +157,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   });
 
   afterEach('tear down', () => {
-    sbox.restore();
+    sandbox.restore();
     nounsAndVerbs.unregisterExternals();
     nounsAndVerbs.resetMergers();
   });
