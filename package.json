@@ -50,6 +50,7 @@
     "sinon": "^5.0.4",
     "strict-uri-encode": "^2.0.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.7.0"
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2"
   }
 }
