@@ -1,4 +1,5 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -14,6 +15,19 @@ module.exports = {
     pathinfo: true,
     filename: '[name].js',
     sourcePrefix: ''
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      uglifyOptions: {
+        minimize: true,
+        compress: {
+          warnings: false
+        },
+        output: {
+          comments: false
+        }
+      }
+    })]
   },
   module: {
     rules: [{
