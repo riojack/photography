@@ -73,6 +73,7 @@ function setUpSorterAndTransformer() {
 function eventuallyRender(resolve) {
   let currentWorld = mergeWorld(),
     appProps = {
+      cacheUrl: 'http://d3rjsdgb9hzkgz.cloudfront.net/',
       groups: currentWorld.sorter.next(5),
       limitRenderTo: currentWorld.limitRenderTo,
       whenBannerClicked,

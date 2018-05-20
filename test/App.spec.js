@@ -6,6 +6,8 @@ import {assert, stub} from 'sinon';
 import Thumb from '../src/components/Thumb';
 import App from '../src/app';
 
+let urljoin = require('url-join');
+
 describe('App Tests', () => {
   let viewProps,
     element,
@@ -13,13 +15,17 @@ describe('App Tests', () => {
     chance,
     listOfGroups;
 
+  const CACHE_URL = 'http://www.example.com/cache'
+
   function _toBase64(val) {
     return (new Buffer(val, 'utf8')).toString('base64');
   }
 
   function makeItem() {
     return {
-      name: 'some-name-' + chance.word() + '-' + chance.string()
+      name: 'some-name-' + chance.word() + '-' + chance.string(),
+      image: './foo/bar/' + chance.word() + '.jpg',
+      backgroundUrl: './foo/bar/' + chance.word() + '.jpg'
     };
   }
 
@@ -49,6 +55,7 @@ describe('App Tests', () => {
     listOfGroups = chance.n(makeGroupWithCollections, chance.integer({min: 3, max: 8}));
 
     viewProps = {
+      cacheUrl: CACHE_URL,
       groups: listOfGroups,
       whenBannerClicked: stub(),
       whenCollapseToGroupsClicked: stub(),
@@ -184,10 +191,45 @@ describe('App Tests', () => {
                 .forEach((i, ii) => {
                   let item = collection.items[ii],
                     expectedLookupId = _toBase64(item.name) + '|' + _toBase64(`${collection.time}`) + '|' + _toBase64(collection.collection) + '|' + _toBase64(group.group),
-                    expectedProps = Object.assign({}, item, {lookupId: expectedLookupId}),
-                    thumb = i.children(Thumb);
+                    expectedProps = Object.assign({}, item, {
+                      lookupId: expectedLookupId
+                    }),
+                    thumb = i.children(Thumb),
+                    thumbProps = Object.assign({}, thumb.props());
 
-                  expect(thumb.props(), `Group ${gi} collection ${ci} item ${ii}`).to.eql(expectedProps);
+                    delete thumbProps.image;
+                    delete thumbProps.backgroundUrl;
+                    delete expectedProps.image;
+                    delete expectedProps.backgroundUrl;
+
+                  expect(thumbProps, `Group ${gi} collection ${ci} item ${ii}`).to.eql(expectedProps);
+                });
+            });
+        });
+    });
+
+    it('should update item.image and item.backgroundUrl if the cache location is specified', () => {
+      element
+        .children('ol')
+        .children('li')
+        .forEach((g, gi) => {
+          let group = listOfGroups[gi];
+          g.children('ol')
+            .children('li')
+            .forEach((c, ci) => {
+              let collection = group.collections[ci];
+              c.children('ol')
+                .children('li')
+                .forEach((i, ii) => {
+                  let item = collection.items[ii],
+                    thumb = i.children(Thumb),
+                    image_url = item.image,
+                    background_url = item.backgroundUrl,
+                    expected_image_url = urljoin(CACHE_URL, image_url.replace('./', '')),
+                    expected_backround_url = urljoin(CACHE_URL, background_url.replace('./', ''));
+
+                  expect(thumb.props().image, `Group ${gi} collection ${ci} item ${ii}.image`).to.eql(expected_image_url);
+                  expect(thumb.props().backgroundUrl, `Group ${gi} collection ${ci} item ${ii}.backgroundUrl`).to.eql(expected_backround_url);
                 });
             });
         });

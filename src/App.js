@@ -1,6 +1,8 @@
 import React from 'react';
 import Thumb from './components/Thumb';
 
+let urljoin = require('url-join');
+
 const months = [
   'January', 'February', 'March',
   'April', 'May', 'June', 'July',
@@ -12,12 +14,16 @@ function _toBase64(val) {
   return btoa(val);
 }
 
-function getItems(items, collection, group) {
+function getItems(items, collection, group, extras) {
   return items.map((item, key) => {
     let extraProps = {
         lookupId: _toBase64(item.name) + '|' + _toBase64(`${collection.time}`) + '|' + _toBase64(collection.collection) + '|' + _toBase64(group.group)
       },
-      thumbProps = Object.assign({}, item, extraProps);
+      overwrites = {
+        image: urljoin(extras.cacheUrl, item.image.replace('./', '')),
+        backgroundUrl: urljoin(extras.cacheUrl, item.backgroundUrl.replace('./', ''))
+      },
+      thumbProps = Object.assign({}, item, extraProps, overwrites);
 
     return <li key={`item-${key}`}>
       <Thumb {...thumbProps} />
@@ -25,7 +31,7 @@ function getItems(items, collection, group) {
   });
 }
 
-function getCollections(group, collections) {
+function getCollections(group, collections, extras) {
   return collections.map((c, key) => {
     let datetime = new Date(c.time);
 
@@ -34,26 +40,30 @@ function getCollections(group, collections) {
         <h4
           className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
       </div>
-      <ol className="collection-items">{ getItems(c.items, c, group) }</ol>
+      <ol className="collection-items">{ getItems(c.items, c, group, extras) }</ol>
     </li>;
   });
 }
 
-function getGroups(groups) {
+function getGroups(groups, extras) {
   return groups.map((g, key) => {
     return <li key={`group-${key}`}>
-      <ol className="group-collections">{ getCollections(g, g.collections) }</ol>
+      <ol className="group-collections">{ getCollections(g, g.collections, extras) }</ol>
     </li>;
   });
 }
 
-function getCollectionsFromGroups(groups) {
+function getCollectionsFromGroups(groups, extras) {
   return groups.reduce((collectionAccumulator, group) => {
     return collectionAccumulator.concat(group.collections);
   }, []);
 }
 
-function getPhotoThingsToRender(groups, limitRenderTo, clickHandler) {
+function getPhotoThingsToRender(props) {
+  let groups = props.groups, 
+    limitRenderTo = props.limitRenderTo, 
+    clickHandler = props.whenCollectionNameClicked,
+    extras = { cacheUrl: props.cacheUrl };
   if (limitRenderTo === 'collectionNames') {
     let collections = getCollectionsFromGroups(groups);
 
@@ -68,7 +78,7 @@ function getPhotoThingsToRender(groups, limitRenderTo, clickHandler) {
     }</ol>;
   }
 
-  return <ol className="photo-groups">{ getGroups(groups) }</ol>;
+  return <ol className="photo-groups">{ getGroups(groups, extras) }</ol>;
 }
 
 class App extends React.Component {
@@ -88,7 +98,7 @@ class App extends React.Component {
            onTouchEnd={this.props.whenCollapseToGroupsClicked}>
         <h4>By collection</h4>
       </div>
-      {getPhotoThingsToRender(this.props.groups, this.props.limitRenderTo, this.props.whenCollectionNameClicked)}
+      {getPhotoThingsToRender(this.props)}
     </div>;
   }
 }
