@@ -793,7 +793,6 @@ const data = {
       collection: 'Neal Smith - Late Summer I',
       added: 'August 20, 2017',
       time: 1502928000000,
-      weight: 1512954644938,
       items: [
         {
           "name": "aF1h4nbGlWLm",
@@ -845,12 +844,12 @@ const data = {
     {
       collection: 'Neal Smith - Spring V',
       added: 'April 22, 2018',
-      time: 1524355201 * 1000,
+      time: 1524398400 * 1000,
       items: [
         {
           "name": "HUcIQw0dPSOJ",
-          "image": "./deck/neal-013/HUcIQw0dPSOJ.jpg",
-          "backgroundUrl": "./deck/neal-013/HUcIQw0dPSOJ.jpg",
+          "image": "./deck/neal-014/HUcIQw0dPSOJ.jpg",
+          "backgroundUrl": "./deck/neal-014/HUcIQw0dPSOJ.jpg",
           "backgroundPosition": {
             x: 0, y: 0
           },
@@ -860,8 +859,8 @@ const data = {
         },
         {
           "name": "Q63ePhocf9Gh",
-          "image": "./deck/neal-013/Q63ePhocf9Gh.jpg",
-          "backgroundUrl": "./deck/neal-013/Q63ePhocf9Gh.jpg",
+          "image": "./deck/neal-014/Q63ePhocf9Gh.jpg",
+          "backgroundUrl": "./deck/neal-014/Q63ePhocf9Gh.jpg",
           "backgroundPosition": {
             x: 0, y: 0
           },
