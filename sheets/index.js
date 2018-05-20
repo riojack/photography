@@ -12,7 +12,8 @@ const groups = [
   require('./neal').Neal,
   require('./isu').ISU,
   require('./goslings').Goslings,
-  require('./misc').Misc
+  require('./misc').Misc,
+  require('./road').Road
 ];
 
 export default groups;
