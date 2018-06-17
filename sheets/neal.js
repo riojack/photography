@@ -869,6 +869,35 @@ const data = {
           "tags": ["retina"]
         }
       ]
+    },
+    {
+      collection: 'Neal Smith - Spring VI',
+      added: 'May 6, 2018',
+      time: 1525564800 * 1000,
+      items: [
+        {
+          "name": "LkqpDUFefdrKpaxi",
+          "image": "./deck/neal-015/LkqpDUFefdrKpaxi.jpg",
+          "backgroundUrl": "./deck/neal-015/LkqpDUFefdrKpaxi.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina", "hero"]
+        },
+        {
+          "name": "zGKBeEFtcYBPsSus",
+          "image": "./deck/neal-015/zGKBeEFtcYBPsSus.jpg",
+          "backgroundUrl": "./deck/neal-015/zGKBeEFtcYBPsSus.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        }
+      ]
     }
   ]
 };
