@@ -30,8 +30,22 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
     sandbox;
 
-  function makePhoto() {
-    return {height: chance.integer(), width: chance.integer()};
+  function _toBase64(val) {
+    return (new Buffer(val, 'utf8')).toString('base64');
+  }
+
+  function makePhoto(opts) {
+    const safeOpts = opts || {},
+      photoName = safeOpts.photoName || chance.word({length: 32}),
+      collectionTime = safeOpts.collectionTime || (chance.timestamp() * 1000),
+      collectionName = safeOpts.collectionName || chance.word({length: 32}),
+      groupName = safeOpts.groupName || chance.word({length: 32});
+
+    return {
+      lookupId: _toBase64(photoName) + '|' + _toBase64(`${collectionTime}`) + '|' + _toBase64(collectionName) + '|' + _toBase64(groupName),
+      height: chance.integer(), 
+      width: chance.integer()
+    };
   }
 
   function whenRenderPromiseIsResolved() {
@@ -68,10 +82,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox = createSandbox();
     chance = new Chance();
 
-    item = {
-      image: 'blah'
-    };
-
     fakeNode = {scrollTop: -1};
 
     fakePromise = {
@@ -81,11 +91,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeElement = {
       someElement: `it-can-be-whatever-${chance.word()}`
     };
+    
+    const collectionTime = chance.timestamp();
+    item = Object.assign({ image: 'blah', name: 'picture' }, makePhoto({ photoName: 'picture', groupName: 'something-1', collectionName: 'collection 1', collectionTime: collectionTime }));
 
     fakeGroups = [
       {
         group: 'something-1',
-        collections: [{collection: 'collection 1', items: [makePhoto(), makePhoto(), makePhoto()]}]
+        collections: [{collection: 'collection 1', time: collectionTime, items: [item, makePhoto(), makePhoto()]}]
       },
       {
         group: 'something-2',
