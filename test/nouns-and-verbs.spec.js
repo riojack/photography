@@ -1,6 +1,6 @@
-import {fail} from "assert";
-import {expect} from "chai";
-import {stub, assert, createSandbox} from "sinon";
+import { fail } from "assert";
+import { expect } from "chai";
+import { stub, assert, createSandbox } from "sinon";
 import Chance from "chance";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -36,14 +36,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
   function makePhoto(opts) {
     const safeOpts = opts || {},
-      photoName = safeOpts.photoName || chance.word({length: 32}),
+      photoName = safeOpts.photoName || chance.word({ length: 32 }),
       collectionTime = safeOpts.collectionTime || (chance.timestamp() * 1000),
-      collectionName = safeOpts.collectionName || chance.word({length: 32}),
-      groupName = safeOpts.groupName || chance.word({length: 32});
+      collectionName = safeOpts.collectionName || chance.word({ length: 32 }),
+      groupName = safeOpts.groupName || chance.word({ length: 32 });
 
     return {
       lookupId: _toBase64(photoName) + '|' + _toBase64(`${collectionTime}`) + '|' + _toBase64(collectionName) + '|' + _toBase64(groupName),
-      height: chance.integer(), 
+      height: chance.integer(),
       width: chance.integer()
     };
   }
@@ -82,7 +82,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox = createSandbox();
     chance = new Chance();
 
-    fakeNode = {scrollTop: -1};
+    fakeNode = { scrollTop: -1 };
 
     fakePromise = {
       something: `i-dont-care-${chance.word()}`
@@ -91,31 +91,31 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeElement = {
       someElement: `it-can-be-whatever-${chance.word()}`
     };
-    
+
     const collectionTime = chance.timestamp();
     item = Object.assign({ image: 'blah', name: 'picture' }, makePhoto({ photoName: 'picture', groupName: 'something-1', collectionName: 'collection 1', collectionTime: collectionTime }));
 
     fakeGroups = [
       {
         group: 'something-1',
-        collections: [{collection: 'collection 1', time: collectionTime, items: [item, makePhoto(), makePhoto()]}]
+        collections: [{ collection: 'collection 1', time: collectionTime, items: [item, makePhoto(), makePhoto()] }]
       },
       {
         group: 'something-2',
-        collections: [{collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()]}]
+        collections: [{ collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()] }]
       },
       {
         group: 'something-3',
-        collections: [{collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()]}]
+        collections: [{ collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()] }]
       }
     ];
 
     fakeNextFive = [
-      {group: 'something-1', collections: [{collection: 'collection 1', items: [{}, {}, {}]}]},
-      {group: 'something-2', collections: [{collection: 'collection 2', items: [{}, {}, {}]}]},
-      {group: 'something-3', collections: [{collection: 'collection 3', items: [{}, {}, {}]}]},
-      {group: 'something-4', collections: [{collection: 'collection 4', items: [{}, {}, {}]}]},
-      {group: 'something-5', collections: [{collection: 'collection 5', items: [{}, {}, {}]}]}
+      { group: 'something-1', collections: [{ collection: 'collection 1', items: [{}, {}, {}] }] },
+      { group: 'something-2', collections: [{ collection: 'collection 2', items: [{}, {}, {}] }] },
+      { group: 'something-3', collections: [{ collection: 'collection 3', items: [{}, {}, {}] }] },
+      { group: 'something-4', collections: [{ collection: 'collection 4', items: [{}, {}, {}] }] },
+      { group: 'something-5', collections: [{ collection: 'collection 5', items: [{}, {}, {}] }] }
     ];
 
     fakeNewestPhotosStratOne = {
@@ -322,7 +322,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should clear the limitRenderTo flag (set it to false)', () => {
-      nounsAndVerbs.prime({limitRenderTo: chance.word()});
+      nounsAndVerbs.prime({ limitRenderTo: chance.word() });
 
       givenASingleRendering();
 
