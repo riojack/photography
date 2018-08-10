@@ -5,7 +5,6 @@ import Chance from "chance";
 import React from "react";
 import ReactDOM from "react-dom";
 import PromiseMaker from "../src/promise-maker";
-import PhotoScaling from "../src/transformers/photo-scaling";
 import NewestPhotosStrategy from "../src/view-strategies/newest-photos";
 import GroupInCollectionStrategy from "../src/view-strategies/collection-in-group";
 import App from "../src/App";
@@ -27,7 +26,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeNewestPhotosStratOne,
     fakeNewestPhotosStratTwo,
     fakeCollectionInGroupStrat,
-    fakePhotoScalingTransformer,
     expectedCollection,
 
     sandbox;
@@ -152,10 +150,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       next: stub().returns([fakeGroups[0]])
     };
 
-    fakePhotoScalingTransformer = {
-      transform: stub().returns({})
-    };
-
     expectedCollection = chance.pickone(chance.pickone(fakeGroups).collections);
 
     sandbox.stub(React);
@@ -178,7 +172,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
     React.createElement.returns(fakeElement);
 
-    sandbox.stub(PhotoScaling, 'create').returns(fakePhotoScalingTransformer);
     sandbox.stub(NewestPhotosStrategy, 'create');
     sandbox.stub(GroupInCollectionStrategy, 'create').returns(fakeCollectionInGroupStrat);
 
@@ -209,15 +202,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     it('should have a property called "limitRenderTo" that is the boolean value false', () => {
       expect(nounsAndVerbs.peerAtWorld()).to.have.property('limitRenderTo')
         .that.equals(false);
-    });
-  });
-
-  describe('when running the pre-start actions', () => {
-    it('should create an instance of the Photo Scaling transformer with h-v scaling of 55%', () => {
-      nounsAndVerbs.doPreStartActions();
-
-      assert.calledOnce(PhotoScaling.create);
-      assert.calledWithExactly(PhotoScaling.create, 0.55, 0.55);
     });
   });
 
