@@ -26,7 +26,44 @@ function resetEverything() {
 }
 
 function whenThumbClicked(item) {
-  ext.window.open(item.image, 'iowa-light-view-photo');
+  let [itemName, collectionTime, collectionName, groupName] = item.lookupId.split('|').map(atob);
+
+  collectionTime = parseInt(collectionTime);
+
+  let collection = ext
+    .data.find(x => x.group === groupName)
+    .collections.find(x => x.collection === collectionName && x.time === collectionTime);
+
+  let indexOfItemClicked = collection.items.findIndex(x => x.name === itemName),
+    itemOriginal = collection.items[indexOfItemClicked],
+    firstItem = collection.items[0];
+
+  if (indexOfItemClicked === 0) {
+    ext.window.open(item.image, 'iowa-light-view-photo');
+    return;
+  }
+
+  itemOriginal.tags.push('changing_image');
+  firstItem.tags.push('changing_image');
+
+  doRender()
+    .then(function () {
+      let prx = PromiseMaker.buildPromise(resolve => {
+        ext.setTimeout(function () {
+          collection.items[0] = itemOriginal;
+          collection.items[indexOfItemClicked] = firstItem;
+          doRender();
+          resolve();
+        }, 250);
+
+        return prx;
+      }).then(function () {
+        itemOriginal.tags.pop();
+        firstItem.tags.pop();
+
+        doRender();
+      });
+    });
 }
 
 function whenBannerClicked() {
