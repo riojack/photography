@@ -84,7 +84,7 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
     transition: opacity 0.25s, height 0.25s, width 0.25s;
 
     &[data-tags~='changing_image'] {
-      opacity: 0;
+      opacity: 0 !important;
     }
   }
 
@@ -200,14 +200,12 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
       &:not(:first-child) {
         > .photo-thumb {
           background-size: 98%;
-          opacity: .9;
-
           backface-visibility: hidden;
+          opacity: .85;
 
           &:hover {
             transform: scale(1, 1);
             background-size: 100%;
-            opacity: 1.0;
           }
         }
       }

@@ -18,8 +18,4 @@ function statorWithReset(nextState, reset) {
   return this.state;
 }
 
-export default {
-  stator, statorWithReset
-};
-
 export {stator, statorWithReset};
