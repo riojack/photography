@@ -790,7 +790,7 @@ const data = {
       ]
     },
     {
-      collection: 'Neal Smith - Late Summer I',
+      collection: 'Neal Smith - Summer I',
       added: 'August 20, 2017',
       time: 1502928000000,
       items: [
@@ -897,6 +897,68 @@ const data = {
           "width": 1024,
           "tags": ["retina"]
         }
+      ]
+    },
+    {
+      collection: 'Neal Smith - Summer II',
+      added: 'August 6, 2018',
+      time: 1534413600 * 1000,
+      items: [
+        {
+          "name": "azdYBpblNdfRMVsi",
+          "image": "./deck/neal-016/azdYBpblNdfRMVsi.jpg",
+          "backgroundUrl": "./deck/neal-016/azdYBpblNdfRMVsi.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        },
+        {
+          "name": "gGJABxjyTjsXM0dL",
+          "image": "./deck/neal-016/gGJABxjyTjsXM0dL.jpg",
+          "backgroundUrl": "./deck/neal-016/gGJABxjyTjsXM0dL.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina", "hero"]
+        },
+        {
+          "name": "GvrmNbnsYEzsfYfv",
+          "image": "./deck/neal-016/GvrmNbnsYEzsfYfv.jpg",
+          "backgroundUrl": "./deck/neal-016/GvrmNbnsYEzsfYfv.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        },
+        {
+          "name": "ULauHgIjKfBfZIid",
+          "image": "./deck/neal-016/ULauHgIjKfBfZIid.jpg",
+          "backgroundUrl": "./deck/neal-016/ULauHgIjKfBfZIid.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        },
+        {
+          "name": "VtbfPfbixPjuIlAw",
+          "image": "./deck/neal-016/VtbfPfbixPjuIlAw.jpg",
+          "backgroundUrl": "./deck/neal-016/VtbfPfbixPjuIlAw.jpg",
+          "backgroundPosition": {
+            x: 0, y: 0
+          },
+          "height": 576,
+          "width": 1024,
+          "tags": ["retina"]
+        },
       ]
     }
   ]
