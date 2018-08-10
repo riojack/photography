@@ -228,7 +228,7 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
   .collection-names-only {
     background-color: rgba(0, 0, 0, 0.35);
     margin: 0 auto;
-    width: 660px;
+    width: 880px;
 
     @include max-screen(1024px) {
       padding-top: 55px;
@@ -244,14 +244,14 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
 
     > li {
       display: inline-block;
-      width: 48%;
+      width: 31%;
       margin: 0 0.4em;
 
       @include min-screen(1800px) {
         margin: 0 0.6em;
       }
 
-      &:nth-child(2n) {
+      &:nth-child(3n) {
         text-align: right;
 
         @include min-screen(1800px) {
