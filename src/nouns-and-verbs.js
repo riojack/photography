@@ -1,7 +1,6 @@
 import PromiseMaker from "./promise-maker";
 import {statorWithReset} from "./state-utilities";
 import {injectOnClick} from "./transform-utilities";
-import PhotoScaling from "./transformers/photo-scaling";
 import NewestPhotosStrategy from "./view-strategies/newest-photos";
 import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
 import React from "react";
@@ -140,10 +139,6 @@ function doRender() {
   });
 }
 
-function doPreStartActions() {
-  PhotoScaling.create(h_scaling, v_scaling);
-}
-
 resetEverything();
 
 export default {
@@ -161,6 +156,5 @@ export default {
   whenCollapseToGroupsClicked,
   whenCollectionNameClicked,
 
-  doPreStartActions,
   doRender
 }
