@@ -18,6 +18,7 @@
 <script type="text/javascript">
   function onDomReady() {
     window.Snappy.nounsAndVerbs.withExternals({
+      setTimeout: window.setTimeout.bind(window),
       window: window,
       document: window.document,
       data: window.SnappyData
