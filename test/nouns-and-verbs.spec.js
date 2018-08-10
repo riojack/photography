@@ -1,6 +1,6 @@
-import { fail } from "assert";
-import { expect } from "chai";
-import { stub, assert, createSandbox } from "sinon";
+import {fail} from "assert";
+import {expect} from "chai";
+import {assert, createSandbox, stub} from "sinon";
 import Chance from "chance";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -17,8 +17,10 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals,
 
     item,
+    secondItem,
     fakeNode,
     fakePromise,
+    secondFakePromise,
     fakeElement,
     fakeGroups,
     fakeNextFive,
@@ -36,15 +38,16 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
   function makePhoto(opts) {
     const safeOpts = opts || {},
-      photoName = safeOpts.photoName || chance.word({ length: 32 }),
+      photoName = safeOpts.photoName || chance.word({length: 32}),
       collectionTime = safeOpts.collectionTime || (chance.timestamp() * 1000),
-      collectionName = safeOpts.collectionName || chance.word({ length: 32 }),
-      groupName = safeOpts.groupName || chance.word({ length: 32 });
+      collectionName = safeOpts.collectionName || chance.word({length: 32}),
+      groupName = safeOpts.groupName || chance.word({length: 32});
 
     return {
       lookupId: _toBase64(photoName) + '|' + _toBase64(`${collectionTime}`) + '|' + _toBase64(collectionName) + '|' + _toBase64(groupName),
       height: chance.integer(),
-      width: chance.integer()
+      width: chance.integer(),
+      tags: []
     };
   }
 
@@ -82,10 +85,13 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox = createSandbox();
     chance = new Chance();
 
-    fakeNode = { scrollTop: -1 };
+    fakeNode = {scrollTop: -1};
 
     fakePromise = {
-      something: `i-dont-care-${chance.word()}`
+      then: stub()
+    };
+    secondFakePromise = {
+      then: stub()
     };
 
     fakeElement = {
@@ -93,29 +99,40 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     };
 
     const collectionTime = chance.timestamp();
-    item = Object.assign({ image: 'blah', name: 'picture' }, makePhoto({ photoName: 'picture', groupName: 'something-1', collectionName: 'collection 1', collectionTime: collectionTime }));
+    item = Object.assign({image: 'blah 001', name: 'picture 001'}, makePhoto({
+      photoName: 'picture 001',
+      groupName: 'something-1',
+      collectionName: 'collection 1',
+      collectionTime: collectionTime
+    }));
+    secondItem = Object.assign({image: 'blah 002', name: 'picture 002'}, makePhoto({
+      photoName: 'picture 002',
+      groupName: 'something-1',
+      collectionName: 'collection 1',
+      collectionTime: collectionTime
+    }));
 
     fakeGroups = [
       {
         group: 'something-1',
-        collections: [{ collection: 'collection 1', time: collectionTime, items: [item, makePhoto(), makePhoto()] }]
+        collections: [{collection: 'collection 1', time: collectionTime, items: [item, secondItem, makePhoto()]}]
       },
       {
         group: 'something-2',
-        collections: [{ collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()] }]
+        collections: [{collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()]}]
       },
       {
         group: 'something-3',
-        collections: [{ collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()] }]
+        collections: [{collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()]}]
       }
     ];
 
     fakeNextFive = [
-      { group: 'something-1', collections: [{ collection: 'collection 1', items: [{}, {}, {}] }] },
-      { group: 'something-2', collections: [{ collection: 'collection 2', items: [{}, {}, {}] }] },
-      { group: 'something-3', collections: [{ collection: 'collection 3', items: [{}, {}, {}] }] },
-      { group: 'something-4', collections: [{ collection: 'collection 4', items: [{}, {}, {}] }] },
-      { group: 'something-5', collections: [{ collection: 'collection 5', items: [{}, {}, {}] }] }
+      {group: 'something-1', collections: [{collection: 'collection 1', items: [{}, {}, {}]}]},
+      {group: 'something-2', collections: [{collection: 'collection 2', items: [{}, {}, {}]}]},
+      {group: 'something-3', collections: [{collection: 'collection 3', items: [{}, {}, {}]}]},
+      {group: 'something-4', collections: [{collection: 'collection 4', items: [{}, {}, {}]}]},
+      {group: 'something-5', collections: [{collection: 'collection 5', items: [{}, {}, {}]}]}
     ];
 
     fakeNewestPhotosStratOne = {
@@ -145,6 +162,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox.stub(ReactDOM);
 
     externals = {
+      setTimeout: stub(),
       window: {
         open: stub()
       },
@@ -154,7 +172,9 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       data: fakeGroups
     };
 
-    sandbox.stub(PromiseMaker, 'buildPromise').returns(fakePromise);
+    sandbox.stub(PromiseMaker, 'buildPromise');
+    PromiseMaker.buildPromise.onCall(0).returns(fakePromise);
+    PromiseMaker.buildPromise.onCall(1).returns(secondFakePromise);
     externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
     React.createElement.returns(fakeElement);
 
@@ -290,7 +310,31 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   });
 
   describe('when a thumbnail is clicked', () => {
-    it('should call window.open() with the expected parameters when thumb is clicked', () => {
+    it('should swap the hero thumb with the clicked thumb by setting the "changing_image" tag, rendering, and then un-setting the tags', () => {
+      nounsAndVerbs.whenThumbClicked.call({}, secondItem);
+
+      assert.notCalled(externals.window.open);
+
+      expect(item.tags).to.include('changing_image');
+      expect(secondItem.tags).to.include('changing_image');
+
+      PromiseMaker.buildPromise.lastCall.args[0](stub());
+      fakePromise.then.lastCall.args[0]();
+      PromiseMaker.buildPromise.lastCall.args[0](stub());
+
+      assert.calledOnce(externals.setTimeout);
+
+      externals.setTimeout.lastCall.args[0]();
+      secondFakePromise.then.lastCall.args[0]();
+
+      expect(item.tags).to.not.include('changing_image');
+      expect(secondItem.tags).to.not.include('changing_image');
+
+      expect(fakeGroups[0].collections[0].items[0]).to.equal(secondItem);
+      expect(fakeGroups[0].collections[0].items[1]).to.equal(item);
+    });
+
+    it('should call window.open() with the expected parameters when the hero thumb (first thumb) is clicked', () => {
       assert.notCalled(externals.window.open);
 
       nounsAndVerbs.whenThumbClicked.call({}, item);
@@ -322,7 +366,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should clear the limitRenderTo flag (set it to false)', () => {
-      nounsAndVerbs.prime({ limitRenderTo: chance.word() });
+      nounsAndVerbs.prime({limitRenderTo: chance.word()});
 
       givenASingleRendering();
 
