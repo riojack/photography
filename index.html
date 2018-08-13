@@ -25,10 +25,9 @@
     });
 
     document.getElementById('photography-app-container').onscroll = function () {
-      var container = document.getElementById('photography-app-container'),
-        height = container.clientHeight,
-        scrollY = container.scrollTop,
-        scrollYMax = container.scrollHeight,
+      var height = this.clientHeight,
+        scrollY = this.scrollTop,
+        scrollYMax = this.scrollHeight,
         scrollPercent = (scrollY + height) / scrollYMax;
 
       if (scrollPercent >= 0.9) {
