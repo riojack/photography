@@ -203,6 +203,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld()).to.have.property('limitRenderTo')
         .that.equals(false);
     });
+
+    it('should have a property called "skipLoadingNextGroup" that is the boolean value false', () => {
+      expect(nounsAndVerbs.peerAtWorld()).to.have.property('skipLoadingNextGroup')
+        .that.equals(false);
+    });
   });
 
   describe('when rendering the application', () => {
