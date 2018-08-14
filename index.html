@@ -24,16 +24,7 @@
       data: window.SnappyData
     });
 
-    document.getElementById('photography-app-container').onscroll = function () {
-      var height = this.clientHeight,
-        scrollY = this.scrollTop,
-        scrollYMax = this.scrollHeight,
-        scrollPercent = (scrollY + height) / scrollYMax;
-
-      if (scrollPercent >= 0.9) {
-        window.Snappy.nounsAndVerbs.doRender();
-      }
-    };
+    document.getElementById('photography-app-container').onscroll = window.Snappy.nounsAndVerbs.onContainerScroll;
 
     setTimeout(window.Snappy.nounsAndVerbs.doRender, 10);
   }
