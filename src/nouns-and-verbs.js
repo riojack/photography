@@ -19,7 +19,8 @@ function resetEverything() {
   mergeWorld({
     transformer: false,
     sorter: false,
-    limitRenderTo: false
+    limitRenderTo: false,
+    skipLoadingNextGroup: false
   });
 }
 
