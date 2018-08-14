@@ -47,15 +47,14 @@ function whenThumbClicked(item) {
 
   doRender()
     .then(function () {
-      let prx = PromiseMaker.buildPromise(resolve => {
+      PromiseMaker.buildPromise(resolve => {
         ext.setTimeout(function () {
           collection.items[0] = itemOriginal;
           collection.items[indexOfItemClicked] = firstItem;
+
           doRender();
           resolve();
         }, 250);
-
-        return prx;
       }).then(function () {
         itemOriginal.tags.pop();
         firstItem.tags.pop();
