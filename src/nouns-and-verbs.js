@@ -138,6 +138,17 @@ function doRender() {
   });
 }
 
+function onContainerScroll() {
+  const height = this.clientHeight,
+    scrollY = this.scrollTop,
+    scrollYMax = this.scrollHeight,
+    scrollPercent = (scrollY + height) / scrollYMax;
+
+  if (scrollPercent >= 0.9) {
+    doRender();
+  }
+}
+
 resetEverything();
 
 export default {
@@ -155,5 +166,6 @@ export default {
   whenCollapseToGroupsClicked,
   whenCollectionNameClicked,
 
-  doRender
+  doRender,
+  onContainerScroll
 }
