@@ -7,8 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-const h_scaling = 0.55,
-  v_scaling = 0.55;
+const mountContainerId = 'photography-app-container';
 
 let ext = {},
   mergeWorld = () => {
@@ -66,7 +65,7 @@ function whenThumbClicked(item) {
 }
 
 function whenBannerClicked() {
-  ext.document.getElementById('photography-app-container').scrollTop = 0;
+  ext.document.getElementById(mountContainerId).scrollTop = 0;
   mergeWorld({
     sorter: false,
     limitRenderTo: false
@@ -127,7 +126,7 @@ function eventuallyRender(resolve) {
 
   ReactDOM.render(
     element,
-    ext.document.getElementById('photography-app-container'),
+    ext.document.getElementById(mountContainerId),
     resolve
   );
 }
