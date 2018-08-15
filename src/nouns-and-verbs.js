@@ -7,8 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-const h_scaling = 0.55,
-  v_scaling = 0.55;
+const mountContainerId = 'photography-app-container';
 
 let ext = {},
   mergeWorld = () => {
@@ -20,7 +19,8 @@ function resetEverything() {
   mergeWorld({
     transformer: false,
     sorter: false,
-    limitRenderTo: false
+    limitRenderTo: false,
+    skipLoadingNextGroup: false
   });
 }
 
@@ -47,15 +47,14 @@ function whenThumbClicked(item) {
 
   doRender()
     .then(function () {
-      let prx = PromiseMaker.buildPromise(resolve => {
+      PromiseMaker.buildPromise(resolve => {
         ext.setTimeout(function () {
           collection.items[0] = itemOriginal;
           collection.items[indexOfItemClicked] = firstItem;
+
           doRender();
           resolve();
         }, 250);
-
-        return prx;
       }).then(function () {
         itemOriginal.tags.pop();
         firstItem.tags.pop();
@@ -66,7 +65,7 @@ function whenThumbClicked(item) {
 }
 
 function whenBannerClicked() {
-  ext.document.getElementById('photography-app-container').scrollTop = 0;
+  ext.document.getElementById(mountContainerId).scrollTop = 0;
   mergeWorld({
     sorter: false,
     limitRenderTo: false
@@ -127,7 +126,7 @@ function eventuallyRender(resolve) {
 
   ReactDOM.render(
     element,
-    ext.document.getElementById('photography-app-container'),
+    ext.document.getElementById(mountContainerId),
     resolve
   );
 }
@@ -137,6 +136,17 @@ function doRender() {
     setUpSorterAndTransformer();
     eventuallyRender(resolve);
   });
+}
+
+function onContainerScroll() {
+  const height = this.clientHeight,
+    scrollY = this.scrollTop,
+    scrollYMax = this.scrollHeight,
+    scrollPercent = (scrollY + height) / scrollYMax;
+
+  if (scrollPercent >= 0.9) {
+    doRender();
+  }
 }
 
 resetEverything();
@@ -156,5 +166,6 @@ export default {
   whenCollapseToGroupsClicked,
   whenCollectionNameClicked,
 
-  doRender
+  doRender,
+  onContainerScroll
 }
