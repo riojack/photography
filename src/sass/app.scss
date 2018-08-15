@@ -16,30 +16,32 @@ $iphone_scaling_l: $ipad_scaling_l * 0.5;
 $iphone_scaling_l_small_thumb: $iphone_scaling_l * 2.0;
 $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
 
+$color_over_bg: rgba(0,0,0,.9);
+
 .iowa-light-application {
   width: 100%;
+  color: $color_over_bg;
+  font-family: 'Raleway', arial, 'times new roman', sans-serif;
 
   > .iowa-light-banner {
-    background-color: rgba(0, 0, 0, .65);
     position: fixed;
     top: 0;
     left: 55px;
     z-index: 50;
 
     > h1 {
-      color: rgba(255, 255, 255, .9);
       margin: 0;
-      font-family: 'Raleway', arial, 'times new roman', sans-serif;
       font-weight: 300;
       padding: 0 25px;
       cursor: pointer;
       display: inline;
     }
+
+
   }
 
   > .iowa-light-controls {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, .65);
     position: fixed;
     top: 0;
     right: 55px;
@@ -48,7 +50,6 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
     width: 175px;
 
     > h4 {
-      color: rgba(255, 255, 255, .9);
       text-align: center;
       font-weight: normal;
     }
@@ -82,6 +83,8 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
     -ms-transition: opacity 0.25s, height 0.25s, width 0.25s;
     -o-transition: opacity 0.25s, height 0.25s, width 0.25s;
     transition: opacity 0.25s, height 0.25s, width 0.25s;
+
+    box-shadow: 0 0 11px rgba(0,0,0,0.1);
 
     &[data-tags~='changing_image'] {
       opacity: 0 !important;
@@ -219,14 +222,11 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
   .collection-name-and-time {
     display: inline-block;
     padding: 10px 50px;
-    background: rgba(0, 0, 0, 0.55);
-    color: rgba(255, 255, 255, .9);
     font-weight: 100;
     text-align: center;
   }
 
   .collection-names-only {
-    background-color: rgba(0, 0, 0, 0.35);
     margin: 0 auto;
     width: 880px;
 
@@ -262,7 +262,6 @@ $iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
       > h3 {
         cursor: pointer;
         font-weight: normal;
-        color: rgba(255, 255, 255, 1.0);
         white-space: nowrap;
         overflow: hidden;
         -ms-text-overflow: ellipsis;

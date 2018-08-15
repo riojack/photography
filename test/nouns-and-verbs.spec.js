@@ -203,6 +203,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld()).to.have.property('limitRenderTo')
         .that.equals(false);
     });
+
+    it('should have a property called "skipLoadingNextGroup" that is the boolean value false', () => {
+      expect(nounsAndVerbs.peerAtWorld()).to.have.property('skipLoadingNextGroup')
+        .that.equals(false);
+    });
   });
 
   describe('when rendering the application', () => {
@@ -444,6 +449,36 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
       assert.calledOnce(React.createElement);
       assert.calledOnce(ReactDOM.render);
+    });
+  });
+
+  describe('onContainerScroll', () => {
+    const viewportHeight = 10,
+      positionYRelativeToTop = 900,
+      viewportScrollMaximum = 1000;
+
+    it('should trigger a re-render if the scroll reaches 90% of the scroll bar', () => {
+      let fakeContainerElement = {
+        clientHeight: viewportHeight,
+        scrollTop: positionYRelativeToTop,
+        scrollHeight: viewportScrollMaximum
+      };
+      nounsAndVerbs.onContainerScroll.call(fakeContainerElement);
+      whenRenderPromiseIsResolved();
+
+      assert.calledOnce(React.createElement);
+      assert.calledOnce(ReactDOM.render);
+    });
+
+    it('should not trigger a re-render if the scroll stays below 90%', () => {
+      let fakeContainerElement = {
+        clientHeight: viewportHeight,
+        scrollTop: positionYRelativeToTop - 400,
+        scrollHeight: viewportScrollMaximum
+      };
+      nounsAndVerbs.onContainerScroll.call(fakeContainerElement);
+
+      assert.notCalled(PromiseMaker.buildPromise);
     });
   });
 });
