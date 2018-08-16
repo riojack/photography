@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import Chance from 'chance';
 import {assert, stub} from 'sinon';
-import Thumb from '../src/components/Thumb';
+import TransitionableThumb from '../src/components/TransitionableThumb';
 import App from '../src/app';
 
 let urljoin = require('url-join');
@@ -172,14 +172,14 @@ describe('App Tests', () => {
         .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
     });
 
-    it('should have one Thumb for each item in each collection in each group', function () {
+    it('should have one TransitionableThumb for each item in each collection in each group', function () {
       let expectedThumbCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
-      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li').children(Thumb))
+      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li').children(TransitionableThumb))
         .to.have.length(expectedThumbCount);
     });
 
-    it('should pass each item as props to each Thumb', () => {
+    it('should pass each item as props to each TransitionableThumb', () => {
       element
         .children('ol')
         .children('li')
@@ -197,7 +197,7 @@ describe('App Tests', () => {
                     expectedProps = Object.assign({}, item, {
                       lookupId: expectedLookupId
                     }),
-                    thumb = i.children(Thumb),
+                    thumb = i.children(TransitionableThumb),
                     thumbProps = Object.assign({}, thumb.props());
 
                     delete thumbProps.image;
@@ -225,7 +225,7 @@ describe('App Tests', () => {
                 .children('li')
                 .forEach((i, ii) => {
                   let item = collection.items[ii],
-                    thumb = i.children(Thumb),
+                    thumb = i.children(TransitionableThumb),
                     image_url = item.image,
                     background_url = item.backgroundUrl,
                     expected_image_url = urljoin(CACHE_URL, image_url.replace('./', '')),
