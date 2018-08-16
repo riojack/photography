@@ -13,7 +13,8 @@ const groups = [
   require('./isu').ISU,
   require('./goslings').Goslings,
   require('./misc').Misc,
-  require('./road').Road
+  require('./road').Road,
+  require('./yellow-banks').YellowBanks
 ];
 
 export default groups;
