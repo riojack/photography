@@ -40,7 +40,7 @@ function getCollections(group, collections, extras) {
         <h4
           className="collection-name-and-time">{`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}</h4>
       </div>
-      <ol className="collection-items">{ getItems(c.items, c, group, extras) }</ol>
+      <ol className="collection-items" data-item-count={c.items.length}>{ getItems(c.items, c, group, extras) }</ol>
     </li>;
   });
 }
@@ -53,7 +53,7 @@ function getGroups(groups, extras) {
   });
 }
 
-function getCollectionsFromGroups(groups, extras) {
+function getCollectionsFromGroups(groups) {
   return groups.reduce((collectionAccumulator, group) => {
     return collectionAccumulator.concat(group.collections);
   }, []);

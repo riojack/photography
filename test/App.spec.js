@@ -145,12 +145,15 @@ describe('App Tests', () => {
       expect(element.children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
     });
 
-    it('should have an OL with a className "collection-items" and it should be inside the collection OL LIs that will contain each item', () => {
+    it('should have an OL with a className "collection-items", a data-item-count attribute with item count value, and it should be inside the collection OL LIs that will contain each item', () => {
       let expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-      expect(element.children('ol').children('li').children('ol').children('li').children('ol')).to.have.length(expectedOlCount);
-      expect(element.children('ol').children('li').children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+      const actualOrderedListOfItems = element.children('ol').children('li').children('ol').children('li').children('ol');
+      expect(actualOrderedListOfItems).to.have.length(expectedOlCount);
+      expect(actualOrderedListOfItems.at(0).props()).to.have.property('className')
         .that.equals('collection-items');
+      expect(actualOrderedListOfItems.at(0).props()).to.have.property('data-item-count')
+        .that.equals(listOfGroups[0].collections[0].items.length);
     });
 
     it('should have an LI inside the OL inside the collection OL LIs for each item', () => {
