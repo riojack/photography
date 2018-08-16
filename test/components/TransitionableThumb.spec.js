@@ -50,7 +50,7 @@ describe('TransitionableThumb Tests', () => {
         .that.equals('transitionable-photo-thumb');
     });
 
-    it('should have two DIVs', () => {
+    it('should have left-shark followed by right-shark', () => {
       expect(element.children('div')).to.have.length(2);
       expect(element.children('div').at(0).props()).to.include({className: 'left-shark'});
       expect(element.children('div').at(1).props()).to.include({className: 'right-shark'});
