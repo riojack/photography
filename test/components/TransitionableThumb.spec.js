@@ -37,4 +37,13 @@ describe('TransitionableThumb Tests', () => {
       expect(element.children('div').at(1).props()).to.include({className: 'right-shark'});
     });
   });
+
+  describe('behavior', () => {
+    it('should render the image in the left-shark div first', () => {
+      const leftShark = element.find('.left-shark');
+
+      expect(leftShark.props()).to.have.property('style')
+        .that.deep.equals({backgroundUrl: viewProps.backgroundUrl});
+    });
+  });
 });
