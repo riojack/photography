@@ -53,7 +53,7 @@ function getGroups(groups, extras) {
   });
 }
 
-function getCollectionsFromGroups(groups, extras) {
+function getCollectionsFromGroups(groups) {
   return groups.reduce((collectionAccumulator, group) => {
     return collectionAccumulator.concat(group.collections);
   }, []);
