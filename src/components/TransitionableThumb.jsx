@@ -15,10 +15,14 @@ class TransitionableThumb extends React.Component {
   }
 
   render() {
-    return <div onClick={this.props.onClick.bind({}, this.props)}>
+    return <div data-tags={this.getTags()} onClick={this.props.onClick.bind({}, this.props)}>
       <div className="left-shark" style={this.getLeftSharkStyles()} />
       <div className="right-shark" style={this.getRightSharkStyles()} />
     </div>;
+  }
+
+  getTags() {
+    return ['thumbnail'].concat(this.props.tags).join(' ');
   }
 
   getLeftSharkStyles() {

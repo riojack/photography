@@ -23,6 +23,7 @@ describe('TransitionableThumb Tests', () => {
     return {
       onClick: stub(),
       lookupId: chance.string(),
+      tags: [chance.word(), chance.word(), chance.word()],
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
       backgroundPosition: {
         x: chance.integer({min: 1, max: 5}),
@@ -99,6 +100,12 @@ describe('TransitionableThumb Tests', () => {
 
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({});
+    });
+
+    it('should set "thumbnail" and any other tags in a data-tags attribute', () => {
+      const expectedTags = ['thumbnail'].concat(viewProps.tags).join(' ');
+      expect(element.props()).to.have.property('data-tags')
+        .that.equals(expectedTags);
     });
   });
 
