@@ -45,6 +45,11 @@ describe('TransitionableThumb Tests', () => {
   });
 
   describe('characterization', () => {
+    it('should have a className of "transitionable-photo-thumb"', () => {
+      expect(element.props()).to.have.property('className')
+        .that.equals('transitionable-photo-thumb');
+    });
+
     it('should have two DIVs', () => {
       expect(element.children('div')).to.have.length(2);
       expect(element.children('div').at(0).props()).to.include({className: 'left-shark'});
