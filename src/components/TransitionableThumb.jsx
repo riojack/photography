@@ -16,8 +16,8 @@ class TransitionableThumb extends React.Component {
 
   render() {
     return <div className="transitionable-photo-thumb" data-tags={this.getTags()} onClick={this.props.onClick.bind({}, this.props)}>
-      <div className="left-shark" style={this.getLeftSharkStyles()}/>
-      <div className="right-shark" style={this.getRightSharkStyles()}/>
+      <div className="left-shark" {...this.getLeftSharkStyles()} />
+      <div className="right-shark" {...this.getRightSharkStyles()} />
     </div>;
   }
 
@@ -27,14 +27,18 @@ class TransitionableThumb extends React.Component {
 
   getLeftSharkStyles() {
     if (this.state.useLeftShark) {
-      return {backgroundImage: `url("${this.props.backgroundUrl}")`};
+      return {
+        style: {backgroundImage: `url("${this.props.backgroundUrl}")`}
+      };
     }
     return {};
   }
 
   getRightSharkStyles() {
     if (!this.state.useLeftShark) {
-      return {backgroundImage: `url("${this.props.backgroundUrl}")`};
+      return {
+        style: {backgroundImage: `url("${this.props.backgroundUrl}")`}
+      };
     }
     return {};
   }
