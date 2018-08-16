@@ -87,5 +87,18 @@ describe('TransitionableThumb Tests', () => {
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({});
     });
+
+    it('should not switch sharks if the image does not change', () => {
+      doRender(viewProps);
+
+      const leftShark = element.find('.left-shark'),
+        rightShark = element.find('.right-shark');
+
+      expect(leftShark.props()).to.have.property('style')
+        .that.deep.equals({backgroundUrl: viewProps.backgroundUrl});
+
+      expect(rightShark.props()).to.have.property('style')
+        .that.deep.equals({});
+    });
   });
 });
