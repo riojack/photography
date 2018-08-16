@@ -1,6 +1,6 @@
 import TransitionableThumb from '../../src/components/TransitionableThumb';
 import Chance from 'chance';
-import {stub} from 'sinon';
+import {stub, assert} from 'sinon';
 import {shallow} from 'enzyme/build';
 import React from 'react';
 import {expect} from 'chai';
@@ -51,7 +51,7 @@ describe('TransitionableThumb Tests', () => {
     });
   });
 
-  describe('behavior', () => {
+  describe('rendering behavior', () => {
     it('should render the image in the left-shark div first', () => {
       const leftShark = element.find('.left-shark');
 
@@ -99,6 +99,14 @@ describe('TransitionableThumb Tests', () => {
 
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({});
+    });
+  });
+
+  describe('click behavior', () => {
+    it('should fire props.onClick and pass its props as parameters', () => {
+      assert.notCalled(viewProps.onClick);
+      element.simulate('click');
+      assert.calledWithExactly(viewProps.onClick, viewProps);
     });
   });
 });
