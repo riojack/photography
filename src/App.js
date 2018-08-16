@@ -1,5 +1,5 @@
 import React from 'react';
-import Thumb from './components/Thumb';
+import TransitionableThumb from './components/TransitionableThumb';
 
 let urljoin = require('url-join');
 
@@ -26,7 +26,7 @@ function getItems(items, collection, group, extras) {
       thumbProps = Object.assign({}, item, extraProps, overwrites);
 
     return <li key={`item-${key}`}>
-      <Thumb {...thumbProps} />
+      <TransitionableThumb {...thumbProps} />
     </li>;
   });
 }
