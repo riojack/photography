@@ -11,12 +11,16 @@ describe('TransitionableThumb Tests', () => {
     chance;
 
   function doRender(props) {
-    element = shallow(<TransitionableThumb {...props} />);
+    if (!element) {
+      element = shallow(<TransitionableThumb {...props} />);
+    }
+    else {
+      element.setProps(props);
+    }
   }
 
-  beforeEach('set up', () => {
-    chance = new Chance();
-    viewProps = {
+  function buildNewComponentProps() {
+    return {
       onClick: stub(),
       lookupId: chance.string(),
       backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
@@ -26,8 +30,17 @@ describe('TransitionableThumb Tests', () => {
       },
       height: chance.integer({min: 25, max: 50})
     };
+  }
+
+  beforeEach('set up', () => {
+    chance = new Chance();
+    viewProps = buildNewComponentProps();
 
     doRender(viewProps);
+  });
+
+  afterEach('tear down', () => {
+    element = null;
   });
 
   describe('characterization', () => {
@@ -44,6 +57,20 @@ describe('TransitionableThumb Tests', () => {
 
       expect(leftShark.props()).to.have.property('style')
         .that.deep.equals({backgroundUrl: viewProps.backgroundUrl});
+    });
+
+    it('should clear left-shark div\'s image on a second render and render the image on the right-shark div', () => {
+      const newProps = buildNewComponentProps();
+      doRender(newProps);
+
+      const leftShark = element.find('.left-shark'),
+        rightShark = element.find('.right-shark');
+
+      expect(leftShark.props()).to.have.property('style')
+        .that.deep.equals({});
+
+      expect(rightShark.props()).to.have.property('style')
+        .that.deep.equals({backgroundUrl: newProps.backgroundUrl});
     });
   });
 });
