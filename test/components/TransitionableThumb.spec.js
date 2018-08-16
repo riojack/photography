@@ -62,7 +62,7 @@ describe('TransitionableThumb Tests', () => {
       const leftShark = element.find('.left-shark');
 
       expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({backgroundUrl: `url("${viewProps.backgroundUrl}")`});
+        .that.deep.equals({backgroundImage: `url("${viewProps.backgroundUrl}")`});
     });
 
     it('should clear left-shark div\'s image on a second render and render the image on the right-shark div', () => {
@@ -76,7 +76,7 @@ describe('TransitionableThumb Tests', () => {
         .that.deep.equals({});
 
       expect(rightShark.props()).to.have.property('style')
-        .that.deep.equals({backgroundUrl: `url("${newProps.backgroundUrl}")`});
+        .that.deep.equals({backgroundImage: `url("${newProps.backgroundUrl}")`});
     });
 
     it('should clear right-shark div\'s image on a third render and render the image on the left-shark div', () => {
@@ -88,7 +88,7 @@ describe('TransitionableThumb Tests', () => {
         rightShark = element.find('.right-shark');
 
       expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({backgroundUrl: `url("${newProps.backgroundUrl}")`});
+        .that.deep.equals({backgroundImage: `url("${newProps.backgroundUrl}")`});
 
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({});
@@ -101,7 +101,7 @@ describe('TransitionableThumb Tests', () => {
         rightShark = element.find('.right-shark');
 
       expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({backgroundUrl: `url("${viewProps.backgroundUrl}")`});
+        .that.deep.equals({backgroundImage: `url("${viewProps.backgroundUrl}")`});
 
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({});
