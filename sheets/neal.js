@@ -902,7 +902,7 @@ const data = {
     {
       collection: 'Neal Smith - Summer II',
       added: 'August 6, 2018',
-      time: 1534413600 * 1000,
+      time: 1533560400 * 1000,
       items: [
         {
           "name": "azdYBpblNdfRMVsi",
