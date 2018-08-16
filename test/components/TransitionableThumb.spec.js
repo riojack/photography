@@ -72,8 +72,7 @@ describe('TransitionableThumb Tests', () => {
       const leftShark = element.find('.left-shark'),
         rightShark = element.find('.right-shark');
 
-      expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({});
+      expect(leftShark.props()).to.not.have.property('style');
 
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({backgroundImage: `url("${newProps.backgroundUrl}")`});
@@ -90,8 +89,7 @@ describe('TransitionableThumb Tests', () => {
       expect(leftShark.props()).to.have.property('style')
         .that.deep.equals({backgroundImage: `url("${newProps.backgroundUrl}")`});
 
-      expect(rightShark.props()).to.have.property('style')
-        .that.deep.equals({});
+      expect(rightShark.props()).to.not.have.property('style');
     });
 
     it('should not switch sharks if the image does not change', () => {
@@ -103,8 +101,7 @@ describe('TransitionableThumb Tests', () => {
       expect(leftShark.props()).to.have.property('style')
         .that.deep.equals({backgroundImage: `url("${viewProps.backgroundUrl}")`});
 
-      expect(rightShark.props()).to.have.property('style')
-        .that.deep.equals({});
+      expect(rightShark.props()).to.not.have.property('style');
     });
 
     it('should set "thumbnail" and any other tags in a data-tags attribute', () => {
