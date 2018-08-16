@@ -72,5 +72,20 @@ describe('TransitionableThumb Tests', () => {
       expect(rightShark.props()).to.have.property('style')
         .that.deep.equals({backgroundUrl: newProps.backgroundUrl});
     });
+
+    it('should clear right-shark div\'s image on a third render and render the image on the left-shark div', () => {
+      doRender(buildNewComponentProps());
+      const newProps = buildNewComponentProps();
+      doRender(newProps);
+
+      const leftShark = element.find('.left-shark'),
+        rightShark = element.find('.right-shark');
+
+      expect(leftShark.props()).to.have.property('style')
+        .that.deep.equals({backgroundUrl: newProps.backgroundUrl});
+
+      expect(rightShark.props()).to.have.property('style')
+        .that.deep.equals({});
+    });
   });
 });
