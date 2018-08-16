@@ -23,14 +23,14 @@ class TransitionableThumb extends React.Component {
 
   getLeftSharkStyles() {
     if (this.state.useLeftShark) {
-      return {backgroundUrl: this.props.backgroundUrl};
+      return {backgroundUrl: `url("${this.props.backgroundUrl}")`};
     }
     return {};
   }
 
   getRightSharkStyles() {
     if (!this.state.useLeftShark) {
-      return {backgroundUrl: this.props.backgroundUrl};
+      return {backgroundUrl: `url("${this.props.backgroundUrl}")`};
     }
     return {};
   }
