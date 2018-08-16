@@ -15,7 +15,7 @@ class TransitionableThumb extends React.Component {
   }
 
   render() {
-    return <div data-tags={this.getTags()} onClick={this.props.onClick.bind({}, this.props)}>
+    return <div className="transitionable-photo-thumb" data-tags={this.getTags()} onClick={this.props.onClick.bind({}, this.props)}>
       <div className="left-shark" style={this.getLeftSharkStyles()}/>
       <div className="right-shark" style={this.getRightSharkStyles()}/>
     </div>;
