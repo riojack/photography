@@ -15,7 +15,7 @@ describe('App Tests', () => {
     chance,
     listOfGroups;
 
-  const CACHE_URL = 'http://www.example.com/cache'
+  const CACHE_URL = 'http://www.example.com/cache';
 
   function _toBase64(val) {
     return (new Buffer(val, 'utf8')).toString('base64');
