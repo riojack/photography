@@ -95,64 +95,33 @@ $color_over_bg: rgba(0,0,0,.9);
     display: flex;
     flex-wrap: wrap;
 
-    @include ipad(landscape) {
-      width: $big_thumb_size_w * $ipad_scaling_l;
+    &[data-item-count="3"],
+    &[data-item-count="2"] {
+      > li:not(:first-child) {
+        $height: $small_thumb_size_h * 2;
+        $width: $small_thumb_size_w * 2;
+        > .photo-thumb {
+          height: $height;
+          width: $width;
+        }
+      }
     }
 
-    @include iphone6-plus(landscape) {
-      width: $big_thumb_size_w * $iphone_scaling_l;
-    }
-
-    @include ipad(portrait) {
-      width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
-    }
-
-    @include iphone6-plus(portrait) {
-      width: $big_thumb_size_w * $iphone_scaling_p;
-    }
-
-    @include iphone5(portrait) {
-      width: $big_thumb_size_w * $iphone_scaling_p;
-    }
-
-    @include iphone4(portrait) {
-      width: $big_thumb_size_w * $iphone_scaling_p;
+    &[data-item-count="4"] {
+      > li:not(:first-child) {
+        $height: $small_thumb_size_h * (4/3);
+        $width: $small_thumb_size_w * (4/3);
+        > .photo-thumb {
+          height: $height;
+          width: $width;
+        }
+      }
     }
 
     > li {
       > .photo-thumb {
         height: $small_thumb_size_h;
         width: $small_thumb_size_w;
-
-        @include ipad(landscape) {
-          height: $small_thumb_size_h * $ipad_scaling_l;
-          width: $small_thumb_size_w * $ipad_scaling_l;
-        }
-
-        @include iphone6-plus(landscape) {
-          height: $small_thumb_size_h * $iphone_scaling_l_small_thumb;
-          width: $small_thumb_size_w * $iphone_scaling_l_small_thumb;
-        }
-
-        @include ipad(portrait) {
-          height: $small_thumb_size_h * $ipad_scaling_p_small_thumb;
-          width: $small_thumb_size_w * $ipad_scaling_p_small_thumb;
-        }
-
-        @include iphone6-plus(portrait) {
-          height: $small_thumb_size_h * $iphone_scaling_p;
-          width: $small_thumb_size_w * $iphone_scaling_p;
-        }
-
-        @include iphone5(portrait) {
-          height: $small_thumb_size_h * $iphone_scaling_p;
-          width: $small_thumb_size_w * $iphone_scaling_p;
-        }
-
-        @include iphone4(portrait) {
-          height: $small_thumb_size_h * $iphone_scaling_p;
-          width: $small_thumb_size_w * $iphone_scaling_p;
-        }
       }
 
       &:first-child {
@@ -165,48 +134,23 @@ $color_over_bg: rgba(0,0,0,.9);
             width: $big_thumb_size_w;
             background-size: contain;
           }
-
-          @include ipad(landscape) {
-            height: $big_thumb_size_h * $ipad_scaling_l;
-            width: $big_thumb_size_w * $ipad_scaling_l;
-          }
-
-          @include iphone6-plus(landscape) {
-            height: $big_thumb_size_h * $iphone_scaling_l;
-            width: $big_thumb_size_w * $iphone_scaling_l;
-          }
-
-          @include ipad(portrait) {
-            height: $big_thumb_size_h * $ipad_scaling_p_big_thumb;
-            width: $big_thumb_size_w * $ipad_scaling_p_big_thumb;
-          }
-
-          @include iphone6-plus(portrait) {
-            height: $big_thumb_size_h * $iphone_scaling_p;
-            width: $big_thumb_size_w * $iphone_scaling_p;
-          }
-
-          @include iphone5(portrait) {
-            height: $big_thumb_size_h * $iphone_scaling_p;
-            width: $big_thumb_size_w * $iphone_scaling_p;
-          }
-
-          @include iphone4(portrait) {
-            height: $big_thumb_size_h * $iphone_scaling_p;
-            width: $big_thumb_size_w * $iphone_scaling_p;
-          }
         }
       }
 
       &:not(:first-child) {
         > .photo-thumb {
-          background-size: 98%;
           backface-visibility: hidden;
-          opacity: .85;
+          background-size: 102%;
+
+          -webkit-transition: background-size 0.15s;
+          -moz-transition: background-size 0.15s;
+          -ms-transition: background-size 0.15s;
+          -o-transition: background-size 0.15s;
+          transition: background-size 0.15s;
 
           &:hover {
             transform: scale(1, 1);
-            background-size: 100%;
+            background-size: 105%;
           }
         }
       }
