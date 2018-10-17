@@ -14,7 +14,8 @@ const groups = [
   require('./goslings').Goslings,
   require('./misc').Misc,
   require('./road').Road,
-  require('./yellow-banks').YellowBanks
+  require('./yellow-banks').YellowBanks,
+  require('./n-east-ia').NortheastIowa
 ];
 
 export default groups;
