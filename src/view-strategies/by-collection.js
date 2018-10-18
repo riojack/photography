@@ -8,7 +8,7 @@ class ByCollectionStrategy {
     this.nextCalls = 0;
   }
 
-  reset() {}
+  reset() { }
 
   next() {
     this.nextCalls++;
@@ -19,7 +19,7 @@ class ByCollectionStrategy {
 
     for (let i = 0; i < this.groups.length; i++) {
       const groupCollections = this.groups[i].collections;
-      const groupShallowCopy = Object.assign({}, this.groups[i], {collections: []});
+      const groupShallowCopy = Object.assign({}, this.groups[i], { collections: [] });
 
       let exitedEarly = false;
       let j = 0;
