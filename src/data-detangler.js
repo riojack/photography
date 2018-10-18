@@ -63,17 +63,17 @@ class Detangler {
 
       g.collections.forEach(c => {
 
-        let {heroes, nonHeroes} = c.items.reduce((sorters, item) => {
+        let { heroes, nonHeroes } = c.items.reduce((sortCategories, item) => {
 
           if (item.tags && item.tags.indexOf('hero') >= 0) {
-            sorters.heroes.push(item);
+            sortCategories.heroes.push(item);
           } else {
-            sorters.nonHeroes.push(item);
+            sortCategories.nonHeroes.push(item);
           }
 
-          return sorters;
+          return sortCategories;
 
-        }, {heroes: [], nonHeroes: []});
+        }, { heroes: [], nonHeroes: [] });
 
         c.items = [].concat(heroes, nonHeroes);
 
