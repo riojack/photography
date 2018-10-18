@@ -5,8 +5,8 @@ import Chance from "chance";
 import React from "react";
 import ReactDOM from "react-dom";
 import PromiseMaker from "../src/promise-maker";
-import NewestPhotosStrategy from "../src/view-strategies/newest-photos";
 import GroupInCollectionStrategy from "../src/view-strategies/collection-in-group";
+import ByCollectionStrategy from "../src/view-strategies/by-collection";
 import App from "../src/App";
 
 let nounsAndVerbs;
@@ -23,8 +23,8 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     fakeElement,
     fakeGroups,
     fakeNextFive,
-    fakeNewestPhotosStratOne,
-    fakeNewestPhotosStratTwo,
+    fakeByCollectionStratOne,
+    fakeByCollectionStratTwo,
     fakeCollectionInGroupStrat,
     expectedCollection,
 
@@ -133,14 +133,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       {group: 'something-5', collections: [{collection: 'collection 5', items: [{}, {}, {}]}]}
     ];
 
-    fakeNewestPhotosStratOne = {
-      something: `newest-photo-strat-${chance.word()}`,
+    fakeByCollectionStratOne = {
+      something: `blah-${chance.word()}`,
       next: stub().returns(fakeNextFive),
       reset: stub()
     };
 
-    fakeNewestPhotosStratTwo = {
-      something: `another-newest-photo-strat-${chance.word()}`,
+    fakeByCollectionStratTwo = {
+      something: `another-blah-${chance.word()}`,
       next: stub().returns([]),
       reset: stub()
     };
@@ -172,11 +172,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
     React.createElement.returns(fakeElement);
 
-    sandbox.stub(NewestPhotosStrategy, 'create');
+    sandbox.stub(ByCollectionStrategy, 'create');
     sandbox.stub(GroupInCollectionStrategy, 'create').returns(fakeCollectionInGroupStrat);
 
-    NewestPhotosStrategy.create.onCall(0).returns(fakeNewestPhotosStratOne);
-    NewestPhotosStrategy.create.onCall(1).returns(fakeNewestPhotosStratTwo);
+    ByCollectionStrategy.create.onCall(0).returns(fakeByCollectionStratOne);
+    ByCollectionStrategy.create.onCall(1).returns(fakeByCollectionStratTwo);
 
     nounsAndVerbs = require('../src/nouns-and-verbs').default;
     nounsAndVerbs.withExternals(externals);
@@ -224,18 +224,18 @@ describe('Nouns and verbs (data and behavior) tests', () => {
         .to.be.a('function');
     });
 
-    it('should default to Newest Photos sorting strategy in the world state when the promise executes the function', () => {
+    it('should default to ByCollectionStrategy in the world state when the promise executes the function', () => {
       givenASingleRendering();
 
-      assert.calledOnce(NewestPhotosStrategy.create);
-      assert.calledWithExactly(NewestPhotosStrategy.create, externals.data);
+      assert.calledOnce(ByCollectionStrategy.create);
+      assert.calledWithExactly(ByCollectionStrategy.create, externals.data);
 
       expect(nounsAndVerbs.peerAtWorld())
         .to.have.property('sorter')
-        .that.equals(fakeNewestPhotosStratOne);
+        .that.equals(fakeByCollectionStratOne);
     });
 
-    it('should not recreate the Newest Photos sorting strategy after the first time, when the promise executes the function', () => {
+    it('should not recreate a ByCollectionStrategy after the first time, when the promise executes the function', () => {
       nounsAndVerbs.doRender();
       nounsAndVerbs.doRender();
       nounsAndVerbs.doRender();
@@ -243,7 +243,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       PromiseMaker.buildPromise.getCall(1).args[0](stub());
       PromiseMaker.buildPromise.getCall(2).args[0](stub());
 
-      assert.calledOnce(NewestPhotosStrategy.create);
+      assert.calledOnce(ByCollectionStrategy.create);
     });
 
     it('should create an App element with groups from the next(5) of the sorter plus a whenBannerClicked function, when the promise executes the function', () => {
@@ -382,17 +382,17 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
     });
 
-    it('should create a new Newest Photos strat sorter and tell it to load everything', () => {
+    it('should create a new ByCollectionStrategy and tell it to load everything', () => {
       let countOfItems = fakeGroups.reduce((count, g) => count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0), 0);
 
       givenASingleRendering();
 
       nounsAndVerbs.whenCollapseToGroupsClicked();
 
-      assert.calledWithExactly(NewestPhotosStrategy.create, externals.data);
-      assert.calledWithExactly(fakeNewestPhotosStratTwo.next, countOfItems);
+      assert.calledWithExactly(ByCollectionStrategy.create, externals.data);
+      assert.calledWithExactly(fakeByCollectionStratTwo.next, countOfItems);
 
-      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeNewestPhotosStratTwo);
+      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeByCollectionStratTwo);
     });
 
     it('should re-render the whole world with the updated rendering restriction', () => {

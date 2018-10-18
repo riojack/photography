@@ -3,6 +3,7 @@ import { statorWithReset } from "./state-utilities";
 import { injectOnClick } from "./transform-utilities";
 import NewestPhotosStrategy from "./view-strategies/newest-photos";
 import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
+import ByCollectionStrategy from "./view-strategies/by-collection";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -79,11 +80,11 @@ function whenCollapseToGroupsClicked() {
   let collectionCount = ext.data.reduce((count, g) => {
     return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
   }, 0),
-    nextNewestPhotosStrat = NewestPhotosStrategy.create(ext.data);
+    nextByCollectionStrat = ByCollectionStrategy.create(ext.data);
 
-  nextNewestPhotosStrat.next(collectionCount);
+  nextByCollectionStrat.next(collectionCount);
   mergeWorld({
-    sorter: nextNewestPhotosStrat,
+    sorter: nextByCollectionStrat,
     limitRenderTo: 'collectionNames'
   });
 
@@ -102,7 +103,7 @@ function whenCollectionNameClicked(collectionName) {
 function setUpSorterAndTransformer() {
   if (!mergeWorld().sorter) {
     mergeWorld({
-      sorter: NewestPhotosStrategy.create(ext.data)
+      sorter: ByCollectionStrategy.create(ext.data)
     });
   }
 }
