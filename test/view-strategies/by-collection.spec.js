@@ -14,7 +14,7 @@ describe('ByCollectionStrategy tests', () => {
 
   const GROUPS = [GROUP_1, GROUP_2];
 
-  it('should return collections one at a time', () => {
+  it('should return collections one at a time for each call to next()', () => {
     const strat = new ByCollectionStrategy(GROUPS);
 
     expect(strat.next())
