@@ -1,16 +1,12 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: #fffcf8;
+  background-color: #2d3647;
   font-family: Century Gothic, 'Lucida Sans Unicode', sans-serif;
-  color: rgba(0, 0, 0, .9);
   overflow: hidden;
-}
-
-body {
-  background-color: #fff;
 }
 
 #photography-app-container {
