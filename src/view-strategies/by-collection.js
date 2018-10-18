@@ -12,8 +12,11 @@ class ByCollectionStrategy {
     this.groupsFetched = 0;
   }
 
-  next() {
+  next(numCollectionsToLoad) {
     this.groupsFetched++;
+    if (numCollectionsToLoad) {
+      this.groupsFetched = numCollectionsToLoad;
+    }
 
     let collectionCount = 0;
 
