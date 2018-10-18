@@ -1,9 +1,10 @@
 import PromiseMaker from "./promise-maker";
 import { statorWithReset } from "./state-utilities";
 import { injectOnClick } from "./transform-utilities";
-import NewestPhotosStrategy from "./view-strategies/newest-photos";
 import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
+import NewestPhotosStrategy from "./view-strategies/newest-photos";
 import ByCollectionStrategy from "./view-strategies/by-collection";
+import detangler from "./data-detangler";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -112,7 +113,7 @@ function eventuallyRender(resolve) {
   let currentWorld = mergeWorld(),
     appProps = {
       cacheUrl: CACHE_PREFIX_URL,
-      groups: currentWorld.sorter.next(5),
+      groups: currentWorld.sorter.next(),
       limitRenderTo: currentWorld.limitRenderTo,
       whenBannerClicked,
       whenCollapseToGroupsClicked,
@@ -155,7 +156,17 @@ function onContainerScroll() {
 resetEverything();
 
 export default {
-  withExternals: (nextExt) => ext = nextExt,
+  withExternals: (nextExt) => {
+    ext = Object.assign({}, nextExt, {
+      data: detangler
+        .createInstance(nextExt.data)
+        .groupByCollectionTime()
+        .sortHeroesFirst()
+        .finish()
+    });
+
+    ext.data.sort(NewestPhotosStrategy.sorter);
+  },
   unregisterExternals: () => ext = {},
 
   prime: (thingsToStartWith) => mergeWorld(thingsToStartWith),
