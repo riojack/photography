@@ -5,15 +5,15 @@ class ByCollectionStrategy {
 
   constructor(groups) {
     this.groups = groups;
-    this.nextCalls = 0;
+    this.groupsFetched = 0;
   }
 
   reset() {
-    this.nextCalls = 0;
+    this.groupsFetched = 0;
   }
 
   next() {
-    this.nextCalls++;
+    this.groupsFetched++;
 
     let collectionCount = 0;
 
@@ -33,7 +33,7 @@ class ByCollectionStrategy {
 
         collectionCount++;
 
-        if (collectionCount === this.nextCalls) {
+        if (collectionCount === this.groupsFetched) {
           exitedEarly = true;
           break;
         }
