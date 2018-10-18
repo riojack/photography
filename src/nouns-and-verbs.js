@@ -1,6 +1,6 @@
 import PromiseMaker from "./promise-maker";
-import {statorWithReset} from "./state-utilities";
-import {injectOnClick} from "./transform-utilities";
+import { statorWithReset } from "./state-utilities";
+import { injectOnClick } from "./transform-utilities";
 import NewestPhotosStrategy from "./view-strategies/newest-photos";
 import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
 import React from "react";
@@ -8,6 +8,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 const mountContainerId = 'photography-app-container';
+
+const CACHE_PREFIX_URL = 'http://d3rjsdgb9hzkgz.cloudfront.net/';
 
 let ext = {},
   mergeWorld = () => {
@@ -75,8 +77,8 @@ function whenBannerClicked() {
 
 function whenCollapseToGroupsClicked() {
   let collectionCount = ext.data.reduce((count, g) => {
-      return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
-    }, 0),
+    return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
+  }, 0),
     nextNewestPhotosStrat = NewestPhotosStrategy.create(ext.data);
 
   nextNewestPhotosStrat.next(collectionCount);
@@ -108,7 +110,7 @@ function setUpSorterAndTransformer() {
 function eventuallyRender(resolve) {
   let currentWorld = mergeWorld(),
     appProps = {
-      cacheUrl: 'http://d3rjsdgb9hzkgz.cloudfront.net/',
+      cacheUrl: CACHE_PREFIX_URL,
       groups: currentWorld.sorter.next(5),
       limitRenderTo: currentWorld.limitRenderTo,
       whenBannerClicked,
