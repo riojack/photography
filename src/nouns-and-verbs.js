@@ -34,8 +34,8 @@ function whenThumbClicked(item) {
   collectionTime = parseInt(collectionTime);
 
   let collection = ext
-    .data.find(x => x.group === groupName)
-    .collections.find(x => x.collection === collectionName && x.time === collectionTime);
+    .data.find(x => x.group === groupName
+      && x.collections.find(y => y.collection === collectionName && y.time === collectionTime)).collections[0];
 
   let indexOfItemClicked = collection.items.findIndex(x => x.name === itemName),
     itemOriginal = collection.items[indexOfItemClicked],
