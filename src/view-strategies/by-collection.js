@@ -8,7 +8,9 @@ class ByCollectionStrategy {
     this.nextCalls = 0;
   }
 
-  reset() { }
+  reset() {
+    this.nextCalls = 0;
+  }
 
   next() {
     this.nextCalls++;

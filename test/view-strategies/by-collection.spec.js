@@ -74,4 +74,22 @@ describe('ByCollectionStrategy tests', () => {
         }
       ]);
   });
+
+  it('should reset all the way back to beginning', () => {
+    const strat = new ByCollectionStrategy(GROUPS);
+
+    strat.next();
+    strat.next();
+    strat.next();
+    strat.next();
+    strat.next();
+    strat.next();
+    strat.next();
+    strat.next();
+
+    strat.reset();
+
+    expect(strat.next())
+      .to.eql([{ group: 'Group 1', collections: [{ collection: 'G1 Collection 1', items: [] }] }]);
+  });
 });
