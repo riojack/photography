@@ -75,6 +75,22 @@ describe('ByCollectionStrategy tests', () => {
       ]);
   });
 
+  it('should load a fixed number of collections when given a number', () => {
+    const strat = new ByCollectionStrategy(GROUPS);
+
+    expect(strat.next(4))
+      .to.eql([
+        { group: 'Group 1', collections: [{ collection: 'G1 Collection 1', items: [] }] },
+        {
+          group: 'Group 2', collections: [
+            { collection: 'G2 Collection 1', items: [] },
+            { collection: 'G2 Collection 2', items: [] },
+            { collection: 'G2 Collection 3', items: [] },
+          ]
+        }
+      ]);
+  });
+
   it('should reset all the way back to beginning', () => {
     const strat = new ByCollectionStrategy(GROUPS);
 
