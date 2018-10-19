@@ -1,13 +1,17 @@
 import PromiseMaker from "./promise-maker";
-import {statorWithReset} from "./state-utilities";
-import {injectOnClick} from "./transform-utilities";
-import NewestPhotosStrategy from "./view-strategies/newest-photos";
+import { statorWithReset } from "./state-utilities";
+import { injectOnClick } from "./transform-utilities";
 import CollectionInGroupStrategy from "./view-strategies/collection-in-group";
+import NewestPhotosStrategy from "./view-strategies/newest-photos";
+import ByCollectionStrategy from "./view-strategies/by-collection";
+import detangler from "./data-detangler";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 const mountContainerId = 'photography-app-container';
+
+const CACHE_PREFIX_URL = 'http://d3rjsdgb9hzkgz.cloudfront.net/';
 
 let ext = {},
   mergeWorld = () => {
@@ -30,8 +34,8 @@ function whenThumbClicked(item) {
   collectionTime = parseInt(collectionTime);
 
   let collection = ext
-    .data.find(x => x.group === groupName)
-    .collections.find(x => x.collection === collectionName && x.time === collectionTime);
+    .data.find(x => x.group === groupName
+      && x.collections.find(y => y.collection === collectionName && y.time === collectionTime)).collections[0];
 
   let indexOfItemClicked = collection.items.findIndex(x => x.name === itemName),
     itemOriginal = collection.items[indexOfItemClicked],
@@ -75,13 +79,13 @@ function whenBannerClicked() {
 
 function whenCollapseToGroupsClicked() {
   let collectionCount = ext.data.reduce((count, g) => {
-      return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
-    }, 0),
-    nextNewestPhotosStrat = NewestPhotosStrategy.create(ext.data);
+    return count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0);
+  }, 0),
+    nextByCollectionStrat = ByCollectionStrategy.create(ext.data);
 
-  nextNewestPhotosStrat.next(collectionCount);
+  nextByCollectionStrat.next(collectionCount);
   mergeWorld({
-    sorter: nextNewestPhotosStrat,
+    sorter: nextByCollectionStrat,
     limitRenderTo: 'collectionNames'
   });
 
@@ -100,7 +104,7 @@ function whenCollectionNameClicked(collectionName) {
 function setUpSorterAndTransformer() {
   if (!mergeWorld().sorter) {
     mergeWorld({
-      sorter: NewestPhotosStrategy.create(ext.data)
+      sorter: ByCollectionStrategy.create(ext.data)
     });
   }
 }
@@ -108,8 +112,8 @@ function setUpSorterAndTransformer() {
 function eventuallyRender(resolve) {
   let currentWorld = mergeWorld(),
     appProps = {
-      cacheUrl: 'http://d3rjsdgb9hzkgz.cloudfront.net/',
-      groups: currentWorld.sorter.next(5),
+      cacheUrl: CACHE_PREFIX_URL,
+      groups: currentWorld.sorter.next(),
       limitRenderTo: currentWorld.limitRenderTo,
       whenBannerClicked,
       whenCollapseToGroupsClicked,
@@ -152,7 +156,17 @@ function onContainerScroll() {
 resetEverything();
 
 export default {
-  withExternals: (nextExt) => ext = nextExt,
+  withExternals: (nextExt) => {
+    ext = Object.assign({}, nextExt, {
+      data: detangler
+        .createInstance(nextExt.data)
+        .groupByCollectionTime()
+        .sortHeroesFirst()
+        .finish()
+    });
+
+    ext.data.sort(NewestPhotosStrategy.sorter);
+  },
   unregisterExternals: () => ext = {},
 
   prime: (thingsToStartWith) => mergeWorld(thingsToStartWith),

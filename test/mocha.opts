@@ -1,3 +1,4 @@
+--recursive
 --reporter progress
 --require ./test/test-helper.js
 --require babel-register
