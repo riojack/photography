@@ -7,40 +7,30 @@
 
   font-family: "Raleway", arial, "times new roman", sans-serif;
 
-  >.iowa-light-banner {
+  >.iowa-light-banner, .iowa-light-controls {
     position: fixed;
     top: 0;
-    left: 55px;
+    width: 100%;
+    height: 38px;
     z-index: 50;
+    background-color: #2d3647;
 
-    >h1 {
+    >h1, h4 {
       margin: 0;
       font-weight: 300;
-      padding: 0 25px;
       cursor: pointer;
-      display: inline;
+      text-align: center;
     }
   }
 
-  >.iowa-light-controls {
-    cursor: pointer;
-    position: fixed;
-    top: 0;
-    right: 55px;
-    z-index: 50;
-    height: 45px;
-    width: 175px;
-
-    >h4 {
-      text-align: center;
-      font-weight: normal;
-    }
+  .iowa-light-controls {
+    top: 38px;
   }
 
   .photo-groups,
   .collection-names-only {
     list-style: none;
-    margin: 0;
+    margin: 100px 0 0 0;
     padding: 0;
 
     ul,
