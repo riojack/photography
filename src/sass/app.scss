@@ -1,22 +1,5 @@
 @import "../../node_modules/sass-mediaqueries/_media-queries";
-
-$big_thumb_size_h: 576px;
-$big_thumb_size_w: 1024px;
-
-$small_thumb_columns: 4.0;
-
-$small_thumb_size_h: ($big_thumb_size_h / $small_thumb_columns);
-$small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
-
-$ipad_scaling_l: 0.75;
-$ipad_scaling_p_big_thumb: 0.5;
-$ipad_scaling_p_small_thumb: 1.0;
-
-$iphone_scaling_l: $ipad_scaling_l * 0.5;
-$iphone_scaling_l_small_thumb: $iphone_scaling_l * 2.0;
-$iphone_scaling_p: $iphone_scaling_l_small_thumb * 0.5 * 0.65;
-
-$title_color: rgba(255, 255, 255, .9);
+@import "./variables";
 
 .iowa-light-application {
   width: 100%;
@@ -126,7 +109,6 @@ $title_color: rgba(255, 255, 255, .9);
     }
 
     >li {
-
       >.photo-thumb,
       >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
         height: $small_thumb_size_h;
@@ -134,7 +116,6 @@ $title_color: rgba(255, 255, 255, .9);
       }
 
       &:first-child {
-
         >.photo-thumb,
         >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
           height: $big_thumb_size_h;
@@ -150,7 +131,6 @@ $title_color: rgba(255, 255, 255, .9);
       }
 
       &:not(:first-child) {
-
         >.photo-thumb,
         >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
           backface-visibility: hidden;
