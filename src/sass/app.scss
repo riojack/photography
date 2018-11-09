@@ -88,13 +88,23 @@
           width: 360px;
           background-size: contain;
         }
+
+        @include landscape() {
+          >.photo-thumb,
+          >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
+            width: 640px;
+          }
+
+          >.photo-thumb,
+          >.transitionable-photo-thumb[data-tags*="portrait"]>*[class*="shark"][style^="background-image"] {
+            width: 640px;
+          }
+        }
       }
 
       &:not(:first-child) {
         >.photo-thumb,
         >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
-          height: 70px;
-          width: 360px;
           opacity: 0.5;
           backface-visibility: hidden;
           background-size: 102%;
@@ -108,6 +118,13 @@
           &:hover {
             transform: scale(1, 1);
             background-size: 105%;
+          }
+
+          height: 70px;
+          width: 360px;
+
+          @include landscape() {
+            width: 640px;
           }
         }
       }
