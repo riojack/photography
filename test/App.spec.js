@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import Chance from 'chance';
 import {assert, stub} from 'sinon';
 import TransitionableThumb from '../src/components/TransitionableThumb';
-import App from '../src/app';
+import App from '../src/App';
 
 let urljoin = require('url-join');
 
