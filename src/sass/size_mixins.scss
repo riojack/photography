@@ -1,0 +1,35 @@
+@import "./variables";
+
+@mixin default_portrait_widths() {
+  $widths: (1024px, 768px, 414px, 411px, 375px, 360px, 320px);
+
+  @each $width in $widths {
+    @include max-screen($width) {
+      width: $width;
+    }
+  }
+
+  @include min-screen(1366px) {
+    width: $big_thumb_size_w;
+    height: $big_thumb_size_h;
+  }
+}
+
+@mixin default_landscape_widths() {
+  @include landscape() {
+    $widths: (1366px, 1024px, 823px, 812px, 736px, 667px, 640px, 568px);
+
+    @each $width in $widths {
+      @include max-screen($width) {
+        width: $width;
+      }
+    }
+  }
+}
+
+@mixin widths_by_column($col_count) {
+  @include min-screen(1366px) {
+    width: $big_thumb_size_w / $col_count;
+    height: $big_thumb_size_h / $col_count;
+  }
+}
