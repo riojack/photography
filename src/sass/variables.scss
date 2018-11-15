@@ -1,0 +1,9 @@
+$big_thumb_size_h: 576px;
+$big_thumb_size_w: 1024px;
+
+$small_thumb_columns: 4.0;
+
+$small_thumb_size_h: ($big_thumb_size_h / $small_thumb_columns);
+$small_thumb_size_w: ($big_thumb_size_w / $small_thumb_columns);
+
+$title_color: rgba(255, 255, 255, .9);
