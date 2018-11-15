@@ -1,5 +1,6 @@
 @import "../../node_modules/sass-mediaqueries/_media-queries";
 @import "./variables";
+@import "./size_mixins.scss";
 
 .iowa-light-application {
   width: 100%;
@@ -42,6 +43,10 @@
 
   .photo-groups>li {
     padding-bottom: 50px;
+
+    @include min-screen(1366px) {
+      padding-bottom: 120px;
+    }
   }
 
   .photo-thumb,
@@ -66,10 +71,16 @@
   }
 
   .collection-items {
-    width: $big_thumb_size_w;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+
+    @include default_portrait_widths();
+    @include default_landscape_widths();
+
+    @include min-screen(1366px) {
+      height: unset;
+    }
 
     >li {
       >.photo-thumb,
@@ -80,24 +91,24 @@
       &:first-child {
         >.photo-thumb,
         >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
-          width: 360px;
+          @include default_portrait_widths();
         }
 
         >.photo-thumb,
         >.transitionable-photo-thumb[data-tags*="portrait"]>*[class*="shark"][style^="background-image"] {
-          width: 360px;
+          @include default_portrait_widths();
           background-size: contain;
         }
 
         @include landscape() {
           >.photo-thumb,
           >.transitionable-photo-thumb>*[class*="shark"][style^="background-image"] {
-            width: 640px;
+            @include default_landscape_widths();
           }
 
           >.photo-thumb,
           >.transitionable-photo-thumb[data-tags*="portrait"]>*[class*="shark"][style^="background-image"] {
-            width: 640px;
+            @include default_landscape_widths();
           }
         }
       }
@@ -121,11 +132,19 @@
           }
 
           height: 70px;
-          width: 360px;
 
-          @include landscape() {
-            width: 640px;
+          @include default_portrait_widths();
+          @include default_landscape_widths();
+          @include widths_by_column(4);
+
+          @include min-screen(1366px) {
+            opacity: 0.82;
+
+            &:hover {
+              opacity: 1.0;
+            }
           }
+
         }
       }
     }
