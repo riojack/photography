@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:9.11
-    working_directory: ~/repo
+    working_directory: ~/photography
 
     steps:
       - checkout
