@@ -15,6 +15,7 @@ import misc from './misc';
 import road from './road';
 import yellowBanks from './yellow-banks';
 import nEastIa from './n-east-ia';
+import winter2018 from './winter-2018';
 
 const groups = [
   woodlandMounds,
@@ -34,6 +35,7 @@ const groups = [
   road,
   yellowBanks,
   nEastIa,
+  winter2018,
 ];
 
 export default groups;
