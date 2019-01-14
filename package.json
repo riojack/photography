@@ -9,6 +9,7 @@
     "build:notest": "webpack -d",
     "prebuild:prod": "yarn lint",
     "build:prod": "yarn test && webpack -p",
+    "pretest": "yarn lint",
     "test": "mocha test --recursive",
     "bump:patch": "npm version patch -m \"Pre-release, as %s.\"",
     "bump": "npm run bump:patch"
