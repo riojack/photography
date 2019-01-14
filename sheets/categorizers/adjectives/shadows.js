@@ -1,3 +1,3 @@
 export default [
-  "dark shadows", "shadows", "shadow", "shade"
+  'dark shadows', 'shadows', 'shadow', 'shade',
 ];

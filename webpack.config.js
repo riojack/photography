@@ -1,60 +1,59 @@
-var webpack = require('webpack'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: {
-    'application': __dirname + '/index.js'
+    application: `${__dirname}/index.js`,
   },
   externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
   output: {
-    path: __dirname + '/dist',
+    path: `${__dirname}/dist`,
     pathinfo: true,
     filename: '[name].js',
-    sourcePrefix: ''
+    sourcePrefix: '',
   },
   optimization: {
     minimizer: [new UglifyJsPlugin({
       uglifyOptions: {
         minimize: true,
         compress: {
-          warnings: false
+          warnings: false,
         },
         output: {
-          comments: false
-        }
-      }
-    })]
+          comments: false,
+        },
+      },
+    })],
   },
   module: {
     rules: [{
-        test: /\.jsx$|\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
+      test: /\.jsx$|\.js$/,
+      exclude: /node_modules/,
+      use: 'babel-loader',
+    },
+    {
+      test: /\.css$|\.scss$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'style-loader',
       },
       {
-        test: /\.css$|\.scss$/,
-        exclude: /node_modules/,
-        use: [{
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      }
-    ]
+        loader: 'css-loader',
+        options: {
+          minimize: true,
+        },
+      },
+      {
+        loader: 'sass-loader',
+      },
+      ],
+    },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };

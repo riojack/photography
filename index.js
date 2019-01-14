@@ -1,9 +1,9 @@
-import nounsAndVerbs from "./src/nouns-and-verbs";
+import nounsAndVerbs from './src/nouns-and-verbs';
+import sheets from './sheets';
 
-(function () {
-  var sheets = require('./sheets').default;
-
-  sheets.forEach(group => {
+(function fn() {
+  sheets.forEach((group) => {
+    // eslint-disable-next-line no-param-reassign
     group.collections = group.collections.reduce((pv, cv) => {
       if (!cv.hidden) {
         pv.push(cv);
@@ -15,6 +15,6 @@ import nounsAndVerbs from "./src/nouns-and-verbs";
   });
 
   window.Snappy = {
-    nounsAndVerbs: nounsAndVerbs
+    nounsAndVerbs,
   };
 }());

@@ -1,51 +1,53 @@
-import {fail} from "assert";
-import {expect} from "chai";
-import {assert, createSandbox, stub} from "sinon";
-import Chance from "chance";
-import React from "react";
-import ReactDOM from "react-dom";
-import PromiseMaker from "../src/promise-maker";
-import GroupInCollectionStrategy from "../src/view-strategies/collection-in-group";
-import ByCollectionStrategy from "../src/view-strategies/by-collection";
-import App from "../src/App";
-
-let nounsAndVerbs;
+import { fail } from 'assert';
+import { expect } from 'chai';
+import { assert, createSandbox, stub } from 'sinon';
+import Chance from 'chance';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PromiseMaker from '../src/promise-maker';
+import GroupInCollectionStrategy from '../src/view-strategies/collection-in-group';
+import ByCollectionStrategy from '../src/view-strategies/by-collection';
+import App from '../src/App';
+import nounsAndVerbs from '../src/nouns-and-verbs';
 
 describe('Nouns and verbs (data and behavior) tests', () => {
-  let chance,
-    externals,
+  let chance;
+  let externals;
+  let item;
+  let secondItem;
+  let fakeNode;
+  let fakePromise;
+  let secondFakePromise;
+  let fakeElement;
+  let fakeGroups;
+  let fakeNextFive;
+  let fakeByCollectionStratOne;
+  let fakeByCollectionStratTwo;
+  let fakeCollectionInGroupStrat;
+  let expectedCollection;
+  let sandbox;
 
-    item,
-    secondItem,
-    fakeNode,
-    fakePromise,
-    secondFakePromise,
-    fakeElement,
-    fakeGroups,
-    fakeNextFive,
-    fakeByCollectionStratOne,
-    fakeByCollectionStratTwo,
-    fakeCollectionInGroupStrat,
-    expectedCollection,
-
-    sandbox;
-
-  function _toBase64(val) {
-    return (new Buffer(val, 'utf8')).toString('base64');
+  function encodeToBase64(val) {
+    return (Buffer.from(val, 'utf8')).toString('base64');
   }
 
   function makePhoto(opts) {
-    const safeOpts = opts || {},
-      photoName = safeOpts.photoName || chance.word({length: 32}),
-      collectionTime = safeOpts.collectionTime || (chance.timestamp() * 1000),
-      collectionName = safeOpts.collectionName || chance.word({length: 32}),
-      groupName = safeOpts.groupName || chance.word({length: 32});
+    const safeOpts = opts || {};
+    const photoName = safeOpts.photoName || chance.word({ length: 32 });
+    const collectionTime = safeOpts.collectionTime || (chance.timestamp() * 1000);
+    const collectionName = safeOpts.collectionName || chance.word({ length: 32 });
+    const groupName = safeOpts.groupName || chance.word({ length: 32 });
+
+    const photoNameEnc = encodeToBase64(photoName);
+    const collTimeEnc = encodeToBase64(`${collectionTime}`);
+    const collNameEnc = encodeToBase64(collectionName);
+    const groupNameEnc = encodeToBase64(groupName);
 
     return {
-      lookupId: _toBase64(photoName) + '|' + _toBase64(`${collectionTime}`) + '|' + _toBase64(collectionName) + '|' + _toBase64(groupName),
+      lookupId: `${photoNameEnc}|${collTimeEnc}|${collNameEnc}|${groupNameEnc}`,
       height: chance.integer(),
       width: chance.integer(),
-      tags: []
+      tags: [],
     };
   }
 
@@ -67,7 +69,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   }
 
   function givenBannerClicked() {
-    let props = getLastCreateElementProps();
+    const props = getLastCreateElementProps();
 
     externals.document.getElementById.resetHistory();
 
@@ -83,71 +85,121 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox = createSandbox();
     chance = new Chance();
 
-    fakeNode = {scrollTop: -1};
+    fakeNode = { scrollTop: -1 };
 
     fakePromise = {
-      then: stub()
+      then: stub(),
     };
     secondFakePromise = {
-      then: stub()
+      then: stub(),
     };
 
     fakeElement = {
-      someElement: `it-can-be-whatever-${chance.word()}`
+      someElement: `it-can-be-whatever-${chance.word()}`,
     };
 
     const collectionTime = chance.timestamp();
-    item = Object.assign({image: 'blah 001', name: 'picture 001'}, makePhoto({
+    item = Object.assign({
+      image: 'blah 001',
+      name: 'picture 001',
+    }, makePhoto({
       photoName: 'picture 001',
       groupName: 'something-1',
       collectionName: 'collection 1',
-      collectionTime: collectionTime
+      collectionTime,
     }));
-    secondItem = Object.assign({image: 'blah 002', name: 'picture 002'}, makePhoto({
+
+    secondItem = Object.assign({
+      image: 'blah 002',
+      name: 'picture 002',
+    }, makePhoto({
       photoName: 'picture 002',
       groupName: 'something-1',
       collectionName: 'collection 1',
-      collectionTime: collectionTime
+      collectionTime,
     }));
 
     fakeGroups = [
       {
         group: 'something-1',
-        collections: [{collection: 'collection 1', time: collectionTime, items: [item, secondItem, makePhoto()]}]
+        collections: [{
+          collection: 'collection 1',
+          time: collectionTime,
+          items: [item, secondItem, makePhoto()],
+        }],
       },
       {
         group: 'something-2',
-        collections: [{collection: 'collection 2', items: [makePhoto(), makePhoto(), makePhoto()]}]
+        collections: [{
+          collection: 'collection 2',
+          items: [makePhoto(), makePhoto(), makePhoto()],
+        }],
       },
       {
         group: 'something-3',
-        collections: [{collection: 'collection 3', items: [makePhoto(), makePhoto(), makePhoto()]}]
-      }
+        collections: [{
+          collection: 'collection 3',
+          items: [makePhoto(), makePhoto(), makePhoto()],
+        }],
+      },
     ];
 
     fakeNextFive = [
-      {group: 'something-1', collections: [{collection: 'collection 1', items: [{}, {}, {}]}]},
-      {group: 'something-2', collections: [{collection: 'collection 2', items: [{}, {}, {}]}]},
-      {group: 'something-3', collections: [{collection: 'collection 3', items: [{}, {}, {}]}]},
-      {group: 'something-4', collections: [{collection: 'collection 4', items: [{}, {}, {}]}]},
-      {group: 'something-5', collections: [{collection: 'collection 5', items: [{}, {}, {}]}]}
+      {
+        group: 'something-1',
+        collections: [{
+          collection: 'collection 1',
+          items: [{}, {}, {}],
+        }],
+      },
+      {
+        group: 'something-2',
+        collections: [{
+          collection: 'collection 2',
+          items: [{}, {}, {}],
+        }],
+      },
+      {
+        group: 'something-3',
+        collections: [{
+          collection: 'collection 3',
+          items: [{}, {}, {}],
+        }],
+      },
+      {
+        group: 'something-4',
+        collections: [{
+          collection: 'collection 4',
+          items: [{}, {}, {}],
+        }],
+      },
+      {
+        group: 'something-5',
+        collections: [{
+          collection: 'collection 5',
+          items: [{}, {}, {}],
+        }],
+      },
     ];
 
     fakeByCollectionStratOne = {
       something: `blah-${chance.word()}`,
-      next: stub().returns(fakeNextFive),
-      reset: stub()
+      next: stub()
+        .returns(fakeNextFive),
+      reset: stub(),
     };
 
     fakeByCollectionStratTwo = {
       something: `another-blah-${chance.word()}`,
-      next: stub().returns([]),
-      reset: stub()
+      next: stub()
+        .returns([]),
+      reset: stub(),
     };
 
     fakeCollectionInGroupStrat = {
       something: `collection-in-group-${chance.word()}`,
-      next: stub().returns([fakeGroups[0]])
+      next: stub()
+        .returns([fakeGroups[0]]),
     };
 
     expectedCollection = chance.pickone(chance.pickone(fakeGroups).collections);
@@ -158,27 +210,32 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     externals = {
       setTimeout: stub(),
       window: {
-        open: stub()
+        open: stub(),
       },
       document: {
-        getElementById: stub()
+        getElementById: stub(),
       },
-      data: fakeGroups
+      data: fakeGroups,
     };
 
     sandbox.stub(PromiseMaker, 'buildPromise');
-    PromiseMaker.buildPromise.onCall(0).returns(fakePromise);
-    PromiseMaker.buildPromise.onCall(1).returns(secondFakePromise);
-    externals.document.getElementById.withArgs('photography-app-container').returns(fakeNode);
+    PromiseMaker.buildPromise.onCall(0)
+      .returns(fakePromise);
+    PromiseMaker.buildPromise.onCall(1)
+      .returns(secondFakePromise);
+    externals.document.getElementById.withArgs('photography-app-container')
+      .returns(fakeNode);
     React.createElement.returns(fakeElement);
 
     sandbox.stub(ByCollectionStrategy, 'create');
-    sandbox.stub(GroupInCollectionStrategy, 'create').returns(fakeCollectionInGroupStrat);
+    sandbox.stub(GroupInCollectionStrategy, 'create')
+      .returns(fakeCollectionInGroupStrat);
 
-    ByCollectionStrategy.create.onCall(0).returns(fakeByCollectionStratOne);
-    ByCollectionStrategy.create.onCall(1).returns(fakeByCollectionStratTwo);
+    ByCollectionStrategy.create.onCall(0)
+      .returns(fakeByCollectionStratOne);
+    ByCollectionStrategy.create.onCall(1)
+      .returns(fakeByCollectionStratTwo);
 
-    nounsAndVerbs = require('../src/nouns-and-verbs').default;
     nounsAndVerbs.withExternals(externals);
   });
 
@@ -190,38 +247,58 @@ describe('Nouns and verbs (data and behavior) tests', () => {
 
   describe('initial world values', () => {
     it('should have a property called "transformer" that is set to the value of false', () => {
-      expect(nounsAndVerbs.peerAtWorld()).to.have.property('transformer')
-        .that.equals(false);
+      expect(nounsAndVerbs.peerAtWorld())
+        .to
+        .have
+        .property('transformer')
+        .that
+        .equals(false);
     });
 
     it('should have a property called "sorter" that is set to the value of false', () => {
-      expect(nounsAndVerbs.peerAtWorld()).to.have.property('sorter')
-        .that.equals(false);
+      expect(nounsAndVerbs.peerAtWorld())
+        .to
+        .have
+        .property('sorter')
+        .that
+        .equals(false);
     });
 
     it('should have a property called "limitRenderTo" that is the boolean value false', () => {
-      expect(nounsAndVerbs.peerAtWorld()).to.have.property('limitRenderTo')
-        .that.equals(false);
+      expect(nounsAndVerbs.peerAtWorld())
+        .to
+        .have
+        .property('limitRenderTo')
+        .that
+        .equals(false);
     });
 
     it('should have a property called "skipLoadingNextGroup" that is the boolean value false', () => {
-      expect(nounsAndVerbs.peerAtWorld()).to.have.property('skipLoadingNextGroup')
-        .that.equals(false);
+      expect(nounsAndVerbs.peerAtWorld())
+        .to
+        .have
+        .property('skipLoadingNextGroup')
+        .that
+        .equals(false);
     });
   });
 
   describe('when rendering the application', () => {
     it('should return a promise', () => {
-      let promise = nounsAndVerbs.doRender();
+      const promise = nounsAndVerbs.doRender();
 
-      expect(promise).to.equal(fakePromise);
+      expect(promise)
+        .to
+        .equal(fakePromise);
     });
 
     it('should give the promise a function', () => {
       nounsAndVerbs.doRender();
 
       expect(PromiseMaker.buildPromise.lastCall.args[0])
-        .to.be.a('function');
+        .to
+        .be
+        .a('function');
     });
 
     it('should default to ByCollectionStrategy in the world state when the promise executes the function', () => {
@@ -231,11 +308,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledWithExactly(ByCollectionStrategy.create, externals.data);
 
       expect(nounsAndVerbs.peerAtWorld())
-        .to.have.property('sorter')
-        .that.equals(fakeByCollectionStratOne);
+        .to
+        .have
+        .property('sorter')
+        .that
+        .equals(fakeByCollectionStratOne);
     });
 
-    it('should not recreate a ByCollectionStrategy after the first time, when the promise executes the function', () => {
+    it('should not recreate a ByCollectionStrategy after first call, when the promise executes the function', () => {
       nounsAndVerbs.doRender();
       nounsAndVerbs.doRender();
       nounsAndVerbs.doRender();
@@ -246,50 +326,80 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledOnce(ByCollectionStrategy.create);
     });
 
-    it('should create an App element with groups from the next(5) of the sorter plus a whenBannerClicked function, when the promise executes the function', () => {
+    it('should create an App element with groups from the next(5) of the sorter plus a whenBannerClicked function, '
+      + 'when the promise executes the function', () => {
       givenASingleRendering();
 
-      let expectedGroups = nounsAndVerbs.peerAtWorld().sorter.next(5);
+      const expectedGroups = nounsAndVerbs.peerAtWorld()
+        .sorter
+        .next(5);
 
       assert.calledOnce(React.createElement);
       assert.calledWith(React.createElement, App);
 
-      expect(React.createElement.lastCall.args[1]).to.have.property('groups')
-        .that.eqls(expectedGroups);
+      expect(React.createElement.lastCall.args[1])
+        .to
+        .have
+        .property('groups')
+        .that
+        .eqls(expectedGroups);
 
-      expect(React.createElement.lastCall.args[1]).to.have.property('whenBannerClicked')
-        .that.is.a('function');
+      expect(React.createElement.lastCall.args[1])
+        .to
+        .have
+        .property('whenBannerClicked')
+        .that
+        .is
+        .a('function');
     });
 
     it('should also pass a whenCollapseToGroupsClicked function to the App element', () => {
       givenASingleRendering();
 
-      expect(React.createElement.lastCall.args[1]).to.have.property('whenCollapseToGroupsClicked')
-        .that.is.a('function');
+      expect(React.createElement.lastCall.args[1])
+        .to
+        .have
+        .property('whenCollapseToGroupsClicked')
+        .that
+        .is
+        .a('function');
     });
 
     it('should also pass a whenCollectionNameClicked function to the App element', () => {
       givenASingleRendering();
 
-      expect(React.createElement.lastCall.args[1]).to.have.property('whenCollectionNameClicked')
-        .that.is.a('function');
+      expect(React.createElement.lastCall.args[1])
+        .to
+        .have
+        .property('whenCollectionNameClicked')
+        .that
+        .is
+        .a('function');
     });
 
-    it('should inject into each item in each collection in each group an "onClick" handler, when the promise executes the function', () => {
+    it('should inject into each item in each collection in each group an "onClick" handler, when the promise executes '
+      + 'the function', () => {
       givenASingleRendering();
 
-      React.createElement.lastCall.args[1].groups.forEach(g => {
-        g.collections.forEach(c => {
-          c.items.forEach(item => {
-            expect(item).to.have.property('onClick')
-              .that.is.a('function');
+      React.createElement.lastCall.args[1].groups.forEach((g) => {
+        g.collections.forEach((c) => {
+          c.items.forEach((collectionItem) => {
+            expect(collectionItem)
+              .to
+              .have
+              .property('onClick')
+              .that
+              .is
+              .a('function');
           });
         });
-      })
+      });
     });
 
-    it('should render the App element into the photography-app-container element and pass it the resolve argument, when the promise executes the function', () => {
-      let resolver = stub();
+    it('should render the App element into the photography-app-container element and pass it the resolve argument, '
+      + 'when the promise executes the function', () => {
+      const resolver = stub();
+
       nounsAndVerbs.doRender();
       PromiseMaker.buildPromise.lastCall.args[0](resolver);
 
@@ -299,13 +409,18 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   });
 
   describe('when a thumbnail is clicked', () => {
-    it('should swap the hero thumb with the clicked thumb by setting the "changing_image" tag, rendering, and then un-setting the tags', () => {
+    it('should swap the hero thumb with the clicked thumb by setting the "changing_image" tag, rendering, and then '
+      + 'un-setting the tags', () => {
       nounsAndVerbs.whenThumbClicked.call({}, secondItem);
 
       assert.notCalled(externals.window.open);
 
-      expect(item.tags).to.include('changing_image');
-      expect(secondItem.tags).to.include('changing_image');
+      expect(item.tags)
+        .to
+        .include('changing_image');
+      expect(secondItem.tags)
+        .to
+        .include('changing_image');
 
       PromiseMaker.buildPromise.lastCall.args[0](stub());
       fakePromise.then.lastCall.args[0]();
@@ -316,11 +431,21 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       externals.setTimeout.lastCall.args[0]();
       secondFakePromise.then.lastCall.args[0]();
 
-      expect(item.tags).to.not.include('changing_image');
-      expect(secondItem.tags).to.not.include('changing_image');
+      expect(item.tags)
+        .to
+        .not
+        .include('changing_image');
+      expect(secondItem.tags)
+        .to
+        .not
+        .include('changing_image');
 
-      expect(fakeGroups[0].collections[0].items[0]).to.equal(secondItem);
-      expect(fakeGroups[0].collections[0].items[1]).to.equal(item);
+      expect(fakeGroups[0].collections[0].items[0])
+        .to
+        .equal(secondItem);
+      expect(fakeGroups[0].collections[0].items[1])
+        .to
+        .equal(item);
     });
 
     it('should call window.open() with the expected parameters when the hero thumb (first thumb) is clicked', () => {
@@ -343,24 +468,33 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledOnce(externals.document.getElementById);
       assert.calledWith(externals.document.getElementById, 'photography-app-container');
 
-      expect(fakeNode.scrollTop).to.equal(0);
+      expect(fakeNode.scrollTop)
+        .to
+        .equal(0);
     });
 
     it('should clear out the current sorter to allow a new one to be built', () => {
       givenASingleRendering();
 
-      expect(nounsAndVerbs.peerAtWorld().sorter).to.not.equal(false);
+      expect(nounsAndVerbs.peerAtWorld().sorter)
+        .to
+        .not
+        .equal(false);
       givenBannerClicked();
-      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(false);
+      expect(nounsAndVerbs.peerAtWorld().sorter)
+        .to
+        .equal(false);
     });
 
     it('should clear the limitRenderTo flag (set it to false)', () => {
-      nounsAndVerbs.prime({limitRenderTo: chance.word()});
+      nounsAndVerbs.prime({ limitRenderTo: chance.word() });
 
       givenASingleRendering();
 
       givenBannerClicked();
-      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo)
+        .to
+        .equal(false);
     });
 
     it('should re-render the whole application', () => {
@@ -377,13 +511,20 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     it('should update the world state\'s limitRenderTo property to a value of "collectionNames"', () => {
       givenASingleRendering();
 
-      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo)
+        .to
+        .equal(false);
       nounsAndVerbs.whenCollapseToGroupsClicked();
-      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo)
+        .to
+        .equal('collectionNames');
     });
 
     it('should create a new ByCollectionStrategy and tell it to load everything', () => {
-      let countOfItems = fakeGroups.reduce((count, g) => count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0), 0);
+      const countOfItems = fakeGroups.reduce(
+        (count, g) => count + g.collections.reduce((itemCount, collection) => itemCount + collection.items.length, 0),
+        0,
+      );
 
       givenASingleRendering();
 
@@ -392,7 +533,9 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       assert.calledWithExactly(ByCollectionStrategy.create, externals.data);
       assert.calledWithExactly(fakeByCollectionStratTwo.next, countOfItems);
 
-      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeByCollectionStratTwo);
+      expect(nounsAndVerbs.peerAtWorld().sorter)
+        .to
+        .equal(fakeByCollectionStratTwo);
     });
 
     it('should re-render the whole world with the updated rendering restriction', () => {
@@ -405,8 +548,12 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       whenRenderPromiseIsResolved();
 
       assert.calledOnce(React.createElement);
-      expect(React.createElement.lastCall.args[1]).to.have.property('limitRenderTo')
-        .that.equals('collectionNames');
+      expect(React.createElement.lastCall.args[1])
+        .to
+        .have
+        .property('limitRenderTo')
+        .that
+        .equals('collectionNames');
       assert.calledOnce(ReactDOM.render);
     });
   });
@@ -418,7 +565,9 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       nounsAndVerbs.whenCollectionNameClicked();
 
       assert.calledOnce(GroupInCollectionStrategy.create);
-      expect(nounsAndVerbs.peerAtWorld().sorter).to.equal(fakeCollectionInGroupStrat);
+      expect(nounsAndVerbs.peerAtWorld().sorter)
+        .to
+        .equal(fakeCollectionInGroupStrat);
     });
 
     it('should pass the external data (groups) and the collection name to the CollectionInGroup strategy', () => {
@@ -431,9 +580,13 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       givenASingleRendering();
       givenCollapsedToGroups();
 
-      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal('collectionNames');
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo)
+        .to
+        .equal('collectionNames');
       nounsAndVerbs.whenCollectionNameClicked(expectedCollection.collection);
-      expect(nounsAndVerbs.peerAtWorld().limitRenderTo).to.equal(false);
+      expect(nounsAndVerbs.peerAtWorld().limitRenderTo)
+        .to
+        .equal(false);
     });
 
     it('should re-render the whole world', () => {
@@ -453,16 +606,17 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   });
 
   describe('onContainerScroll', () => {
-    const viewportHeight = 10,
-      positionYRelativeToTop = 900,
-      viewportScrollMaximum = 1000;
+    const viewportHeight = 10;
+    const positionYRelativeToTop = 900;
+    const viewportScrollMaximum = 1000;
 
     it('should trigger a re-render if the scroll reaches 90% of the scroll bar', () => {
-      let fakeContainerElement = {
+      const fakeContainerElement = {
         clientHeight: viewportHeight,
         scrollTop: positionYRelativeToTop,
-        scrollHeight: viewportScrollMaximum
+        scrollHeight: viewportScrollMaximum,
       };
+
       nounsAndVerbs.onContainerScroll.call(fakeContainerElement);
       whenRenderPromiseIsResolved();
 
@@ -471,10 +625,10 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     });
 
     it('should not trigger a re-render if the scroll stays below 90%', () => {
-      let fakeContainerElement = {
+      const fakeContainerElement = {
         clientHeight: viewportHeight,
         scrollTop: positionYRelativeToTop - 400,
-        scrollHeight: viewportScrollMaximum
+        scrollHeight: viewportScrollMaximum,
       };
       nounsAndVerbs.onContainerScroll.call(fakeContainerElement);
 

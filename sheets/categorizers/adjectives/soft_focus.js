@@ -1,3 +1,3 @@
 export default [
-  "soft", "close-up", "close"
-]
+  'soft', 'close-up', 'close',
+];

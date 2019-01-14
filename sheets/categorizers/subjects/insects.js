@@ -1,3 +1,3 @@
 export default [
-  "insect", "insects", "bug", "bugs"
+  'insect', 'insects', 'bug', 'bugs',
 ];

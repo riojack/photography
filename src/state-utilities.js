@@ -10,12 +10,11 @@ function statorWithReset(nextState, reset) {
 
   if (reset) {
     this.state = Object.assign({}, this.originalState, nextState);
-  }
-  else {
+  } else {
     this.state = Object.assign({}, this.state, nextState);
   }
 
   return this.state;
 }
 
-export {stator, statorWithReset};
+export { stator, statorWithReset };

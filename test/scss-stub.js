@@ -1,8 +1,8 @@
-let hook = require('css-modules-require-hook');
+const hook = require('css-modules-require-hook');
 
 hook({
   extensions: ['.scss'],
-  preprocessCss: function (css) {
+  preprocessCss() {
     return '';
-  }
+  },
 });

@@ -1,3 +1,3 @@
 export default [
-  "dark", "darkness", "soft light"
+  'dark', 'darkness', 'soft light',
 ];

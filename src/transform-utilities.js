@@ -1,9 +1,12 @@
 function injectOnClick(list, onClick) {
-  list.forEach(item => item.onClick = onClick);
+  list.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
+    item.onClick = onClick;
+  });
 }
 
-export default {
-  injectOnClick
+const TransformUtilities = {
+  injectOnClick,
 };
 
-export {injectOnClick};
+export default TransformUtilities;
