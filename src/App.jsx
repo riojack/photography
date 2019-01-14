@@ -17,16 +17,15 @@ function _toBase64(val) {
 function getItems(items, collection, group, extras) {
   return items.map((item, key) => {
     const extraProps = {
-      lookupId: `${_toBase64(item.name)}|${_toBase64(`${collection.time}`)}|${_toBase64(collection.collection)}|${_toBase64(group.group)}`,
+      lookupId: `${_toBase64(item.name)}`
+        + `|${_toBase64(`${collection.time}`)}`
+        + `|${_toBase64(collection.collection)}`
+        + `|${_toBase64(group.group)}`,
     };
-
-
     const overwrites = {
       image: urljoin(extras.cacheUrl, item.image.replace('./', '')),
       backgroundUrl: urljoin(extras.cacheUrl, item.backgroundUrl.replace('./', '')),
     };
-
-
     const thumbProps = Object.assign({}, item, extraProps, overwrites);
 
     return (
@@ -50,7 +49,7 @@ function getCollections(group, collections, extras) {
             {`${group.group}: ${months[datetime.getMonth()]} ${datetime.getDate()}, ${datetime.getFullYear()}`}
           </h4>
         </div>
-        <ol className="collection-items" data-item-count={c.items.length}>{ getItems(c.items, c, group, extras) }</ol>
+        <ol className="collection-items" data-item-count={c.items.length}>{getItems(c.items, c, group, extras)}</ol>
       </li>
     );
   });
@@ -59,7 +58,7 @@ function getCollections(group, collections, extras) {
 function getGroups(groups, extras) {
   return groups.map((g, key) => (
     <li key={`group-${key}`}>
-      <ol className="group-collections">{ getCollections(g, g.collections, extras) }</ol>
+      <ol className="group-collections">{getCollections(g, g.collections, extras)}</ol>
     </li>
   ));
 }
@@ -70,15 +69,10 @@ function getCollectionsFromGroups(groups) {
 
 function getPhotoThingsToRender(props) {
   const groups = props.groups;
-
-
   const limitRenderTo = props.limitRenderTo;
-
-
   const clickHandler = props.whenCollectionNameClicked;
-
-
   const extras = { cacheUrl: props.cacheUrl };
+
   if (limitRenderTo === 'collectionNames') {
     const collections = getCollectionsFromGroups(groups);
 
@@ -100,7 +94,7 @@ function getPhotoThingsToRender(props) {
     );
   }
 
-  return <ol className="photo-groups">{ getGroups(groups, extras) }</ol>;
+  return <ol className="photo-groups">{getGroups(groups, extras)}</ol>;
 }
 
 class App extends React.Component {

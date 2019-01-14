@@ -13,7 +13,7 @@ class ByCollectionStrategy {
   }
 
   next(numCollectionsToLoad) {
-    this.groupsFetched++;
+    this.groupsFetched += 1;
     if (numCollectionsToLoad) {
       this.groupsFetched = numCollectionsToLoad;
     }
@@ -34,7 +34,7 @@ class ByCollectionStrategy {
 
         groupShallowCopy.collections.push(collection);
 
-        collectionCount++;
+        collectionCount += 1;
 
         if (collectionCount === this.groupsFetched) {
           exitedEarly = true;
@@ -50,7 +50,6 @@ class ByCollectionStrategy {
 
     return groupsToRender;
   }
-
 }
 
 export default ByCollectionStrategy;

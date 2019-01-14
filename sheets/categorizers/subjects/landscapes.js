@@ -1,1 +1,1 @@
-export default ["landscape", "landscapes", "wide", "wide angle"];
+export default ['landscape', 'landscapes', 'wide', 'wide angle'];

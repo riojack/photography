@@ -1,3 +1,3 @@
 export default [
-  "plant", "plants", "vegetation"
+  'plant', 'plants', 'vegetation',
 ];

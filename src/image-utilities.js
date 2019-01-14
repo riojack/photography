@@ -2,38 +2,37 @@ const LARGE_SCALE = 0.9;
 const MID_SCALE = 0.7;
 const SMALL_SCALE = 0.4;
 
-let scale = {
-  LARGE_SCALE, MID_SCALE, SMALL_SCALE
+const scale = {
+  LARGE_SCALE, MID_SCALE, SMALL_SCALE,
 };
 
 function isTallImage(image) {
   return image.height > image.width;
 }
 
-function nextScale(scale) {
+function nextScale(scaleNext) {
   let proceedingScale = MID_SCALE;
 
-  if (scale === MID_SCALE) {
+  if (scaleNext === MID_SCALE) {
     proceedingScale = SMALL_SCALE;
-  }
-  else if (scale === SMALL_SCALE) {
+  } else if (scaleNext === SMALL_SCALE) {
     proceedingScale = LARGE_SCALE;
   }
 
   return proceedingScale;
 }
 
-function nextScaleOfImage(scale, image) {
-  let targetScale = nextScale(scale);
+function nextScaleOfImage(scaleNext, image) {
+  const targetScale = nextScale(scaleNext);
 
   return {
     height: image.height * targetScale,
-    width: image.width * targetScale
+    width: image.width * targetScale,
   };
 }
 
-function previousScale(scale) {
-  return nextScale(nextScale(scale));
+function previousScale(currentScale) {
+  return nextScale(nextScale(currentScale));
 }
 
 export default {
@@ -41,13 +40,13 @@ export default {
   nextScale,
   nextScaleOfImage,
   previousScale,
-  scale
-}
+  scale,
+};
 
 export {
   isTallImage,
   nextScale,
   nextScaleOfImage,
   previousScale,
-  scale
+  scale,
 };

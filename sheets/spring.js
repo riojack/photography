@@ -1,4 +1,4 @@
-const data = {
+const SpringsArrival = {
   group: 'Spring Season',
   collections: [{
     collection: 'Spring\'s Arrival 2017',
@@ -6,55 +6,55 @@ const data = {
     time: 1492059600000,
     items: [
       {
-        "name": "9xDPMxdZRl10",
-        "image": "./deck/spring-2017-001/9xDPMxdZRl10.jpg",
-        "backgroundUrl": "./deck/spring-2017-001/9xDPMxdZRl10.jpg",
-        "backgroundPosition": {
-          "x": 0,
-          "y": 0
+        name: '9xDPMxdZRl10',
+        image: './deck/spring-2017-001/9xDPMxdZRl10.jpg',
+        backgroundUrl: './deck/spring-2017-001/9xDPMxdZRl10.jpg',
+        backgroundPosition: {
+          x: 0,
+          y: 0,
         },
-        "height": 576,
-        "width": 1024,
-        "tags": ["retina"]
+        height: 576,
+        width: 1024,
+        tags: ['retina'],
       },
       {
-        "name": "tqQ3Tcclt2wn",
-        "image": "./deck/spring-2017-001/tqQ3Tcclt2wn.jpg",
-        "backgroundUrl": "./deck/spring-2017-001/tqQ3Tcclt2wn.jpg",
-        "backgroundPosition": {
-          "x": 0,
-          "y": 0
+        name: 'tqQ3Tcclt2wn',
+        image: './deck/spring-2017-001/tqQ3Tcclt2wn.jpg',
+        backgroundUrl: './deck/spring-2017-001/tqQ3Tcclt2wn.jpg',
+        backgroundPosition: {
+          x: 0,
+          y: 0,
         },
-        "height": 576,
-        "width": 1024,
-        "tags": ["retina"]
+        height: 576,
+        width: 1024,
+        tags: ['retina'],
       },
       {
-        "name": "xsrOW8EaKwLK",
-        "image": "./deck/spring-2017-001/xsrOW8EaKwLK.jpg",
-        "backgroundUrl": "./deck/spring-2017-001/xsrOW8EaKwLK.jpg",
-        "backgroundPosition": {
-          "x": 0,
-          "y": 0
+        name: 'xsrOW8EaKwLK',
+        image: './deck/spring-2017-001/xsrOW8EaKwLK.jpg',
+        backgroundUrl: './deck/spring-2017-001/xsrOW8EaKwLK.jpg',
+        backgroundPosition: {
+          x: 0,
+          y: 0,
         },
-        "height": 576,
-        "width": 1024,
-        "tags": ["retina"]
+        height: 576,
+        width: 1024,
+        tags: ['retina'],
       },
       {
-        "name": "rYgoN4H4GtA8",
-        "image": "./deck/spring-2017-001/rYgoN4H4GtA8.jpg",
-        "backgroundUrl": "./deck/spring-2017-001/rYgoN4H4GtA8.jpg",
-        "backgroundPosition": {
-          "x": 0,
-          "y": 0
+        name: 'rYgoN4H4GtA8',
+        image: './deck/spring-2017-001/rYgoN4H4GtA8.jpg',
+        backgroundUrl: './deck/spring-2017-001/rYgoN4H4GtA8.jpg',
+        backgroundPosition: {
+          x: 0,
+          y: 0,
         },
-        "height": 576,
-        "width": 1024,
-        "tags": ["retina", "hero"]
-      }
-    ]
-  }]
+        height: 576,
+        width: 1024,
+        tags: ['retina', 'hero'],
+      },
+    ],
+  }],
 };
 
-export {data as SpringsArrival};
+export default SpringsArrival;

@@ -1,47 +1,20 @@
-function doGroupingByCollectionTime(data) {
-  let byGroupAndTime = data.reduce((accumulator, g) => {
-    let groupName = g.group;
-
-    g.collections.forEach(c => {
-      let time = c.time,
-        compKey = groupName + '-' + time;
-
-      if (!accumulator[compKey]) {
-        accumulator[compKey] = {
-          group: groupName,
-          collections: []
-        };
-      }
-
-      accumulator[compKey].collections.push(c);
-    });
-
-    return accumulator;
-
-  }, {});
-
-  return Object.keys(byGroupAndTime)
-    .map(k => byGroupAndTime[k]);
-}
-
 class Detangler {
-
   constructor(data) {
     this.data = data;
   }
 
   groupByCollectionTime() {
-    let byGroupAndTime = this.data.reduce((accumulator, g) => {
-      let groupName = g.group;
+    const byGroupAndTime = this.data.reduce((accumulator, g) => {
+      const groupName = g.group;
 
-      g.collections.forEach(c => {
-        let time = c.time,
-          compKey = groupName + '-' + time;
+      g.collections.forEach((c) => {
+        const { time } = c;
+        const compKey = `${groupName}-${time}`;
 
         if (!accumulator[compKey]) {
           accumulator[compKey] = {
             group: groupName,
-            collections: []
+            collections: [],
           };
         }
 
@@ -49,22 +22,18 @@ class Detangler {
       });
 
       return accumulator;
-
     }, {});
 
-    let detangledData = Object.keys(byGroupAndTime)
+    const detangledData = Object.keys(byGroupAndTime)
       .map(k => byGroupAndTime[k]);
 
     return new Detangler(detangledData);
   }
 
   sortHeroesFirst() {
-    this.data.forEach(g => {
-
-      g.collections.forEach(c => {
-
-        let { heroes, nonHeroes } = c.items.reduce((sortCategories, item) => {
-
+    this.data.forEach((g) => {
+      g.collections.forEach((c) => {
+        const { heroes, nonHeroes } = c.items.reduce((sortCategories, item) => {
           if (item.tags && item.tags.indexOf('hero') >= 0) {
             sortCategories.heroes.push(item);
           } else {
@@ -72,13 +41,14 @@ class Detangler {
           }
 
           return sortCategories;
+        }, {
+          heroes: [],
+          nonHeroes: [],
+        });
 
-        }, { heroes: [], nonHeroes: [] });
-
+        // eslint-disable-next-line no-param-reassign
         c.items = [].concat(heroes, nonHeroes);
-
       });
-
     });
 
     return new Detangler(this.data);
@@ -90,5 +60,5 @@ class Detangler {
 }
 
 export default {
-  createInstance: (data) => new Detangler(data)
-}
+  createInstance: data => new Detangler(data),
+};
