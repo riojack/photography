@@ -1,14 +1,18 @@
-import Thumb from '../../src/components/Thumb';
 import React from 'react';
-import {shallow} from 'enzyme';
-import {expect} from 'chai';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
 import Chance from 'chance';
-import {stub, assert} from 'sinon';
+import { stub, assert } from 'sinon';
+import Thumb from '../../src/components/Thumb';
 
 describe('Thumb Tests', () => {
-  let element,
-    viewProps,
-    chance;
+  let element;
+
+
+  let viewProps;
+
+
+  let chance;
 
   function doRender(props) {
     element = shallow(<Thumb {...props} />);
@@ -19,12 +23,12 @@ describe('Thumb Tests', () => {
     viewProps = {
       onClick: stub(),
       lookupId: chance.string(),
-      backgroundUrl: chance.url({extensions: ['jpg', 'png']}),
+      backgroundUrl: chance.url({ extensions: ['jpg', 'png'] }),
       backgroundPosition: {
-        x: chance.integer({min: 1, max: 5}),
-        y: chance.integer({min: 1, max: 5})
+        x: chance.integer({ min: 1, max: 5 }),
+        y: chance.integer({ min: 1, max: 5 }),
       },
-      height: chance.integer({min: 25, max: 50})
+      height: chance.integer({ min: 25, max: 50 }),
     };
 
     doRender(viewProps);
@@ -51,7 +55,7 @@ describe('Thumb Tests', () => {
     viewProps.tags = [chance.word(), chance.word(), chance.word()];
     doRender(viewProps);
 
-    viewProps.tags.forEach(tag => {
+    viewProps.tags.forEach((tag) => {
       expect(element.prop('data-tags')).to.contain(tag);
     });
   });

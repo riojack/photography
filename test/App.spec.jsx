@@ -1,19 +1,24 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import {expect} from 'chai';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
 import Chance from 'chance';
-import {assert, stub} from 'sinon';
+import { assert, stub } from 'sinon';
 import TransitionableThumb from '../src/components/TransitionableThumb';
 import App from '../src/App';
 
-let urljoin = require('url-join');
+const urljoin = require('url-join');
 
 describe('App Tests', () => {
-  let viewProps,
-    element,
+  let viewProps;
 
-    chance,
-    listOfGroups;
+
+  let element;
+
+
+  let chance;
+
+
+  let listOfGroups;
 
   const CACHE_URL = 'http://www.example.com/cache';
 
@@ -23,25 +28,25 @@ describe('App Tests', () => {
 
   function makeItem() {
     return {
-      name: 'some-name-' + chance.word() + '-' + chance.string(),
-      image: './foo/bar/' + chance.word() + '.jpg',
-      backgroundUrl: './foo/bar/' + chance.word() + '.jpg'
+      name: `some-name-${chance.word()}-${chance.string()}`,
+      image: `./foo/bar/${chance.word()}.jpg`,
+      backgroundUrl: `./foo/bar/${chance.word()}.jpg`,
     };
   }
 
   function makeCollectionWithItems() {
     return {
-      collection: chance.sentence({words: 5}),
+      collection: chance.sentence({ words: 5 }),
       time: chance.timestamp(),
-      items: chance.n(makeItem, chance.integer({min: 5, max: 10}))
+      items: chance.n(makeItem, chance.integer({ min: 5, max: 10 })),
     };
   }
 
   function makeGroupWithCollections() {
     return {
       group: `${chance.word()} ${chance.word()} ${chance.word()}`,
-      collections: chance.n(makeCollectionWithItems, chance.integer({min: 3, max: 8}))
-    }
+      collections: chance.n(makeCollectionWithItems, chance.integer({ min: 3, max: 8 })),
+    };
   }
 
   function render(props) {
@@ -52,14 +57,14 @@ describe('App Tests', () => {
     chance = new Chance();
     global.btoa = _toBase64;
 
-    listOfGroups = chance.n(makeGroupWithCollections, chance.integer({min: 3, max: 8}));
+    listOfGroups = chance.n(makeGroupWithCollections, chance.integer({ min: 3, max: 8 }));
 
     viewProps = {
       cacheUrl: CACHE_URL,
       groups: listOfGroups,
       whenBannerClicked: stub(),
       whenCollapseToGroupsClicked: stub(),
-      whenCollectionNameClicked: stub()
+      whenCollectionNameClicked: stub(),
     };
 
     render(viewProps);
@@ -135,20 +140,22 @@ describe('App Tests', () => {
 
     it('should have one OL with the className "group-collections" and it should be inside the group LI that will contain each collection', () => {
       expect(element.children('ol').children('li').children('ol')).to.have.length(viewProps.groups.length);
-      expect(element.children('ol').children('li').children('ol').at(0).props()).to.have.property('className')
+      expect(element.children('ol').children('li').children('ol').at(0)
+        .props()).to.have.property('className')
         .that.equals('group-collections');
     });
 
     it('should have an LI inside the collection OL for each collection', () => {
-      let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
+      const expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
       expect(element.children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
     });
 
     it('should have an OL with a className "collection-items", a data-item-count attribute with item count value, and it should be inside the collection OL LIs that will contain each item', () => {
-      let expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
+      const expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-      const actualOrderedListOfItems = element.children('ol').children('li').children('ol').children('li').children('ol');
+      const actualOrderedListOfItems = element.children('ol').children('li').children('ol').children('li')
+        .children('ol');
       expect(actualOrderedListOfItems).to.have.length(expectedOlCount);
       expect(actualOrderedListOfItems.at(0).props()).to.have.property('className')
         .that.equals('collection-items');
@@ -157,13 +164,17 @@ describe('App Tests', () => {
     });
 
     it('should have an LI inside the OL inside the collection OL LIs for each item', () => {
-      let expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
+      const expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
-      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li')).to.have.length(expectedLiCount);
+      expect(element.children('ol').children('li').children('ol').children('li')
+        .children('ol')
+        .children('li')).to.have.length(expectedLiCount);
     });
 
     it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed by a date-like string', () => {
-      let colNameDate = element.children('ol').children('li').children('ol').children('li').children('div').children('h4');
+      const colNameDate = element.children('ol').children('li').children('ol').children('li')
+        .children('div')
+        .children('h4');
 
       expect(colNameDate.at(0).props()).to.have.property('className')
         .that.equals('collection-name-and-time');
@@ -172,10 +183,13 @@ describe('App Tests', () => {
         .to.match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
     });
 
-    it('should have one TransitionableThumb for each item in each collection in each group', function () {
-      let expectedThumbCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
+    it('should have one TransitionableThumb for each item in each collection in each group', () => {
+      const expectedThumbCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0), 0);
 
-      expect(element.children('ol').children('li').children('ol').children('li').children('ol').children('li').children(TransitionableThumb))
+      expect(element.children('ol').children('li').children('ol').children('li')
+        .children('ol')
+        .children('li')
+        .children(TransitionableThumb))
         .to.have.length(expectedThumbCount);
     });
 
@@ -184,26 +198,34 @@ describe('App Tests', () => {
         .children('ol')
         .children('li')
         .forEach((g, gi) => {
-          let group = listOfGroups[gi];
+          const group = listOfGroups[gi];
           g.children('ol')
             .children('li')
             .forEach((c, ci) => {
-              let collection = group.collections[ci];
+              const collection = group.collections[ci];
               c.children('ol')
                 .children('li')
                 .forEach((i, ii) => {
-                  let item = collection.items[ii],
-                    expectedLookupId = _toBase64(item.name) + '|' + _toBase64(`${collection.time}`) + '|' + _toBase64(collection.collection) + '|' + _toBase64(group.group),
-                    expectedProps = Object.assign({}, item, {
-                      lookupId: expectedLookupId
-                    }),
-                    thumb = i.children(TransitionableThumb),
-                    thumbProps = Object.assign({}, thumb.props());
+                  const item = collection.items[ii];
 
-                    delete thumbProps.image;
-                    delete thumbProps.backgroundUrl;
-                    delete expectedProps.image;
-                    delete expectedProps.backgroundUrl;
+
+                  const expectedLookupId = `${_toBase64(item.name)}|${_toBase64(`${collection.time}`)}|${_toBase64(collection.collection)}|${_toBase64(group.group)}`;
+
+
+                  const expectedProps = Object.assign({}, item, {
+                    lookupId: expectedLookupId,
+                  });
+
+
+                  const thumb = i.children(TransitionableThumb);
+
+
+                  const thumbProps = Object.assign({}, thumb.props());
+
+                  delete thumbProps.image;
+                  delete thumbProps.backgroundUrl;
+                  delete expectedProps.image;
+                  delete expectedProps.backgroundUrl;
 
                   expect(thumbProps, `Group ${gi} collection ${ci} item ${ii}`).to.eql(expectedProps);
                 });
@@ -216,20 +238,30 @@ describe('App Tests', () => {
         .children('ol')
         .children('li')
         .forEach((g, gi) => {
-          let group = listOfGroups[gi];
+          const group = listOfGroups[gi];
           g.children('ol')
             .children('li')
             .forEach((c, ci) => {
-              let collection = group.collections[ci];
+              const collection = group.collections[ci];
               c.children('ol')
                 .children('li')
                 .forEach((i, ii) => {
-                  let item = collection.items[ii],
-                    thumb = i.children(TransitionableThumb),
-                    image_url = item.image,
-                    background_url = item.backgroundUrl,
-                    expected_image_url = urljoin(CACHE_URL, image_url.replace('./', '')),
-                    expected_backround_url = urljoin(CACHE_URL, background_url.replace('./', ''));
+                  const item = collection.items[ii];
+
+
+                  const thumb = i.children(TransitionableThumb);
+
+
+                  const image_url = item.image;
+
+
+                  const background_url = item.backgroundUrl;
+
+
+                  const expected_image_url = urljoin(CACHE_URL, image_url.replace('./', ''));
+
+
+                  const expected_backround_url = urljoin(CACHE_URL, background_url.replace('./', ''));
 
                   expect(thumb.props().image, `Group ${gi} collection ${ci} item ${ii}.image`).to.eql(expected_image_url);
                   expect(thumb.props().backgroundUrl, `Group ${gi} collection ${ci} item ${ii}.backgroundUrl`).to.eql(expected_backround_url);
@@ -240,12 +272,14 @@ describe('App Tests', () => {
   });
 
   describe('when rendering only collection names from groups', () => {
-    let collectionNames,
-      collectionCount;
+    let collectionNames;
+
+
+    let collectionCount;
 
     beforeEach('set up', () => {
       collectionNames = viewProps.groups.reduce((prevGroup, group) => {
-        let names = group.collections.map(collection => collection.collection);
+        const names = group.collections.map(collection => collection.collection);
         return prevGroup.concat(names);
       }, []);
       collectionCount = collectionNames.length;
@@ -265,7 +299,7 @@ describe('App Tests', () => {
     });
 
     it('should place each collection\'s name in an H3 inside the LIs', () => {
-      let actualCollectionNames = element.children('ol').children('li').children('h3').map(element => element.text());
+      const actualCollectionNames = element.children('ol').children('li').children('h3').map(element => element.text());
 
       expect(actualCollectionNames).to.have.members(collectionNames);
     });
@@ -273,7 +307,7 @@ describe('App Tests', () => {
     it('should register a click handler on each H3 that fires the props.whenCollectionNameClicked handler with the collection name', () => {
       assert.notCalled(viewProps.whenCollectionNameClicked);
 
-      element.children('ol').children('li').children('h3').forEach(h3 => {
+      element.children('ol').children('li').children('h3').forEach((h3) => {
         h3.simulate('click');
         assert.calledOnce(viewProps.whenCollectionNameClicked);
         assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());
@@ -285,7 +319,7 @@ describe('App Tests', () => {
     it('should register a touch (onTouchEnd) handler on each H3 that fires the props.whenCollectionNameClicked handler with the collection name', () => {
       assert.notCalled(viewProps.whenCollectionNameClicked);
 
-      element.children('ol').children('li').children('h3').forEach(h3 => {
+      element.children('ol').children('li').children('h3').forEach((h3) => {
         h3.simulate('touchend');
         assert.calledOnce(viewProps.whenCollectionNameClicked);
         assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());

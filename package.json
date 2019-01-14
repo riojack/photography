@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm test && webpack -d",
+    "lint": "eslint -c ./.eslintrc.json src/**/*.js test/**/*.js sheets/",
+    "build": "yarn test && webpack -d",
     "build:notest": "webpack -d",
-    "build:prod": "npm test && webpack -p",
+    "prebuild:prod": "yarn lint",
+    "build:prod": "yarn test && webpack -p",
     "test": "mocha test --recursive",
     "bump:patch": "npm version patch -m \"Pre-release, as %s.\"",
     "bump": "npm run bump:patch"
@@ -17,6 +19,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "react": "16.4.2",
+    "react-dom": "16.4.2"
+  },
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
@@ -29,13 +35,15 @@
     "css-modules-require-hook": "4.2.3",
     "enzyme": "3.4.1",
     "enzyme-adapter-react-16": "1.2.0",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "express": "4.16.3",
     "jpeg-js": "0.3.4",
     "jsdom": "11.12.0",
     "mocha": "5.2.0",
     "node-sass": "4.9.3",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
     "sass-loader": "7.1.0",
     "sass-mediaqueries": "1.6.1",
     "sinon": "6.1.5",
