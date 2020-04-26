@@ -24,7 +24,7 @@ class ByCollectionStrategy {
 
     for (let i = 0; i < this.groups.length; i++) {
       const groupCollections = this.groups[i].collections;
-      const groupShallowCopy = Object.assign({}, this.groups[i], { collections: [] });
+      const groupShallowCopy = { ...this.groups[i], collections: [] };
 
       let exitedEarly = false;
       let j = 0;

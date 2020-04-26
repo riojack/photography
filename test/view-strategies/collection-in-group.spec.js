@@ -36,7 +36,7 @@ describe('Group in a collection sort strategy tests', () => {
   describe('when calling next()', () => {
     it('should return the group containing only the collection that matches', () => {
       const strategy = new GroupInCollectionStrategy(listOfGroups, expectedCollection.collection);
-      const expectedInnerGroup = Object.assign({}, expectedGroup, { collections: [expectedCollection] });
+      const expectedInnerGroup = { ...expectedGroup, collections: [expectedCollection] };
       const group = strategy.next();
 
       expect(group).to.eql([expectedInnerGroup]);
