@@ -1,4 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssNano = require('cssnano');
 
 module.exports = {
   mode: 'development',
@@ -16,17 +18,23 @@ module.exports = {
     sourcePrefix: '',
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({
-      uglifyOptions: {
-        minimize: true,
-        compress: {
-          warnings: false,
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          minimize: true,
+          compress: {
+          },
+          output: {
+            comments: false,
+          },
         },
-        output: {
-          comments: false,
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['advanced'],
         },
-      },
-    })],
+      }),
+    ],
   },
   module: {
     rules: [{
@@ -42,8 +50,16 @@ module.exports = {
       },
       {
         loader: 'css-loader',
+      },
+      {
+        loader: 'postcss-loader',
         options: {
-          minimize: true,
+          ident: 'postcss',
+          plugins: [
+            cssNano({
+              preset: 'advanced',
+            }),
+          ],
         },
       },
       {
