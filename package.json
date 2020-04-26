@@ -15,16 +15,16 @@
     "bump": "npm run bump:patch"
   },
   "engines": {
-    "node": ">=8.11.3"
+    "node": ">=12.16.2"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.16.3",
-    "jpeg-js": "0.3.4",
-    "react": "16.4.2",
-    "react-dom": "16.4.2"
+    "express": "4.17.1",
+    "jpeg-js": "0.4.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
