@@ -10,7 +10,7 @@ import detangler from './data-detangler';
 import App from './App';
 
 const mountContainerId = 'photography-app-container';
-const CACHE_PREFIX_URL = 'http://d3rjsdgb9hzkgz.cloudfront.net/';
+const CACHE_PREFIX_URL = 'https://d3rjsdgb9hzkgz.cloudfront.net/';
 let ext = {};
 
 function doRender() {
