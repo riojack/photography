@@ -1038,6 +1038,61 @@ const Neal = {
         },
       ],
     },
+    {
+      collection: 'New Life',
+      added: 'April 25, 2020',
+      time: 1587819600 * 1000,
+      items: [
+        {
+          name: '7Dt9uph5QPh3qGRU',
+          image: './deck/neal-017/7Dt9uph5QPh3qGRU.jpg',
+          backgroundUrl: './deck/neal-017/7Dt9uph5QPh3qGRU.jpg',
+          backgroundPosition: {
+            x: 0,
+            y: 0,
+          },
+          height: 576,
+          width: 1024,
+          tags: ['retina'],
+        },
+        {
+          name: 'e1CGWMi4v5M9yYcx',
+          image: './deck/neal-017/e1CGWMi4v5M9yYcx.jpg',
+          backgroundUrl: './deck/neal-017/e1CGWMi4v5M9yYcx.jpg',
+          backgroundPosition: {
+            x: 0,
+            y: 0,
+          },
+          height: 576,
+          width: 1024,
+          tags: ['retina'],
+        },
+        {
+          name: 'MGT6OxCFUgMy6Vgj',
+          image: './deck/neal-017/MGT6OxCFUgMy6Vgj.jpg',
+          backgroundUrl: './deck/neal-017/MGT6OxCFUgMy6Vgj.jpg',
+          backgroundPosition: {
+            x: 0,
+            y: 0,
+          },
+          height: 576,
+          width: 1024,
+          tags: ['retina'],
+        },
+        {
+          name: 'gED5foKXBWDJh21G',
+          image: './deck/neal-017/gED5foKXBWDJh21G.jpg',
+          backgroundUrl: './deck/neal-017/gED5foKXBWDJh21G.jpg',
+          backgroundPosition: {
+            x: 0,
+            y: 0,
+          },
+          height: 576,
+          width: 1024,
+          tags: ['retina'],
+        },
+      ],
+    },
   ],
 };
 
