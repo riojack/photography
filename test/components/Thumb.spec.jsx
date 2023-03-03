@@ -4,7 +4,7 @@ import Chance from 'chance';
 import { stub, assert } from 'sinon';
 import Thumb from '../../src/components/Thumb';
 
-describe.skip('Thumb Tests', () => {
+describe('Thumb Tests', () => {
   let container;
   let viewProps;
   let chance;

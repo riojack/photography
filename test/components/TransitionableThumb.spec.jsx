@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import TransitionableThumb from '../../src/components/TransitionableThumb';
 
-describe.skip('TransitionableThumb Tests', () => {
+describe('TransitionableThumb Tests', () => {
   let container;
   let viewProps;
   let chance;
@@ -52,8 +52,8 @@ describe.skip('TransitionableThumb Tests', () => {
       const newProps = buildNewComponentProps();
       doRender(newProps);
 
-      const leftShark = container.find('.left-shark');
-      const rightShark = container.find('.right-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
       // expect(leftShark.props()).to.not.have.property('style');
 
@@ -66,8 +66,8 @@ describe.skip('TransitionableThumb Tests', () => {
       const newProps = buildNewComponentProps();
       doRender(newProps);
 
-      const leftShark = container.find('.left-shark');
-      const rightShark = container.find('.right-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
       // expect(leftShark.props()).to.have.property('style')
       //   .that.deep.equals({ backgroundImage: `url("${newProps.backgroundUrl}")` });
@@ -78,8 +78,8 @@ describe.skip('TransitionableThumb Tests', () => {
     it('should not switch sharks if the image does not change', () => {
       doRender(viewProps);
 
-      const leftShark = container.find('.left-shark');
-      const rightShark = container.find('.right-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
       // expect(leftShark.props()).to.have.property('style')
       //   .that.deep.equals({ backgroundImage: `url("${viewProps.backgroundUrl}")` });
