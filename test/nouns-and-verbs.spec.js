@@ -81,7 +81,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     whenRenderPromiseIsResolved();
   }
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     sandbox = createSandbox();
     chance = new Chance();
 
@@ -239,7 +239,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     nounsAndVerbs.withExternals(externals);
   });
 
-  afterEach('tear down', () => {
+  afterEach(() => {
     sandbox.restore();
     nounsAndVerbs.unregisterExternals();
     nounsAndVerbs.resetMergers();

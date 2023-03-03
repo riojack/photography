@@ -1,6 +1,6 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssNano = require('cssnano');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const cssNano = require('cssnano');
 
 module.exports = {
   mode: 'development',
@@ -19,21 +19,21 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          minimize: true,
-          compress: {
-          },
-          output: {
-            comments: false,
-          },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['advanced'],
-        },
-      }),
+      // new UglifyJsPlugin({
+      //   uglifyOptions: {
+      //     minimize: true,
+      //     compress: {
+      //     },
+      //     output: {
+      //       comments: false,
+      //     },
+      //   },
+      // }),
+      // new OptimizeCSSAssetsPlugin({
+      //   cssProcessorPluginOptions: {
+      //     preset: ['advanced'],
+      //   },
+      // }),
     ],
   },
   module: {
@@ -51,17 +51,17 @@ module.exports = {
       {
         loader: 'css-loader',
       },
-      {
-        loader: 'postcss-loader',
-        options: {
-          ident: 'postcss',
-          plugins: [
-            cssNano({
-              preset: 'advanced',
-            }),
-          ],
-        },
-      },
+      // {
+      //   loader: 'postcss-loader',
+      //   options: {
+      //     ident: 'postcss',
+      //     plugins: [
+      //       cssNano({
+      //         preset: 'advanced',
+      //       }),
+      //     ],
+      //   },
+      // },
       {
         loader: 'sass-loader',
       },

@@ -43,8 +43,6 @@ class NewestPhotosStrategy {
     this.itemsFetchedSoFar += count;
 
     let countOfItemsAccumulated = 0;
-
-
     const nToGet = this.itemsFetchedSoFar;
 
     return this.regrouped.reduce((accumulator, gr) => {
@@ -56,8 +54,6 @@ class NewestPhotosStrategy {
           if (countOfItemsAccumulated === nToGet) break;
 
           const collection = gr.collections[i];
-
-
           const replicatedCollection = { ...collection, items: [] };
 
           replicatedGroup.collections.push(replicatedCollection);

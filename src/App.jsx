@@ -1,7 +1,6 @@
 import React from 'react';
 import TransitionableThumb from './components/TransitionableThumb';
-
-const urljoin = require('url-join');
+import urlJoin from 'url-join';
 
 const months = [
   'January', 'February', 'March',
@@ -23,8 +22,8 @@ function getItems(items, collection, group, extras) {
         + `|${_toBase64(group.group)}`,
     };
     const overwrites = {
-      image: urljoin(extras.cacheUrl, item.image.replace('./', '')),
-      backgroundUrl: urljoin(extras.cacheUrl, item.backgroundUrl.replace('./', '')),
+      image: urlJoin(extras.cacheUrl, item.image.replace('./', '')),
+      backgroundUrl: urlJoin(extras.cacheUrl, item.backgroundUrl.replace('./', '')),
     };
     const thumbProps = Object.assign({}, item, extraProps, overwrites);
 

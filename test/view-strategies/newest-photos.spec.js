@@ -17,7 +17,7 @@ describe('Newest photos sort strategy tests', () => {
   let strategy;
   let sandbox;
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     sandbox = createSandbox();
     chance = new Chance();
 
@@ -73,7 +73,7 @@ describe('Newest photos sort strategy tests', () => {
     strategy = new NewestPhotosStrategy(listOfGroups);
   });
 
-  afterEach('tear down', () => {
+  afterEach(() => {
     sandbox.restore();
   });
 

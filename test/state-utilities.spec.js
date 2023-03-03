@@ -15,7 +15,7 @@ describe('State utilities Tests', () => {
 
   let statorWithResetImpl;
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     chance = new Chance();
     state = { propertyA: chance.word() };
 

@@ -57,7 +57,7 @@ describe('Image Utilities tests', () => {
   describe('nextScaleOfImage utility', () => {
     let image;
 
-    beforeEach('set up', () => {
+    beforeEach(() => {
       image = {
         height: 100,
         width: 100,

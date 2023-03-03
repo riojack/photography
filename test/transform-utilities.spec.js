@@ -14,7 +14,7 @@ describe('Transformer tests', () => {
     };
   }
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     chance = new Chance();
 
     listOfThings = chance.n(makeThing, chance.integer({

@@ -13,7 +13,7 @@ describe('Group in a collection sort strategy tests', () => {
   let expectedGroup;
   let expectedCollection;
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     chance = new Chance();
     listOfGroups = [
       {

@@ -5,7 +5,7 @@ import detangler from '../src/data-detangler';
 describe('Data detangler tests', () => {
   let chance;
 
-  beforeEach('set up', () => {
+  beforeEach(() => {
     chance = new Chance();
   });
 
