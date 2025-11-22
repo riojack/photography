@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint -c ./.eslintrc.json ./index.js ./server.js ./webpack.config.js src/**/*.js test/**/*.js sheets/",
-    "build": "yarn test && webpack -d",
+    "build": "npm test && webpack -d",
     "build:notest": "webpack -d",
-    "prebuild:prod": "yarn lint",
-    "build:prod": "yarn test && webpack -p",
-    "pretest": "yarn lint",
+    "prebuild:prod": "npm run lint",
+    "build:prod": "npm test && webpack -p",
+    "pretest": "npm run lint",
     "test": "mocha test --recursive",
     "bump:patch": "npm version patch -m \"Pre-release, as %s.\"",
     "bump": "npm run bump:patch"

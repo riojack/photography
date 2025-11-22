@@ -27,12 +27,8 @@ jobs:
       with:
         node-version: '12.16.x'
     
-    - name: Install Dependencies
-      uses: Borales/actions-yarn@v2.1.0
-      with: 
-        cmd: install
-    
-    - name: Run Tests
-      uses: Borales/actions-yarn@v2.1.0
-      with: 
-        cmd: test
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
