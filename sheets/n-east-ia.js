@@ -16,7 +16,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
-        categories: [],
       },
       {
         name: 'QG1M0TMxe3Wlpfy9',
@@ -29,7 +28,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'dYgKwufrgYiVSPzV',
@@ -42,7 +40,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'rcUwH7sTPXNteKkv',
@@ -55,7 +52,6 @@ const NortheastIowa = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
-        categories: [],
       },
       {
         name: 'GWa1YqkZidClckHk',
@@ -68,7 +64,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'J6b7PBaRy7b3GdA6',
@@ -81,7 +76,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'tiO5v2OsOXEhPGZu',
@@ -94,7 +88,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 't92TUYs80zhU9gY4',
@@ -107,7 +100,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'v0rHl9Kg2ThHK9cA',
@@ -120,7 +112,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'Kc4QfiePiP3oud0D',
@@ -133,7 +124,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'QaBVAwEvsfJlD0uN',
@@ -146,7 +136,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'xYqAsm1perZRltwa',
@@ -159,7 +148,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'd9cfJBAWs75Uk8li',
@@ -172,7 +160,6 @@ const NortheastIowa = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
-        categories: [],
       },
       {
         name: 'fhybimMt826ClNAB',
@@ -185,7 +172,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'vRZ3twR9WQtuhqg3',
@@ -198,7 +184,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'wwJgfYNbWQ7KC7RA',
@@ -211,7 +196,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'xnKWfG1HQLvH4jPe',
@@ -224,7 +208,6 @@ const NortheastIowa = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
-        categories: [],
       },
       {
         name: 'SQuYzrEc2SOGHWgl',
@@ -237,7 +220,6 @@ const NortheastIowa = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
     ],
   }],

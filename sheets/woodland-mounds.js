@@ -18,7 +18,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
-          categories: [],
         },
         {
           name: 'TYhwXyJfyE51ELMA',
@@ -31,7 +30,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'sEYPYcOksK25rxZ7',
@@ -44,7 +42,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'GKqG89j4Innr1Z2I',
@@ -57,7 +54,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'DmgIPX6htsmi4LQc',
@@ -70,7 +66,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'FH0iY3nCPKs2JFRt',
@@ -83,7 +78,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'LKN4G2o4pmZqxoQh',
@@ -96,7 +90,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'GeKWeNUkpnefsJYL',
@@ -109,7 +102,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'UhwnlByDQB7jnwpT',
@@ -122,7 +114,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
       ],
     },
@@ -142,7 +133,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
-          categories: [],
         },
         {
           name: 'WpPApLRpHH6E',
@@ -155,7 +145,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'QIYYaBDhSVCU',
@@ -168,7 +157,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: '63F45ue5ejUl',
@@ -181,7 +169,6 @@ const WoodlandMounds = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
       ],
     },

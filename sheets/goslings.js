@@ -17,7 +17,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'goslings-001-image002',
@@ -30,7 +29,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'goslings-001-image003',
@@ -43,7 +41,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
-          categories: [],
         },
         {
           name: 'goslings-001-image004',
@@ -56,7 +53,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'goslings-001-image005',
@@ -69,7 +65,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'goslings-001-image006',
@@ -82,7 +77,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'goslings-001-image007',
@@ -95,7 +89,6 @@ const Goslings = {
           height: 175,
           width: 390,
           tags: ['retina'],
-          categories: [],
         },
       ],
     }],

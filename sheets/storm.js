@@ -17,7 +17,6 @@ const Storm = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'Opv5QVZXdmzP',
@@ -30,7 +29,6 @@ const Storm = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'q4VVQBzMhyWT',
@@ -43,7 +41,6 @@ const Storm = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
-        categories: [],
       },
       {
         name: '5d6WAPfyRAv3',
@@ -56,7 +53,6 @@ const Storm = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
-        categories: [],
       },
       {
         name: '2xEs9Md526Zs',
@@ -69,7 +65,6 @@ const Storm = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'JuP45abfwmto',
@@ -82,7 +77,6 @@ const Storm = {
         height: 576,
         width: 1024,
         tags: ['retina'],
-        categories: [],
       },
     ],
   },
@@ -102,7 +96,6 @@ const Storm = {
         height: 175,
         width: 390,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'storm-001-image002',
@@ -115,7 +108,6 @@ const Storm = {
         height: 175,
         width: 390,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'storm-001-image003',
@@ -128,7 +120,6 @@ const Storm = {
         height: 175,
         width: 390,
         tags: ['retina'],
-        categories: [],
       },
       {
         name: 'storm-001-image004',
@@ -141,7 +132,6 @@ const Storm = {
         height: 175,
         width: 390,
         tags: ['retina', 'hero'],
-        categories: [],
       },
     ],
   }],

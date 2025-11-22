@@ -18,7 +18,6 @@ const Capitol = {
           height: 1024,
           width: 576,
           tags: ['retina', 'portrait'],
-          categories: [],
         },
         {
           name: 'lONqnwek2OVv',
@@ -31,7 +30,6 @@ const Capitol = {
           height: 1024,
           width: 576,
           tags: ['retina', 'portrait'],
-          categories: [],
         },
         {
           name: 'BMgA8rIZZH8Y',
@@ -44,7 +42,6 @@ const Capitol = {
           height: 1024,
           width: 576,
           tags: ['retina', 'portrait'],
-          categories: [],
         },
         {
           name: 'nPDyKAWygBej',
@@ -57,7 +54,6 @@ const Capitol = {
           height: 1024,
           width: 576,
           tags: ['retina', 'portrait'],
-          categories: [],
         },
         {
           name: 'PCsREB2Ym3rY',
@@ -70,7 +66,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'pJJuZm960tBz',
@@ -83,7 +78,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
-          categories: [],
         },
         {
           name: '3mibfKDT1EMu',
@@ -96,7 +90,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'cUryQDMTAzvw',
@@ -109,7 +102,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'zAXccz3D4nqD',
@@ -122,7 +114,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
       ],
     },
@@ -143,7 +134,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'BKlhM51lOVtD',
@@ -156,7 +146,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'FQj1oFdg75VD',
@@ -169,7 +158,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'In0oW8GUBTnd',
@@ -182,7 +170,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
-          categories: [],
         },
         {
           name: '9puWv7ELrGqq',
@@ -195,7 +182,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'noRIEcAJBg7k',
@@ -208,7 +194,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'vHSGVMYq4ptM',
@@ -221,7 +206,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'qBMEeatu5G50',
@@ -234,7 +218,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 's8I1nOLJ01c6',
@@ -247,7 +230,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'tA4jUdBanRnW',
@@ -260,7 +242,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'w3JpOzC37476',
@@ -273,7 +254,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
         {
           name: 'MuoiXcMxhrfG',
@@ -286,7 +266,6 @@ const Capitol = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
       ],
     },

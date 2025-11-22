@@ -17,7 +17,6 @@ const Winter2018 = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
-          categories: [],
         }, {
           name: 'MLBc9bWYACk1zELC',
           image: './deck/winter2018-001/MLBc9bWYACk1zELC.jpg',
@@ -29,7 +28,6 @@ const Winter2018 = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         }, {
           name: 'xRmyB7wWIVdrVokz',
           image: './deck/winter2018-001/xRmyB7wWIVdrVokz.jpg',
@@ -41,7 +39,6 @@ const Winter2018 = {
           height: 576,
           width: 1024,
           tags: ['retina'],
-          categories: [],
         },
       ],
     }],
