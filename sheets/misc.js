@@ -17,6 +17,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-6',
@@ -29,6 +30,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-1',
@@ -41,6 +43,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-2',
@@ -53,6 +56,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-3',
@@ -65,6 +69,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-4',
@@ -77,6 +82,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-5',
@@ -89,6 +95,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-7',
@@ -101,6 +108,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-8',
@@ -113,6 +121,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'misc-001-10',
@@ -125,6 +134,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'misc-001-11',
@@ -137,6 +147,7 @@ const Misc = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
       ],
     }],

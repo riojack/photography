@@ -16,6 +16,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
+        categories: [],
       },
       {
         name: 'Q4gC5e4ahBQf',
@@ -28,6 +29,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'ttZnr9btOCIg',
@@ -40,6 +42,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'bFVoxgW2vrMU',
@@ -52,6 +55,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'rQxrYgxK5ueg',
@@ -64,6 +68,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'y1brSBdJsz1x',
@@ -76,6 +81,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: '7gvpYum0paZc',
@@ -88,6 +94,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: '28bTvpC3foA8',
@@ -100,6 +107,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'ZE8ptBiVDddI',
@@ -112,6 +120,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'vbrYdfZ4Q7iD',
@@ -124,6 +133,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'BRkLfrZZjhvu',
@@ -136,6 +146,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
     ],
   },
@@ -155,6 +166,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
+        categories: [],
       },
       {
         name: 'tt-001-2',
@@ -167,6 +179,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-3',
@@ -179,6 +192,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-4',
@@ -191,6 +205,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-5',
@@ -203,6 +218,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-6',
@@ -215,6 +231,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-7',
@@ -227,6 +244,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-8',
@@ -239,6 +257,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-9',
@@ -251,6 +270,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-10',
@@ -263,6 +283,7 @@ const RedRock = {
         height: 1024,
         width: 576,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: 'tt-001-11',
@@ -275,6 +296,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-12',
@@ -287,6 +309,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-13',
@@ -299,6 +322,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tt-001-14',
@@ -311,6 +335,7 @@ const RedRock = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
     ],
   }],

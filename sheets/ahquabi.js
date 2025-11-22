@@ -17,6 +17,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-11',
@@ -29,6 +30,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-5',
@@ -41,6 +43,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-15',
@@ -53,6 +56,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-14',
@@ -65,6 +69,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-2',
@@ -77,6 +82,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-3',
@@ -89,6 +95,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-4',
@@ -101,6 +108,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-10',
@@ -113,6 +121,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-7',
@@ -125,6 +134,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-6',
@@ -137,6 +147,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-9',
@@ -149,6 +160,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-13',
@@ -161,6 +173,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-16',
@@ -173,6 +186,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-17',
@@ -185,6 +199,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'ahquabi-001-18',
@@ -197,6 +212,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },
@@ -216,6 +232,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'raEsXNQGtiVoypVE',
@@ -228,6 +245,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'LSMREjHr0yaLbcYA',
@@ -240,6 +258,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'TlGDXvLOfewWugYk',
@@ -252,6 +271,7 @@ const Ahquabi = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },

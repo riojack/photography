@@ -17,6 +17,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'isu-001-image002',
@@ -29,6 +30,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image003',
@@ -41,6 +43,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image004',
@@ -53,6 +56,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image005',
@@ -65,6 +69,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image006',
@@ -77,6 +82,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image007',
@@ -89,6 +95,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image008',
@@ -101,6 +108,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image009',
@@ -113,6 +121,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image010',
@@ -125,6 +134,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image011',
@@ -137,6 +147,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image012',
@@ -149,6 +160,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image013',
@@ -161,6 +173,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image014',
@@ -173,6 +186,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image015',
@@ -185,6 +199,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image016',
@@ -197,6 +212,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image017',
@@ -209,6 +225,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image018',
@@ -221,6 +238,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image019',
@@ -233,6 +251,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image020',
@@ -245,6 +264,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image021',
@@ -257,6 +277,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image022',
@@ -269,6 +290,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image023',
@@ -281,6 +303,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-001-image024',
@@ -293,6 +316,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },
@@ -312,6 +336,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image002',
@@ -324,6 +349,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image003',
@@ -336,6 +362,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image004',
@@ -348,6 +375,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image005',
@@ -360,6 +388,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image006',
@@ -372,6 +401,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'isu-002-image007',
@@ -384,6 +414,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-002-image008',
@@ -396,6 +427,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },
@@ -415,6 +447,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-13',
@@ -427,6 +460,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-1',
@@ -439,6 +473,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-3',
@@ -451,6 +486,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-4',
@@ -463,6 +499,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-6',
@@ -475,6 +512,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-5',
@@ -487,6 +525,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-7',
@@ -499,6 +538,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-8',
@@ -511,6 +551,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-9',
@@ -523,6 +564,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-10',
@@ -535,6 +577,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-12',
@@ -547,6 +590,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-14',
@@ -559,6 +603,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-15',
@@ -571,6 +616,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-16',
@@ -583,6 +629,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-17',
@@ -595,6 +642,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-18',
@@ -607,6 +655,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-flora-wide-2',
@@ -619,6 +668,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },
@@ -638,6 +688,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-creatures-3',
@@ -650,6 +701,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-creatures-1',
@@ -662,6 +714,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'isu-creatures-4',
@@ -674,6 +727,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'isu-creatures-5',
@@ -686,6 +740,7 @@ const ISU = {
           height: 175,
           width: 390,
           tags: ['retina'],
+          categories: [],
         },
       ],
     },

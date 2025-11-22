@@ -24,6 +24,7 @@ const Winter2018 = {
           backgroundPosition: {
             x: 0,
             y: 0,
+            categories: [],
           },
           height: 576,
           width: 1024,
@@ -35,12 +36,15 @@ const Winter2018 = {
           backgroundPosition: {
             x: 0,
             y: 0,
+            categories: [],
           },
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
       ],
+      categories: [],
     }],
 };
 

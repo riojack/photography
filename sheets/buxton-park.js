@@ -17,6 +17,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'h4rRBArayluX',
@@ -29,6 +30,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'kFCsBvwNdkoj',
@@ -41,6 +43,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: '7FRGZzbYltGk',
@@ -53,6 +56,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'IdVxtxZ2r3Zz',
@@ -65,6 +69,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'TQ0AYLBIRGgr',
@@ -77,6 +82,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'vQpKJB9PzaYK',
@@ -89,6 +95,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'L5LPHzrteKQE',
@@ -101,6 +108,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'GB2HRyYuBnsl',
@@ -113,6 +121,7 @@ const BuxtonPark = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
       ],
     }],

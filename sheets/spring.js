@@ -16,6 +16,7 @@ const SpringsArrival = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'tqQ3Tcclt2wn',
@@ -28,6 +29,7 @@ const SpringsArrival = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'xsrOW8EaKwLK',
@@ -40,6 +42,7 @@ const SpringsArrival = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'rYgoN4H4GtA8',
@@ -52,6 +55,7 @@ const SpringsArrival = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
+        categories: [],
       },
     ],
   }],

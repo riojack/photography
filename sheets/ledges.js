@@ -16,6 +16,7 @@ const Ledges = {
         width: 576,
         height: 1024,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: '9HubdShXjl6P',
@@ -28,6 +29,7 @@ const Ledges = {
         width: 576,
         height: 1024,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: '5kmZNeIWQ3SB',
@@ -40,6 +42,7 @@ const Ledges = {
         width: 576,
         height: 1024,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: '17Ozk7oiUfE4',
@@ -52,6 +55,7 @@ const Ledges = {
         width: 576,
         height: 1024,
         tags: ['retina', 'portrait'],
+        categories: [],
       },
       {
         name: '8cWTbw8h0C04',
@@ -64,6 +68,7 @@ const Ledges = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'J7gcXZVXZuMl',
@@ -76,6 +81,7 @@ const Ledges = {
         height: 576,
         width: 1024,
         tags: ['retina'],
+        categories: [],
       },
       {
         name: 'oCOxcFHnwYyW',
@@ -88,6 +94,7 @@ const Ledges = {
         height: 576,
         width: 1024,
         tags: ['retina', 'hero'],
+        categories: [],
       },
     ],
   }],

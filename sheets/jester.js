@@ -16,6 +16,8 @@ const Jester = {
           },
           height: 576,
           width: 1024,
+          tags: [],
+          categories: [],
         }],
     },
     {
@@ -34,6 +36,7 @@ const Jester = {
           height: 576,
           width: 1024,
           tags: ['retina', 'hero'],
+          categories: [],
         },
         {
           name: 'knHgDiqSOltesbQh',
@@ -46,6 +49,7 @@ const Jester = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'PpZEGCBnuvHYOquu',
@@ -58,6 +62,7 @@ const Jester = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'vKPHqNoOHyuxxSWi',
@@ -70,6 +75,7 @@ const Jester = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
         {
           name: 'zSXyBBuHtIZtw0CT',
@@ -82,6 +88,7 @@ const Jester = {
           height: 576,
           width: 1024,
           tags: ['retina'],
+          categories: [],
         },
       ],
     }],
