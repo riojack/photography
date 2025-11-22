@@ -16,7 +16,7 @@ const Storm = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'Opv5QVZXdmzP',
@@ -28,7 +28,7 @@ const Storm = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'q4VVQBzMhyWT',
@@ -40,7 +40,7 @@ const Storm = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: '5d6WAPfyRAv3',
@@ -52,7 +52,7 @@ const Storm = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: '2xEs9Md526Zs',
@@ -64,7 +64,7 @@ const Storm = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'JuP45abfwmto',
@@ -76,7 +76,7 @@ const Storm = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
     ],
   },
@@ -95,7 +95,7 @@ const Storm = {
         },
         height: 175,
         width: 390,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'storm-001-image002',
@@ -107,7 +107,7 @@ const Storm = {
         },
         height: 175,
         width: 390,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'storm-001-image003',
@@ -119,7 +119,7 @@ const Storm = {
         },
         height: 175,
         width: 390,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'storm-001-image004',
@@ -131,7 +131,7 @@ const Storm = {
         },
         height: 175,
         width: 390,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
     ],
   }],

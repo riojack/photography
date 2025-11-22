@@ -15,7 +15,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: 'Q4gC5e4ahBQf',
@@ -27,7 +27,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'ttZnr9btOCIg',
@@ -39,7 +39,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'bFVoxgW2vrMU',
@@ -51,7 +51,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'rQxrYgxK5ueg',
@@ -63,7 +63,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'y1brSBdJsz1x',
@@ -75,7 +75,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: '7gvpYum0paZc',
@@ -87,7 +87,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: '28bTvpC3foA8',
@@ -99,7 +99,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'ZE8ptBiVDddI',
@@ -111,7 +111,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'vbrYdfZ4Q7iD',
@@ -123,7 +123,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'BRkLfrZZjhvu',
@@ -135,7 +135,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
     ],
   },
@@ -154,7 +154,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: 'tt-001-2',
@@ -166,7 +166,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-3',
@@ -178,7 +178,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-4',
@@ -190,7 +190,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-5',
@@ -202,7 +202,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-6',
@@ -214,7 +214,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-7',
@@ -226,7 +226,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-8',
@@ -238,7 +238,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-9',
@@ -250,7 +250,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-10',
@@ -262,7 +262,7 @@ const RedRock = {
         },
         height: 1024,
         width: 576,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: 'tt-001-11',
@@ -274,7 +274,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-12',
@@ -286,7 +286,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-13',
@@ -298,7 +298,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'tt-001-14',
@@ -310,7 +310,7 @@ const RedRock = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
     ],
   }],

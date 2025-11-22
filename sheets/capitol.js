@@ -17,7 +17,7 @@ const Capitol = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'lONqnwek2OVv',
@@ -29,7 +29,7 @@ const Capitol = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'BMgA8rIZZH8Y',
@@ -41,7 +41,7 @@ const Capitol = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'nPDyKAWygBej',
@@ -53,7 +53,7 @@ const Capitol = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'PCsREB2Ym3rY',
@@ -65,7 +65,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'pJJuZm960tBz',
@@ -77,7 +77,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: '3mibfKDT1EMu',
@@ -89,7 +89,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'cUryQDMTAzvw',
@@ -101,7 +101,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'zAXccz3D4nqD',
@@ -113,7 +113,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -133,7 +133,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'BKlhM51lOVtD',
@@ -145,7 +145,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'FQj1oFdg75VD',
@@ -157,7 +157,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'In0oW8GUBTnd',
@@ -169,7 +169,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: '9puWv7ELrGqq',
@@ -181,7 +181,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'noRIEcAJBg7k',
@@ -193,7 +193,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'vHSGVMYq4ptM',
@@ -205,7 +205,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'qBMEeatu5G50',
@@ -217,7 +217,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 's8I1nOLJ01c6',
@@ -229,7 +229,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'tA4jUdBanRnW',
@@ -241,7 +241,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'w3JpOzC37476',
@@ -253,7 +253,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'MuoiXcMxhrfG',
@@ -265,7 +265,7 @@ const Capitol = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },

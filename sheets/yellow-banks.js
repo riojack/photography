@@ -15,7 +15,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: 'UYMrvmWARfI00RMK',
@@ -27,7 +27,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'FskiUTElpQbiNnbn',
@@ -39,7 +39,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
     ],
   }],

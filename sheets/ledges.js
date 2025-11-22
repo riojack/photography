@@ -15,7 +15,7 @@ const Ledges = {
         },
         width: 576,
         height: 1024,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: '9HubdShXjl6P',
@@ -27,7 +27,7 @@ const Ledges = {
         },
         width: 576,
         height: 1024,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: '5kmZNeIWQ3SB',
@@ -39,7 +39,7 @@ const Ledges = {
         },
         width: 576,
         height: 1024,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: '17Ozk7oiUfE4',
@@ -51,7 +51,7 @@ const Ledges = {
         },
         width: 576,
         height: 1024,
-        tags: ['retina', 'portrait'],
+        tags: ['digital', 'retina', 'portrait'],
       },
       {
         name: '8cWTbw8h0C04',
@@ -63,7 +63,7 @@ const Ledges = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'J7gcXZVXZuMl',
@@ -75,7 +75,7 @@ const Ledges = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
       {
         name: 'oCOxcFHnwYyW',
@@ -87,7 +87,7 @@ const Ledges = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
     ],
   }],

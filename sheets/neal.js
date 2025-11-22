@@ -16,7 +16,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image002',
@@ -28,7 +28,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image003',
@@ -40,7 +40,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image004',
@@ -52,7 +52,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'neal-001-image005',
@@ -64,7 +64,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image006',
@@ -76,7 +76,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image007',
@@ -88,7 +88,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image008',
@@ -100,7 +100,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image009',
@@ -112,7 +112,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image010',
@@ -124,7 +124,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-001-image011',
@@ -136,7 +136,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -156,7 +156,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-11',
@@ -168,7 +168,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-2',
@@ -180,7 +180,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-5',
@@ -192,7 +192,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-6',
@@ -204,7 +204,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-9',
@@ -216,7 +216,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-1',
@@ -228,7 +228,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-8',
@@ -240,7 +240,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-3',
@@ -252,7 +252,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-7',
@@ -264,7 +264,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-10',
@@ -276,7 +276,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-12',
@@ -288,7 +288,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-13',
@@ -300,7 +300,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'neal-002-14',
@@ -312,7 +312,7 @@ const Neal = {
           },
           height: 175,
           width: 390,
-          tags: [],
+          tags: ['digital'],
         },
       ],
     },
@@ -331,7 +331,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'c92wp24hu3',
@@ -343,7 +343,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 's98vyyt8vg',
@@ -355,7 +355,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'cwnb1fgfm9',
@@ -367,7 +367,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'e2wqwfixdu',
@@ -379,7 +379,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'nb5whp3fw4',
@@ -391,7 +391,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'vhg6o6e2ex',
@@ -403,7 +403,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'a8nmkzy7hb',
@@ -415,7 +415,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'dm26g4mjtj',
@@ -427,7 +427,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'npx9ypb9cf',
@@ -439,7 +439,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'qq697kmg49',
@@ -451,7 +451,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -470,7 +470,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 't33n8vu66n',
@@ -482,7 +482,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'vjvr6y850n',
@@ -494,7 +494,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'zfz7wh1g18',
@@ -506,7 +506,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -525,7 +525,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'FUAnDavkZXQH',
@@ -537,7 +537,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -556,7 +556,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: '1vBH8Lg3NAW3',
@@ -568,7 +568,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'q4EgP0UGsDHM',
@@ -580,7 +580,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: '50v6mQRrTD69',
@@ -592,7 +592,7 @@ const Neal = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'Nve8UxNsC2IA',
@@ -604,7 +604,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -623,7 +623,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -642,7 +642,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'b4T27Mo1IQpH',
@@ -654,7 +654,7 @@ const Neal = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
         {
           name: 'GcWyuDMlnKzw',
@@ -666,7 +666,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'BAEcF2h4tbMZ',
@@ -678,7 +678,7 @@ const Neal = {
           },
           height: 1024,
           width: 576,
-          tags: ['retina', 'portrait'],
+          tags: ['digital', 'retina', 'portrait'],
         },
       ],
     },
@@ -697,7 +697,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'hCpy1AWx4SDb',
@@ -709,7 +709,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'CWrUlqtEIFXI',
@@ -721,7 +721,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -740,7 +740,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'xLZsRVq1QntH',
@@ -752,7 +752,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -771,7 +771,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'pTWeyQtyPTjc',
@@ -783,7 +783,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'zaDnAJV0C0c7',
@@ -795,7 +795,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'hOGvbKU1A1rY',
@@ -807,7 +807,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: '2RkFuzZXPSmW',
@@ -819,7 +819,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -838,7 +838,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'Jay75P3G0DTe',
@@ -850,7 +850,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -870,7 +870,7 @@ const Neal = {
           height: 576,
           width: 1024,
           time: 1501891200000,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'VMM9Eo5GTwG0',
@@ -882,7 +882,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'CkDdgLDc9z9K',
@@ -894,7 +894,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'TXbSs68KPbM1',
@@ -906,7 +906,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -925,7 +925,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'Q63ePhocf9Gh',
@@ -937,7 +937,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -956,7 +956,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'zGKBeEFtcYBPsSus',
@@ -968,7 +968,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -987,7 +987,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'gGJABxjyTjsXM0dL',
@@ -999,7 +999,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina', 'hero'],
+          tags: ['digital', 'retina', 'hero'],
         },
         {
           name: 'GvrmNbnsYEzsfYfv',
@@ -1011,7 +1011,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'ULauHgIjKfBfZIid',
@@ -1023,7 +1023,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'VtbfPfbixPjuIlAw',
@@ -1035,7 +1035,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
@@ -1054,7 +1054,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'e1CGWMi4v5M9yYcx',
@@ -1066,7 +1066,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'MGT6OxCFUgMy6Vgj',
@@ -1078,7 +1078,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'gED5foKXBWDJh21G',
@@ -1090,7 +1090,7 @@ const Neal = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },
