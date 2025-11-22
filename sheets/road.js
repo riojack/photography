@@ -15,7 +15,7 @@ const Road = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: 'emqLonESfSuQ',
@@ -27,7 +27,7 @@ const Road = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
+        tags: ['digital', 'retina'],
       },
     ],
   }],

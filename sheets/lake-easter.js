@@ -16,7 +16,7 @@ const LakeEaster = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'i0pWofcs6ljK',
@@ -28,7 +28,7 @@ const LakeEaster = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
         {
           name: 'YB0KWDX5Eta7',
@@ -40,7 +40,7 @@ const LakeEaster = {
           },
           height: 576,
           width: 1024,
-          tags: ['retina'],
+          tags: ['digital', 'retina'],
         },
       ],
     },

@@ -1,9 +1,3 @@
-import * as landscapes from './categorizers/subjects/landscapes';
-import * as insects from './categorizers/subjects/insects';
-import * as plants from './categorizers/subjects/plants';
-import * as softFocus from './categorizers/adjectives/soft_focus';
-import * as darkness from './categorizers/adjectives/darkness';
-
 const YellowBanks = {
   group: 'Yellow Banks',
   collections: [{
@@ -21,9 +15,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina', 'hero'],
-        categories: ['shore line', 'tree line', 'reflection', 'pond', 'lake', 'sky', 'blue', 'green', 'trees', 'water']
-          .concat(plants.default).concat(landscapes.default),
+        tags: ['digital', 'retina', 'hero'],
       },
       {
         name: 'UYMrvmWARfI00RMK',
@@ -35,9 +27,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
-        categories: ['shore line', 'tree line', 'reflection', 'river', 'sky', 'blue', 'green', 'trees', 'water']
-          .concat(plants.default).concat(landscapes.default),
+        tags: ['digital', 'retina'],
       },
       {
         name: 'FskiUTElpQbiNnbn',
@@ -49,9 +39,7 @@ const YellowBanks = {
         },
         height: 576,
         width: 1024,
-        tags: ['retina'],
-        categories: ['leaf', 'green', 'orange', 'ladybug']
-          .concat(insects.default).concat(plants.default).concat(softFocus.default).concat(darkness.default),
+        tags: ['digital', 'retina'],
       },
     ],
   }],
