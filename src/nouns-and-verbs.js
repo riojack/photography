@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import PromiseMaker from './promise-maker';
 import { statorWithReset } from './state-utilities';
 import TransformUtilities from './transform-utilities';
@@ -20,6 +20,7 @@ const SCROLL_TRIGGER_THRESHOLD = 0.9;
 // State management
 let ext = {};
 let mergeWorld = () => {};
+let root = null;
 
 /**
  * Initialize or reset the application state
@@ -32,6 +33,7 @@ function resetEverything() {
     limitRenderTo: false,
     skipLoadingNextGroup: false,
   });
+  root = null; // Reset React root for re-initialization
 }
 
 /**
@@ -229,7 +231,14 @@ function eventuallyRender(resolve) {
   const element = React.createElement(App, appProps);
   const container = ext.document.getElementById(MOUNT_CONTAINER_ID);
 
-  ReactDOM.render(element, container, resolve);
+  if (!root) {
+    root = ReactDOM.createRoot(container);
+  }
+  root.render(element);
+  if (resolve) {
+    // In React 18, render is synchronous for updates, call resolve immediately
+    resolve();
+  }
 }
 
 /**

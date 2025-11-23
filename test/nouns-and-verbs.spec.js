@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { assert, createSandbox, stub } from 'sinon';
 import Chance from 'chance';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import PromiseMaker from '../src/promise-maker';
 import GroupInCollectionStrategy from '../src/view-strategies/collection-in-group';
 import ByCollectionStrategy from '../src/view-strategies/by-collection';
@@ -16,6 +16,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
   let item;
   let secondItem;
   let fakeNode;
+  let fakeRoot;
   let fakePromise;
   let secondFakePromise;
   let fakeElement;
@@ -85,7 +86,9 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     sandbox = createSandbox();
     chance = new Chance();
 
-    fakeNode = { scrollTop: -1 };
+    // Create a real DOM element for React 18's createRoot
+    fakeNode = global.document.createElement('div');
+    fakeNode.scrollTop = -1;
 
     fakePromise = {
       then: stub(),
@@ -205,7 +208,6 @@ describe('Nouns and verbs (data and behavior) tests', () => {
     expectedCollection = chance.pickone(chance.pickone(fakeGroups).collections);
 
     sandbox.stub(React);
-    sandbox.stub(ReactDOM);
 
     externals = {
       setTimeout: stub(),
@@ -218,6 +220,10 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       data: fakeGroups,
     };
 
+    fakeRoot = {
+      render: stub(),
+    };
+
     sandbox.stub(PromiseMaker, 'buildPromise');
     PromiseMaker.buildPromise.onCall(0)
       .returns(fakePromise);
@@ -227,6 +233,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       .returns(fakeNode);
     React.createElement.returns(fakeElement);
 
+    sandbox.stub(ReactDOM, 'createRoot').returns(fakeRoot);
     sandbox.stub(ByCollectionStrategy, 'create');
     sandbox.stub(GroupInCollectionStrategy, 'create')
       .returns(fakeCollectionInGroupStrat);
@@ -403,8 +410,11 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       nounsAndVerbs.doRender();
       PromiseMaker.buildPromise.lastCall.args[0](resolver);
 
-      assert.calledOnce(ReactDOM.render);
-      assert.calledWith(ReactDOM.render, fakeElement, fakeNode, resolver);
+      assert.calledOnce(ReactDOM.createRoot);
+      assert.calledWith(ReactDOM.createRoot, fakeNode);
+      assert.calledOnce(fakeRoot.render);
+      assert.calledWith(fakeRoot.render, fakeElement);
+      assert.calledOnce(resolver);
     });
   });
 
@@ -503,7 +513,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       givenASingleRendering();
 
       assert.calledTwice(React.createElement);
-      assert.calledTwice(ReactDOM.render);
+      assert.calledTwice(fakeRoot.render);
     });
   });
 
@@ -544,7 +554,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       nounsAndVerbs.whenCollapseToGroupsClicked();
 
       React.createElement.reset();
-      ReactDOM.render.reset();
+      fakeRoot.render.resetHistory();
       whenRenderPromiseIsResolved();
 
       assert.calledOnce(React.createElement);
@@ -554,7 +564,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
         .property('limitRenderTo')
         .that
         .equals('collectionNames');
-      assert.calledOnce(ReactDOM.render);
+      assert.calledOnce(fakeRoot.render);
     });
   });
 
@@ -594,14 +604,14 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       givenCollapsedToGroups();
 
       React.createElement.reset();
-      ReactDOM.render.reset();
+      fakeRoot.render.resetHistory();
       PromiseMaker.buildPromise.reset();
 
       nounsAndVerbs.whenCollectionNameClicked();
       whenRenderPromiseIsResolved();
 
       assert.calledOnce(React.createElement);
-      assert.calledOnce(ReactDOM.render);
+      assert.calledOnce(fakeRoot.render);
     });
   });
 
@@ -621,7 +631,7 @@ describe('Nouns and verbs (data and behavior) tests', () => {
       whenRenderPromiseIsResolved();
 
       assert.calledOnce(React.createElement);
-      assert.calledOnce(ReactDOM.render);
+      assert.calledOnce(fakeRoot.render);
     });
 
     it('should not trigger a re-render if the scroll stays below 90%', () => {
