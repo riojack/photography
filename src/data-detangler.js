@@ -46,7 +46,6 @@ class Detangler {
           nonHeroes: [],
         });
 
-        // eslint-disable-next-line no-param-reassign
         c.items = [].concat(heroes, nonHeroes);
       });
     });

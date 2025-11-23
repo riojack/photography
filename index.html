@@ -12,24 +12,23 @@
 </head>
 <body>
 <div id="photography-app-container"></div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
-<script type="text/javascript" src="./application.js"></script>
+<!-- For production: uncomment these CDN scripts and build with --mode production -->
+<!-- <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/19.0.0/umd/react.production.min.js"></script> -->
+<!-- <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/19.0.0/umd/react-dom.production.min.js"></script> -->
+<script type="text/javascript" src="/dist/application.js"></script>
 <script type="text/javascript">
-  function onDomReady() {
+  document.addEventListener('DOMContentLoaded', () => {
     window.Snappy.nounsAndVerbs.withExternals({
-      setTimeout: window.setTimeout.bind(window),
-      window: window,
-      document: window.document,
+      setTimeout,
+      window,
+      document,
       data: window.SnappyData
     });
 
     document.getElementById('photography-app-container').onscroll = window.Snappy.nounsAndVerbs.onContainerScroll;
 
-    setTimeout(window.Snappy.nounsAndVerbs.doRender, 10);
-  }
-
-  document.addEventListener('DOMContentLoaded', onDomReady);
+    setTimeout(window.Snappy.nounsAndVerbs.doRender, 0);
+  });
 </script>
 </body>
 </html>

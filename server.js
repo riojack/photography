@@ -7,44 +7,20 @@ const width = 1024;
 const height = 576;
 const hCount = 4;
 
-function createColorObj() {
-  return {
-    rc: Math.floor(Math.random() * 255),
-    gc: Math.floor(Math.random() * 255),
-    bc: Math.floor(Math.random() * 255),
-  };
-}
-
-app.get('/', (req, res) => {
-  res.sendFile('./index.html', { root: __dirname });
+const createColorObj = () => ({
+  rc: Math.floor(Math.random() * 255),
+  gc: Math.floor(Math.random() * 255),
+  bc: Math.floor(Math.random() * 255),
 });
 
-app.get('/index.css', (req, res) => {
-  res.sendFile('./index.css', { root: __dirname });
-});
-
-app.get('/art/bg.jpg', (req, res) => {
-  res.sendFile('./art/bg_16-9_IMG_1482_3_4_5_6_7_8_GoldenHour5.jpg', { root: __dirname });
-});
-
-app.get('/application.js', (req, res) => {
-  res.sendFile('./dist/application.js', { root: __dirname });
-});
-
+// Dynamic image generation routes (must come before static middleware)
 app.get(/\/[/a-z0-9\-_]+comp\.jpg$/i, (req, res) => {
   const fullWidth = (width * hCount);
-  const jpgBuffer = Buffer.from(fullWidth * height * 4);
+  const jpgBuffer = Buffer.alloc(fullWidth * height * 4);
   let i = 0;
   let pixels = 0;
 
-  const colorBuckets = (function fn() {
-    const colors = [];
-
-    for (let j = 0; j < hCount; j++) {
-      colors[j] = createColorObj();
-    }
-    return colors;
-  }());
+  const colorBuckets = Array.from({ length: hCount }, () => createColorObj());
 
   let column = 0;
 
@@ -82,13 +58,11 @@ app.get(/\/[/a-z0-9\-_]+comp\.jpg$/i, (req, res) => {
 
   const encoded = jpeg.encode(imageData, 75);
 
-  res.type('image/jpeg');
-  res.send(encoded.data);
-  res.end();
+  res.type('image/jpeg').send(encoded.data);
 });
 
 app.get(/\/[/a-z0-9\-_]+\.jpg$/i, (req, res) => {
-  const jpgBuffer = Buffer.from(width * height * 4);
+  const jpgBuffer = Buffer.alloc(width * height * 4);
   let i = 0;
   const rc = Math.floor(Math.random() * 255);
   const gc = Math.floor(Math.random() * 255);
@@ -115,10 +89,13 @@ app.get(/\/[/a-z0-9\-_]+\.jpg$/i, (req, res) => {
   };
   const encoded = jpeg.encode(imageData, 75);
 
-  res.type('image/jpeg');
-  res.send(encoded.data);
-  res.end();
+  res.type('image/jpeg').send(encoded.data);
 });
 
-// eslint-disable-next-line no-console
+// Static file serving (after dynamic routes)
+app.use('/dist', express.static('dist'));
+app.use('/art', express.static('art'));
+app.use('/sheets', express.static('sheets'));
+app.use(express.static('.', { index: 'index.html' }));
+
 app.listen(port, () => console.log(`Started on port ${port}`));

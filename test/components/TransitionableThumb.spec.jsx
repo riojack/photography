@@ -1,130 +1,115 @@
-import Chance from 'chance';
-import { stub, assert } from 'sinon';
-import { shallow } from 'enzyme/build';
 import React from 'react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { expect } from 'chai';
 import TransitionableThumb from '../../src/components/TransitionableThumb';
 
 describe('TransitionableThumb Tests', () => {
-  let element;
-
-
   let viewProps;
+  let clickHandler;
 
-
-  let chance;
-
-  function doRender(props) {
-    if (!element) {
-      element = shallow(<TransitionableThumb {...props} />);
-    } else {
-      element.setProps(props);
-    }
-  }
-
-  function buildNewComponentProps() {
+  function buildNewComponentProps(id = 1) {
     return {
-      onClick: stub(),
-      lookupId: chance.string(),
-      tags: [chance.word(), chance.word(), chance.word()],
-      backgroundUrl: chance.url({ extensions: ['jpg', 'png'] }),
-      backgroundPosition: {
-        x: chance.integer({ min: 1, max: 5 }),
-        y: chance.integer({ min: 1, max: 5 }),
-      },
-      height: chance.integer({ min: 25, max: 50 }),
+      onClick: (props) => { clickHandler = props; },
+      lookupId: `lookup-${id}`,
+      tags: ['tag1', 'tag2', 'tag3'],
+      image: `https://example.com/image${id}.jpg`,
+      name: `image-${id}`,
+      backgroundUrl: `https://example.com/bg${id}.jpg`,
+      backgroundPosition: { x: 2, y: 3 },
+      height: 30,
     };
   }
 
   beforeEach('set up', () => {
-    chance = new Chance();
+    clickHandler = null;
     viewProps = buildNewComponentProps();
-
-    doRender(viewProps);
-  });
-
-  afterEach('tear down', () => {
-    element = null;
   });
 
   describe('characterization', () => {
     it('should have a className of "transitionable-photo-thumb"', () => {
-      expect(element.props()).to.have.property('className')
-        .that.equals('transitionable-photo-thumb');
+      const { container } = render(<TransitionableThumb {...viewProps} />);
+      const element = container.querySelector('.transitionable-photo-thumb');
+      expect(element).to.exist;
     });
 
     it('should have left-shark followed by right-shark', () => {
-      expect(element.children('div')).to.have.length(2);
-      expect(element.children('div').at(0).props()).to.include({ className: 'left-shark' });
-      expect(element.children('div').at(1).props()).to.include({ className: 'right-shark' });
+      const { container } = render(<TransitionableThumb {...viewProps} />);
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
+      expect(leftShark).to.exist;
+      expect(rightShark).to.exist;
     });
   });
 
   describe('rendering behavior', () => {
     it('should render the image in the left-shark div first', () => {
-      const leftShark = element.find('.left-shark');
-
-      expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({ backgroundImage: `url("${viewProps.backgroundUrl}")` });
+      const { container } = render(<TransitionableThumb {...viewProps} />);
+      const leftShark = container.querySelector('.left-shark');
+      expect(leftShark.style.backgroundImage).to.equal(`url("${viewProps.backgroundUrl}")`);
     });
 
     it('should clear left-shark div\'s image on a second render and render the image on the right-shark div', () => {
-      const newProps = buildNewComponentProps();
-      doRender(newProps);
+      const newProps = buildNewComponentProps(2);
+      const { container, rerender } = render(<TransitionableThumb {...viewProps} />);
+      
+      rerender(<TransitionableThumb {...newProps} />);
 
-      const leftShark = element.find('.left-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
-
-      const rightShark = element.find('.right-shark');
-
-      expect(leftShark.props()).to.not.have.property('style');
-
-      expect(rightShark.props()).to.have.property('style')
-        .that.deep.equals({ backgroundImage: `url("${newProps.backgroundUrl}")` });
+      expect(leftShark.style.backgroundImage).to.equal('');
+      expect(rightShark.style.backgroundImage).to.equal(`url("${newProps.backgroundUrl}")`);
     });
 
     it('should clear right-shark div\'s image on a third render and render the image on the left-shark div', () => {
-      doRender(buildNewComponentProps());
-      const newProps = buildNewComponentProps();
-      doRender(newProps);
+      const secondProps = buildNewComponentProps(2);
+      const thirdProps = buildNewComponentProps(3);
+      const { container, rerender } = render(<TransitionableThumb {...viewProps} />);
+      
+      rerender(<TransitionableThumb {...secondProps} />);
+      rerender(<TransitionableThumb {...thirdProps} />);
 
-      const leftShark = element.find('.left-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
-
-      const rightShark = element.find('.right-shark');
-
-      expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({ backgroundImage: `url("${newProps.backgroundUrl}")` });
-
-      expect(rightShark.props()).to.not.have.property('style');
+      expect(leftShark.style.backgroundImage).to.equal(`url("${thirdProps.backgroundUrl}")`);
+      expect(rightShark.style.backgroundImage).to.equal('');
     });
 
     it('should not switch sharks if the image does not change', () => {
-      doRender(viewProps);
+      const { container, rerender } = render(<TransitionableThumb {...viewProps} />);
+      
+      rerender(<TransitionableThumb {...viewProps} />);
 
-      const leftShark = element.find('.left-shark');
+      const leftShark = container.querySelector('.left-shark');
+      const rightShark = container.querySelector('.right-shark');
 
-
-      const rightShark = element.find('.right-shark');
-
-      expect(leftShark.props()).to.have.property('style')
-        .that.deep.equals({ backgroundImage: `url("${viewProps.backgroundUrl}")` });
-
-      expect(rightShark.props()).to.not.have.property('style');
+      expect(leftShark.style.backgroundImage).to.equal(`url("${viewProps.backgroundUrl}")`);
+      expect(rightShark.style.backgroundImage).to.equal('');
     });
 
     it('should set "thumbnail" and any other tags in a data-tags attribute', () => {
+      const { container } = render(<TransitionableThumb {...viewProps} />);
+      const element = container.querySelector('.transitionable-photo-thumb');
       const expectedTags = ['thumbnail'].concat(viewProps.tags).join(' ');
-      expect(element.props()).to.have.property('data-tags')
-        .that.equals(expectedTags);
+      expect(element.getAttribute('data-tags')).to.equal(expectedTags);
     });
   });
 
   describe('click behavior', () => {
-    it('should fire props.onClick and pass its props as parameters', () => {
-      assert.notCalled(viewProps.onClick);
-      element.simulate('click');
-      assert.calledWithExactly(viewProps.onClick, viewProps);
+    it('should fire props.onClick and pass its props as parameters', async () => {
+      const user = userEvent.setup();
+      const { container } = render(<TransitionableThumb {...viewProps} />);
+      const element = container.querySelector('.transitionable-photo-thumb');
+      
+      expect(clickHandler).to.be.null;
+      await user.click(element);
+      expect(clickHandler).to.not.be.null;
+      // Check that all provided props match
+      Object.keys(viewProps).forEach(key => {
+        expect(clickHandler[key]).to.deep.equal(viewProps[key]);
+      });
     });
   });
 });

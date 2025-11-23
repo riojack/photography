@@ -1,8 +1,3 @@
-const hook = require('css-modules-require-hook');
-
-hook({
-  extensions: ['.scss'],
-  preprocessCss() {
-    return '';
-  },
-});
+// Stub out .scss and .css imports for testing
+require.extensions['.scss'] = () => {};
+require.extensions['.css'] = () => {};

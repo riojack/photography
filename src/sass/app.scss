@@ -1,6 +1,5 @@
-@import "../../node_modules/sass-mediaqueries/_media-queries";
-@import "./variables";
-@import "./size_mixins.scss";
+@use './variables' as *;
+@use './size_mixins.scss' as *;
 
 .iowa-light-application {
   width: 100%;

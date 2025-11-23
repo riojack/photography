@@ -1,36 +1,41 @@
 import { expect } from 'chai';
-import Chance from 'chance';
 import GroupInCollectionStrategy from '../../src/view-strategies/collection-in-group';
 
-function pickRandomGroupAndCollection(listOfGroups, chance) {
-  const randomGroup = chance.pickone(listOfGroups);
-  return [randomGroup, chance.pickone(randomGroup.collections)];
-}
-
 describe('Group in a collection sort strategy tests', () => {
-  let chance;
   let listOfGroups;
   let expectedGroup;
   let expectedCollection;
 
   beforeEach('set up', () => {
-    chance = new Chance();
     listOfGroups = [
       {
         group: 'group-one',
-        collections: chance.n(() => ({ collection: chance.sentence() }), chance.integer({ min: 3, max: 7 })),
+        collections: [
+          { collection: 'collection A' },
+          { collection: 'collection B' },
+          { collection: 'collection C' },
+        ],
       },
       {
         group: 'group-two',
-        collections: chance.n(() => ({ collection: chance.sentence() }), chance.integer({ min: 3, max: 7 })),
+        collections: [
+          { collection: 'collection D' },
+          { collection: 'collection E' },
+          { collection: 'collection F' },
+        ],
       },
       {
         group: 'group-three',
-        collections: chance.n(() => ({ collection: chance.sentence() }), chance.integer({ min: 3, max: 7 })),
+        collections: [
+          { collection: 'collection G' },
+          { collection: 'collection H' },
+          { collection: 'collection I' },
+        ],
       },
     ];
 
-    [expectedGroup, expectedCollection] = pickRandomGroupAndCollection(listOfGroups, chance);
+    expectedGroup = listOfGroups[0];
+    expectedCollection = expectedGroup.collections[1]; // collection B
   });
 
   describe('when calling next()', () => {
@@ -43,7 +48,7 @@ describe('Group in a collection sort strategy tests', () => {
     });
 
     it('should return an empty array if no matching collection was found among all collections in all groups', () => {
-      const strategy = new GroupInCollectionStrategy(listOfGroups, chance.string());
+      const strategy = new GroupInCollectionStrategy(listOfGroups, 'non-existent-collection');
       const group = strategy.next();
 
       expect(group).to.eql([]);

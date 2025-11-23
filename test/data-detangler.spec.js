@@ -1,48 +1,38 @@
 import { expect } from 'chai';
-import Chance from 'chance';
 import detangler from '../src/data-detangler';
 
 describe('Data detangler tests', () => {
-  let chance;
-
-  beforeEach('set up', () => {
-    chance = new Chance();
-  });
-
   describe('when grouping by collection time', () => {
     it('should have 6 distinct groups when 3 groups each have 2 collections with unique timestamps', () => {
-      const groupNameOne = chance.word();
-      const groupNameTwo = chance.word();
-      const groupNameThree = chance.word();
       const someData = [
         {
-          group: groupNameOne,
+          group: 'group1',
           collections: [{
             time: 20,
-            items: [chance.word()],
+            items: ['item1'],
           }, {
             time: 50,
-            items: [chance.word()],
+            items: ['item2'],
           }],
         },
         {
-          group: groupNameTwo,
+          group: 'group2',
           collections: [{
             time: 30,
-            items: [chance.word()],
+            items: ['item3'],
           }, {
             time: 10,
-            items: [chance.word()],
+            items: ['item4'],
           }],
         },
         {
-          group: groupNameThree,
+          group: 'group3',
           collections: [{
             time: 40,
-            items: [chance.word()],
+            items: ['item5'],
           }, {
             time: 20,
-            items: [chance.word()],
+            items: ['item6'],
           }],
         },
       ];
@@ -62,36 +52,36 @@ describe('Data detangler tests', () => {
 
     it('should have 6 distinct groups even if there are 3 groups with the same name but each collection has a '
       + 'different timestamp', () => {
-      const groupNameOne = chance.word();
+      const groupNameOne = 'group1';
       const someData = [
         {
           group: groupNameOne,
           collections: [{
             time: 10,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 20,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
         {
           group: groupNameOne,
           collections: [{
             time: 30,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 40,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
         {
           group: groupNameOne,
           collections: [{
             time: 50,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 60,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
       ];
@@ -112,36 +102,36 @@ describe('Data detangler tests', () => {
     it('should have 4 distinct groups and 6 total collections if one group is duplicated with the exact same name '
       + 'and two collections with same time stamps but different contents, and a second group exists with same name '
       + 'but collections with different time stamps', () => {
-      const groupNameOne = chance.word();
+      const groupNameOne = 'group1';
       const someData = [
         {
           group: groupNameOne,
           collections: [{
             time: 10,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 20,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
         {
           group: groupNameOne,
           collections: [{
             time: 30,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 40,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
         {
           group: groupNameOne,
           collections: [{
             time: 10,
-            items: [chance.word()],
+            items: ['item'],
           }, {
             time: 20,
-            items: [chance.word()],
+            items: ['item'],
           }],
         },
       ];
@@ -162,7 +152,7 @@ describe('Data detangler tests', () => {
 
   describe('when sorting hero images first', () => {
     it('should sort items tagged "hero" first in each collection\'s item list', () => {
-      const groupNameOne = chance.word();
+      const groupNameOne = 'group1';
       const someData = [
         {
           group: groupNameOne,

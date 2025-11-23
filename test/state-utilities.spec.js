@@ -1,23 +1,14 @@
 import { expect } from 'chai';
-import Chance from 'chance';
 
 import { stator, statorWithReset } from '../src/state-utilities';
 
 describe('State utilities Tests', () => {
-  let chance;
-
-
   let state;
-
-
   let statorImpl;
-
-
   let statorWithResetImpl;
 
   beforeEach('set up', () => {
-    chance = new Chance();
-    state = { propertyA: chance.word() };
+    state = { propertyA: 'valueA' };
 
     statorImpl = stator.bind({ state });
     statorWithResetImpl = statorWithReset.bind({ state: false });
@@ -29,9 +20,7 @@ describe('State utilities Tests', () => {
     });
 
     it('should merge the next state with the current state and return the updated state', () => {
-      const nextState = { propertyB: chance.word() };
-
-
+      const nextState = { propertyB: 'valueB' };
       const expectedState = Object.assign({}, state, nextState);
 
       expect(statorImpl(nextState)).to.eql(expectedState);
@@ -40,14 +29,9 @@ describe('State utilities Tests', () => {
 
   describe('stators with reset', () => {
     it('should progressively merge the next state into the last when not resetting', () => {
-      const oneState = { propertyB: chance.word() };
-
-
-      const twoState = { propertyC: chance.word() };
-
-
-      const threeState = { propertyA: chance.word() };
-
+      const oneState = { propertyB: 'valueB' };
+      const twoState = { propertyC: 'valueC' };
+      const threeState = { propertyA: 'newValueA' };
 
       const expectedFinalState = Object.assign({}, oneState, twoState, threeState);
 
@@ -60,7 +44,7 @@ describe('State utilities Tests', () => {
     });
 
     it('should reset back to the first state given when resetting with an empty next state', () => {
-      const oneState = { propertyB: chance.word() };
+      const oneState = { propertyB: 'valueB' };
       statorWithResetImpl(state);
       statorWithResetImpl(oneState);
 
@@ -68,11 +52,8 @@ describe('State utilities Tests', () => {
     });
 
     it('should reset back to the first state merged with the next state when resetting', () => {
-      const oneState = { propertyB: chance.word() };
-
-
-      const twoState = { propertyC: chance.word() };
-
+      const oneState = { propertyB: 'valueB' };
+      const twoState = { propertyC: 'valueC' };
 
       const expectedFinalState = Object.assign({}, state, twoState);
       statorWithResetImpl(state);
