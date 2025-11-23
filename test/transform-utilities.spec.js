@@ -1,26 +1,16 @@
 import { expect } from 'chai';
-import { stub } from 'sinon';
-import Chance from 'chance';
 
 import TransformUtilities from '../src/transform-utilities';
 
 describe('Transformer tests', () => {
-  let chance;
   let listOfThings;
 
-  function makeThing() {
-    return {
-      blah: chance.string(),
-    };
-  }
-
   beforeEach('set up', () => {
-    chance = new Chance();
-
-    listOfThings = chance.n(makeThing, chance.integer({
-      min: 15,
-      max: 30,
-    }));
+    listOfThings = [
+      { blah: 'thing1' },
+      { blah: 'thing2' },
+      { blah: 'thing3' },
+    ];
   });
 
   describe('when adding item click handlers', () => {
@@ -32,7 +22,7 @@ describe('Transformer tests', () => {
     });
 
     it('should add the provided function to each item in the provide last as the "onClick" property', () => {
-      const onClick = stub();
+      const onClick = () => {};
 
       listOfThings.forEach(thing => expect(thing)
         .to

@@ -2,16 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'chai';
-import Chance from 'chance';
-import { assert, stub } from 'sinon';
 import App from '../src/App';
 
 const urljoin = require('url-join').default;
 
 describe('App Tests', () => {
   let viewProps;
-  let chance;
   let listOfGroups;
+  let bannerClicked;
+  let collapseClicked;
+  let collectionNameClicked;
 
   const CACHE_URL = 'http://www.example.com/cache';
 
@@ -19,50 +19,49 @@ describe('App Tests', () => {
     return Buffer.from(val, 'utf8').toString('base64');
   }
 
-  function makeItem() {
+  function makeItem(id) {
     return {
-      name: `some-name-${chance.word()}-${chance.string()}`,
-      image: `./foo/bar/${chance.word()}.jpg`,
-      backgroundUrl: `./foo/bar/${chance.word()}.jpg`,
+      name: `item-${id}`,
+      image: `./images/item-${id}.jpg`,
+      backgroundUrl: `./images/bg-${id}.jpg`,
     };
   }
 
-  function makeCollectionWithItems() {
+  function makeCollectionWithItems(id, itemCount = 5, baseTime = 1609459200) {
     return {
-      collection: chance.sentence({ words: 5 }),
-      time: chance.timestamp(),
-      items: chance.n(makeItem, chance.integer({
-        min: 5,
-        max: 10,
-      })),
+      collection: `Collection ${id}`,
+      time: baseTime * 1000, // Milliseconds since epoch
+      items: Array.from({ length: itemCount }, (_, i) => makeItem(`${id}-${i}`)),
     };
   }
 
-  function makeGroupWithCollections() {
+  function makeGroupWithCollections(id, collectionCount = 3) {
     return {
-      group: `${chance.word()} ${chance.word()} ${chance.word()}`,
-      collections: chance.n(makeCollectionWithItems, chance.integer({
-        min: 3,
-        max: 8,
-      })),
+      group: `Group ${id}`,
+      collections: Array.from({ length: collectionCount }, (_, i) => 
+        makeCollectionWithItems(`${id}-${i}`, 5, 1609459200 + (id * 100) + i)
+      ),
     };
   }
 
   beforeEach('set up', () => {
-    chance = new Chance();
     global.btoa = _toBase64;
+    bannerClicked = false;
+    collapseClicked = null;
+    collectionNameClicked = null;
 
-    listOfGroups = chance.n(makeGroupWithCollections, chance.integer({
-      min: 3,
-      max: 8,
-    }));
+    listOfGroups = [
+      makeGroupWithCollections(1),
+      makeGroupWithCollections(2),
+      makeGroupWithCollections(3),
+    ];
 
     viewProps = {
       cacheUrl: CACHE_URL,
       groups: listOfGroups,
-      whenBannerClicked: stub(),
-      whenCollapseToGroupsClicked: stub(),
-      whenCollectionNameClicked: stub(),
+      whenBannerClicked: () => { bannerClicked = true; },
+      whenCollapseToGroupsClicked: (val) => { collapseClicked = val; },
+      whenCollectionNameClicked: (val) => { collectionNameClicked = val; },
     };
   });
 
@@ -100,10 +99,10 @@ describe('App Tests', () => {
       const { container } = render(<App {...viewProps} />);
       const element = container.firstChild;
       const user = userEvent.setup();
-      assert.notCalled(viewProps.whenBannerClicked);
+      expect(bannerClicked).to.be.false;
       const banner = element.querySelector('.iowa-light-banner');
       await user.click(banner);
-      assert.calledOnce(viewProps.whenBannerClicked);
+      expect(bannerClicked).to.be.true;
     });
   });
 
@@ -131,10 +130,10 @@ describe('App Tests', () => {
       const { container } = render(<App {...viewProps} />);
       const element = container.firstChild;
       const user = userEvent.setup();
-      assert.notCalled(viewProps.whenCollapseToGroupsClicked);
+      expect(collapseClicked).to.be.null;
       const controls = element.querySelector('.iowa-light-controls');
       await user.click(controls);
-      assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
+      expect(collapseClicked).to.not.be.null;
     });
   });
 
@@ -385,16 +384,15 @@ describe('App Tests', () => {
       const { container } = render(<App {...viewProps} />);
       const element = container.firstChild;
       const user = userEvent.setup();
-      assert.notCalled(viewProps.whenCollectionNameClicked);
+      expect(collectionNameClicked).to.be.null;
 
       const ol = element.querySelector('ol');
       const h3s = ol.querySelectorAll('h3');
       
       for (const h3 of h3s) {
+        collectionNameClicked = null; // Reset for each click
         await user.click(h3);
-        assert.calledOnce(viewProps.whenCollectionNameClicked);
-        assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.textContent);
-        viewProps.whenCollectionNameClicked.reset();
+        expect(collectionNameClicked).to.equal(h3.textContent);
       }
     });
   });

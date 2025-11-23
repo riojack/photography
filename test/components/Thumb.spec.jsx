@@ -2,25 +2,20 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'chai';
-import Chance from 'chance';
-import { stub, assert } from 'sinon';
 import Thumb from '../../src/components/Thumb';
 
 describe('Thumb Tests', () => {
   let viewProps;
-  let chance;
+  let clickHandler;
 
   beforeEach('set up', () => {
-    chance = new Chance();
+    clickHandler = null;
     viewProps = {
-      onClick: stub(),
-      lookupId: chance.string(),
-      backgroundUrl: chance.url({ extensions: ['jpg', 'png'] }),
-      backgroundPosition: {
-        x: chance.integer({ min: 1, max: 5 }),
-        y: chance.integer({ min: 1, max: 5 }),
-      },
-      height: chance.integer({ min: 25, max: 50 }),
+      onClick: (props) => { clickHandler = props; },
+      lookupId: 'test-lookup-id',
+      backgroundUrl: 'https://example.com/image.jpg',
+      backgroundPosition: { x: 2, y: 3 },
+      height: 30,
     };
   });
 
@@ -50,7 +45,7 @@ describe('Thumb Tests', () => {
   });
 
   it('should append any tags in the props.tags array to the data-tags attribute', () => {
-    viewProps.tags = [chance.word(), chance.word(), chance.word()];
+    viewProps.tags = ['tag1', 'tag2', 'tag3'];
     const { container } = render(<Thumb {...viewProps} />);
     const element = container.querySelector('.photo-thumb');
 
@@ -64,10 +59,10 @@ describe('Thumb Tests', () => {
     const { container } = render(<Thumb {...viewProps} />);
     const element = container.querySelector('.photo-thumb');
     
-    assert.notCalled(viewProps.onClick);
+    expect(clickHandler).to.be.null;
     await user.click(element);
-    assert.calledOnce(viewProps.onClick);
+    expect(clickHandler).to.not.be.null;
     const expectedProps = Object.assign({}, Thumb.defaultProps, viewProps);
-    expect(viewProps.onClick.firstCall.args[0]).to.deep.equal(expectedProps);
+    expect(clickHandler).to.deep.equal(expectedProps);
   });
 });

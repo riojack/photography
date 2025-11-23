@@ -12,6 +12,10 @@ const months = [
 ];
 
 function _toBase64(val) {
+  // Use Buffer if available (Node.js/test environment), otherwise btoa (browser)
+  if (typeof Buffer !== 'undefined') {
+    return Buffer.from(val, 'utf8').toString('base64');
+  }
   return btoa(val);
 }
 

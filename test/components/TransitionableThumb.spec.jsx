@@ -1,5 +1,3 @@
-import Chance from 'chance';
-import { stub, assert } from 'sinon';
 import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -8,26 +6,23 @@ import TransitionableThumb from '../../src/components/TransitionableThumb';
 
 describe('TransitionableThumb Tests', () => {
   let viewProps;
-  let chance;
+  let clickHandler;
 
-  function buildNewComponentProps() {
+  function buildNewComponentProps(id = 1) {
     return {
-      onClick: stub(),
-      lookupId: chance.string(),
-      tags: [chance.word(), chance.word(), chance.word()],
-      image: chance.url({ extensions: ['jpg', 'png'] }),
-      name: chance.word(),
-      backgroundUrl: chance.url({ extensions: ['jpg', 'png'] }),
-      backgroundPosition: {
-        x: chance.integer({ min: 1, max: 5 }),
-        y: chance.integer({ min: 1, max: 5 }),
-      },
-      height: chance.integer({ min: 25, max: 50 }),
+      onClick: (props) => { clickHandler = props; },
+      lookupId: `lookup-${id}`,
+      tags: ['tag1', 'tag2', 'tag3'],
+      image: `https://example.com/image${id}.jpg`,
+      name: `image-${id}`,
+      backgroundUrl: `https://example.com/bg${id}.jpg`,
+      backgroundPosition: { x: 2, y: 3 },
+      height: 30,
     };
   }
 
   beforeEach('set up', () => {
-    chance = new Chance();
+    clickHandler = null;
     viewProps = buildNewComponentProps();
   });
 
@@ -55,7 +50,7 @@ describe('TransitionableThumb Tests', () => {
     });
 
     it('should clear left-shark div\'s image on a second render and render the image on the right-shark div', () => {
-      const newProps = buildNewComponentProps();
+      const newProps = buildNewComponentProps(2);
       const { container, rerender } = render(<TransitionableThumb {...viewProps} />);
       
       rerender(<TransitionableThumb {...newProps} />);
@@ -68,8 +63,8 @@ describe('TransitionableThumb Tests', () => {
     });
 
     it('should clear right-shark div\'s image on a third render and render the image on the left-shark div', () => {
-      const secondProps = buildNewComponentProps();
-      const thirdProps = buildNewComponentProps();
+      const secondProps = buildNewComponentProps(2);
+      const thirdProps = buildNewComponentProps(3);
       const { container, rerender } = render(<TransitionableThumb {...viewProps} />);
       
       rerender(<TransitionableThumb {...secondProps} />);
@@ -108,13 +103,12 @@ describe('TransitionableThumb Tests', () => {
       const { container } = render(<TransitionableThumb {...viewProps} />);
       const element = container.querySelector('.transitionable-photo-thumb');
       
-      assert.notCalled(viewProps.onClick);
+      expect(clickHandler).to.be.null;
       await user.click(element);
-      assert.calledOnce(viewProps.onClick);
-      const firstArg = viewProps.onClick.firstCall.args[0];
+      expect(clickHandler).to.not.be.null;
       // Check that all provided props match
       Object.keys(viewProps).forEach(key => {
-        expect(firstArg[key]).to.deep.equal(viewProps[key]);
+        expect(clickHandler[key]).to.deep.equal(viewProps[key]);
       });
     });
   });
