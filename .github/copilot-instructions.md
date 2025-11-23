@@ -17,7 +17,8 @@ This repository is a small React + Webpack app that renders image collections an
 
 **Why these choices matter**
 - Webpack bundles JS and SCSS; CSS is imported at runtime (see `src/App.jsx` where `require('./sass/app.scss')` runs in `componentDidMount`).
-- Tests rely on Babel/register and enzyme; the repo expects Node >= 12.16.2.
+- Tests rely on Babel/register and enzyme; the repo now requires Node >= 24.0.0 and uses `npm` for package management.
+	- Note: `node-sass` was replaced with `sass` (dart-sass) to avoid native bindings issues on newer Node versions.
 
 **Project-specific patterns and gotchas**
 - JSX files use `.jsx` extension (e.g., `src/App.jsx`, `src/components/TransitionableThumb.jsx`).

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TransitionableThumb from './components/TransitionableThumb';
 
-const urljoin = require('url-join');
+const urljoin = require('url-join').default;
 
 const months = [
   'January', 'February', 'March',
@@ -25,6 +26,7 @@ function getItems(items, collection, group, extras) {
     const overwrites = {
       image: urljoin(extras.cacheUrl, item.image.replace('./', '')),
       backgroundUrl: urljoin(extras.cacheUrl, item.backgroundUrl.replace('./', '')),
+      onClick: item.onClick || extras.onClick, // Use item's onClick if provided, otherwise default
     };
     const thumbProps = Object.assign({}, item, extraProps, overwrites);
 
@@ -71,7 +73,10 @@ function getPhotoThingsToRender(props) {
   const groups = props.groups;
   const limitRenderTo = props.limitRenderTo;
   const clickHandler = props.whenCollectionNameClicked;
-  const extras = { cacheUrl: props.cacheUrl };
+  const extras = { 
+    cacheUrl: props.cacheUrl,
+    onClick: () => {}, // Default no-op click handler for thumbnails
+  };
 
   if (limitRenderTo === 'collectionNames') {
     const collections = getCollectionsFromGroups(groups);
@@ -81,12 +86,13 @@ function getPhotoThingsToRender(props) {
         {
           collections.map((collection, collectionNumber) => (
             <li key={`collection-item-${collectionNumber}`}>
-              <h3
+              <button
+                type="button"
                 onClick={() => clickHandler(collection.collection)}
                 onTouchEnd={() => clickHandler(collection.collection)}
               >
-                {collection.collection}
-              </h3>
+                <h3>{collection.collection}</h3>
+              </button>
             </li>
           ))
         }
@@ -106,15 +112,21 @@ class App extends React.Component {
     return (
       <div className="iowa-light-application">
         <div
+          role="button"
+          tabIndex={0}
           className="iowa-light-banner"
           onClick={this.props.whenBannerClicked}
+          onKeyDown={(e) => e.key === 'Enter' && this.props.whenBannerClicked()}
           onTouchEnd={this.props.whenBannerClicked}
         >
           <h1>Iowa Light</h1>
         </div>
         <div
+          role="button"
+          tabIndex={0}
           className="iowa-light-controls"
           onClick={this.props.whenCollapseToGroupsClicked}
+          onKeyDown={(e) => e.key === 'Enter' && this.props.whenCollapseToGroupsClicked()}
           onTouchEnd={this.props.whenCollapseToGroupsClicked}
         >
           <h4>By collection</h4>
@@ -124,5 +136,19 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  cacheUrl: PropTypes.string.isRequired,
+  groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+  whenBannerClicked: PropTypes.func.isRequired,
+  whenCollapseToGroupsClicked: PropTypes.func.isRequired,
+  whenCollectionNameClicked: PropTypes.func,
+  limitRenderTo: PropTypes.string,
+};
+
+App.defaultProps = {
+  whenCollectionNameClicked: () => {},
+  limitRenderTo: null,
+};
 
 export default App;

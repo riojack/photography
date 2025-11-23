@@ -120,5 +120,4 @@ app.get(/\/[/a-z0-9\-_]+\.jpg$/i, (req, res) => {
   res.end();
 });
 
-// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Started on port ${port}`));

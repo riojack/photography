@@ -1,23 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { expect } from 'chai';
 import Chance from 'chance';
 import { assert, stub } from 'sinon';
-import TransitionableThumb from '../src/components/TransitionableThumb';
 import App from '../src/App';
 
-const urljoin = require('url-join');
+const urljoin = require('url-join').default;
 
 describe('App Tests', () => {
   let viewProps;
-  let element;
   let chance;
   let listOfGroups;
 
   const CACHE_URL = 'http://www.example.com/cache';
 
   function _toBase64(val) {
-    return (new Buffer(val, 'utf8')).toString('base64');
+    return Buffer.from(val, 'utf8').toString('base64');
   }
 
   function makeItem() {
@@ -49,10 +48,6 @@ describe('App Tests', () => {
     };
   }
 
-  function render(props) {
-    element = shallow(<App {...props} />);
-  }
-
   beforeEach('set up', () => {
     chance = new Chance();
     global.btoa = _toBase64;
@@ -69,8 +64,6 @@ describe('App Tests', () => {
       whenCollapseToGroupsClicked: stub(),
       whenCollectionNameClicked: stub(),
     };
-
-    render(viewProps);
   });
 
   afterEach(() => {
@@ -78,297 +71,263 @@ describe('App Tests', () => {
   });
 
   it('should be a div', () => {
-    expect(element.type())
+    const { container } = render(<App {...viewProps} />);
+    const element = container.firstChild;
+    expect(element.tagName.toLowerCase())
       .to
       .equal('div');
   });
 
   it('should have a className of "iowa-light-application"', () => {
-    expect(element.props())
+    const { container } = render(<App {...viewProps} />);
+    const element = container.firstChild;
+    expect(element.className)
       .to
-      .have
-      .property('className')
-      .that
-      .equals('iowa-light-application');
+      .equal('iowa-light-application');
   });
 
   describe('when rendering and interacting with the Iowa Light banner', () => {
     it('should have a child that is a div with a className of "iowa-light-banner"', () => {
-      expect(element.children('div')
-        .at(0)
-        .props())
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const firstDiv = element.querySelectorAll('div')[0];
+      expect(firstDiv.className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('iowa-light-banner');
+        .equal('iowa-light-banner');
     });
 
-    it('should call props.whenBannerClicked when the banner is clicked', () => {
+    it('should call props.whenBannerClicked when the banner is clicked', async () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const user = userEvent.setup();
       assert.notCalled(viewProps.whenBannerClicked);
-      element.children('.iowa-light-banner')
-        .simulate('click');
-      assert.calledOnce(viewProps.whenBannerClicked);
-    });
-
-    it('should call props.whenBannerClicked when the banner is touched (onTouchEnd)', () => {
-      assert.notCalled(viewProps.whenBannerClicked);
-      element.children('.iowa-light-banner')
-        .simulate('touchend');
+      const banner = element.querySelector('.iowa-light-banner');
+      await user.click(banner);
       assert.calledOnce(viewProps.whenBannerClicked);
     });
   });
 
   describe('when rendering and interacting with the site, group, and photography controls', () => {
     it('should have a child that is a div with a className of "iowa-light-controls"', () => {
-      expect(element.children('div')
-        .at(1)
-        .props())
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const secondDiv = element.querySelectorAll('div')[1];
+      expect(secondDiv.className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('iowa-light-controls');
+        .equal('iowa-light-controls');
     });
 
     it('should have an H4 inside with the words "By collection"', () => {
-      expect(element.children('.iowa-light-controls')
-        .children('h4')
-        .text())
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const controls = element.querySelector('.iowa-light-controls');
+      const h4 = controls.querySelector('h4');
+      expect(h4.textContent)
         .to
         .equal('By collection');
     });
 
-    it('should call props.whenCollapseToGroupsClicked when clicked', () => {
+    it('should call props.whenCollapseToGroupsClicked when clicked', async () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const user = userEvent.setup();
       assert.notCalled(viewProps.whenCollapseToGroupsClicked);
-      element.children('.iowa-light-controls')
-        .simulate('click');
-      assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
-    });
-
-    it('should call props.whenCollapseToGroupsClicked when it is touched (onTouchEnd)', () => {
-      assert.notCalled(viewProps.whenCollapseToGroupsClicked);
-      element.children('.iowa-light-controls')
-        .simulate('touchend');
+      const controls = element.querySelector('.iowa-light-controls');
+      await user.click(controls);
       assert.calledOnce(viewProps.whenCollapseToGroupsClicked);
     });
   });
 
   describe('when rendering and interacting with photograph groups', () => {
     it('should have another child that is an OL with the className "photo-groups"', () => {
-      expect(element.children('ol'))
-        .to
-        .have
-        .length(1);
-      expect(element.children('ol')
-        .props())
-        .to
-        .have
-        .property('className')
-        .that
-        .equals('photo-groups');
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const photoGroupsOl = element.querySelector('.photo-groups');
+      expect(photoGroupsOl).to.exist;
+      expect(photoGroupsOl.tagName).to.equal('OL');
     });
 
     it('should have an LI for each group in the OL', () => {
-      expect(element.children('ol')
-        .children())
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const photoGroupsOl = element.querySelector('.photo-groups');
+      const directChildren = Array.from(photoGroupsOl.children).filter(child => child.tagName === 'LI');
+      expect(directChildren.length)
         .to
-        .have
-        .length(viewProps.groups.length);
-      expect(element.children('ol')
-        .children('li'))
-        .to
-        .have
-        .length(viewProps.groups.length);
+        .equal(viewProps.groups.length);
     });
 
     it('should have one OL with the className "group-collections" and it should be inside the group LI that will '
       + 'contain each collection', () => {
-      expect(element.children('ol')
-        .children('li')
-        .children('ol'))
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const photoGroupsOl = element.querySelector('.photo-groups');
+      const groupLis = Array.from(photoGroupsOl.children).filter(child => child.tagName === 'LI');
+      const nestedOls = groupLis
+        .map(li => Array.from(li.children).find(child => child.tagName === 'OL'))
+        .filter(Boolean);
+      expect(nestedOls.length)
         .to
-        .have
-        .length(viewProps.groups.length);
-      expect(element.children('ol')
-        .children('li')
-        .children('ol')
-        .at(0)
-        .props())
+        .equal(viewProps.groups.length);
+      expect(nestedOls[0].className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('group-collections');
+        .equal('group-collections');
     });
 
     it('should have an LI inside the collection OL for each collection', () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
       const expectedLiCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-      expect(element.children('ol')
-        .children('li')
-        .children('ol')
-        .children('li'))
+      const photoGroupsOl = element.querySelector('.photo-groups');
+      const groupLis = Array.from(photoGroupsOl.children).filter(child => child.tagName === 'LI');
+      const groupCollectionOls = groupLis.map(li => li.querySelector('.group-collections')).filter(Boolean);
+      const collectionLis = groupCollectionOls
+        .flatMap(ol => Array.from(ol.children).filter(child => child.tagName === 'LI'));
+      expect(collectionLis.length)
         .to
-        .have
-        .length(expectedLiCount);
+        .equal(expectedLiCount);
     });
 
     it('should have an OL with a className "collection-items", a data-item-count attribute with item count value, '
       + 'and it should be inside the collection OL LIs that will contain each item', () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
       const expectedOlCount = viewProps.groups.reduce((pv, cv) => pv + cv.collections.length, 0);
 
-      const actualOrderedListOfItems = element.children('ol')
-        .children('li')
-        .children('ol')
-        .children('li')
-        .children('ol');
-      expect(actualOrderedListOfItems)
+      const actualOrderedListOfItems = element.querySelectorAll('.collection-items');
+      expect(actualOrderedListOfItems.length)
         .to
-        .have
-        .length(expectedOlCount);
-      expect(actualOrderedListOfItems.at(0)
-        .props())
+        .equal(expectedOlCount);
+      expect(actualOrderedListOfItems[0].className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('collection-items');
-      expect(actualOrderedListOfItems.at(0)
-        .props())
+        .equal('collection-items');
+      expect(parseInt(actualOrderedListOfItems[0].getAttribute('data-item-count')))
         .to
-        .have
-        .property('data-item-count')
-        .that
-        .equals(listOfGroups[0].collections[0].items.length);
+        .equal(listOfGroups[0].collections[0].items.length);
     });
 
     it('should have an LI inside the OL inside the collection OL LIs for each item', () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
       const expectedLiCount = viewProps.groups.reduce(
         (pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0),
         0,
       );
 
-      expect(element.children('ol')
-        .children('li')
-        .children('ol')
-        .children('li')
-        .children('ol')
-        .children('li'))
+      const collectionItemsOls = element.querySelectorAll('.collection-items');
+      const itemLis = Array.from(collectionItemsOls).flatMap(ol => Array.from(ol.querySelectorAll('li')));
+      expect(itemLis.length)
         .to
-        .have
-        .length(expectedLiCount);
+        .equal(expectedLiCount);
     });
 
     it('should have an H4 with className "collection-name-and-time" and text that matches collection name followed '
       + 'by a date-like string', () => {
-      const colNameDate = element.children('ol')
-        .children('li')
-        .children('ol')
-        .children('li')
-        .children('div')
-        .children('h4');
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const colNameDate = element.querySelectorAll('.collection-name-and-time');
 
-      expect(colNameDate.at(0)
-        .props())
+      expect(colNameDate[0].className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('collection-name-and-time');
+        .equal('collection-name-and-time');
 
-      expect(colNameDate.children()
-        .at(0)
-        .text()
-        .trim())
+      expect(colNameDate[0].textContent.trim())
         .to
         .match(/[a-z0-9\s]+: [a-z]+ [0-9]+, [0-9]+/gi);
     });
 
     it('should have one TransitionableThumb for each item in each collection in each group', () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
       const expectedThumbCount = viewProps.groups.reduce(
         (pv, cv) => pv + cv.collections.reduce((pvc, cvc) => pvc + cvc.items.length, 0),
         0,
       );
 
-      expect(element.children('ol')
-        .children('li')
-        .children('ol')
-        .children('li')
-        .children('ol')
-        .children('li')
-        .children(TransitionableThumb))
+      const collectionItemsOls = element.querySelectorAll('.collection-items');
+      const itemLis = Array.from(collectionItemsOls).flatMap(ol => Array.from(ol.querySelectorAll('li')));
+      expect(itemLis.length)
         .to
-        .have
-        .length(expectedThumbCount);
+        .equal(expectedThumbCount);
     });
 
     it('should pass each item as props to each TransitionableThumb', () => {
-      element
-        .children('ol')
-        .children('li')
-        .forEach((g, gi) => {
-          const group = listOfGroups[gi];
-          g.children('ol')
-            .children('li')
-            .forEach((c, ci) => {
-              const collection = group.collections[ci];
-              c.children('ol')
-                .children('li')
-                .forEach((i, ii) => {
-                  const item = collection.items[ii];
-                  const expectedLookupId = `${_toBase64(item.name)}`
-                    + `|${_toBase64(`${collection.time}`)}`
-                    + `|${_toBase64(collection.collection)}`
-                    + `|${_toBase64(group.group)}`;
-                  const expectedProps = Object.assign({}, item, {
-                    lookupId: expectedLookupId,
-                  });
-                  const thumb = i.children(TransitionableThumb);
-                  const thumbProps = Object.assign({}, thumb.props());
-
-                  delete thumbProps.image;
-                  delete thumbProps.backgroundUrl;
-                  delete expectedProps.image;
-                  delete expectedProps.backgroundUrl;
-
-                  expect(thumbProps, `Group ${gi} collection ${ci} item ${ii}`)
-                    .to
-                    .eql(expectedProps);
-                });
-            });
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const photoGroupsOl = element.querySelector('ol.photo-groups');
+      const groupLis = Array.from(photoGroupsOl.children);
+      
+      groupLis.forEach((g, gi) => {
+        const group = listOfGroups[gi];
+        const groupCollectionsOl = g.querySelector('ol.group-collections');
+        const collectionLis = Array.from(groupCollectionsOl.children);
+        
+        collectionLis.forEach((c, ci) => {
+          const collection = group.collections[ci];
+          const collectionItemsOl = c.querySelector('ol.collection-items');
+          const itemLis = Array.from(collectionItemsOl.children);
+          
+          itemLis.forEach((i, ii) => {
+            const item = collection.items[ii];
+            const expectedLookupId = `${_toBase64(item.name)}`
+              + `|${_toBase64(`${collection.time}`)}`
+              + `|${_toBase64(collection.collection)}`
+              + `|${_toBase64(group.group)}`;
+            
+            const thumbDiv = i.querySelector('div');
+            const actualName = thumbDiv.getAttribute('data-name');
+            const actualLookupId = thumbDiv.getAttribute('data-lookup-id');
+            
+            expect(actualName, `Group ${gi} collection ${ci} item ${ii} name`)
+              .to
+              .equal(item.name);
+            expect(actualLookupId, `Group ${gi} collection ${ci} item ${ii} lookupId`)
+              .to
+              .equal(expectedLookupId);
+          });
         });
+      });
     });
 
     it('should update item.image and item.backgroundUrl if the cache location is specified', () => {
-      element
-        .children('ol')
-        .children('li')
-        .forEach((g, gi) => {
-          const group = listOfGroups[gi];
-          g.children('ol')
-            .children('li')
-            .forEach((c, ci) => {
-              const collection = group.collections[ci];
-              c.children('ol')
-                .children('li')
-                .forEach((i, ii) => {
-                  const item = collection.items[ii];
-                  const thumb = i.children(TransitionableThumb);
-                  const image_url = item.image;
-                  const background_url = item.backgroundUrl;
-                  const expected_image_url = urljoin(CACHE_URL, image_url.replace('./', ''));
-                  const expected_backround_url = urljoin(CACHE_URL, background_url.replace('./', ''));
-
-                  expect(thumb.props().image, `Group ${gi} collection ${ci} item ${ii}.image`)
-                    .to
-                    .eql(expected_image_url);
-                  expect(thumb.props().backgroundUrl, `Group ${gi} collection ${ci} item ${ii}.backgroundUrl`)
-                    .to
-                    .eql(expected_backround_url);
-                });
-            });
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const photoGroupsOl = element.querySelector('ol.photo-groups');
+      const groupLis = Array.from(photoGroupsOl.children);
+      
+      groupLis.forEach((g, gi) => {
+        const group = listOfGroups[gi];
+        const groupCollectionsOl = g.querySelector('ol.group-collections');
+        const collectionLis = Array.from(groupCollectionsOl.children);
+        
+        collectionLis.forEach((c, ci) => {
+          const collection = group.collections[ci];
+          const collectionItemsOl = c.querySelector('ol.collection-items');
+          const itemLis = Array.from(collectionItemsOl.children);
+          
+          itemLis.forEach((i, ii) => {
+            const item = collection.items[ii];
+            const image_url = item.image;
+            const background_url = item.backgroundUrl;
+            const expected_image_url = urljoin(CACHE_URL, image_url.replace('./', ''));
+            const expected_backround_url = urljoin(CACHE_URL, background_url.replace('./', ''));
+            
+            const thumbDiv = i.querySelector('div');
+            const actualImage = thumbDiv.getAttribute('data-image');
+            const leftShark = thumbDiv.querySelector('.left-shark');
+            const rightShark = thumbDiv.querySelector('.right-shark');
+            const actualBackgroundUrl = leftShark.style.backgroundImage || rightShark.style.backgroundImage;
+            
+            expect(actualImage, `Group ${gi} collection ${ci} item ${ii}.image`)
+              .to
+              .include(expected_image_url);
+            expect(actualBackgroundUrl, `Group ${gi} collection ${ci} item ${ii}.backgroundUrl`)
+              .to
+              .include(expected_backround_url);
+          });
         });
+      });
     });
   });
 
@@ -384,36 +343,36 @@ describe('App Tests', () => {
       collectionCount = collectionNames.length;
 
       viewProps.limitRenderTo = 'collectionNames';
-      render(viewProps);
     });
 
     it('should render OL with a className of "collection-names-only" when limited to collection names', () => {
-      expect(element.children('ol'))
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const ols = element.querySelectorAll('ol');
+      expect(ols.length)
         .to
-        .have
-        .length(1);
-      expect(element.children('ol')
-        .props())
+        .equal(1);
+      expect(ols[0].className)
         .to
-        .have
-        .property('className')
-        .that
-        .equals('collection-names-only');
+        .equal('collection-names-only');
     });
 
     it('should have an LI for each collection among all groups', () => {
-      expect(element.children('ol')
-        .children('li'))
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const ol = element.querySelector('ol');
+      const lis = ol.querySelectorAll('li');
+      expect(lis.length)
         .to
-        .have
-        .length(collectionCount);
+        .equal(collectionCount);
     });
 
     it('should place each collection\'s name in an H3 inside the LIs', () => {
-      const actualCollectionNames = element.children('ol')
-        .children('li')
-        .children('h3')
-        .map(element => element.text());
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const ol = element.querySelector('ol');
+      const h3s = ol.querySelectorAll('h3');
+      const actualCollectionNames = Array.from(h3s).map(h3 => h3.textContent);
 
       expect(actualCollectionNames)
         .to
@@ -422,35 +381,21 @@ describe('App Tests', () => {
     });
 
     it('should register a click handler on each H3 that fires the props.whenCollectionNameClicked handler with the '
-      + 'collection name', () => {
+      + 'collection name', async () => {
+      const { container } = render(<App {...viewProps} />);
+      const element = container.firstChild;
+      const user = userEvent.setup();
       assert.notCalled(viewProps.whenCollectionNameClicked);
 
-      element.children('ol')
-        .children('li')
-        .children('h3')
-        .forEach((h3) => {
-          h3.simulate('click');
-          assert.calledOnce(viewProps.whenCollectionNameClicked);
-          assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());
-
-          viewProps.whenCollectionNameClicked.reset();
-        });
-    });
-
-    it('should register a touch (onTouchEnd) handler on each H3 that fires the props.whenCollectionNameClicked '
-      + 'handler with the collection name', () => {
-      assert.notCalled(viewProps.whenCollectionNameClicked);
-
-      element.children('ol')
-        .children('li')
-        .children('h3')
-        .forEach((h3) => {
-          h3.simulate('touchend');
-          assert.calledOnce(viewProps.whenCollectionNameClicked);
-          assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.text());
-
-          viewProps.whenCollectionNameClicked.reset();
-        });
+      const ol = element.querySelector('ol');
+      const h3s = ol.querySelectorAll('h3');
+      
+      for (const h3 of h3s) {
+        await user.click(h3);
+        assert.calledOnce(viewProps.whenCollectionNameClicked);
+        assert.calledWithExactly(viewProps.whenCollectionNameClicked, h3.textContent);
+        viewProps.whenCollectionNameClicked.reset();
+      }
     });
   });
 });

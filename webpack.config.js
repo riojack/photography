@@ -1,6 +1,5 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssNano = require('cssnano');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -19,21 +18,12 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          minimize: true,
-          compress: {
-          },
-          output: {
-            comments: false,
-          },
+      new TerserPlugin({
+        terserOptions: {
+          output: { comments: false },
         },
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['advanced'],
-        },
-      }),
+      new CssMinimizerPlugin(),
     ],
   },
   module: {
@@ -54,12 +44,13 @@ module.exports = {
       {
         loader: 'postcss-loader',
         options: {
-          ident: 'postcss',
-          plugins: [
-            cssNano({
-              preset: 'advanced',
-            }),
-          ],
+          postcssOptions: {
+            plugins: [
+              ['cssnano', {
+                preset: 'advanced',
+              }],
+            ],
+          },
         },
       },
       {
